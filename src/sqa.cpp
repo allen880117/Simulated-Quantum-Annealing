@@ -1,7 +1,5 @@
 #include "../include/sqa.hpp"
 
-#include <iostream>
-
 void QuantumMonteCarlo(const int nt, const int ns,
                        int        trotters[MAX_NT][MAX_NS][MAX_NS],
                        const fp_t city_distances[MAX_NS][MAX_NS],
@@ -53,4 +51,20 @@ void QuantumMonteCarlo(const int nt, const int ns,
         trotters[tr][b][p] = 1;
         trotters[tr][b][q] = -1;
     }
+}
+
+/* Quantum Monte-Carlo */
+void QuantumMonteCarlo2(const int nt, const int ns,
+                        int        trotters[MAX_NT][MAX_NS][MAX_NS],
+                        const fp_t city_distances[MAX_NS][MAX_NS],
+                        const fp_t max_distance, const fp_t cost_qr,
+                        const fp_t beta, const fp_t log_uni_rn, const int a,
+                        const int b, const int tr) {
+    /* Implement QA here */
+    /* TODO */
+    /* 
+        1. use PyQUBO to convert H , get J and Jtransverse
+        2. use coefficients to run QA
+            a. dH = (List1 in 2019, Feb)
+     */
 }
