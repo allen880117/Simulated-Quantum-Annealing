@@ -52,39 +52,3 @@ void QuantumMonteCarlo(const int nt, const int ns,
         trotters[tr][b][q] = -1;
     }
 }
-
-/* Quantum Monte-Carlo */
-void QuantumMonteCarlo2(const int nt, const int ns,
-                        int        trotters[MAX_NT][MAX_NS][MAX_NS],
-                        const fp_t J[MAX_NS][MAX_NS][MAX_NS][MAX_NS],
-                        const fp_t Jt[MAX_NS][MAX_NS], const fp_t T,
-                        const fp_t logRandNumber[MAX_NT][MAX_NS][MAX_NS]) {
-    for (int m = 0; m < MAX_NT; m++) {
-        if (m == nt) break;
-        for (int i = 0; i < MAX_NS; i++) {
-            if (i == ns) break;
-            for (int j = 0; j < MAX_NS; j++) {
-                if (j == ns) break;
-                /* Local Field of spin(m, i, j) */
-                fp_t dH = 0;
-                /* Compute Energy from same trotter */
-                for (int ki = 0; ki < MAX_NS; ki++) {
-                    if (ki == ns) break;
-                    for (int kj = 0; kj < MAX_NS; kj++) {
-                        if (kj == ns) break;
-                        dH += J[i][j][ki][kj] * trotters[m][ki][kj];
-                    }
-                }
-                /* Compute Engery from up and down trotter */
-                int up   = (m == 0) ? (ns - 1) : m - 1;
-                int down = (m == ns - 1) ? (0) : m + 1;
-                dH -= Jt[i][j] * trotters[up][i][j];
-                dH += Jt[i][j] * trotters[down][i][j];
-                /* Flip */
-                if ((-dH) / T > logRandNumber[m][i][j]) {
-                    trotters[m][i][j] = -trotters[m][i][j];
-                }
-            }
-        }
-    }
-}

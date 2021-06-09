@@ -140,8 +140,8 @@ int main(int argc, char *argv[]) {
     int  best_path[MAX_NS];
     fp_t best_distance = 10e20;  // A large-enough number
     /* Output File */
-    std::ofstream out("./data/out.txt");
-    std::ofstream logfile("./data/log.txt");
+    std::ofstream out("../data/out.txt");
+    std::ofstream logfile("../data/log.txt");
     /* SQA */
     for (int i = 0; i < iter; i++) {
         printProgress(i / (iter - 1));

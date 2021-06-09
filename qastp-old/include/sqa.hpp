@@ -17,11 +17,4 @@ void QuantumMonteCarlo(const int nt, const int ns,
                        const fp_t beta, const fp_t log_uni_rn, const int a,
                        const int b, const int tr);
 
-/* Quantum Monte-Carlo */
-void QuantumMonteCarlo2(const int nt, const int ns,
-                        int        trotters[MAX_NT][MAX_NS][MAX_NS],
-                        const fp_t J[MAX_NS][MAX_NS][MAX_NS][MAX_NS],
-                        const fp_t Jt[MAX_NS][MAX_NS], const fp_t T,
-                        const fp_t logRandNumber[MAX_NT][MAX_NS][MAX_NS]);
-
 #endif
