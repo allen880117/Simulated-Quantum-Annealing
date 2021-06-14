@@ -4,14 +4,19 @@
 #include <cmath>
 #include <iostream>
 
-#define MAX_NT 32
-#define MAX_NS 4096
+#define MAX_NTROT 32
+#define MAX_NCITY 64
+#define MAX_NSPIN 4096
 
-#define fp_t double
+typedef double fp_t;
+typedef bool   spin_t;
 
 /* Quantum Monte-Carlo */
-void QuantumMonteCarlo(const int nt, const int ns, int trotters[MAX_NT][MAX_NS],
-                       const fp_t J[MAX_NS][MAX_NS], const fp_t Jt[MAX_NS],
-                       const fp_t T, const fp_t logRandNumber[MAX_NT][MAX_NS]);
+void QuantumMonteCarlo(const int nTrot, const int nSpin,
+                       spin_t     trotters[MAX_NTROT][MAX_NSPIN],
+                       const fp_t J[MAX_NSPIN][MAX_NSPIN],
+                       const fp_t Jt[MAX_NSPIN], const fp_t Joffset,
+                       const fp_t T, const fp_t Beta,
+                       const fp_t logRandNumber[MAX_NTROT][MAX_NSPIN]);
 
 #endif

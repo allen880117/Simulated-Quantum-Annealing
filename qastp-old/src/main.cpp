@@ -96,9 +96,13 @@ void printProgress(double percentage) {
 
 /* Main Program */
 int main(int argc, char *argv[]) {
+    if (argc != 3){
+        printf("./sqa [DATAPATH] [nCity]\n");
+        return -1;
+    }
     /* Number of Trotters and Number of Spins */
     const int nt = 10;
-    const int ns = 38;
+    const int ns = atoi(argv[2]);
     /* Random Generators */
     std::random_device                   rd;
     std::mt19937                         rng(rd());
