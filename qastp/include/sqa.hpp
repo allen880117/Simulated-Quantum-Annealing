@@ -14,9 +14,9 @@ typedef bool   spin_t;
 /* Quantum Monte-Carlo */
 void QuantumMonteCarlo(const int nTrot, const int nSpin,
                        spin_t     trotters[MAX_NTROT][MAX_NSPIN],
-                       const fp_t J[MAX_NSPIN][MAX_NSPIN],
-                       const fp_t Jt[MAX_NSPIN], const fp_t Joffset,
-                       const fp_t T, const fp_t Beta,
+                       const fp_t Jcoup[MAX_NSPIN][MAX_NSPIN],
+                       const fp_t h[MAX_NSPIN], const fp_t Joffset,
+                       const fp_t Jperp, const fp_t Beta,
                        const fp_t logRandNumber[MAX_NTROT][MAX_NSPIN]);
 
 #endif

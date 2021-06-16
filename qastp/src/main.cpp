@@ -112,19 +112,6 @@ void GenerateCoeff(const int ns, fp_t J[MAX_NSPIN][MAX_NSPIN],
         }
     }
 
-    /* Normalize */
-    for (int i = 0; i < MAX_NCITY; i++) {
-        if (i == ncity) break;
-        for (int j = i + 1; j < MAX_NCITY; j++) {
-            if (j == ncity) break;
-            float original_dist = city_distances[i][j];
-            original_dist -= min_distance;
-            original_dist /= (max_distance - min_distance);
-            city_distances[i][j] = original_dist;
-            city_distances[j][i] = original_dist;
-        }
-    }
-
     /* First Term : Total Distances */
     for (int i = 0; i < MAX_NCITY; i++) {
         if (i == ncity) break;
@@ -179,6 +166,7 @@ void GenerateCoeff(const int ns, fp_t J[MAX_NSPIN][MAX_NSPIN],
             Jt[SaiIdx] += Klinear * tmp0;
         }
     }
+
     Offset += Klinear * tmp0 * tmp0 * ncity;
 
     for (int a = 0; a < MAX_NCITY; a++) {
@@ -196,10 +184,11 @@ void GenerateCoeff(const int ns, fp_t J[MAX_NSPIN][MAX_NSPIN],
             Jt[SaiIdx] += Klinear * tmp0;
         }
     }
+
     Offset += Klinear * tmp0 * tmp0 * ncity;
 }
 
-#define AAA 0
+#define AAA 1
 
 /* Main Program */
 int main(int argc, char *argv[]) {
@@ -222,10 +211,13 @@ int main(int argc, char *argv[]) {
     const int nCity = atoi(argv[3]);
     const int nSpin = nCity * nCity;
 #endif
+
     /* Random Generators */
     std::random_device                   rd;
     std::mt19937                         rng(rd());
     std::uniform_real_distribution<fp_t> unif(0.0, 1.0);
+    // std::uniform_int_distribution<int>   int_unif(0, 27545);
+    std::normal_distribution<fp_t>   int_unif(0, 1);
 
     /* Trotters */
     spin_t trotters[MAX_NTROT][MAX_NSPIN];
@@ -237,26 +229,39 @@ int main(int argc, char *argv[]) {
             J[i][j] = 0.0f;
         }
     }
+
 #if AAA
-    /* Read Field */
-    std::ifstream quad(argv[1]);
-    std::ifstream linear(argv[2]);
-    std::ifstream offset(argv[3]);
-    if (!quad || !linear || !offset) {
-        std::cout << "Can't find file." << std::endl;
-        return -1;
-    } else {
-        int  x, y;
-        fp_t q;
-        while (quad >> x >> y >> q) {
-            J[x][y] = q / 2;
-            J[y][x] = q / 2;
-        }
-        while (linear >> x >> q) Jt[x] = q;
-        offset >> Joffset;
+    // /* Read Field */
+    // std::ifstream quad(argv[1]);
+    // std::ifstream linear(argv[2]);
+    // std::ifstream offset(argv[3]);
+    // if (!quad || !linear || !offset) {
+    //     std::cout << "Can't find file." << std::endl;
+    //     return -1;
+    // } else {
+    //     int  x, y;
+    //     fp_t q;
+    //     while (quad >> x >> y >> q) {
+    //         J[x][y] = q/2;
+    //         J[y][x] = q/2;
+    //     }
+    //     while (linear >> x >> q) Jt[x] = q;
+    //     offset >> Joffset;
+    // }
+    // quad.close();
+    // linear.close();
+    
+    fp_t rndNum[nSpin];
+    for (int i = 0; i < nSpin; i++) {
+        rndNum[i] = int_unif(rng);
     }
-    quad.close();
-    linear.close();
+
+    for (int i = 0; i < nSpin; i++) {
+        for (int j = 0; j < nSpin; j++) {
+            J[i][j] = -(rndNum[i] * rndNum[j]);
+        }
+    }
+
 #else
     /* Read Citys */
     std::ifstream data(argv[1]);
@@ -270,9 +275,11 @@ int main(int argc, char *argv[]) {
 #endif
 
     /* Parameters */
-    fp_t iter     = 500;  // default 500
-    fp_t increase = (8 - 1 / (fp_t)16) / (fp_t)iter;
-    fp_t beta     = 1 / (fp_t)16;
+    fp_t iter    = 2000;               // default 500
+    fp_t maxBeta = 1 / 1.0f;           // default 8.0f
+    fp_t Beta    = 1 / (fp_t)1024.0f;  // default 1/16
+    fp_t dBeta   = (maxBeta - Beta) / (fp_t)iter;
+    fp_t G0      = 1.0f;  // default 8.0f
     /* Best */
     fp_t   bestEnergy = 10e22;
     spin_t bestTrotter[MAX_NSPIN];
@@ -282,26 +289,30 @@ int main(int argc, char *argv[]) {
     std::ofstream out("out.txt");
     /* SQA */
     for (int i = 0; i < iter; i++) {
-        printProgress(i / (iter - 1));
+        printProgress(i/(iter-1));
 
         fp_t logRandNum[MAX_NTROT][MAX_NSPIN];
         for (int j = 0; j < nTrot; j++) {
             for (int k = 0; k < nSpin; k++) {
-                logRandNum[j][k] = log(unif(rng)) / 2.0 * nTrot;
+                logRandNum[j][k] = log(unif(rng)) * nTrot;
             }
         }
 
-        QuantumMonteCarlo(nTrot, nSpin, trotters, J, Jt, Joffset, (iter - i),
-                          beta, logRandNum);
+        fp_t Gamma = G0 * (1 - (float)i / iter);
+        fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
 
+        QuantumMonteCarlo(nTrot, nSpin, trotters, J, Jt, Joffset, Jperp, Beta,
+                          logRandNum);
+
+        fp_t sumEnergy = 0;
         for (int t = 0; t < nTrot; t++) {
-            out << "Run, Trotter: " << i << " ," << t << std::endl;
-            for (int j = 0; j < nCity; j++) {
-                for (int k = 0; k < nCity; k++) {
-                    out << trotters[t][j * nCity + k] << " ";
-                }
-                out << std::endl;
-            }
+            // out << "Run, Trotter: " << i << " ," << t << std::endl;
+            // for (int j = 0; j < nCity; j++) {
+            //     for (int k = 0; k < nCity; k++) {
+            //         out << trotters[t][j * nCity + k] << " ";
+            //     }
+            //     out << std::endl;
+            // }
 
             fp_t energy = compute_energy(nSpin, trotters[t], J, Jt, Joffset);
             if (energy < bestEnergy) {
@@ -311,11 +322,12 @@ int main(int argc, char *argv[]) {
                 bestTrotNum = t;
             }
 
-            out << "Energy: " << energy << std::endl;
-            out << std::endl;
+            sumEnergy += energy;
         }
+        out << "Energy: " << sumEnergy << std::endl;
+        out << std::endl;
 
-        beta += increase;
+        Beta += dBeta;
     }
     /* Output Close */
     out.close();
@@ -329,6 +341,15 @@ int main(int argc, char *argv[]) {
         }
         std::cout << std::endl;
     }
+
     std::cout << "Energy: " << bestEnergy << std::endl;
     std::cout << std::endl;
+
+    fp_t a = 0;
+    fp_t b = 0;
+    for (int j = 0; j < nSpin; j++) {
+        if (bestTrotter[j]) a+= rndNum[j];
+        else b+=rndNum[j];
+    }
+    std::cout << a << " " << b << std::endl;
 }
