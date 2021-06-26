@@ -1,14 +1,14 @@
 #ifndef _SQA_HPP_
 #define _SQA_HPP_
 
+#include "hls_stream.h"
 #include <cmath>
 #include <iostream>
-#include "hls_stream.h"
 
 //#define MAX_NTROT 32
 //#define MAX_NSPIN 8192
 
-#define MAX_NTROT 4
+#define MAX_NTROT 8
 #define MAX_NSPIN 1024
 
 #define LOG2_MAX_NTROT 2
@@ -41,5 +41,14 @@ void QuantumMonteCarloOpt(const int nTrot, const int nSpin,
                           const fp_t         Jperp, /* Thermal Related  */
                           const fp_t         Beta,  /* Thermal Related  */
                           const fp_t logRandNumber[MAX_NTROT][MAX_NSPIN]);
+
+/* Quantum Monte-Carlo Opt */
+void QuantumMonteCarloOpt2(const int nTrot, const int nSpin,
+                           spin_t trotters[MAX_NTROT][MAX_NSPIN], /* Spins */
+                           hls::stream<fp_t> &Jcoup, /* Stream of Jcoup */
+                           const fp_t         h[MAX_NSPIN], /* Arraay of h */
+                           const fp_t         Jperp, /* Thermal Related  */
+                           const fp_t         Beta,  /* Thermal Related  */
+                           const fp_t logRandNumber[MAX_NTROT][MAX_NSPIN]);
 
 #endif

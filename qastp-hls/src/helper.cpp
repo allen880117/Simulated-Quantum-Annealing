@@ -51,5 +51,6 @@ fp_t computeEnergyPerTrotter(int nSpin, spin_t trotter[MAX_NSPIN],
     }
 
     /* Return */
-    return fabs(H);
+    // return fabs(H);
+    return (H);
 }

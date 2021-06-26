@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     const int nSpin = atoi(argv[2]);
 #else
     /* Number of Trotters and Number of Spins */
-    const int nTrot = 4;
+    const int nTrot = MAX_NTROT;
     const int nSpin = 32 * 32;
 #endif
 
@@ -103,8 +103,8 @@ int main(int argc, char *argv[]) {
         for (int j = 0; j < nSpin; j++)
             for (int k = 0; k < nSpin; k++)
                 JcoupStream << Jcoup[j][k];
-        QuantumMonteCarloOpt(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
-                             Beta, logRandNum);
+        QuantumMonteCarloOpt2(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+                              Beta, logRandNum);
         //        QuantumMonteCarlo(nTrot, nSpin, trotters, Jcoup, h, Jperp,
         //        Beta, logRandNum);
 
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
             /* Calcualte */
             fp_t energy = computeEnergyPerTrotter(nSpin, trotters[t], Jcoup, h);
             /* Compare */
-            if (energy < bestEnergy) {
+            if (fabs(energy) < fabs(bestEnergy)) {
                 bestEnergy = energy;
                 memcpy(bestTrotter, trotters[t], MAX_NSPIN * sizeof(spin_t));
                 bestRun     = i;
