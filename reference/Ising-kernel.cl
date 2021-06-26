@@ -40,8 +40,8 @@ __kernel void sqa(__global char *restrict couplings,
         for (int i = N; i > 0; i--) {
             // shifting interaction coefficients
             #pragma unroll
-            for (int j = 0; j < M; j++)
-                localJ[j][i] = localJ[j][i-1]; 
+            for (int m = 0; m < M; m++)
+                localJ[m][i] = localJ[m][i-1]; 
         }
 
         // copying interaction coefficient data
@@ -55,6 +55,13 @@ __kernel void sqa(__global char *restrict couplings,
 
 		#pragma unroll
         for (int m = 0; m < M; m++) {
+            /*
+                [0*256 ~ 0*256 + 256*256)
+                [1*256 ~ 1*256 + 256*256)
+                [2*256 ~ 2*256 + 256*256)
+                [3*256 ~ 3*256 + 256*256)
+                ...
+            */
             if (count >= (m<<bitshift) && count < ((N+m)<<bitshift)) { 
                 int klocal = (int)(((count - (m<<bitshift)) >> bitshift)); 
                 int j = ( count & bitmask );
