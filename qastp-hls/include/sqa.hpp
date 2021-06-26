@@ -11,7 +11,7 @@
 #define MAX_NTROT 8
 #define MAX_NSPIN 1024
 
-#define LOG2_MAX_NTROT 2
+#define LOG2_MAX_NTROT 3
 #define LOG2_MAX_NSPIN 10
 
 typedef float fp_t;
