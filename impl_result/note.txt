@@ -1,14 +1,28 @@
 basic
 - Naive Implementation
 
+opt1-failled (opt)
+- Failed Inter-Trotter Parallelism
+
 opt1-success (opt)
 - Reduce Memory Use
 - Inter-Trotter Parallelism Success
 - Pragma Unroll is not feasible
-- Explicit Unroll (Meta-Programming)
-
-opt1-failled (opt)
-- Failed Inter-Trotter Parallelism
+- Using Explicit Unroll (Meta-Programming)
 
 opt2 (opt2)
 - Intra-Trotter Parallelism
+
+opt3 (opt3)
+- Add PRNG
+
+opt5 (opt5)
+- Add Boundary Check
+
+opt5_sudoku (opt5S)
+- Add Support for sudoku
+
+opt5_adv (opt5Adv)
+- based on opt5
+- more efficient boundary check
+	- remove variable trotter size

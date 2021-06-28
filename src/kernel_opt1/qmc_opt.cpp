@@ -311,16 +311,19 @@ LOOP_CTRL:
                        endStep[0], trotters[0], up_trotter[0], down_trotter[0],
                        dH[0], hNext_0, Beta, dHTunnel, logRandNumber[0],
                        JcoupLocal[0]);
+
         fp_t hNext_1 = (iPre[1] != nSpin - 1) ? h[iPre[1] + 1] : 0.0f;
         TrotterUnit<1>(nTrot, nSpin, ctlStep, iPre[1], j, startStep[1],
                        endStep[1], trotters[1], up_trotter[1], down_trotter[1],
                        dH[1], hNext_1, Beta, dHTunnel, logRandNumber[1],
                        JcoupLocal[1]);
+
         fp_t hNext_2 = (iPre[2] != nSpin - 1) ? h[iPre[2] + 1] : 0.0f;
         TrotterUnit<2>(nTrot, nSpin, ctlStep, iPre[2], j, startStep[2],
                        endStep[2], trotters[2], up_trotter[2], down_trotter[2],
                        dH[2], hNext_2, Beta, dHTunnel, logRandNumber[2],
                        JcoupLocal[2]);
+                       
         fp_t hNext_3 = (iPre[3] != nSpin - 1) ? h[iPre[3] + 1] : 0.0f;
         TrotterUnit<3>(nTrot, nSpin, ctlStep, iPre[3], j, startStep[3],
                        endStep[3], trotters[3], up_trotter[3], down_trotter[3],
