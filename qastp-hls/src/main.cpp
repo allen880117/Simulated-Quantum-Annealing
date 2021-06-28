@@ -10,9 +10,22 @@
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
 
+#define FIXED_POINT 0
+#define ADV 1
+
+#if !FIXED_POINT
 /* Field */
 fp_t Jcoup[MAX_NSPIN][MAX_NSPIN];
+#if !ADV
 fp_t h[MAX_NSPIN];
+#else
+fp_t h[MAX_NTROT][MAX_NSPIN];
+#endif
+#else
+/* Field */
+fix_t Jcoup[MAX_NSPIN][MAX_NSPIN];
+fix_t h[MAX_NSPIN];
+#endif
 
 /* Main Program */
 int main(int argc, char *argv[]) {
@@ -30,7 +43,7 @@ int main(int argc, char *argv[]) {
 #else
     /* Number of Trotters and Number of Spins */
     const int nTrot = MAX_NTROT;
-    const int nSpin = 32 * 32;
+    const int nSpin = 729;
 #endif
 
     /* Random Generators */
@@ -45,18 +58,35 @@ int main(int argc, char *argv[]) {
     generateRandomState(trotters, nTrot, nSpin);
 
     /* Generate Random Numbers */
+#if !FIXED_POINT
     fp_t rndNum[MAX_NSPIN];
     for (int i = 0; i < nSpin; i++) {
-        rndNum[i] = int_unif(rng);
+        // rndNum[i] = int_unif(rng);
+        rndNum[i] = (float)(i + 1) / (float)nSpin;
     }
+#else
+    fix_t     rndNum[MAX_NSPIN];
+    for (int i = 0; i < nSpin; i++) {
+        rndNum[i] = i - nSpin / 2;
+    }
+#endif
 
     /* Field Initialization */
     for (int i = 0; i < nSpin; i++) {
+#if !ADV
         h[i] = 0.0f;
+#endif
         for (int j = 0; j < nSpin; j++) {
             Jcoup[i][j] = 0.0f;
         }
     }
+#if ADV
+    for (int i = 0; i < nTrot; i++) {
+        for (int j = 0; j < nSpin; j++) {
+            h[i][j] = 0.0f;
+        }
+    }
+#endif
 
     /* The problem we solved here is "Number Partition" */
     for (int i = 0; i < nSpin; i++) {
@@ -66,11 +96,17 @@ int main(int argc, char *argv[]) {
     }
 
     /* Parameters */
-    fp_t iter    = 500;               // default 500
-    fp_t maxBeta = 8 / 1.0f;          // default 8.0f
-    fp_t Beta    = 1 / (fp_t)4096.0f; // default 1/16
-    fp_t G0      = 8.0f;              // default 8.0f
-    fp_t dBeta   = (maxBeta - Beta) / (fp_t)iter;
+    fp_t iter = 500; // default 500
+#if !FIXED_POINT
+    fp_t maxBeta = ((fp_t)8) / 1.0f;    // default 8.0f
+    fp_t Beta    = 1 / ((fp_t)4096.0f); // default 1/16
+    fp_t G0      = 8.0f;                // default 8.0f
+#else
+    fp_t maxBeta = ((fp_t)8 / pow((fp_t)nSpin, 2)) / 1.0f; // default 8.0f
+    fp_t Beta    = 1 / ((fp_t)4096.0f * (fp_t)nSpin);      // default 1/16
+    fp_t G0      = 8.0f / (fp_t)nSpin;                     // default 8.0f
+#endif
+    fp_t dBeta = (maxBeta - Beta) / (fp_t)iter;
 
     /* Best */
     fp_t   bestEnergy = 10e22;
@@ -99,20 +135,56 @@ int main(int argc, char *argv[]) {
         fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
 
         /* Do Quantum Monte-Carlo */
+#if !MAXI
+#if !FIXED_POINT
         hls::stream<fp_t> JcoupStream;
+#else
+        hls::stream<fix_t> JcoupStream;
+#endif
         for (int j = 0; j < nSpin; j++)
             for (int k = 0; k < nSpin; k++)
                 JcoupStream << Jcoup[j][k];
-        QuantumMonteCarloOpt2(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
-                              Beta, logRandNum);
-        //        QuantumMonteCarlo(nTrot, nSpin, trotters, Jcoup, h, Jperp,
-        //        Beta, logRandNum);
+#endif
+
+#if !FIXED_POINT
+#if !ADV
+        QuantumMonteCarloOpt5(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+                              Beta);
+#else
+#if !MAXI
+        QuantumMonteCarloOpt5Adv(nSpin, trotters, JcoupStream, h, Jperp, Beta);
+#else
+        QuantumMonteCarloOpt5Adv(nSpin, trotters, Jcoup, h, Jperp, Beta);
+#endif
+#endif
+        // QuantumMonteCarloOpt3(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+        //                       Beta);
+
+        // QuantumMonteCarloOpt2(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+        //                       Beta, logRandNum);
+
+        // QuantumMonteCarlo(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
+        //                   logRandNum);
+#else
+        QuantumMonteCarloOpt5Fixed(nTrot, nSpin, trotters, JcoupStream, h,
+                                   Jperp, Beta);
+#endif
 
         /* Calculate energy of each turn */
         fp_t sumEnergy = 0;
         for (int t = 0; t < nTrot; t++) {
             /* Calcualte */
+#if !FIXED_POINT
+#if !ADV
             fp_t energy = computeEnergyPerTrotter(nSpin, trotters[t], Jcoup, h);
+#else
+            fp_t energy =
+                computeEnergyPerTrotter(nSpin, trotters[t], Jcoup, h[0]);
+#endif
+#else
+            fp_t energy =
+                computeEnergyPerTrotterFixed(nSpin, trotters[t], Jcoup, h);
+#endif
             /* Compare */
             if (fabs(energy) < fabs(bestEnergy)) {
                 bestEnergy = energy;

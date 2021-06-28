@@ -1,0 +1,14 @@
+basic
+- Naive Implementation
+
+opt1-success (opt)
+- Reduce Memory Use
+- Inter-Trotter Parallelism Success
+- Pragma Unroll is not feasible
+- Explicit Unroll (Meta-Programming)
+
+opt1-failled (opt)
+- Failed Inter-Trotter Parallelism
+
+opt2 (opt2)
+- Intra-Trotter Parallelism

@@ -22,22 +22,22 @@
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
 <Best-caseLatency>40</Best-caseLatency>
-<Average-caseLatency>3690511</Average-caseLatency>
-<Worst-caseLatency>29442067</Worst-caseLatency>
+<Average-caseLatency>7381011</Average-caseLatency>
+<Worst-caseLatency>58884123</Worst-caseLatency>
 <Best-caseRealTimeLatency>0.400 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>36.905 ms</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>0.294 sec</Worst-caseRealTimeLatency>
+<Average-caseRealTimeLatency>73.810 ms</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0.589 sec</Worst-caseRealTimeLatency>
 <Interval-min>41</Interval-min>
-<Interval-max>29442068</Interval-max>
+<Interval-max>58884124</Interval-max>
 </SummaryOfOverallLatency>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<BRAM_18K>2060</BRAM_18K>
+<BRAM_18K>2070</BRAM_18K>
 <DSP48E>7</DSP48E>
-<FF>2018</FF>
-<LUT>3387</LUT>
+<FF>2027</FF>
+<LUT>3402</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>

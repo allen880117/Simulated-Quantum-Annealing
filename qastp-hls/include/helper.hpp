@@ -19,4 +19,9 @@ fp_t computeEnergyPerTrotter(int nSpin, spin_t trotter[MAX_NSPIN],
                              fp_t Jcoup[MAX_NSPIN][MAX_NSPIN],
                              fp_t h[MAX_NSPIN]);
 
+/* Compute Energy Summation of A Trotter, Fixed-Point Version */
+fp_t computeEnergyPerTrotterFixed(int nSpin, spin_t trotter[MAX_NSPIN],
+                                  fix_t Jcoup[MAX_NSPIN][MAX_NSPIN],
+                                  fix_t h[MAX_NSPIN]);
+
 #endif

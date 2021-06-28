@@ -28,12 +28,42 @@ void generateRandomState(spin_t trotters[MAX_NTROT][MAX_NSPIN], int nTrot,
 fp_t computeEnergyPerTrotter(int nSpin, spin_t trotter[MAX_NSPIN],
                              fp_t Jcoup[MAX_NSPIN][MAX_NSPIN],
                              fp_t h[MAX_NSPIN]) {
-    /* Follow the Formula */                            
+    /* Follow the Formula */
     /* H = sum(J(i,j) * spin[i] * spin[j]) + sum(h[i] * spin[i]) */
 
     /* Total Energy */
     fp_t H = 0;
-    
+
+    /* Traverse All Spins */
+    for (int i = 0; i < nSpin; i++) {
+        /* Two-Spin Energy */
+        for (int j = 0; j < nSpin; j++) {
+            if (trotter[i] == trotter[j])
+                H += Jcoup[i][j];
+            else
+                H -= Jcoup[i][j];
+        }
+        /* One-Spin Energy */
+        if (trotter[i])
+            H += h[i];
+        else
+            H -= h[i];
+    }
+
+    /* Return */
+    // return fabs(H);
+    return (H);
+}
+
+fp_t computeEnergyPerTrotterFixed(int nSpin, spin_t trotter[MAX_NSPIN],
+                                  fix_t Jcoup[MAX_NSPIN][MAX_NSPIN],
+                                  fix_t h[MAX_NSPIN]) {
+    /* Follow the Formula */
+    /* H = sum(J(i,j) * spin[i] * spin[j]) + sum(h[i] * spin[i]) */
+
+    /* Total Energy */
+    fp_t H = 0;
+
     /* Traverse All Spins */
     for (int i = 0; i < nSpin; i++) {
         /* Two-Spin Energy */

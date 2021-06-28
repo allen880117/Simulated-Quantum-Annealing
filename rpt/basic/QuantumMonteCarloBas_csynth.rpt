@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'QuantumMonteCarloBas'
 ================================================================
-* Date:           Sat Jun 26 14:33:06 2021
+* Date:           Mon Jun 28 17:18:05 2021
 
 * Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
 * Project:        SQA-HLS
@@ -29,7 +29,7 @@
     |  Latency (cycles)  |  Latency (absolute)  |    Interval    | Pipeline|
     |   min   |    max   |    min   |    max    | min |    max   |   Type  |
     +---------+----------+----------+-----------+-----+----------+---------+
-    |       39|  29442066| 0.390 us | 0.294 sec |   39|  29442066|   none  |
+    |       39|  58884122| 0.390 us | 0.589 sec |   39|  58884122|   none  |
     +---------+----------+----------+-----------+-----+----------+---------+
 
     + Detail: 
@@ -41,7 +41,7 @@
         |                   |  Latency (cycles)  |   Iteration  |  Initiation Interval  |   Trip   |          |
         |     Loop Name     |   min   |    max   |    Latency   |  achieved |   target  |   Count  | Pipelined|
         +-------------------+---------+----------+--------------+-----------+-----------+----------+----------+
-        |- LOOP_TROTTERS    |       29|  29442056| 29 ~ 7360514 |          -|          -|   1 ~ 4  |    no    |
+        |- LOOP_TROTTERS    |       29|  58884112| 29 ~ 7360514 |          -|          -|   1 ~ 8  |    no    |
         | + LOOP_SPINS      |       27|   7360512|   27 ~ 7188  |          -|          -| 1 ~ 1024 |    no    |
         |  ++ LOOP_COUPLES  |        7|      7168|             7|          -|          -| 1 ~ 1024 |    no    |
         +-------------------+---------+----------+--------------+-----------+-----------+----------+----------+
@@ -56,14 +56,14 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
 +-----------------+---------+-------+--------+-------+-----+
 |DSP              |        -|      -|       -|      -|    -|
-|Expression       |        -|      -|       0|    586|    -|
+|Expression       |        -|      -|       0|    601|    -|
 |FIFO             |        -|      -|       -|      -|    -|
 |Instance         |        -|      7|     959|   1894|    -|
 |Memory           |        -|      -|       -|      -|    -|
 |Multiplexer      |        -|      -|       -|    316|    -|
-|Register         |        -|      -|     420|      -|    -|
+|Register         |        -|      -|     429|      -|    -|
 +-----------------+---------+-------+--------+-------+-----+
-|Total            |        0|      7|    1379|   2796|    0|
+|Total            |        0|      7|    1388|   2811|    0|
 +-----------------+---------+-------+--------+-------+-----+
 |Available        |      280|    220|  106400|  53200|    0|
 +-----------------+---------+-------+--------+-------+-----+
@@ -97,26 +97,26 @@
     +-----------------------+----------+-------+---+----+------------+------------+
     |     Variable Name     | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
     +-----------------------+----------+-------+---+----+------------+------------+
-    |add_ln31_fu_418_p2     |     +    |      0|  0|  19|          14|          14|
-    |add_ln43_fu_490_p2     |     +    |      0|  0|  19|          14|          14|
+    |add_ln31_fu_418_p2     |     +    |      0|  0|  21|          15|          15|
+    |add_ln43_fu_490_p2     |     +    |      0|  0|  21|          15|          15|
     |add_ln44_fu_500_p2     |     +    |      0|  0|  29|          22|          22|
-    |add_ln51_2_fu_354_p2   |     +    |      0|  0|  13|           2|           4|
+    |add_ln51_2_fu_354_p2   |     +    |      0|  0|  15|           2|           5|
     |add_ln51_fu_276_p2     |     +    |      0|  0|  39|          32|           2|
-    |add_ln52_fu_429_p2     |     +    |      0|  0|  19|          14|          14|
-    |add_ln53_fu_439_p2     |     +    |      0|  0|  19|          14|          14|
+    |add_ln52_fu_429_p2     |     +    |      0|  0|  21|          15|          15|
+    |add_ln53_fu_439_p2     |     +    |      0|  0|  21|          15|          15|
     |i_fu_398_p2            |     +    |      0|  0|  13|          11|           1|
     |j_fu_471_p2            |     +    |      0|  0|  13|          11|           1|
-    |m_fu_305_p2            |     +    |      0|  0|  12|           3|           1|
+    |m_fu_305_p2            |     +    |      0|  0|  13|           4|           1|
     |and_ln52_fu_527_p2     |    and   |      0|  0|   2|           1|           1|
     |and_ln68_1_fu_643_p2   |    and   |      0|  0|   2|           1|           1|
     |and_ln68_fu_637_p2     |    and   |      0|  0|   2|           1|           1|
-    |icmp_ln18_fu_299_p2    |   icmp   |      0|  0|   9|           3|           4|
+    |icmp_ln18_fu_299_p2    |   icmp   |      0|  0|  11|           4|           5|
     |icmp_ln20_fu_311_p2    |   icmp   |      0|  0|  18|          32|          32|
     |icmp_ln25_fu_392_p2    |   icmp   |      0|  0|  13|          11|          12|
     |icmp_ln27_fu_404_p2    |   icmp   |      0|  0|  18|          32|          32|
     |icmp_ln39_fu_465_p2    |   icmp   |      0|  0|  13|          11|          12|
     |icmp_ln41_fu_477_p2    |   icmp   |      0|  0|  18|          32|          32|
-    |icmp_ln50_fu_328_p2    |   icmp   |      0|  0|   9|           3|           1|
+    |icmp_ln50_fu_328_p2    |   icmp   |      0|  0|   9|           4|           1|
     |icmp_ln51_fu_349_p2    |   icmp   |      0|  0|  18|          32|          32|
     |icmp_ln68_1_fu_611_p2  |   icmp   |      0|  0|  18|          23|           1|
     |icmp_ln68_2_fu_617_p2  |   icmp   |      0|  0|  11|           8|           2|
@@ -128,15 +128,15 @@
     |dH_4_fu_532_p3         |  select  |      0|  0|  32|           1|          32|
     |dH_6_fu_540_p3         |  select  |      0|  0|  32|           1|          32|
     |dH_9_fu_561_p3         |  select  |      0|  0|  32|           1|          32|
-    |select_ln50_fu_341_p3  |  select  |      0|  0|   4|           1|           4|
-    |select_ln51_fu_368_p3  |  select  |      0|  0|   3|           1|           1|
+    |select_ln50_fu_341_p3  |  select  |      0|  0|   5|           1|           5|
+    |select_ln51_fu_368_p3  |  select  |      0|  0|   4|           1|           1|
     |trotters_d0            |    xor   |      0|  0|   2|           1|           2|
     |xor_ln54_1_fu_522_p2   |    xor   |      0|  0|   2|           1|           2|
     |xor_ln54_fu_517_p2     |    xor   |      0|  0|   2|           1|           1|
     |xor_ln64_fu_551_p2     |    xor   |      0|  0|  33|          32|          33|
     |xor_ln68_fu_285_p2     |    xor   |      0|  0|  33|          32|          33|
     +-----------------------+----------+-------+---+----+------------+------------+
-    |Total                  |          |      0|  0| 586|         433|         459|
+    |Total                  |          |      0|  0| 601|         440|         466|
     +-----------------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
@@ -151,10 +151,10 @@
     |grp_fu_249_p1      |   21|          4|   32|        128|
     |i_0_reg_206        |    9|          2|   11|         22|
     |j_0_reg_228        |    9|          2|   11|         22|
-    |m_0_reg_195        |    9|          2|    3|          6|
-    |trotters_address0  |   33|          6|   12|         72|
+    |m_0_reg_195        |    9|          2|    4|          8|
+    |trotters_address0  |   33|          6|   13|         78|
     +-------------------+-----+-----------+-----+-----------+
-    |Total              |  316|         67|  168|        614|
+    |Total              |  316|         67|  170|        622|
     +-------------------+-----+-----------+-----+-----------+
 
     * Register: 
@@ -175,25 +175,25 @@
     |icmp_ln68_reg_831           |   1|   0|    1|          0|
     |j_0_reg_228                 |  11|   0|   11|          0|
     |j_reg_771                   |  11|   0|   11|          0|
-    |logRandNumber_addr_reg_742  |  12|   0|   12|          0|
-    |m_0_reg_195                 |   3|   0|    3|          0|
-    |m_reg_692                   |   3|   0|    3|          0|
+    |logRandNumber_addr_reg_742  |  13|   0|   13|          0|
+    |m_0_reg_195                 |   4|   0|    4|          0|
+    |m_reg_692                   |   4|   0|    4|          0|
     |reg_264                     |  32|   0|   32|          0|
     |reg_271                     |  32|   0|   32|          0|
-    |sext_ln52_cast_reg_706      |   4|   0|   14|         10|
+    |sext_ln52_cast_reg_706      |   5|   0|   15|         10|
     |this_spin_reg_757           |   1|   0|    1|          0|
     |tmp_2_reg_668               |  32|   0|   32|          0|
-    |trotters_addr_1_reg_732     |  12|   0|   12|          0|
-    |trotters_addr_2_reg_737     |  12|   0|   12|          0|
-    |trotters_addr_reg_727       |  12|   0|   12|          0|
+    |trotters_addr_1_reg_732     |  13|   0|   13|          0|
+    |trotters_addr_2_reg_737     |  13|   0|   13|          0|
+    |trotters_addr_reg_727       |  13|   0|   13|          0|
     |trotters_load_reg_789       |   1|   0|    1|          0|
     |up_trotter_reg_804          |   1|   0|    1|          0|
     |xor_ln54_reg_810            |   1|   0|    1|          0|
-    |zext_ln25_1_reg_711         |   3|   0|   14|         11|
-    |zext_ln50_reg_700           |   3|   0|   14|         11|
+    |zext_ln25_1_reg_711         |   4|   0|   15|         11|
+    |zext_ln50_reg_700           |   4|   0|   15|         11|
     |zext_ln68_reg_752           |  11|   0|   22|         11|
     +----------------------------+----+----+-----+-----------+
-    |Total                       | 420|   0|  463|         43|
+    |Total                       | 429|   0|  472|         43|
     +----------------------------+----+----+-----+-----------+
 
 
@@ -213,7 +213,7 @@
 |ap_ready                | out |    1| ap_ctrl_hs | QuantumMonteCarloBas | return value |
 |nTrot                   |  in |   32|   ap_none  |         nTrot        |    scalar    |
 |nSpin                   |  in |   32|   ap_none  |         nSpin        |    scalar    |
-|trotters_address0       | out |   12|  ap_memory |       trotters       |     array    |
+|trotters_address0       | out |   13|  ap_memory |       trotters       |     array    |
 |trotters_ce0            | out |    1|  ap_memory |       trotters       |     array    |
 |trotters_we0            | out |    1|  ap_memory |       trotters       |     array    |
 |trotters_d0             | out |    1|  ap_memory |       trotters       |     array    |
@@ -226,7 +226,7 @@
 |h_q0                    |  in |   32|  ap_memory |           h          |     array    |
 |Jperp                   |  in |   32|   ap_none  |         Jperp        |    scalar    |
 |Beta                    |  in |   32|   ap_none  |         Beta         |    scalar    |
-|logRandNumber_address0  | out |   12|  ap_memory |     logRandNumber    |     array    |
+|logRandNumber_address0  | out |   13|  ap_memory |     logRandNumber    |     array    |
 |logRandNumber_ce0       | out |    1|  ap_memory |     logRandNumber    |     array    |
 |logRandNumber_q0        |  in |   32|  ap_memory |     logRandNumber    |     array    |
 +------------------------+-----+-----+------------+----------------------+--------------+

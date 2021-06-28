@@ -8,7 +8,7 @@
 <unit>ns</unit>
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020-clg400-1</Part>
-<TopModelName>QuantumMonteCarloOpt</TopModelName>
+<TopModelName>QuantumMonteCarloOpt2</TopModelName>
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
 </UserAssignments>
@@ -21,33 +21,33 @@
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>20</Best-caseLatency>
-<Average-caseLatency>9990666</Average-caseLatency>
-<Worst-caseLatency>35756042</Worst-caseLatency>
-<Best-caseRealTimeLatency>0.200 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>99.907 ms</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>0.358 sec</Worst-caseRealTimeLatency>
-<Interval-min>21</Interval-min>
-<Interval-max>35756043</Interval-max>
+<Best-caseLatency>39</Best-caseLatency>
+<Average-caseLatency>2144490</Average-caseLatency>
+<Worst-caseLatency>6994314</Worst-caseLatency>
+<Best-caseRealTimeLatency>0.390 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>21.445 ms</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>69.943 ms</Worst-caseRealTimeLatency>
+<Interval-min>40</Interval-min>
+<Interval-max>6994315</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <LOOP_CTRL>
 <TripCount>
 <range>
 <min>1</min>
-<max>1051648</max>
+<max>65984</max>
 </range>
 </TripCount>
 <Latency>
 <range>
-<min>10</min>
-<max>35756032</max>
+<min>29</min>
+<max>6994304</max>
 </range>
 </Latency>
 <IterationLatency>
 <range>
-<min>10</min>
-<max>34</max>
+<min>29</min>
+<max>106</max>
 </range>
 </IterationLatency>
 </LOOP_CTRL>
@@ -56,10 +56,10 @@
 
 <AreaEstimates>
 <Resources>
-<BRAM_18K>32</BRAM_18K>
-<DSP48E>46</DSP48E>
-<FF>6645</FF>
-<LUT>12088</LUT>
+<BRAM_18K>56</BRAM_18K>
+<DSP48E>86</DSP48E>
+<FF>20784</FF>
+<LUT>36754</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
@@ -106,7 +106,7 @@
 <IOProtocol>s_axi</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>15</Bits>
+<Bits>16</Bits>
 <Attribute>unknown</Attribute>
 <CType>float</CType>
 <HasCtrl>1</HasCtrl>
@@ -197,7 +197,7 @@
 <IOProtocol>s_axi</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>15</Bits>
+<Bits>16</Bits>
 <Attribute>unknown</Attribute>
 <CType>float</CType>
 <HasCtrl>1</HasCtrl>
@@ -295,7 +295,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_clk</name>
-<Object>QuantumMonteCarloOpt</Object>
+<Object>QuantumMonteCarloOpt2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -306,7 +306,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>ap_rst_n</name>
-<Object>QuantumMonteCarloOpt</Object>
+<Object>QuantumMonteCarloOpt2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
@@ -317,7 +317,7 @@
 </RtlPorts>
 <RtlPorts>
 <name>interrupt</name>
-<Object>QuantumMonteCarloOpt</Object>
+<Object>QuantumMonteCarloOpt2</Object>
 <Type>return value</Type>
 <Scope></Scope>
 <IOProtocol>ap_ctrl_hs</IOProtocol>
