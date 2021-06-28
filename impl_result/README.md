@@ -111,4 +111,4 @@ for (int ctlStep = 0; ctlStep < (nSpins + nTrots - 1); ctlStep++){
 
 ## Reference
 
-* [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://github.com/allen880117/Simulated-Quantum-Annealing/blob/main/docs/Highly-Parallel_FPGA-Accelerator_for_Simulated_Quantum_Annealing.pdf)
+* [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://github.com/allen880117/Simulated-Quantum-Annealing/blob/main/docs/references/Highly-Parallel_FPGA-Accelerator_for_Simulated_Quantum_Annealing.pdf)
