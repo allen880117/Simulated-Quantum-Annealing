@@ -32,7 +32,7 @@
 * Success at exploiting inter-trotter parallelism
   * Time complexity now is O(N(N+T))
 
-!()[https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/opt1-success-inter.png]
+![opt1-success](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/opt1-success-inter.png)
 
 ## opt2 (opt2)
 
