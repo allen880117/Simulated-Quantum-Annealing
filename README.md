@@ -45,7 +45,7 @@ According to the [1] and our analysis, we find out that the naive implementation
 
 For further comparison and the detailed report, you can check the [README](https://github.com/allen880117/Simulated-Quantum-Annealing/tree/main/impl_result) at the `impl_result`, we explain the detailed technique and the reason there.
 
-## Folder structure
+## Folder Structure
 
 ```
 simulated-quantum-annealing/
