@@ -27,7 +27,7 @@ Since it's hard to write a script to build the bitstream for us now. We will sho
     ./src/kernel_opt2/*.cpp
     ./src/kernel_opt3/*.cpp
     ./src/kernel_opt5/*.cpp
-    ./src/kernel_opt5_advacne/*.cpp
+    ./src/kernel_opt5_advance/*.cpp
     ./src/kernel_opt5_sudoku/*.cpp
     ```
 
