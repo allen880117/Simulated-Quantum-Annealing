@@ -46,6 +46,8 @@
   * Showing us the problem that passing the random numbers from host to device is time-consuming.
   * Only 7% of the overall execution time is the execution time of the kernel.
 
+  * ![rng](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/rng_time.png)
+
 ## opt3 (opt3)
 
 * According to the problem we oberserved at the version `Opt2`, we add the pseudo random generator in HLS. ([Reference](https://people.sc.fsu.edu/~jburkardt/cpp_src/uniform/uniform.html))
