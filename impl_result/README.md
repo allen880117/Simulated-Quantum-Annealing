@@ -55,7 +55,7 @@
 * The overall improvement in the whole system make this tradoff worth of it.
 
 * The latency reported by the HLS synthesis report is not accurate, it assumes the generation of log random number executes at each iteration.
-  * It actually executes once of `#Spins` iteraion.
+  * It actually executes once of `#Spins` iterations.
 
 ## opt5 (opt5)
 
