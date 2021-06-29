@@ -272,13 +272,8 @@ LOOP_CTRL:
 
         /* Compute Log Random Number */
         for (int t = 0; t < MAX_NTROT; t++) {
-            if (j == t) {
-                logRandomNumber[t] = uniform01(seed);
-            } else if (j == t + MAX_NTROT) {
-                logRandomNumber[t] = log(logRandomNumber[t]);
-            } else if (j == t + 2 * MAX_NTROT) {
-                logRandomNumber[t] *= nTrot;
-            }
+#pragma HLS DEPENDENCE variable = logRandomNumber inter false
+            logRandomNumber[t] = log(uniform01(seed)) * nTrot;
         }
 
         /* Shift Down Old Jcoup */

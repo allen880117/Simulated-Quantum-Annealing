@@ -1,10 +1,10 @@
 # Implementation Results
 
-## basic
+## original (basic)
 
 * Naive implementation
 
-* Time complexity is O(TNN)
+* Time complexity is O(TSS)
 
 * Memory usage is too large
   * Need a better interface for passing the coefficients, instead of sending all the coefficients to the kernel in once.
@@ -22,6 +22,8 @@
 
 ## opt1-success (opt)
 
+* Adding `#pragma HLS ARRAY_PARTITION variable = xx complete dim = 1` to make each totter units can have its own independant memory port for accessing.
+
 * Adding more `#pragma HLS DEPENDENCE variable = xx inter false` to hint the cmpiler.
 
 * Modify the passing parameters of the trotter units to hide the data dependency of the upper/lower trotter units.
@@ -30,7 +32,7 @@
   * Explicitly unroll the loop.
 
 * Success at exploiting inter-trotter parallelism
-  * Time complexity now is O(N(N+T))
+  * Time complexity now is O(S(S+T))
 
 ![opt1-success](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/opt1-success-inter.png)
 
@@ -40,13 +42,13 @@
 
 * Using template meta-programming to express the explicit unrolling and the reduction in more efficient way.
 
-* The first version on board.
+* The first version for on-board teset.
   * Showing us the problem that passing the random numbers from host to device is time-consuming.
   * Only 7% of the overall execution time is the execution time of the kernel.
 
 ## opt3 (opt3)
 
-* According to the problem we oberserved at the version `Opt2`, we add the pseudo random generator in HLS.
+* According to the problem we oberserved at the version `Opt2`, we add the pseudo random generator in HLS. ([Reference](https://people.sc.fsu.edu/~jburkardt/cpp_src/uniform/uniform.html))
 
 * `Natrual Log` operation is time-consuming which harms the performance of the kernel a lot.
 

@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 #else
     /* Number of Trotters and Number of Spins */
     const int nTrot = MAX_NTROT;
-    const int nSpin = 729;
+    const int nSpin = 1024;
 #endif
 
     /* Random Generators */
