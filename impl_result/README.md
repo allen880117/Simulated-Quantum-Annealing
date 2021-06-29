@@ -116,3 +116,4 @@ for (int ctlStep = 0; ctlStep < (nSpins + nTrots - 1); ctlStep++){
 ## Reference
 
 * [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://ieeexplore.ieee.org/document/8918417)
+* [[2] UNIFORM - A Uniform Random Number Generator (RNG)](https://people.sc.fsu.edu/~jburkardt/cpp_src/uniform/uniform.html)
