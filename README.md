@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This project is aimed to implementing the simulated quantum annealing in HLS and reproduce the paper [[1]](https://github.com/allen880117/Simulated-Quantum-Annealing/blob/main/docs/references/Highly-Parallel_FPGA-Accelerator_for_Simulated_Quantum_Annealing.pdf).
+This project is aimed to implementing the simulated quantum annealing in HLS and reproduce the paper [[1]](https://ieeexplore.ieee.org/document/8918417).
 
 We exploit the inter-trotter parallelism and the intra-trotter parallelism by reffering to the [1], and design the interface which is more suitable our environment.
 
 After the first on-board test, we furtherly add the pseudo random number generator into the kernel to speed up the wholse system.
 
-* [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://github.com/allen880117/Simulated-Quantum-Annealing/blob/main/docs/references/Highly-Parallel_FPGA-Accelerator_for_Simulated_Quantum_Annealing.pdf)
+* [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://ieeexplore.ieee.org/document/8918417)
 
 ## Major Optimizations 
 
