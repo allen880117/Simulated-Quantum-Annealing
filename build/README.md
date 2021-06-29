@@ -8,7 +8,7 @@
 
 ## Detailed Steps
 
-Since it's hard to write a script to build for us now. I will show the build step here.
+Since it's hard to write a script to build the bitstream for us now. We will show the build step here.
 
 1. Creae a new HLS project.
     
