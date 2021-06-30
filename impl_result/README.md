@@ -71,7 +71,7 @@ Some notations here
 * Break down the `LOOP_CTRL` into multiple loops to get the index of the current processing spin more efficiently.
   * Also making the HLS synthesis report calculate the latency in a more accurate way
 
-* Since the generation of log random number only needs to execute once every `#Spins` iterations.
+* Since the generation of log random number only needs to execute once every `#Spins` iterations at the old version.
   * Move it to the outer loop of the new version for better performance
 
 * Previous version (The innermost loop is explicit unrolling)
