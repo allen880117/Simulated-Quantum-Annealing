@@ -23,16 +23,16 @@ Some notations here
 
 * Compiler can't resolve the data dependency, making all trotter units work in sequential in an iteration.
 
-![opt1-failed](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/opt1-failed-inter.png)
+![opt1-failed](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/_image/opt1-failed-inter.png)
 
 ## opt1-success (opt)
 
-* Adding `#pragma HLS ARRAY_PARTITION variable = xx complete dim = 1` 
+* Adding `#pragma HLS ARRAY_PARTITION variable = xx complete dim = 1`
   * Make each totter unit can have its independent memory port for accessing.
 
 * Adding more `#pragma HLS DEPENDENCE variable = xx inter false` to prompt the compiler.
 
-* Modify the passing parameters of the trotter units 
+* Modify the passing parameters of the trotter units
   * Hide the data dependency of the upper/lower trotter units.
 
 * `#pragma HLS UNROLL` in the inner-most loop can't make all the trotter units work in parallel.
@@ -41,7 +41,7 @@ Some notations here
 * Success at exploiting the inter-trotter parallelism
   * Time complexity now is O(S(S+T))
 
-![opt1-success](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/opt1-success-inter.png)
+![opt1-success](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/_image/opt1-success-inter.png)
 
 ## opt2 (opt2)
 
@@ -53,7 +53,7 @@ Some notations here
   * Show us the problem that passing the random numbers from host to device is time-consuming.
   * Only 7% of the overall execution time is the execution time of the kernel.
 
-  * ![rng](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/rng_time.png)
+  * ![rng](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/_image/rng_time.png)
 
 ## opt3 (opt3)
 
@@ -63,9 +63,6 @@ Some notations here
 
 * The overall improvement in the whole system make this tradeoff worth it.
 
-* The latency reported by the HLS synthesis report is not accurate, it assumes the generation of log random number executes at each iteration.
-  * It executes once every `#Spins` iterations.
-
 ## opt5 (opt5)
 
 * Modify the un-complete boundary check to truly support the variable size of the trotters and the spins.
@@ -74,11 +71,15 @@ Some notations here
 * Break down the `LOOP_CTRL` into multiple loops to get the index of the current processing spin more efficiently.
   * Also making the HLS synthesis report calculate the latency in a more accurate way
 
+* Since the generation of log random number only needs to execute once every `#Spins` iterations.
+  * Move it to the outer loop of the new version for better performance
+
 * Previous version (The innermost loop is explicit unrolling)
 
 ```C++
 #define NPC 16 // The factor of intra-trotter parallelsim
 for (int ctlStep = 0; ctlStep < (nSpins + nTrots - 1) * nSpins; ctlStep+= NPC ){
+  GenerateLogRandomNumber(); // Generate log random number
   for (int  t = 0; t < nTrots; t++ ){
     int i = ctlStep >> LOG2(MAX_NSPIN); // The number of nSpins is fixed to the MAX_NSPIN
     int j = ctlStep & (MAX_NSPIN-1); // The number of nSpins is fixed to the MAX_NSPIN
@@ -93,6 +94,7 @@ for (int ctlStep = 0; ctlStep < (nSpins + nTrots - 1) * nSpins; ctlStep+= NPC ){
 ```C++
 #define NPC 16 // The factor of intra-trotter parallelsim
 for (int ctlStep = 0; ctlStep < (nSpins + nTrots - 1); ctlStep++){
+  GenerateLogRandomNumber(); // Generate log random number
   for (int j = 0; j < nSpins; j+= NPC){
     for (int t = 0; t < nTrots; t++ ){
         int i = ctlStep / nSpins; // The number of nSpins is fixed to the MAX_NSPIN

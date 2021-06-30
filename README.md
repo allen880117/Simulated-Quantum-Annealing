@@ -199,6 +199,8 @@ src/kernel_opt5_sudoku/*.cpp
 #### 2. Simulation and Test
 
 * The host code, `main.cpp`, will perform the test of `Number Partition Problem`.
+  * You can change the macro option at the top of `main.cpp` to test the different functions.
+  * This host code doesn't support the test of `QuantumMonteCarloOpt5S` (`Sudoku`).
 
 * 2.1. It will generate the testing data by itself.
 
