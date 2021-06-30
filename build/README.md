@@ -8,88 +8,92 @@
 
 ## Detailed Steps
 
-Since it's hard to write a script to build the bitstream for us now. We will show the build step here.
+Since it's hard to write a script to build for us now. I will show the build step here.
 
-1. Creae a new HLS project.
-    
-    1.1. Select the board, `PYNQ-Z2`.
+### 1. Create a new HLS project
 
-    1.2. Select the frequency, we recommand `100 MHz` which is `10ns` here.
+* 1.1. Select the board, `PYNQ-Z2`.
 
-2. Adding all the sources in the following list into the `sources`:
+* 1.2. Select the frequency, we recommend `100 MHz` which is `10ns` here.
 
-    ```text
-    ./src/helper/prng.cpp
+### 2. Adding all the sources in the following list into the `sources`
 
-    ./src/original/*.cpp
+```text
+src/helper/prng.cpp
+```
 
-    ./src/kerenl_opt1/*.cpp
-    ./src/kernel_opt2/*.cpp
-    ./src/kernel_opt3/*.cpp
-    ./src/kernel_opt5/*.cpp
-    ./src/kernel_opt5_advance/*.cpp
-    ./src/kernel_opt5_sudoku/*.cpp
-    ```
+```text
+src/original/*.cpp
+```
 
-3. Adding all the sources in the following list into the `testbench`:
+```text
+src/kerenl_opt1/*.cpp
+src/kernel_opt2/*.cpp
+src/kernel_opt3/*.cpp
+src/kernel_opt5/*.cpp
+src/kernel_opt5_advacne/*.cpp
+src/kernel_opt5_sudoku/*.cpp
+```
 
-    ```text
-    ./src/helper/helper.cpp
-    ./src/host/host.cpp
-    ```
+### 3. Adding all the sources in the following list into the `testbench`
 
-4. Simulation
+```text
+./src/helper/helper.cpp
+./src/host/host.cpp
+```
 
-   For simulation, please refer to the `Run Test`.
+### 4. Simulation
 
-5. Select the top function and synthesis:
+* For simulation, please refer to the section `Run Test` below.
 
-    Since all the pragma is already inline into the sources, just select your top function and run the synthesis. 
+### 5. Select the top function and synthesis
 
-    ||Version|Function Name|
-    |-|-|-|
-    |1|Basic|QuantumMonteCarlo|
-    |2|Opt1|QuantumMonteCarloOpt|
-    |3|Opt2|QuantumMonteCarloOpt2|
-    |4|Opt3|QuantumMonteCarloOpt3|
-    |5|Opt5|QuantumMonteCarloOpt5|
-    |6|Opt5-Sudoku|QuantumMonteCarloOpt5S|
-    |7|Opt5-Advance|QuantumMonteCarloOpt5Adv|
+* Since all the pragma is already inline into the sources, just select your top function and run the synthesis.
 
-6. Create a Vivado Project
+    |     | Version      | Function Name            |
+    | --- | ------------ | ------------------------ |
+    | 1   | Basic        | QuantumMonteCarlo        |
+    | 2   | Opt1         | QuantumMonteCarloOpt     |
+    | 3   | Opt2         | QuantumMonteCarloOpt2    |
+    | 4   | Opt3         | QuantumMonteCarloOpt3    |
+    | 5   | Opt5         | QuantumMonteCarloOpt5    |
+    | 6   | Opt5-Sudoku  | QuantumMonteCarloOpt5S   |
+    | 7   | Opt5-Advance | QuantumMonteCarloOpt5Adv |
 
-    6.1. Select the board, `PYNQ-Z2`
+### 6. Create a Vivado Project
 
-    6.2. Adding our HLS IP into the IP Catalog.
+* 6.1. Select the board, `PYNQ-Z2`
 
-7. Create a new block diagram
+* 6.2. Adding our HLS IP into the IP Catalog.
 
-    Configure the `PS-PL Configuration` of `ZYNQ7 Processing System` to enable at least one Slave AXI interface for PS.
+### 7. Create a new block diagram
+
+* Configure the `PS-PL Configuration` of `ZYNQ7 Processing System` to enable at least one Slave AXI interface for PS.
 
     ![ps_pl_config](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/docs/report_images/ps_pl_config.png)
 
-    Route as the following diagram. (Only suitable for the Opt-Series, not for Basic)
+* Route as the following diagram. (Only suitable for the Opt-Series, not for Basic)
 
     ![bd](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/docs/report_images/block_diagram.png)
 
-8. Generate Bitstream
+### 8. Generate Bitstream
 
-    8.1 Press `Generate Bitstream` direclty
+* 8.1 Press `Generate Bitstream` directly
 
-    8.2 Get `.bit` and `.hwh` for `On-Board Test`
+* 8.2 Get `.bit` and `.hwh` for `On-Board Test`
 
     ```text
     ./<vivado_project>.srcs/sources_1/bd/<design>/hw_handoff/<design>.hwh
     ./<vivado_project>.runs/impl_1/<design>_wrapper.bit
     ```
 
-    Remember to rename the two files to have same prefix.
+* 8.3. Remember to rename the two files to have the same prefix.
 
     ```text
     SQA.hwh
     SQA.bit
     ```
 
-9. Run Test
+### 9. Run Test
 
-    Please refer to the `Run Test`.
+* Please refer to the below section `Run Test`.

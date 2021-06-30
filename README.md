@@ -10,7 +10,7 @@ After the first onboard test, we furtherly add the pseudorandom number generator
 
 * [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://ieeexplore.ieee.org/document/8918417)
 
-## Major Optimizations 
+## Major Optimizations
 
 ### Problem of the Naive Implementation
 
@@ -47,7 +47,7 @@ For further comparison and the detailed report, you can check the [README](https
 
 ## Folder Structure
 
-```
+```text
 simulated-quantum-annealing/
 ├── build
 ├── data
@@ -100,114 +100,124 @@ simulated-quantum-annealing/
 
 Since it's hard to write a script to build for us now. I will show the build step here.
 
-1. Create a new HLS project.
+#### 1. Create a new HLS project
 
-    1.1. Select the board, `PYNQ-Z2`.
+* 1.1. Select the board, `PYNQ-Z2`.
 
-    1.2. Select the frequency, we recommend `100 MHz` which is `10ns` here.
+* 1.2. Select the frequency, we recommend `100 MHz` which is `10ns` here.
 
-2. Adding all the sources in the following list into the `sources`:
+#### 2. Adding all the sources in the following list into the `sources`
 
-    ```text
-    ./src/helper/prng.cpp
+```text
+src/helper/prng.cpp
+```
 
-    ./src/original/*.cpp
+```text
+src/original/*.cpp
+```
 
-    ./src/kerenl_opt1/*.cpp
-    ./src/kernel_opt2/*.cpp
-    ./src/kernel_opt3/*.cpp
-    ./src/kernel_opt5/*.cpp
-    ./src/kernel_opt5_advacne/*.cpp
-    ./src/kernel_opt5_sudoku/*.cpp
-    ```
+```text
+src/kerenl_opt1/*.cpp
+src/kernel_opt2/*.cpp
+src/kernel_opt3/*.cpp
+src/kernel_opt5/*.cpp
+src/kernel_opt5_advacne/*.cpp
+src/kernel_opt5_sudoku/*.cpp
+```
 
-3. Adding all the sources in the following list into the `testbench`:
+#### 3. Adding all the sources in the following list into the `testbench`
 
-    ```text
-    ./src/helper/helper.cpp
-    ./src/host/host.cpp
-    ```
+```text
+./src/helper/helper.cpp
+./src/host/host.cpp
+```
 
-4. Simulation
+#### 4. Simulation
 
-   For simulation, please refer to the section `Run Test` below.
+* For simulation, please refer to the section `Run Test` below.
 
-5. Select the top function and synthesis:
+#### 5. Select the top function and synthesis
 
-    Since all the pragma is already inline into the sources, just select your top function and run the synthesis. 
+* Since all the pragma is already inline into the sources, just select your top function and run the synthesis.
 
-    ||Version|Function Name|
-    |-|-|-|
-    |1|Basic|QuantumMonteCarlo|
-    |2|Opt1|QuantumMonteCarloOpt|
-    |3|Opt2|QuantumMonteCarloOpt2|
-    |4|Opt3|QuantumMonteCarloOpt3|
-    |5|Opt5|QuantumMonteCarloOpt5|
-    |6|Opt5-Sudoku|QuantumMonteCarloOpt5S|
-    |7|Opt5-Advance|QuantumMonteCarloOpt5Adv|
+    |     | Version      | Function Name            |
+    | --- | ------------ | ------------------------ |
+    | 1   | Basic        | QuantumMonteCarlo        |
+    | 2   | Opt1         | QuantumMonteCarloOpt     |
+    | 3   | Opt2         | QuantumMonteCarloOpt2    |
+    | 4   | Opt3         | QuantumMonteCarloOpt3    |
+    | 5   | Opt5         | QuantumMonteCarloOpt5    |
+    | 6   | Opt5-Sudoku  | QuantumMonteCarloOpt5S   |
+    | 7   | Opt5-Advance | QuantumMonteCarloOpt5Adv |
 
-6. Create a Vivado Project
+#### 6. Create a Vivado Project
 
-    6.1. Select the board, `PYNQ-Z2`
+* 6.1. Select the board, `PYNQ-Z2`
 
-    6.2. Adding our HLS IP into the IP Catalog.
+* 6.2. Adding our HLS IP into the IP Catalog.
 
-7. Create a new block diagram
+#### 7. Create a new block diagram
 
-    Configure the `PS-PL Configuration` of `ZYNQ7 Processing System` to enable at least one Slave AXI interface for PS.
+* Configure the `PS-PL Configuration` of `ZYNQ7 Processing System` to enable at least one Slave AXI interface for PS.
 
     ![ps_pl_config](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/docs/report_images/ps_pl_config.png)
 
-    Route as the following diagram. (Only suitable for the Opt-Series, not for Basic)
+* Route as the following diagram. (Only suitable for the Opt-Series, not for Basic)
 
     ![bd](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/docs/report_images/block_diagram.png)
 
-8. Generate Bitstream
+#### 8. Generate Bitstream
 
-    8.1 Press `Generate Bitstream` direclty
+* 8.1 Press `Generate Bitstream` directly
 
-    8.2 Get `.bit` and `.hwh` for `On-Board Test`
+* 8.2 Get `.bit` and `.hwh` for `On-Board Test`
 
     ```text
     ./<vivado_project>.srcs/sources_1/bd/<design>/hw_handoff/<design>.hwh
     ./<vivado_project>.runs/impl_1/<design>_wrapper.bit
     ```
 
-    Remember to rename the two files to have the same prefix.
+* 8.3. Remember to rename the two files to have the same prefix.
 
     ```text
     SQA.hwh
     SQA.bit
     ```
 
-9. Run Test
+#### 9. Run Test
 
-    Please refer to the below section `Run Test`.
+* Please refer to the below section `Run Test`.
 
 ## Run Test
 
 ### Simulation
 
-1. Follow the `Build Steps` `1~3`
+#### 1. Build and Setup the Vivado HLS Project
 
-2. The host code `main.cpp` will perform the test of `Number Partition Problem`.
+* Follow the `Build Setup` `Steps 1~3` to build and set up the Vivado HLS project.
 
-    2.1. It will generate the data by itself.
-    
-    2.2. Then it will run the 500 iterations of SQA.
-    
-    2.3. It will dump the following information at the end of the execution.
+#### 2. Simulation and Test
+
+* The host code, `main.cpp`, will perform the test of `Number Partition Problem`.
+
+* 2.1. It will generate the testing data by itself.
+
+* 2.2. It will run the 500 iterations of SQA.
+
+* 2.3. It will dump the following information at the end of the execution.
 
     ```text
+    [Best Run] [Trotter Number]
+    [Best Trotter]
     [Best Energy]
-    [Best Run] [Trotter Number] [Sum of 1st Subset] [Sum of 2nd Subset]
+    [Sum of 1st Subset] [Sum of 2nd Subset]
     ```
 
-    2.4. It will also generate an `out.txt` file which dumps the summation of the energy in each run. You can use the script `./tests/vision.ipynb` to visualize it.
+* 2.4. It will also generate an `out.txt` file which dumps the summation of the energy in each run. You can use the script `./tests/vision.ipynb` to visualize it.
 
 ### Co-Simulation
 
-We don't recommend do co-simulation here. 
+We don't recommend do co-simulation here.
 
 There exists some problem with the connection of the DSP when doing co-simulation in Vivado HLS 2020.1. The time needed for co-simulation will be extremely slow down due to the message output.
 
@@ -215,18 +225,24 @@ The detailed discussion can be found at [here](https://forums.xilinx.com/t5/Simu
 
 ### On-Board Test
 
-1. Follow the `Build Steps` `1~8` to build the `.bit` and `.hwh` files.
+#### 1. Generate `.bit` and `.hwh` files
 
-2. Move them into the board.
+* Follow the `Build Setup` `Steps 1~8` to generate the `.bit` and `.hwh` files.
 
-3. We provide following host files to test:
+#### 2. Move them into the board
 
-    ```text
-    ./src/host/SQA-Opt2.ipynb
-    ./src/host/SQA-Opt3.ipynb
-    ./src/host/SQA-Opt5.ipynb
-    ./src/host/SQA-Opt5-Adv.ipynb
-    ./src/host/sudoku/SQA-sudoku.ipynb
-    ```
+* Just move your `.bit` and `.hwh` files to the `PYNQ-Z2`.
 
-    For the detail about the test on `SQA-Opt5-Sudoku`, please refer to the [here](https://github.com/allen880117/Simulated-Quantum-Annealing/tree/main/src/host/sudoku).
+#### 3. Do the test
+
+* We provide following host files to test :
+
+```text
+./src/host/SQA-Opt2.ipynb
+./src/host/SQA-Opt3.ipynb
+./src/host/SQA-Opt5.ipynb
+./src/host/SQA-Opt5-Adv.ipynb
+./src/host/sudoku/SQA-sudoku.ipynb
+```
+
+* For the detail about the test on `SQA-Opt5-Sudoku`, please refer to the [here](https://github.com/allen880117/Simulated-Quantum-Annealing/tree/main/src/host/sudoku).
