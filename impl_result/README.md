@@ -22,16 +22,18 @@
 
 ## opt1-success (opt)
 
-* Adding `#pragma HLS ARRAY_PARTITION variable = xx complete dim = 1` to make each totter unit can have its independent memory port for accessing.
+* Adding `#pragma HLS ARRAY_PARTITION variable = xx complete dim = 1` 
+  * Make each totter unit can have its independent memory port for accessing.
 
-* Adding more `#pragma HLS DEPENDENCE variable = xx inter false` to hint the cmpiler.
+* Adding more `#pragma HLS DEPENDENCE variable = xx inter false` to hint the compiler.
 
-* Modify the passing parameters of the trotter units to hide the data dependency of the upper/lower trotter units.
+* Modify the passing parameters of the trotter units 
+  * Hide the data dependency of the upper/lower trotter units.
 
 * `#pragma HLS UNROLL` in the inner-most loop can't make all the trotter units work in parallel.
   * Explicitly unroll the loop.
 
-* Success at exploiting inter-trotter parallelism
+* Success at exploiting the inter-trotter parallelism
   * Time complexity now is O(S(S+T))
 
 ![opt1-success](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/opt1-success-inter.png)
@@ -42,8 +44,8 @@
 
 * Using template meta-programming to express the explicit unrolling and the reduction in a more efficient way.
 
-* The first version for the onboard test.
-  * Showing us the problem that passing the random numbers from host to device is time-consuming.
+* The first version for the on-board test.
+  * Show us the problem that passing the random numbers from host to device is time-consuming.
   * Only 7% of the overall execution time is the execution time of the kernel.
 
   * ![rng](https://raw.githubusercontent.com/allen880117/Simulated-Quantum-Annealing/main/impl_result/image/rng_time.png)
