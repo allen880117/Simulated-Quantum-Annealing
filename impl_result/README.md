@@ -1,5 +1,10 @@
 # Implementation Results
 
+Some notations here
+
+* The default size of spins and trotters here is 1024 and 8.
+* The postfix, `_t8` or `_t16`, of the directories, means that the size of the trotters it uses is 8 or 16.
+
 ## original (basic)
 
 * Naive implementation
@@ -25,7 +30,7 @@
 * Adding `#pragma HLS ARRAY_PARTITION variable = xx complete dim = 1` 
   * Make each totter unit can have its independent memory port for accessing.
 
-* Adding more `#pragma HLS DEPENDENCE variable = xx inter false` to hint the compiler.
+* Adding more `#pragma HLS DEPENDENCE variable = xx inter false` to prompt the compiler.
 
 * Modify the passing parameters of the trotter units 
   * Hide the data dependency of the upper/lower trotter units.
