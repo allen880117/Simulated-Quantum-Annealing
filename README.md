@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This project is aimed to implementing the simulated quantum annealing in HLS and reproduce the paper [[1]](https://ieeexplore.ieee.org/document/8918417).
+This project is aimed at implementing the simulated quantum annealing in HLS and reproduces the paper [[1]](https://ieeexplore.ieee.org/document/8918417).
 
-We exploit the inter-trotter parallelism and the intra-trotter parallelism by reffering to the [1], and design the interface which is more suitable our environment.
+We exploit the inter-trotter parallelism and the intra-trotter parallelism by referring to the [1] and design the interface which is more suitable for our environment.
 
-After the first on-board test, we furtherly add the pseudo random number generator into the kernel to speed up the wholse system.
+After the first onboard test, we furtherly add the pseudorandom number generator into the kernel to speed up the whole system.
 
 * [[1] Highly-Parallel FPGA Accelerator for Simulated Quantum Annealing](https://ieeexplore.ieee.org/document/8918417)
 
@@ -19,7 +19,7 @@ According to the [1] and our analysis, we find out that the naive implementation
 * Time complexity is O(TSS)
 
 * Not exploit the inter-trotter parallelism
-  * Although there exists data dependencies between two trotters, it's still possible to perform some transformation to overlap the update of each trotters in parallel.
+  * Although there exist data dependencies between two trotters, it's still possible to perform some transformation to overlap the update of each trotter in parallel.
 
 * Not exploit the intra-trotter parallelism
   * Need a better scheme for reduction.
@@ -31,15 +31,15 @@ According to the [1] and our analysis, we find out that the naive implementation
 
 ### Our Optimizations
 
-* According to optimized access pattern of the coefficients, we design the interface with `hls::stream`, successfully decrease the usage of the memory with minor tradeoff.
+* According to the optimized access pattern of the coefficients, we design the interface with `hls::stream`, successfully decrease the usage of the memory with the minor tradeoff.
 
 * By the array partition, indicating loop dependencies, and the explicit loop unrolling, we successfully overlap the execution stage of the trotter units.
 
-* Adding pseudo random number generator ([reference](https://people.sc.fsu.edu/~jburkardt/cpp_src/uniform/uniform.html)) into the kerenl to speed up the whole system.
+* Adding pseudorandom number generator ([reference](https://people.sc.fsu.edu/~jburkardt/cpp_src/uniform/uniform.html)) into the kernel to speed up the whole system.
 
 * Adding the support to the variable boundary.
 
-* Time complexity is O(S(S+T)), which the number of trotter won't harm the performance as huge as the naive implementation.
+* Time complexity is O(S(S+T)), which the number of trotters won't harm the performance as huge as the naive implementation.
 
 ### Further Report
 
@@ -100,11 +100,11 @@ simulated-quantum-annealing/
 
 Since it's hard to write a script to build for us now. I will show the build step here.
 
-1. Creae a new HLS project.
+1. Create a new HLS project.
 
     1.1. Select the board, `PYNQ-Z2`.
 
-    1.2. Select the frequency, we recommand `100 MHz` which is `10ns` here.
+    1.2. Select the frequency, we recommend `100 MHz` which is `10ns` here.
 
 2. Adding all the sources in the following list into the `sources`:
 
@@ -173,7 +173,7 @@ Since it's hard to write a script to build for us now. I will show the build ste
     ./<vivado_project>.runs/impl_1/<design>_wrapper.bit
     ```
 
-    Remember to rename the two files to have same prefix.
+    Remember to rename the two files to have the same prefix.
 
     ```text
     SQA.hwh
@@ -203,19 +203,19 @@ Since it's hard to write a script to build for us now. I will show the build ste
     [Best Run] [Trotter Number] [Sum of 1st Subset] [Sum of 2nd Subset]
     ```
 
-    2.4. It will also generate a `out.txt` file which dump the summation of the energy in each run. You can use the script `./tests/vision.ipynb` to visualize it.
+    2.4. It will also generate an `out.txt` file which dumps the summation of the energy in each run. You can use the script `./tests/vision.ipynb` to visualize it.
 
 ### Co-Simulation
 
-We don't recommand do co-simulation here. 
+We don't recommend do co-simulation here. 
 
-There exists some problem about the connection of the DSP when do co-simulation in Vivado HLS 2020.1. The time needed for co-simulation will be extremely slow down due to the message output.
+There exists some problem with the connection of the DSP when doing co-simulation in Vivado HLS 2020.1. The time needed for co-simulation will be extremely slow down due to the message output.
 
 The detailed discussion can be found at [here](https://forums.xilinx.com/t5/Simulation-and-Verification/Warning-OPMODE-Input-Warning-The-OPMODE-0110X0X-with-CARRYINSEL/td-p/702538) and [here](https://www.xilinx.com/support/answers/73689.html)
 
 ### On-Board Test
 
-1. Follow the `Build Steps` `1~8` to build the `.bit` and `.hwh` file.
+1. Follow the `Build Steps` `1~8` to build the `.bit` and `.hwh` files.
 
 2. Move them into the board.
 
@@ -229,4 +229,4 @@ The detailed discussion can be found at [here](https://forums.xilinx.com/t5/Simu
     ./src/host/sudoku/SQA-sudoku.ipynb
     ```
 
-    The detail about the test on `SQA-Opt5-Sudoku`, please refer to the [here](https://github.com/allen880117/Simulated-Quantum-Annealing/tree/main/src/host/sudoku).
+    For the detail about the test on `SQA-Opt5-Sudoku`, please refer to the [here](https://github.com/allen880117/Simulated-Quantum-Annealing/tree/main/src/host/sudoku).
