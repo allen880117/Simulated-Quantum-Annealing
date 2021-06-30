@@ -51,40 +51,45 @@ For further comparison and the detailed report, you can check the [README](https
 simulated-quantum-annealing/
 ├── build
 ├── data
-│   └── (empty)
+│   └── (empty)
 ├── docs
-│   ├── references
-│   └── report_images
+│   └── report_images
 ├── impl_result
-│   ├── basic_t16
-│   ├── basic_t8
-│   ├── image
-│   ├── opt1_fail
-│   ├── opt1_success_t8
-│   ├── opt2_t16
-│   ├── opt2_t8
-│   ├── opt3
-│   ├── opt5
-│   ├── opt5_adv
-│   └── opt5_sudoku
+│   ├── _hw
+│   │   ├── Opt2
+│   │   ├── Opt3
+│   │   ├── Opt5
+│   │   ├── Opt5Adv
+│   │   └── Opt5S
+│   ├── _image
+│   ├── basic_t16
+│   ├── basic_t8
+│   ├── opt1_fail_t8
+│   ├── opt1_success_t8
+│   ├── opt2_t16
+│   ├── opt2_t8
+│   ├── opt3
+│   ├── opt5
+│   ├── opt5_adv
+│   └── opt5_sudoku
 ├── src
-│   ├── helper
-│   ├── host
-│   │   └── sudoku
-│   │       └── examples
-│   │           ├── empty-10
-│   │           ├── empty-15
-│   │           ├── empty-20
-│   │           ├── empty-25
-│   │           └── empty-5
-│   ├── include
-│   ├── kernel_opt1
-│   ├── kernel_opt2
-│   ├── kernel_opt3
-│   ├── kernel_opt5
-│   ├── kernel_opt5_advance
-│   ├── kernel_opt5_sudoku
-│   └── original
+│   ├── helper
+│   ├── host
+│   │   └── sudoku
+│   │       └── examples
+│   │           ├── empty-10
+│   │           ├── empty-15
+│   │           ├── empty-20
+│   │           ├── empty-25
+│   │           └── empty-5
+│   ├── include
+│   ├── kernel_opt1
+│   ├── kernel_opt2
+│   ├── kernel_opt3
+│   ├── kernel_opt5
+│   ├── kernel_opt5_advance
+│   ├── kernel_opt5_sudoku
+│   └── original
 └── tests
 ```
 
@@ -121,7 +126,7 @@ src/kerenl_opt1/*.cpp
 src/kernel_opt2/*.cpp
 src/kernel_opt3/*.cpp
 src/kernel_opt5/*.cpp
-src/kernel_opt5_advacne/*.cpp
+src/kernel_opt5_advance/*.cpp
 src/kernel_opt5_sudoku/*.cpp
 ```
 
