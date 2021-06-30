@@ -10,21 +10,23 @@
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
 
-#define FIXED_POINT 0
-#define ADV 1
+/* Change These Options to Test */
+/* You can only enable 1 unit each time*/
+#define BASIC 0
+#define OPT_1 0
+#define OPT_2 0
+#define OPT_3 0
+#define OPT_5 0
+#define OPT_5_ADV 1
 
-#if !FIXED_POINT
+#if !OPT_5_ADV
 /* Field */
 fp_t Jcoup[MAX_NSPIN][MAX_NSPIN];
-#if !ADV
 fp_t h[MAX_NSPIN];
 #else
-fp_t h[MAX_NTROT][MAX_NSPIN];
-#endif
-#else
 /* Field */
-fix_t Jcoup[MAX_NSPIN][MAX_NSPIN];
-fix_t h[MAX_NSPIN];
+fp_t Jcoup[MAX_NSPIN][MAX_NSPIN];
+fp_t h[MAX_NTROT][MAX_NSPIN];
 #endif
 
 /* Main Program */
@@ -42,8 +44,26 @@ int main(int argc, char *argv[]) {
     const int nSpin = atoi(argv[2]);
 #else
     /* Number of Trotters and Number of Spins */
+#if OPT_2 | OPT_3 | OPT_5_ADV
+    // They only support MAX_NTROT (<= MAX_NTROT)
     const int nTrot = MAX_NTROT;
-    const int nSpin = 1024;
+#else
+#if OPT_1
+    // It only support 4 trotters
+    const int nTrot = 4;
+#else
+    // Support Variable Size of Trotters (<= MAX_NTROT)
+    const int nTrot = 6;
+#endif
+#endif
+
+#if OPT_1 | OPT_2 | OPT_3
+    // They only support MAX_NSPIN
+    const int nSpin = MAX_NSPIN;
+#else
+    // Support Variable Size of Spins (<= MAX_NSPIN)
+    const int nSpin = 255;
+#endif
 #endif
 
     /* Random Generators */
@@ -58,29 +78,22 @@ int main(int argc, char *argv[]) {
     generateRandomState(trotters, nTrot, nSpin);
 
     /* Generate Random Numbers */
-#if !FIXED_POINT
     fp_t rndNum[MAX_NSPIN];
     for (int i = 0; i < nSpin; i++) {
         // rndNum[i] = int_unif(rng);
         rndNum[i] = (float)(i + 1) / (float)nSpin;
     }
-#else
-    fix_t     rndNum[MAX_NSPIN];
-    for (int i = 0; i < nSpin; i++) {
-        rndNum[i] = i - nSpin / 2;
-    }
-#endif
 
     /* Field Initialization */
     for (int i = 0; i < nSpin; i++) {
-#if !ADV
+#if !OPT_5_ADV
         h[i] = 0.0f;
 #endif
         for (int j = 0; j < nSpin; j++) {
             Jcoup[i][j] = 0.0f;
         }
     }
-#if ADV
+#if OPT_5_ADV
     for (int i = 0; i < nTrot; i++) {
         for (int j = 0; j < nSpin; j++) {
             h[i][j] = 0.0f;
@@ -96,17 +109,11 @@ int main(int argc, char *argv[]) {
     }
 
     /* Parameters */
-    fp_t iter = 500; // default 500
-#if !FIXED_POINT
+    fp_t iter    = 500;                 // default 500
     fp_t maxBeta = ((fp_t)8) / 1.0f;    // default 8.0f
     fp_t Beta    = 1 / ((fp_t)4096.0f); // default 1/16
     fp_t G0      = 8.0f;                // default 8.0f
-#else
-    fp_t maxBeta = ((fp_t)8 / pow((fp_t)nSpin, 2)) / 1.0f; // default 8.0f
-    fp_t Beta    = 1 / ((fp_t)4096.0f * (fp_t)nSpin);      // default 1/16
-    fp_t G0      = 8.0f / (fp_t)nSpin;                     // default 8.0f
-#endif
-    fp_t dBeta = (maxBeta - Beta) / (fp_t)iter;
+    fp_t dBeta   = (maxBeta - Beta) / (fp_t)iter;
 
     /* Best */
     fp_t   bestEnergy = 10e22;
@@ -134,56 +141,51 @@ int main(int argc, char *argv[]) {
         fp_t Gamma = G0 * (1 - (float)i / iter);
         fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
 
+#if OPT_1 | OPT_2 | OPT_3 | OPT_5 | OPT_5_ADV
         /* Do Quantum Monte-Carlo */
-#if !MAXI
-#if !FIXED_POINT
         hls::stream<fp_t> JcoupStream;
-#else
-        hls::stream<fix_t> JcoupStream;
-#endif
         for (int j = 0; j < nSpin; j++)
             for (int k = 0; k < nSpin; k++)
                 JcoupStream << Jcoup[j][k];
 #endif
 
-#if !FIXED_POINT
-#if !ADV
+#if BASIC
+        QuantumMonteCarlo(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
+                          logRandNum);
+#endif
+#if OPT_1
+        QuantumMonteCarloOpt(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+                             Beta, logRandNum);
+
+#endif
+#if OPT_2
+        QuantumMonteCarloOpt2(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+                              Beta, logRandNum);
+
+#endif
+#if OPT_3
+        QuantumMonteCarloOpt3(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
+                              Beta);
+
+#endif
+#if OPT_5
         QuantumMonteCarloOpt5(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
                               Beta);
-#else
-#if !MAXI
+
+#endif
+#if OPT_5_ADV
         QuantumMonteCarloOpt5Adv(nSpin, trotters, JcoupStream, h, Jperp, Beta);
-#else
-        QuantumMonteCarloOpt5Adv(nSpin, trotters, Jcoup, h, Jperp, Beta);
-#endif
-#endif
-        // QuantumMonteCarloOpt3(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
-        //                       Beta);
-
-        // QuantumMonteCarloOpt2(nTrot, nSpin, trotters, JcoupStream, h, Jperp,
-        //                       Beta, logRandNum);
-
-        // QuantumMonteCarlo(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
-        //                   logRandNum);
-#else
-        QuantumMonteCarloOpt5Fixed(nTrot, nSpin, trotters, JcoupStream, h,
-                                   Jperp, Beta);
 #endif
 
         /* Calculate energy of each turn */
         fp_t sumEnergy = 0;
         for (int t = 0; t < nTrot; t++) {
             /* Calcualte */
-#if !FIXED_POINT
-#if !ADV
+#if !OPT_5_ADV
             fp_t energy = computeEnergyPerTrotter(nSpin, trotters[t], Jcoup, h);
 #else
             fp_t energy =
                 computeEnergyPerTrotter(nSpin, trotters[t], Jcoup, h[0]);
-#endif
-#else
-            fp_t energy =
-                computeEnergyPerTrotterFixed(nSpin, trotters[t], Jcoup, h);
 #endif
             /* Compare */
             if (fabs(energy) < fabs(bestEnergy)) {

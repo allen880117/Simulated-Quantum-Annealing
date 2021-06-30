@@ -134,20 +134,12 @@ void DuplicateTrotterUnits5Adv<1>(
 /* Quantum Monte-Carlo Opt */
 void QuantumMonteCarloOpt5Adv(
     const int nSpin, spin_t trotters[MAX_NTROT][MAX_NSPIN], /* Spins */
-#if !MAXI
     hls::stream<fp_t> &Jcoup, /* Stream of Jcoup */
-#else
-    volatile fp_t Jcoup[MAX_NSPIN][MAX_NSPIN],
-#endif
     const fp_t h[MAX_NTROT][MAX_NSPIN], /* Arraay of h */
     const fp_t Jperp,                   /* Thermal Related  */
     const fp_t Beta /* Thermal Related  */) {
     /* Interface */
-#if !MAXI
 #pragma HLS INTERFACE axis register both port = Jcoup
-#else
-#pragma HLS INTERFACE m_axi depth = 1048576 port = Jcoup offset = slave
-#endif
 #pragma HLS INTERFACE s_axilite port = return
 #pragma HLS INTERFACE s_axilite port = Beta
 #pragma HLS INTERFACE s_axilite port = Jperp
@@ -278,18 +270,6 @@ LOOP_CTRL:
                 JcoupLocal[t][k] = JcoupLocal[t-1][k];
             }
         }
-
-#if MAXI
-        /* Read New Jcoup */
-        if (ctlStep < nSpin) {
-        LOOP_CTRL_READ_JCOUP:
-            for (int k = 0; k < nSpin; k++) {
-#pragma HLS LOOP_TRIPCOUNT max = 1024
-#pragma HLS                PIPELINE
-                JcoupLocal[0][k] = Jcoup[ctlStep][k];
-            }
-        }
-#endif
 
     LOOP_CTRL_2:
         for (int j = 0; j < MAX_NSPIN; j += NPC) {
