@@ -62,9 +62,9 @@ MULTIPLY:
         for (u32_t sC = 0; sC < NUM_STREAM; sC++) {
 #pragma HLS UNROLL
             if (!trotters[jPack + sC][k]) {
-                fpBuffer[sC][k] =
-                    hls::copysignf(JcoupLocal[sC][JcoupCount][k], -1.0f);
-                // fpBuffer[sC][k] = -JcoupLocal[sC][JcoupCount][k];
+                // fpBuffer[sC][k] =
+                //     hls::copysignf(JcoupLocal[sC][JcoupCount][k], -1.0f);
+                fpBuffer[sC][k] = -JcoupLocal[sC][JcoupCount][k];
             } else {
                 fpBuffer[sC][k] = JcoupLocal[sC][JcoupCount][k];
             }
