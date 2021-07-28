@@ -6,13 +6,13 @@
 #define OUR_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
 namespace TU {
-template <u32_t size>
+template <u32_t SIZE>
 void Reduction(fp_t fpBuffer[PACKET_SIZE]) {
 #pragma HLS INLINE
-    Reduction<size / 2>(fpBuffer);
-    for (u32_t i = 0; i < PACKET_SIZE; i += size) {
+    Reduction<SIZE / 2>(fpBuffer);
+    for (u32_t i = 0; i < PACKET_SIZE; i += SIZE) {
 #pragma HLS UNROLL
-        fpBuffer[i] += fpBuffer[i + size / 2];
+        fpBuffer[i] += fpBuffer[i + SIZE / 2];
     }
 }
 
@@ -66,15 +66,22 @@ void TrotterUnit(
         }
     }
 
+    spin_t trotterCache[NUM_STREAM][PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        for (u32_t sC = 0; sC < NUM_STREAM; sC++) {
+#pragma HLS UNROLL
+            trotterCache[sC][i] = trotters[jPack + sC][i];
+        }
+    }
+
     /* Summation::Multiply */
 MULTIPLY:
     for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
         for (u32_t sC = 0; sC < NUM_STREAM; sC++) {
 #pragma HLS UNROLL
-            if (!trotters[jPack + sC][k]) {
-                fpBuffer[sC][k] = -fpBuffer[sC][k];
-            }
+            if (!trotterCache[sC][k]) { fpBuffer[sC][k] = -fpBuffer[sC][k]; }
         }
     }
 
@@ -101,31 +108,52 @@ MULTIPLY:
 
     /* Write Back */
     dH = dHTmp;
+};
+
+void TrotterUnitFinal(
+    /* # of Trotter */
+    const u32_t t,
+    /* Current global stage and step*/
+    const u32_t stage,
+    /* Idx of spin that will be updated */
+    const u32_t iPack, const u32_t iSpin,
+    /* Spins in the same trotter */
+    spin_pack_t trotters[MAX_NSPIN / PACKET_SIZE],
+    /* Local Field */
+    fp_t &dH,
+    /* Spin from upper/lower trotter */
+    const spin_t upSpin, const spin_t downSpin,
+    /* Flip-Related */
+    const fp_t Beta, const fp_t dHTunnel, const fp_t logRandNumber[MAX_NSPIN]) {
+    /* ==== [CHECK STAGE] ==== */
+    bool inside = (stage >= t && stage < MAX_NSPIN + t);
+    if (!inside) { return; }
+    /* ==== [CHECK STAGE] ==== */
+
+    /* Cache */
+    fp_t dHTmp = dH;
 
     /* ==== [FINAL STEP] ==== */
-    if (jPack + NUM_STREAM >= (MAX_NSPIN / PACKET_SIZE)) {
-        // if (jPack >= (MAX_NSPIN / PACKET_SIZE) -1 ) {
-        /* Compute Engery from up and down trotter */
-        bool sameDirection = (upSpin == downSpin);
-        if (sameDirection && upSpin) {
-            dHTmp = (dHTmp - dHTunnel) * 2.0f;
-        } else if (sameDirection && (!upSpin)) {
-            dHTmp = (dHTmp + dHTunnel) * 2.0f;
-        } else {
-            dHTmp = dHTmp * 2.0f;
-        }
+    // if (jPack >= (MAX_NSPIN / PACKET_SIZE) -1 ) {
+    /* Compute Engery from up and down trotter */
+    bool sameDirection = (upSpin == downSpin);
+    if (sameDirection && upSpin) {
+        dHTmp = (dHTmp - dHTunnel) * 2.0f;
+    } else if (sameDirection && (!upSpin)) {
+        dHTmp = (dHTmp + dHTunnel) * 2.0f;
+    } else {
+        dHTmp = dHTmp * 2.0f;
+    }
 
-        /* Cache */
-        spin_t this_spin = trotters[iPack][iSpin];
+    /* Cache */
+    spin_t this_spin = trotters[iPack][iSpin];
 
-        /* Times itself */
-        if (!this_spin) { dHTmp = -dHTmp; }
+    /* Times itself */
+    if (!this_spin) { dHTmp = -dHTmp; }
 
-        /* Flip */
-        if ((-Beta * dHTmp) >
-            logRandNumber[(iPack << LOG2_PACKET_SIZE) + iSpin]) {
-            trotters[iPack][iSpin] = (!this_spin);
-        }
+    /* Flip */
+    if ((-Beta * dHTmp) > logRandNumber[(iPack << LOG2_PACKET_SIZE) + iSpin]) {
+        trotters[iPack][iSpin] = (!this_spin);
     }
 };
 
@@ -279,6 +307,14 @@ LOOP_STAGE:
                                 JcoupCount, upSpin[t], downSpin[t], Beta,
                                 dHTunnel, logRandomNumber[t]);
             }
+        }
+
+    TROTTER_EXE_FINAL:
+        for (u32_t t = 0; t < MAX_NTROT; t++) {
+#pragma HLS UNROLL
+            TU::TrotterUnitFinal(t, stage, iPrePack[t], iPreSpin[t],
+                                 trotters[t], dH[t], upSpin[t], downSpin[t],
+                                 Beta, dHTunnel, logRandomNumber[t]);
         }
 
         /* Shift Down JcoupLocal_0 */

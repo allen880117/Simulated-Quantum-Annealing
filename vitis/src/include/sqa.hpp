@@ -5,43 +5,52 @@
 #include "hls_stream.h"
 #include "hls_vector.h"
 
-//#define MAX_NTROT 32
-//#define MAX_NSPIN 8192
+#define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
+#define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#if 1
+#define CONFIG_VERSION 0
+
+#if (CONFIG_VERSION == 0)
 #define MAX_NTROT 16
 #define MAX_NSPIN 4096
 #define PACKET_SIZE 64
 #define LOG2_PACKET_SIZE 6
 #define NUM_STREAM 1
-#else
-#if 0
+#define NUM_FADD 4
+#elif (CONFIG_VERSION == 1)
 #define MAX_NTROT 4
 #define MAX_NSPIN 4096
 #define PACKET_SIZE 64
 #define LOG2_PACKET_SIZE 6
 #define NUM_STREAM 8
+#define NUM_FADD 4
 #else
 #define MAX_NTROT 8
 #define MAX_NSPIN 1024
 #define PACKET_SIZE 16
 #define LOG2_PACKET_SIZE 4
 #define NUM_STREAM 4
+#define NUM_FADD 16
 #endif
-#endif
+
+typedef unsigned int u32_t;
+typedef int i32_t;
 
 typedef float fp_t;
 typedef bool spin_t;
 typedef hls::vector<fp_t, PACKET_SIZE> fp_pack_t;
 typedef hls::vector<spin_t, PACKET_SIZE> spin_pack_t;
 
-typedef unsigned int u32_t;
-typedef int i32_t;
+#define UNPACK 1
 
 /* Quantum Monte-Carlo */
 void QuantumMonteCarlo(
     /* Spins */
+#if !UNPACK
     spin_pack_t trotters[MAX_NTROT][MAX_NSPIN / PACKET_SIZE],
+#else
+    spin_t trotters[MAX_NTROT][MAX_NSPIN / PACKET_SIZE][PACKET_SIZE],
+#endif
     /* Jcoup */
     hls::stream<fp_pack_t> &Jcoup_0,
 #if NUM_STREAM >= 2

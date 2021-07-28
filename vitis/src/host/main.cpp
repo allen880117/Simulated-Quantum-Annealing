@@ -11,7 +11,6 @@
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
 
-
 /* Change These Options to Test */
 /* You can only enable 1 unit each time*/
 #define BASIC 1
@@ -37,7 +36,11 @@ int main(int argc, char *argv[]) {
     spin_t trotters[MAX_NTROT][MAX_NSPIN];
     generateRandomState(trotters, nTrot, nSpin);
 
+#if !UNPACK
     spin_pack_t trottersPack[MAX_NTROT][MAX_NSPIN / PACKET_SIZE];
+#else
+    spin_t trottersPack[MAX_NTROT][MAX_NSPIN / PACKET_SIZE][PACKET_SIZE];
+#endif
     for (int t = 0; t < nTrot; t++) {
         for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
             for (int k = 0; k < PACKET_SIZE; k++) {

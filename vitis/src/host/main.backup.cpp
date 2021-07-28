@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstring>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <random>
 #include <vector>
@@ -9,6 +10,7 @@
 #include "../include/helper.hpp"
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
+
 
 /* Change These Options to Test */
 /* You can only enable 1 unit each time*/
@@ -54,9 +56,7 @@ int main(int argc, char *argv[]) {
     /* Field Initialization */
     for (int i = 0; i < nSpin; i++) {
         h[i] = 0.0f;
-        for (int j = 0; j < nSpin; j++) {
-            Jcoup[i][j] = 0.0f;
-        }
+        for (int j = 0; j < nSpin; j++) { Jcoup[i][j] = 0.0f; }
     }
 
     /* The problem we solved here is "Number Partition" */
@@ -67,10 +67,10 @@ int main(int argc, char *argv[]) {
     }
 
     /* Parameters */
-    fp_t iter = 500;                 // default 500
-    fp_t maxBeta = ((fp_t)8) / 1.0f; // default 8.0f
-    fp_t Beta = 1 / ((fp_t)4096.0f); // default 1/16
-    fp_t G0 = 8.0f;                  // default 8.0f
+    fp_t iter = 500;                  // default 500
+    fp_t maxBeta = ((fp_t)8) / 1.0f;  // default 8.0f
+    fp_t Beta = 1 / ((fp_t)4096.0f);  // default 1/16
+    fp_t G0 = 8.0f;                   // default 8.0f
     fp_t dBeta = (maxBeta - Beta) / (fp_t)iter;
 
     /* Best */
@@ -84,7 +84,9 @@ int main(int argc, char *argv[]) {
 
     /* SQA */
     for (int i = 0; i < iter; i++) {
-        std::cout << i << std::endl;
+        /* Print Progress */
+        std::cout << std::setw(3) << i << " ";
+        if ((i + 1) % 20 == 0) std::cout << std::endl;
 
         /* Generate Random Number for Flipping */
         fp_t logRandNum[MAX_NTROT][MAX_NSPIN];
@@ -100,20 +102,70 @@ int main(int argc, char *argv[]) {
         fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
 
         /* Do Quantum Monte-Carlo */
-        hls::stream<fp_pack_t> JcoupStream;
+        hls::stream<fp_pack_t> JcoupStream_0;
+#if NUM_STREAM >= 2
+        hls::stream<fp_pack_t> JcoupStream_1;
+#endif
+#if NUM_STREAM >= 4
+        hls::stream<fp_pack_t> JcoupStream_2;
+        hls::stream<fp_pack_t> JcoupStream_3;
+#endif
+#if NUM_STREAM >= 8
+        hls::stream<fp_pack_t> JcoupStream_4;
+        hls::stream<fp_pack_t> JcoupStream_5;
+        hls::stream<fp_pack_t> JcoupStream_6;
+        hls::stream<fp_pack_t> JcoupStream_7;
+#endif
+        int pp = 0;
         for (int j = 0; j < nSpin; j++) {
             for (int k = 0; k < nSpin; k += PACKET_SIZE) {
                 fp_pack_t tmp;
                 for (int l = 0; l < PACKET_SIZE; l++) {
                     tmp[l] = Jcoup[j][k + l];
                 }
-                JcoupStream << tmp;
+                if (pp == 0) {
+                    JcoupStream_0 << tmp;
+                }
+#if NUM_STREAM >= 2
+                else if (pp == 1) {
+                    JcoupStream_1 << tmp;
+                }
+#endif
+#if NUM_STREAM >= 4
+                else if (pp == 2) {
+                    JcoupStream_2 << tmp;
+                } else if (pp == 3) {
+                    JcoupStream_3 << tmp;
+                }
+#endif
+#if NUM_STREAM >= 8
+                else if (pp == 4) {
+                    JcoupStream_4 << tmp;
+                } else if (pp == 5) {
+                    JcoupStream_5 << tmp;
+                } else if (pp == 6) {
+                    JcoupStream_6 << tmp;
+                } else if (pp == 7) {
+                    JcoupStream_7 << tmp;
+                }
+#endif
+                pp = (pp + 1) % NUM_STREAM;
             }
         }
 
         /* Execute */
-        QuantumMonteCarlo(trottersPack, JcoupStream, h, Jperp, Beta,
-                          logRandNum);
+        QuantumMonteCarlo(trottersPack, JcoupStream_0,
+#if NUM_STREAM >= 2
+                          JcoupStream_1,
+#endif
+#if NUM_STREAM >= 4
+                          JcoupStream_2, JcoupStream_3,
+#endif
+#if NUM_STREAM >= 8
+                          JcoupStream_4, JcoupStream_5, JcoupStream_6,
+                          JcoupStream_7,
+#endif
+                          h, Jperp, Beta, logRandNum);
 
         /* Convert */
         for (int t = 0; t < nTrot; t++) {
@@ -153,9 +205,7 @@ int main(int argc, char *argv[]) {
     /* Print Best Trotter */
     std::cout << "Run, Trotter: " << bestRun << " ," << bestTrotNum
               << std::endl;
-    for (int i = 0; i < nSpin; i++) {
-        std::cout << bestTrotter[i] << " ";
-    }
+    for (int i = 0; i < nSpin; i++) { std::cout << bestTrotter[i] << " "; }
     std::cout << std::endl;
 
     /* Print Best Energy */
