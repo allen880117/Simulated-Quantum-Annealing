@@ -8,14 +8,14 @@
 //#define MAX_NTROT 32
 //#define MAX_NSPIN 8192
 
-#if 0
+#if 1
 #define MAX_NTROT 16
-#define MAX_NSPIN 1024
+#define MAX_NSPIN 4096
 #define PACKET_SIZE 64
 #define LOG2_PACKET_SIZE 6
 #define NUM_STREAM 1
 #else
-#if 1
+#if 0
 #define MAX_NTROT 4
 #define MAX_NSPIN 4096
 #define PACKET_SIZE 64

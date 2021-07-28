@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstring>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <random>
 #include <vector>
@@ -9,6 +10,7 @@
 #include "../include/helper.hpp"
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
+
 
 /* Change These Options to Test */
 /* You can only enable 1 unit each time*/
@@ -82,7 +84,9 @@ int main(int argc, char *argv[]) {
 
     /* SQA */
     for (int i = 0; i < iter; i++) {
-        std::cout << i << std::endl;
+        /* Print Progress */
+        std::cout << std::setw(3) << i << " ";
+        if ((i + 1) % 20 == 0) std::cout << std::endl;
 
         /* Generate Random Number for Flipping */
         fp_t logRandNum[MAX_NTROT][MAX_NSPIN];

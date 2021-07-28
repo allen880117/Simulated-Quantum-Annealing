@@ -5,9 +5,11 @@
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define OUR_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
+#define RM_REG 1
+
 namespace TU {
 template <u32_t size>
-void Reduction(fp_pack_t &fpBuffer) {
+void Reduction(fp_t fpBuffer[PACKET_SIZE]) {
 #pragma HLS INLINE
     Reduction<size / 2>(fpBuffer);
     for (u32_t i = 0; i < PACKET_SIZE; i += size) {
@@ -17,7 +19,7 @@ void Reduction(fp_pack_t &fpBuffer) {
 }
 
 template <>
-void Reduction<2>(fp_pack_t &fpBuffer) {
+void Reduction<2>(fp_t fpBuffer[PACKET_SIZE]) {
 #pragma HLS INLINE
     for (u32_t i = 0; i < PACKET_SIZE; i += 2) {
 #pragma HLS UNROLL
@@ -40,29 +42,49 @@ void TrotterUnit(
     fp_t &dH,
     /* Jcoup_0 Stream and Register for Next Tortter, 0 */
     fp_pack_t JcoupLocal_0[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_0[MAX_NSPIN / PACKET_SIZE],
+#endif
+#if NUM_STREAM >= 2
     /* Jcoup_0 Stream and Register for Next Tortter, 1 */
     fp_pack_t JcoupLocal_1[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_1[MAX_NSPIN / PACKET_SIZE],
-#if NUM_STREAM >= 8
+#endif
+#endif
+#if NUM_STREAM >= 4
     /* Jcoup_0 Stream and Register for Next Tortter, 2 */
     fp_pack_t JcoupLocal_2[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_2[MAX_NSPIN / PACKET_SIZE],
+#endif
     /* Jcoup_0 Stream and Register for Next Tortter, 3 */
     fp_pack_t JcoupLocal_3[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_3[MAX_NSPIN / PACKET_SIZE],
+#endif
+#endif
+#if NUM_STREAM >= 8
     /* Jcoup_0 Stream and Register for Next Tortter, 4 */
     fp_pack_t JcoupLocal_4[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_4[MAX_NSPIN / PACKET_SIZE],
+#endif
     /* Jcoup_0 Stream and Register for Next Tortter, 5 */
     fp_pack_t JcoupLocal_5[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_5[MAX_NSPIN / PACKET_SIZE],
+#endif
     /* Jcoup_0 Stream and Register for Next Tortter, 6 */
     fp_pack_t JcoupLocal_6[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_6[MAX_NSPIN / PACKET_SIZE],
+#endif
     /* Jcoup_0 Stream and Register for Next Tortter, 7 */
     fp_pack_t JcoupLocal_7[MAX_NSPIN / PACKET_SIZE],
+#if !RM_REG
     fp_pack_t JcoupLocalReg_7[MAX_NSPIN / PACKET_SIZE],
+#endif
 #endif
     /* JcoupCount */
     const u32_t JcoupCount,
@@ -70,6 +92,8 @@ void TrotterUnit(
     const spin_t upSpin, const spin_t downSpin,
     /* Flip-Related */
     const fp_t Beta, const fp_t dHTunnel, const fp_t logRandNumber[MAX_NSPIN]) {
+#pragma HLS ALLOCATION operation instances = fadd limit = 4
+
     /* ==== [CHECK STAGE] ==== */
     bool inside = (stage >= t && stage < MAX_NSPIN + t);
     if (!inside) { return; }
@@ -77,25 +101,69 @@ void TrotterUnit(
 
     /* Cache */
     fp_t dHTmp = dH;
-    fp_pack_t fpBuffer_0 = JcoupLocal_0[JcoupCount];
-    fp_pack_t fpBuffer_1 = JcoupLocal_1[JcoupCount];
-#if NUM_STREAM >= 8
-    fp_pack_t fpBuffer_2 = JcoupLocal_2[JcoupCount];
-    fp_pack_t fpBuffer_3 = JcoupLocal_3[JcoupCount];
-    fp_pack_t fpBuffer_4 = JcoupLocal_4[JcoupCount];
-    fp_pack_t fpBuffer_5 = JcoupLocal_5[JcoupCount];
-    fp_pack_t fpBuffer_6 = JcoupLocal_6[JcoupCount];
-    fp_pack_t fpBuffer_7 = JcoupLocal_7[JcoupCount];
+
+    fp_t fpBuffer_0[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_0[i] = JcoupLocal_0[JcoupCount][i];
+    }
+#if NUM_STREAM >= 2
+    fp_t fpBuffer_1[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_1[i] = JcoupLocal_1[JcoupCount][i];
+    }
 #endif
-    JcoupLocalReg_0[JcoupCount] = JcoupLocal_0[JcoupCount];
-    JcoupLocalReg_1[JcoupCount] = JcoupLocal_1[JcoupCount];
+#if NUM_STREAM >= 4
+    fp_t fpBuffer_2[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_2[i] = JcoupLocal_2[JcoupCount][i];
+    }
+    fp_t fpBuffer_3[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_3[i] = JcoupLocal_3[JcoupCount][i];
+    }
+#endif
 #if NUM_STREAM >= 8
+    fp_t fpBuffer_4[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_4[i] = JcoupLocal_4[JcoupCount][i];
+    }
+    fp_t fpBuffer_5[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_5[i] = JcoupLocal_5[JcoupCount][i];
+    }
+    fp_t fpBuffer_6[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_6[i] = JcoupLocal_6[JcoupCount][i];
+    }
+    fp_t fpBuffer_7[PACKET_SIZE];
+    for (u32_t i = 0; i < PACKET_SIZE; i++) {
+#pragma HLS UNROLL
+        fpBuffer_7[i] = JcoupLocal_7[JcoupCount][i];
+    }
+#endif
+
+#if !RM_REG
+    JcoupLocalReg_0[JcoupCount] = JcoupLocal_0[JcoupCount];
+#if NUM_STREAM >= 2
+    JcoupLocalReg_1[JcoupCount] = JcoupLocal_1[JcoupCount];
+#endif
+#if NUM_STREAM >= 4
     JcoupLocalReg_2[JcoupCount] = JcoupLocal_2[JcoupCount];
     JcoupLocalReg_3[JcoupCount] = JcoupLocal_3[JcoupCount];
+#endif
+#if NUM_STREAM >= 8
     JcoupLocalReg_4[JcoupCount] = JcoupLocal_4[JcoupCount];
     JcoupLocalReg_5[JcoupCount] = JcoupLocal_5[JcoupCount];
     JcoupLocalReg_6[JcoupCount] = JcoupLocal_6[JcoupCount];
     JcoupLocalReg_7[JcoupCount] = JcoupLocal_7[JcoupCount];
+#endif
 #endif
 
     /* Summation::Multiply */
@@ -103,10 +171,14 @@ MULTIPLY:
     for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
         if (!trotters[jPack + 0][k]) { fpBuffer_0[k] = -fpBuffer_0[k]; }
+#if NUM_STREAM >= 2
         if (!trotters[jPack + 1][k]) { fpBuffer_1[k] = -fpBuffer_1[k]; }
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
         if (!trotters[jPack + 2][k]) { fpBuffer_2[k] = -fpBuffer_2[k]; }
         if (!trotters[jPack + 3][k]) { fpBuffer_3[k] = -fpBuffer_3[k]; }
+#endif
+#if NUM_STREAM >= 8
         if (!trotters[jPack + 4][k]) { fpBuffer_4[k] = -fpBuffer_4[k]; }
         if (!trotters[jPack + 5][k]) { fpBuffer_5[k] = -fpBuffer_5[k]; }
         if (!trotters[jPack + 6][k]) { fpBuffer_6[k] = -fpBuffer_6[k]; }
@@ -116,10 +188,14 @@ MULTIPLY:
 
     /* Summation::Reduction */
     Reduction<PACKET_SIZE>(fpBuffer_0);
+#if NUM_STREAM >= 2
     Reduction<PACKET_SIZE>(fpBuffer_1);
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
     Reduction<PACKET_SIZE>(fpBuffer_2);
     Reduction<PACKET_SIZE>(fpBuffer_3);
+#endif
+#if NUM_STREAM >= 8
     Reduction<PACKET_SIZE>(fpBuffer_4);
     Reduction<PACKET_SIZE>(fpBuffer_5);
     Reduction<PACKET_SIZE>(fpBuffer_6);
@@ -130,11 +206,15 @@ MULTIPLY:
     fpBuffer_1[0] += fpBuffer_5[0];
     fpBuffer_2[0] += fpBuffer_6[0];
     fpBuffer_3[0] += fpBuffer_7[0];
-
+#endif
+#if NUM_STREAM >= 4
     fpBuffer_0[0] += fpBuffer_2[0];
     fpBuffer_1[0] += fpBuffer_3[0];
 #endif
-    dHTmp += fpBuffer_0[0] + fpBuffer_1[0];
+#if NUM_STREAM >= 2
+    fpBuffer_0[0] += fpBuffer_1[0];
+#endif
+    dHTmp += fpBuffer_0[0];
 
     /* Write Back */
     dH = dHTmp;
@@ -172,9 +252,14 @@ void QuantumMonteCarlo(
     /* Spins */
     spin_pack_t trotters[MAX_NTROT][MAX_NSPIN / PACKET_SIZE],
     /* Jcoup */
-    hls::stream<fp_pack_t> &Jcoup_0, hls::stream<fp_pack_t> &Jcoup_1,
-#if NUM_STREAM >= 8
+    hls::stream<fp_pack_t> &Jcoup_0,
+#if NUM_STREAM >= 2
+    hls::stream<fp_pack_t> &Jcoup_1,
+#endif
+#if NUM_STREAM >= 4
     hls::stream<fp_pack_t> &Jcoup_2, hls::stream<fp_pack_t> &Jcoup_3,
+#endif
+#if NUM_STREAM >= 8
     hls::stream<fp_pack_t> &Jcoup_4, hls::stream<fp_pack_t> &Jcoup_5,
     hls::stream<fp_pack_t> &Jcoup_6, hls::stream<fp_pack_t> &Jcoup_7,
 #endif
@@ -188,10 +273,14 @@ void QuantumMonteCarlo(
 #pragma HLS INTERFACE mode = s_axilite port = return
 #pragma HLS INTERFACE mode = s_axilite port = trotters
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_0 register
+#if NUM_STREAM >= 2
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_1 register
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_2 register
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_3 register
+#endif
+#if NUM_STREAM >= 8
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_4 register
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_5 register
 #pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_6 register
@@ -202,9 +291,9 @@ void QuantumMonteCarlo(
 #pragma HLS INTERFACE mode = s_axilite port = Beta
 #pragma HLS INTERFACE mode = s_axilite port = logRandomNumber
 #pragma HLS ARRAY_PARTITION variable = trotters type = complete dim = 1
+//    OUR_PRAGMA(HLS ARRAY_PARTITION variable = h factor = MAX_NTROT type =
+//                   cyclic dim = 1)
 #pragma HLS ARRAY_PARTITION variable = logRandomNumber type = complete dim = 1
-    OUR_PRAGMA(HLS ARRAY_PARTITION variable = h factor = MAX_NTROT type =
-                   cyclic dim = 1)
 
     /* Local Memory :: idxUp/idxDown */
     u32_t idxUp[MAX_NTROT];
@@ -231,14 +320,17 @@ void QuantumMonteCarlo(
     /* Local Memory :: Jcoup_0 */
     fp_pack_t JcoupLocal_0[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal_0
+#if NUM_STREAM >= 2
     fp_pack_t JcoupLocal_1[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal_1
-
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
     fp_pack_t JcoupLocal_2[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal_2
     fp_pack_t JcoupLocal_3[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal_3
+#endif
+#if NUM_STREAM >= 8
     fp_pack_t JcoupLocal_4[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal_4
     fp_pack_t JcoupLocal_5[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
@@ -248,17 +340,20 @@ void QuantumMonteCarlo(
     fp_pack_t JcoupLocal_7[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal_7
 #endif
-
+#if !RM_REG
     fp_pack_t JcoupLocalReg_0[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_0
+#if NUM_STREAM >= 2
     fp_pack_t JcoupLocalReg_1[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_1
-
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
     fp_pack_t JcoupLocalReg_2[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_2
     fp_pack_t JcoupLocalReg_3[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_3
+#endif
+#if NUM_STREAM >= 8
     fp_pack_t JcoupLocalReg_4[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_4
     fp_pack_t JcoupLocalReg_5[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
@@ -267,6 +362,7 @@ void QuantumMonteCarlo(
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_6
     fp_pack_t JcoupLocalReg_7[MAX_NTROT][MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocalReg_7
+#endif
 #endif
 
     /* Initialize idxUp/idxDown */
@@ -312,10 +408,14 @@ LOOP_STAGE:
                  JcoupCount < MAX_NSPIN / PACKET_SIZE / NUM_STREAM;
                  JcoupCount++) {
                 JcoupLocal_0[0][JcoupCount] = Jcoup_0.read();
+#if NUM_STREAM >= 2
                 JcoupLocal_1[0][JcoupCount] = Jcoup_1.read();
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
                 JcoupLocal_2[0][JcoupCount] = Jcoup_2.read();
                 JcoupLocal_3[0][JcoupCount] = Jcoup_3.read();
+#endif
+#if NUM_STREAM >= 8
                 JcoupLocal_4[0][JcoupCount] = Jcoup_4.read();
                 JcoupLocal_5[0][JcoupCount] = Jcoup_5.read();
                 JcoupLocal_6[0][JcoupCount] = Jcoup_6.read();
@@ -335,15 +435,43 @@ LOOP_STAGE:
                                 (step >> (LOG2_PACKET_SIZE)),
                                 (step & (PACKET_SIZE - 1)), trotters[t], dH[t],
                                 /* JcoupLocal s */
-                                JcoupLocal_0[t], JcoupLocalReg_0[t], /* 0 */
-                                JcoupLocal_1[t], JcoupLocalReg_1[t], /* 1 */
+                                JcoupLocal_0[t],
+#if !RM_REG
+                                JcoupLocalReg_0[t], /* 0 */
+#endif
+#if NUM_STREAM >= 2
+                                JcoupLocal_1[t],
+#if !RM_REG
+                                JcoupLocalReg_1[t], /* 1 */
+#endif
+#endif
+#if NUM_STREAM >= 4
+                                JcoupLocal_2[t],
+#if !RM_REG
+                                JcoupLocalReg_2[t], /* 2 */
+#endif
+                                JcoupLocal_3[t],
+#if !RM_REG
+                                JcoupLocalReg_3[t], /* 3 */
+#endif
+#endif
 #if NUM_STREAM >= 8
-                                JcoupLocal_2[t], JcoupLocalReg_2[t], /* 2 */
-                                JcoupLocal_3[t], JcoupLocalReg_3[t], /* 3 */
-                                JcoupLocal_4[t], JcoupLocalReg_4[t], /* 4 */
-                                JcoupLocal_5[t], JcoupLocalReg_5[t], /* 5 */
-                                JcoupLocal_6[t], JcoupLocalReg_6[t], /* 6 */
-                                JcoupLocal_7[t], JcoupLocalReg_7[t], /* 7 */
+                                JcoupLocal_4[t],
+#if !RM_REG
+                                JcoupLocalReg_4[t], /* 4 */
+#endif
+                                JcoupLocal_5[t],
+#if !RM_REG
+                                JcoupLocalReg_5[t], /* 5 */
+#endif
+                                JcoupLocal_6[t],
+#if !RM_REG
+                                JcoupLocalReg_6[t], /* 6 */
+#endif
+                                JcoupLocal_7[t],
+#if !RM_REG
+                                JcoupLocalReg_7[t], /* 7 */
+#endif
 #endif
                                 /* JcoupLocal s End */
                                 JcoupCount, upSpin[t], downSpin[t], Beta,
@@ -351,7 +479,8 @@ LOOP_STAGE:
             }
         }
 
-        /* Shift Down JcoupLocal_0 */
+/* Shift Down JcoupLocal_0 */
+#if 0
     SHIFT_JcoupLocal:
         for (u32_t JcoupCount = 0;
              JcoupCount < MAX_NSPIN / PACKET_SIZE / NUM_STREAM; JcoupCount++) {
@@ -359,13 +488,17 @@ LOOP_STAGE:
 #pragma HLS UNROLL
                 JcoupLocal_0[t + 1][JcoupCount] =
                     JcoupLocalReg_0[t][JcoupCount];
+#if NUM_STREAM >= 2
                 JcoupLocal_1[t + 1][JcoupCount] =
                     JcoupLocalReg_1[t][JcoupCount];
-#if NUM_STREAM >= 8
+#endif
+#if NUM_STREAM >= 4
                 JcoupLocal_2[t + 1][JcoupCount] =
                     JcoupLocalReg_2[t][JcoupCount];
                 JcoupLocal_3[t + 1][JcoupCount] =
                     JcoupLocalReg_3[t][JcoupCount];
+#endif
+#if NUM_STREAM >= 8
                 JcoupLocal_4[t + 1][JcoupCount] =
                     JcoupLocalReg_4[t][JcoupCount];
                 JcoupLocal_5[t + 1][JcoupCount] =
@@ -377,5 +510,28 @@ LOOP_STAGE:
 #endif
             }
         }
+#else
+    SHIFT_JcoupLocal:
+        for (u32_t JcoupCount = 0;
+             JcoupCount < MAX_NSPIN / PACKET_SIZE / NUM_STREAM; JcoupCount++) {
+            for (i32_t t = MAX_NTROT - 2; t >= 0; t--) {
+#pragma HLS UNROLL
+                JcoupLocal_0[t + 1][JcoupCount] = JcoupLocal_0[t][JcoupCount];
+#if NUM_STREAM >= 2
+                JcoupLocal_1[t + 1][JcoupCount] = JcoupLocal_1[t][JcoupCount];
+#endif
+#if NUM_STREAM >= 4
+                JcoupLocal_2[t + 1][JcoupCount] = JcoupLocal_2[t][JcoupCount];
+                JcoupLocal_3[t + 1][JcoupCount] = JcoupLocal_3[t][JcoupCount];
+#endif
+#if NUM_STREAM >= 8
+                JcoupLocal_4[t + 1][JcoupCount] = JcoupLocal_4[t][JcoupCount];
+                JcoupLocal_5[t + 1][JcoupCount] = JcoupLocal_5[t][JcoupCount];
+                JcoupLocal_6[t + 1][JcoupCount] = JcoupLocal_6[t][JcoupCount];
+                JcoupLocal_7[t + 1][JcoupCount] = JcoupLocal_7[t][JcoupCount];
+#endif
+            }
+        }
+#endif
     }
 }
