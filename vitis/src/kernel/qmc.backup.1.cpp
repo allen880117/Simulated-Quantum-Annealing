@@ -63,11 +63,8 @@ MULTIPLY:
 #pragma HLS UNROLL
             if (!trotters[jPack + sC][k]) {
                 fpBuffer[sC][k] =
-#if COPYSIGNF
-                    hls::copysignf(JcoupLocal[sC][JcoupCount][k], -1.0f);
-#else
+                    // hls::copysignf(JcoupLocal[sC][JcoupCount][k], -1.0f);
                     -JcoupLocal[sC][JcoupCount][k];
-#endif
             } else {
                 fpBuffer[sC][k] = JcoupLocal[sC][JcoupCount][k];
             }
@@ -219,7 +216,6 @@ void QuantumMonteCarlo(
     /* Local Memory :: Jcoup_0 */
     fp_pack_t JcoupLocal[MAX_NTROT][NUM_STREAM]
                         [MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
-#pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
 #pragma HLS ARRAY_PARTITION dim = 2 type = complete variable = JcoupLocal
 
