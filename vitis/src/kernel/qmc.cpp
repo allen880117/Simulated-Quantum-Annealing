@@ -2,7 +2,6 @@
 
 #include "../include/sqa.hpp"
 
-namespace TU {
 template <u32_t SIZE>
 void Reduction(fp_t fpBuffer[PACKET_SIZE]) {
 #pragma HLS INLINE
@@ -23,53 +22,36 @@ void Reduction<2>(fp_t fpBuffer[PACKET_SIZE]) {
 }
 
 void TrotterUnit(
-    /* # of Trotter */
-    const u32_t t,
-    /* Current global stage and step*/
-    const u32_t stage, const u32_t step,
-    /* Idx of spin that will be updated */
-    const u32_t iPack, const u32_t iSpin,
-    /* Idx of the neighbor spin */
-    const u32_t jPack, const u32_t jSpin,
-    /* Spins in the same trotter */
-    spin_t trotters[MAX_NSPIN / PACKET_SIZE][PACKET_SIZE],
-    /* Local Field */
-    fp_t &dH,
-    /* Jcoup_0 Stream and Register for Next Tortter, 0 */
-    fp_pack_t JcoupLocal[NUM_STREAM][MAX_NSPIN / PACKET_SIZE / NUM_STREAM],
-    /* JcoupCount */
-    const u32_t JcoupCount,
-    /* Spin from upper/lower trotter */
-    const spin_t upSpin, const spin_t downSpin,
-    /* Flip-Related */
-    const fp_t Beta, const fp_t dHTunnel, const fp_t logRandNumber[MAX_NSPIN]) {
+    const u32_t t, const u32_t stage, const u32_t step, const u32_t iPack,
+    const u32_t iSpin, const u32_t jPack, const u32_t jSpin,
+    spin_t trotters[NUM_SPIN / PACKET_SIZE][PACKET_SIZE], fp_t &dH,
+    fp_pack_t JcoupLocal[NUM_STREAM][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+    const u32_t jc, const spin_t upSpin, const spin_t downSpin, const fp_t Beta,
+    const fp_t dHTunnel, const fp_t logRandNumber[NUM_SPIN]) {
     /* Limit the number of fadd */
     CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = NUM_FADD)
 
-    /* ==== [CHECK STAGE] ==== */
-    bool inside = (stage >= t && stage < MAX_NSPIN + t);
+    /* Check stage */
+    bool inside = (stage >= t && stage < NUM_SPIN + t);
     if (!inside) { return; }
-    /* ==== [CHECK STAGE] ==== */
 
     /* Cache */
     fp_t dHTmp = dH;
     fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
 
     /* Summation::Multiply */
-MULTIPLY:
     for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
         for (u32_t sC = 0; sC < NUM_STREAM; sC++) {
 #pragma HLS UNROLL
             if (!trotters[jPack + sC][k]) {
-                fpBuffer[sC][k] =
 #if COPYSIGNF
-                    hls::copysignf(JcoupLocal[sC][JcoupCount][k], -1.0f);
+                fpBuffer[sC][k] = hls::copysignf(JcoupLocal[sC][jc][k], -1.0f);
 #else
-                    -JcoupLocal[sC][JcoupCount][k];
+                fpBuffer[sC][k] = -JcoupLocal[sC][jc][k];
 #endif
             } else {
-                fpBuffer[sC][k] = JcoupLocal[sC][JcoupCount][k];
+                fpBuffer[sC][k] = JcoupLocal[sC][jc][k];
             }
         }
     }
@@ -99,32 +81,21 @@ MULTIPLY:
     dH = dHTmp;
 };
 
-void TrotterUnitFinal(
-    /* # of Trotter */
-    const u32_t t,
-    /* Current global stage and step*/
-    const u32_t stage,
-    /* Idx of spin that will be updated */
-    const u32_t iPack, const u32_t iSpin,
-    /* Spins in the same trotter */
-    spin_t trotters[MAX_NSPIN / PACKET_SIZE][PACKET_SIZE],
-    /* Local Field */
-    fp_t &dH,
-    /* Spin from upper/lower trotter */
-    const spin_t upSpin, const spin_t downSpin,
-    /* Flip-Related */
-    const fp_t Beta, const fp_t dHTunnel, const fp_t logRandNumber[MAX_NSPIN]) {
-    /* ==== [CHECK STAGE] ==== */
-    bool inside = (stage >= t && stage < MAX_NSPIN + t);
+void TrotterUnitFinal(const u32_t t, const u32_t stage, const u32_t iPack,
+                      const u32_t iSpin,
+                      spin_t trotters[NUM_SPIN / PACKET_SIZE][PACKET_SIZE],
+                      fp_t &dH, const spin_t upSpin, const spin_t downSpin,
+                      const fp_t Beta, const fp_t dHTunnel,
+                      const fp_t logRandNumber[NUM_SPIN]) {
+    /* Check stage */
+    bool inside = (stage >= t && stage < NUM_SPIN + t);
     if (!inside) { return; }
-    /* ==== [CHECK STAGE] ==== */
 
     /* Cache */
     fp_t dHTmp = dH;
+    spin_t this_spin = trotters[iPack][iSpin];
 
-    /* ==== [FINAL STEP] ==== */
-    // if (jPack >= (MAX_NSPIN / PACKET_SIZE) -1 ) {
-    /* Compute Engery from up and down trotter */
+    /* Add tunnel energy */
     bool sameDirection = (upSpin == downSpin);
     if (sameDirection && upSpin) {
         dHTmp = (dHTmp - dHTunnel) * 2.0f;
@@ -134,11 +105,14 @@ void TrotterUnitFinal(
         dHTmp = dHTmp * 2.0f;
     }
 
-    /* Cache */
-    spin_t this_spin = trotters[iPack][iSpin];
-
     /* Times itself */
-    if (!this_spin) { dHTmp = -dHTmp; }
+    if (!this_spin) {
+#if COPYSIGNF
+        dHTmp = hls::copysignf(dHTmp, -1.0f);
+#else
+        dHTmp = -dHTmp;
+#endif
+    }
 
     /* Flip */
     if ((-Beta * dHTmp) > logRandNumber[(iPack << LOG2_PACKET_SIZE) + iSpin]) {
@@ -146,112 +120,89 @@ void TrotterUnitFinal(
     }
 };
 
-};  // namespace TU
-
 void QuantumMonteCarlo(
     /* Spins */
-    spin_t trotters[MAX_NTROT][MAX_NSPIN / PACKET_SIZE][PACKET_SIZE],
+    spin_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE][PACKET_SIZE],
     /* Jcoup */
-    hls::stream<fp_pack_t> &Jcoup_0,
-#if NUM_STREAM >= 2
-    hls::stream<fp_pack_t> &Jcoup_1,
-#endif
-#if NUM_STREAM >= 4
-    hls::stream<fp_pack_t> &Jcoup_2, hls::stream<fp_pack_t> &Jcoup_3,
-#endif
-#if NUM_STREAM >= 8
-    hls::stream<fp_pack_t> &Jcoup_4, hls::stream<fp_pack_t> &Jcoup_5,
-    hls::stream<fp_pack_t> &Jcoup_6, hls::stream<fp_pack_t> &Jcoup_7,
-#endif
+    hls::stream<fp_pack_t> &Jcoup,
     /* Array of h */
-    const fp_t h[MAX_NSPIN],
+    const fp_t h[NUM_SPIN],
     /* Thermal Related */
-    const fp_t Jperp, const fp_t Beta,
+    const fp_t Jperp,
+    /* Thermal Related */
+    const fp_t Beta,
     /* Log(Random Number = [0, 1]) */
-    const fp_t logRandomNumber[MAX_NTROT][MAX_NSPIN]) {
+    const fp_t logRand[NUM_TROT][NUM_SPIN]) {
 #pragma HLS TOP name = QuantumMonteCarlo
 #pragma HLS INTERFACE mode = s_axilite port = return
 #pragma HLS INTERFACE mode = s_axilite port = trotters
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_0 register
-#if NUM_STREAM >= 2
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_1 register
-#endif
-#if NUM_STREAM >= 4
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_2 register
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_3 register
-#endif
-#if NUM_STREAM >= 8
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_4 register
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_5 register
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_6 register
-#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup_7 register
-#endif
+#pragma HLS INTERFACE mode = axis register_mode = both port = Jcoup register
 #pragma HLS INTERFACE mode = s_axilite port = h
 #pragma HLS INTERFACE mode = s_axilite port = Jperp
 #pragma HLS INTERFACE mode = s_axilite port = Beta
-#pragma HLS INTERFACE mode = s_axilite port = logRandomNumber
+#pragma HLS INTERFACE mode = s_axilite port = logRand
 #pragma HLS ARRAY_PARTITION variable = trotters type = complete dim = 1
 #pragma HLS ARRAY_RESHAPE dim = 3 type = complete variable = trotters
-#pragma HLS ARRAY_PARTITION variable = logRandomNumber type = complete dim = 1
+#pragma HLS ARRAY_PARTITION variable = logRand type = complete dim = 1
 
     /* Local Memory :: idxUp/idxDown */
-    u32_t idxUp[MAX_NTROT];
+    u32_t idxUp[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = idxUp
-    u32_t idxDown[MAX_NTROT];
+    u32_t idxDown[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = idxDown
 
     /* Local Memory iPre */
-    u32_t iPrePack[MAX_NTROT];
-#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iPrePack
-    u32_t iPreSpin[MAX_NTROT];
-#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iPreSpin
+    u32_t iPack[NUM_TROT];
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iPack
+    u32_t iSpin[NUM_TROT];
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iSpin
 
     /* Local Memory :: upSpin, downSpin */
-    spin_t upSpin[MAX_NTROT];
+    spin_t upSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = upSpin
-    spin_t downSpin[MAX_NTROT];
+    spin_t downSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = downSpin
 
     /* Local Memory :: dH */
-    fp_t dH[MAX_NTROT];
+    fp_t dH[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = dH
 
     /* Local Memory :: Jcoup_0 */
-    fp_pack_t JcoupLocal[MAX_NTROT][NUM_STREAM]
-                        [MAX_NSPIN / PACKET_SIZE / NUM_STREAM];
+    fp_pack_t JcoupLocal[NUM_TROT][NUM_STREAM]
+                        [NUM_SPIN / PACKET_SIZE / NUM_STREAM];
 #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
 #pragma HLS ARRAY_PARTITION dim = 2 type = complete variable = JcoupLocal
 
     /* Initialize idxUp/idxDown */
 INIT_IDX:
-    for (u32_t t = 0; t < MAX_NTROT; t++) {
+    for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-        idxUp[t] = (t == 0) ? (MAX_NTROT - 1) : (t - 1);
-        idxDown[t] = (t == MAX_NTROT - 1) ? 0 : (t + 1);
+        idxUp[t] = (t == 0) ? (NUM_TROT - 1) : (t - 1);
+        idxDown[t] = (t == NUM_TROT - 1) ? 0 : (t + 1);
     }
 
     /* Precomputation of Tunnel-Related Energy */
-    const fp_t dHTunnel = Jperp * ((fp_t)(2 * MAX_NTROT));
+    const fp_t dHTunnel = Jperp * ((fp_t)(2 * NUM_TROT));
 
     /* Loop Stage */
 LOOP_STAGE:
-    for (u32_t stage = 0; stage < (MAX_NSPIN + MAX_NTROT - 1); stage++) {
+    for (u32_t stage = 0; stage < (NUM_SPIN + NUM_TROT - 1); stage++) {
         /* Force not to pipeline */
 #pragma HLS PIPELINE off
 
         /* Update Input State */
     UPDATE_INPUT_STATE:
-        for (u32_t t = 0; t < MAX_NTROT; t++) {
+        for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-            /* Compute offset  & Clamp into [0~MAX_NSPIN) */
-            u32_t offset = ((stage + MAX_NSPIN - t) & (MAX_NSPIN - 1));
+            /* Compute offset  & Clamp into [0~NUM_SPIN) */
+            u32_t offset = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
             u32_t packOffset = (offset >> (LOG2_PACKET_SIZE));
             u32_t spinOffset = (offset & (PACKET_SIZE - 1));
 
             /* Update iPre, upSpin/downSpin */
-            iPrePack[t] = packOffset;
-            iPreSpin[t] = spinOffset;
+            iPack[t] = packOffset;
+            iSpin[t] = spinOffset;
             upSpin[t] = trotters[idxUp[t]][packOffset][spinOffset];
             downSpin[t] = trotters[idxDown[t]][packOffset][spinOffset];
 
@@ -260,67 +211,50 @@ LOOP_STAGE:
         }
 
         /* Read New Jcoup_0 */
-        if (stage < MAX_NSPIN) {
+        if (stage < NUM_SPIN) {
         READ_NEW_JCOUP:
-            for (u32_t JcoupCount = 0;
-                 JcoupCount < MAX_NSPIN / PACKET_SIZE / NUM_STREAM;
-                 JcoupCount++) {
+            for (u32_t jc = 0; jc < NUM_SPIN / PACKET_SIZE / NUM_STREAM; jc++) {
 #pragma HLS PIPELINE
-                JcoupLocal[0][0][JcoupCount] = Jcoup_0.read();
-#if NUM_STREAM >= 2
-                JcoupLocal[0][1][JcoupCount] = Jcoup_1.read();
-#endif
-#if NUM_STREAM >= 4
-                JcoupLocal[0][2][JcoupCount] = Jcoup_2.read();
-                JcoupLocal[0][3][JcoupCount] = Jcoup_3.read();
-#endif
-#if NUM_STREAM >= 8
-                JcoupLocal[0][4][JcoupCount] = Jcoup_4.read();
-                JcoupLocal[0][5][JcoupCount] = Jcoup_5.read();
-                JcoupLocal[0][6][JcoupCount] = Jcoup_6.read();
-                JcoupLocal[0][7][JcoupCount] = Jcoup_7.read();
-#endif
+                for (u32_t sc = 0; sc < NUM_STREAM; sc++) {
+#pragma HLS PIPELINE
+                    JcoupLocal[0][sc][jc] = Jcoup.read();
+                }
             }
         }
 
         /* Loop Step */
     LOOP_STEP:
-        for (u32_t step = 0, JcoupCount = 0; step < MAX_NSPIN;
-             step += PACKET_SIZE * NUM_STREAM, JcoupCount++) {
+        for (u32_t step = 0, jc = 0; step < NUM_SPIN;
+             step += PACKET_SIZE * NUM_STREAM, jc++) {
 #pragma HLS PIPELINE off
-        TROTTER_EXE:
-            for (u32_t t = 0; t < MAX_NTROT; t++) {
+        RUN_TU:
+            for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-                TU::TrotterUnit(t, stage, step, iPrePack[t], iPreSpin[t],
-                                (step >> (LOG2_PACKET_SIZE)),
-                                (step & (PACKET_SIZE - 1)), trotters[t], dH[t],
-                                /* JcoupLocal s */
-                                JcoupLocal[t],
-                                /* JcoupLocal s End */
-                                JcoupCount, upSpin[t], downSpin[t], Beta,
-                                dHTunnel, logRandomNumber[t]);
+                TrotterUnit(t, stage, step, iPack[t], iSpin[t],
+                            (step >> (LOG2_PACKET_SIZE)),
+                            (step & (PACKET_SIZE - 1)), trotters[t], dH[t],
+                            JcoupLocal[t], jc, upSpin[t], downSpin[t], Beta,
+                            dHTunnel, logRand[t]);
             }
         }
 
-    TROTTER_EXE_FINAL:
-        for (u32_t t = 0; t < MAX_NTROT; t++) {
+    RUN_TU_FINAL:
+        for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-            TU::TrotterUnitFinal(t, stage, iPrePack[t], iPreSpin[t],
-                                 trotters[t], dH[t], upSpin[t], downSpin[t],
-                                 Beta, dHTunnel, logRandomNumber[t]);
+            TrotterUnitFinal(t, stage, iPack[t], iSpin[t], trotters[t], dH[t],
+                             upSpin[t], downSpin[t], Beta, dHTunnel,
+                             logRand[t]);
         }
 
         /* Shift Down JcoupLocal_0 */
-    SHIFT_JcoupLocal:
-        for (u32_t JcoupCount = 0;
-             JcoupCount < MAX_NSPIN / PACKET_SIZE / NUM_STREAM; JcoupCount++) {
+    SHIFT_JCOUP:
+        for (u32_t jc = 0; jc < NUM_SPIN / PACKET_SIZE / NUM_STREAM; jc++) {
 #pragma HLS PIPELINE
-            for (i32_t t = MAX_NTROT - 2; t >= 0; t--) {
+            for (i32_t t = NUM_TROT - 2; t >= 0; t--) {
 #pragma HLS UNROLL
                 for (u32_t sC = 0; sC < NUM_STREAM; sC++) {
 #pragma HLS UNROLL
-                    JcoupLocal[t + 1][sC][JcoupCount] =
-                        JcoupLocal[t][sC][JcoupCount];
+                    JcoupLocal[t + 1][sC][jc] = JcoupLocal[t][sC][jc];
                 }
             }
         }

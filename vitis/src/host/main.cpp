@@ -11,20 +11,18 @@
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
 
-/* Change These Options to Test */
-/* You can only enable 1 unit each time*/
-#define BASIC 1
-#define PACK 1
+#define LOG_STATE 1
+#define REPLAY 1
 
 /* Field */
-fp_t Jcoup[MAX_NSPIN][MAX_NSPIN];
-fp_t h[MAX_NSPIN];
+fp_t Jcoup[NUM_SPIN][NUM_SPIN];
+fp_t h[NUM_SPIN];
 
 /* Main Program */
 int main(int argc, char *argv[]) {
     /* Const nTrot and nSpin */
-    const int nTrot = MAX_NTROT;
-    const int nSpin = MAX_NSPIN;
+    const int nTrot = NUM_TROT;
+    const int nSpin = NUM_SPIN;
 
     /* Random Generators */
     std::random_device rd;
@@ -33,14 +31,34 @@ int main(int argc, char *argv[]) {
     std::normal_distribution<fp_t> int_unif(0, 1);
 
     /* Trotters */
-    spin_t trotters[MAX_NTROT][MAX_NSPIN];
+    spin_t trotters[NUM_TROT][NUM_SPIN];
+#if !REPLAY
     generateRandomState(trotters, nTrot, nSpin);
-
-#if !UNPACK
-    spin_pack_t trottersPack[MAX_NTROT][MAX_NSPIN / PACKET_SIZE];
-#else
-    spin_t trottersPack[MAX_NTROT][MAX_NSPIN / PACKET_SIZE][PACKET_SIZE];
+#if LOG_STATE
+    /* Dump Initial Trotter */
+    std::ofstream init_trotter("../../../init_trotter.txt");
+    for (int t = 0; t < nTrot; t++) {
+        for (int i = 0; i < nSpin; i++) {
+            init_trotter << trotters[t][i] << " ";
+        }
+    }
+    init_trotter.close();
 #endif
+#else
+    /* Dump Initial Trotter */
+    std::ifstream init_trotter("../../../init_trotter.txt");
+    if (!init_trotter) {
+        std::cout << "Can't find init_trotter.txt" << std::endl;
+        return -1;
+    }
+    for (int t = 0; t < nTrot; t++) {
+        for (int i = 0; i < nSpin; i++) { init_trotter >> trotters[t][i]; }
+    }
+    init_trotter.close();
+#endif
+
+    /* Convert to Pack Form */
+    spin_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE][PACKET_SIZE];
     for (int t = 0; t < nTrot; t++) {
         for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
             for (int k = 0; k < PACKET_SIZE; k++) {
@@ -50,7 +68,7 @@ int main(int argc, char *argv[]) {
     }
 
     /* Generate Random Numbers */
-    fp_t rndNum[MAX_NSPIN];
+    fp_t rndNum[NUM_SPIN];
     for (int i = 0; i < nSpin; i++) {
         // rndNum[i] = int_unif(rng);
         rndNum[i] = (float)(i + 1) / (float)nSpin;
@@ -78,12 +96,23 @@ int main(int argc, char *argv[]) {
 
     /* Best */
     fp_t bestEnergy = 10e22;
-    spin_t bestTrotter[MAX_NSPIN];
+    spin_t bestTrotter[NUM_SPIN];
     int bestRun = 0;
     int bestTrotNum = 0;
 
     /* Log */
     std::ofstream out("out.txt");
+#if !REPLAY
+#if LOG_STATE
+    std::ofstream log_rnd("../../../log_rnd.txt");
+#endif
+#else
+    std::ifstream log_rnd("../../../log_rnd.txt");
+    if (!log_rnd) {
+        std::cout << "Can't find log_rnd.txt" << std::endl;
+        return -1;
+    }
+#endif
 
     /* SQA */
     for (int i = 0; i < iter; i++) {
@@ -92,11 +121,18 @@ int main(int argc, char *argv[]) {
         if ((i + 1) % 20 == 0) std::cout << std::endl;
 
         /* Generate Random Number for Flipping */
-        fp_t logRandNum[MAX_NTROT][MAX_NSPIN];
+        fp_t logRandNum[NUM_TROT][NUM_SPIN];
         for (int j = 0; j < nTrot; j++) {
             for (int k = 0; k < nSpin; k++) {
+#if !REPLAY
                 /* Do some computation first */
                 logRandNum[j][k] = log(unif(rng)) * nTrot;
+#if LOG_STATE
+                log_rnd << logRandNum[j][k] << " ";
+#endif
+#else
+                log_rnd >> logRandNum[j][k];
+#endif
             }
         }
 
@@ -106,69 +142,19 @@ int main(int argc, char *argv[]) {
 
         /* Do Quantum Monte-Carlo */
         hls::stream<fp_pack_t> JcoupStream_0;
-#if NUM_STREAM >= 2
-        hls::stream<fp_pack_t> JcoupStream_1;
-#endif
-#if NUM_STREAM >= 4
-        hls::stream<fp_pack_t> JcoupStream_2;
-        hls::stream<fp_pack_t> JcoupStream_3;
-#endif
-#if NUM_STREAM >= 8
-        hls::stream<fp_pack_t> JcoupStream_4;
-        hls::stream<fp_pack_t> JcoupStream_5;
-        hls::stream<fp_pack_t> JcoupStream_6;
-        hls::stream<fp_pack_t> JcoupStream_7;
-#endif
-        int pp = 0;
         for (int j = 0; j < nSpin; j++) {
             for (int k = 0; k < nSpin; k += PACKET_SIZE) {
                 fp_pack_t tmp;
                 for (int l = 0; l < PACKET_SIZE; l++) {
                     tmp[l] = Jcoup[j][k + l];
                 }
-                if (pp == 0) {
-                    JcoupStream_0 << tmp;
-                }
-#if NUM_STREAM >= 2
-                else if (pp == 1) {
-                    JcoupStream_1 << tmp;
-                }
-#endif
-#if NUM_STREAM >= 4
-                else if (pp == 2) {
-                    JcoupStream_2 << tmp;
-                } else if (pp == 3) {
-                    JcoupStream_3 << tmp;
-                }
-#endif
-#if NUM_STREAM >= 8
-                else if (pp == 4) {
-                    JcoupStream_4 << tmp;
-                } else if (pp == 5) {
-                    JcoupStream_5 << tmp;
-                } else if (pp == 6) {
-                    JcoupStream_6 << tmp;
-                } else if (pp == 7) {
-                    JcoupStream_7 << tmp;
-                }
-#endif
-                pp = (pp + 1) % NUM_STREAM;
+                JcoupStream_0 << tmp;
             }
         }
 
         /* Execute */
-        QuantumMonteCarlo(trottersPack, JcoupStream_0,
-#if NUM_STREAM >= 2
-                          JcoupStream_1,
-#endif
-#if NUM_STREAM >= 4
-                          JcoupStream_2, JcoupStream_3,
-#endif
-#if NUM_STREAM >= 8
-                          JcoupStream_4, JcoupStream_5, JcoupStream_6,
-                          JcoupStream_7,
-#endif
-                          h, Jperp, Beta, logRandNum);
+        QuantumMonteCarlo(trottersPack, JcoupStream_0, h, Jperp, Beta,
+                          logRandNum);
 
         /* Convert */
         for (int t = 0; t < nTrot; t++) {
@@ -187,7 +173,7 @@ int main(int argc, char *argv[]) {
             /* Compare */
             if (fabs(energy) < fabs(bestEnergy)) {
                 bestEnergy = energy;
-                memcpy(bestTrotter, trotters[t], MAX_NSPIN * sizeof(spin_t));
+                memcpy(bestTrotter, trotters[t], NUM_SPIN * sizeof(spin_t));
                 bestRun = i;
                 bestTrotNum = t;
             }
@@ -204,6 +190,9 @@ int main(int argc, char *argv[]) {
 
     /* Output Close */
     out.close();
+#if LOG_STATE || REPLAY
+    log_rnd.close();
+#endif
 
     /* Print Best Trotter */
     std::cout << "Run, Trotter: " << bestRun << " ," << bestTrotNum

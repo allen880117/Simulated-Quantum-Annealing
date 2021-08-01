@@ -11,7 +11,7 @@ void printProgress(double percentage) {
         printf("\n");
 }
 
-void generateRandomState(spin_t trotters[MAX_NTROT][MAX_NSPIN], int nTrot,
+void generateRandomState(spin_t trotters[NUM_TROT][NUM_SPIN], int nTrot,
                          int nSpin) {
     /* Random Device & Random Number Generator */
     static std::random_device                 rd;
@@ -25,9 +25,9 @@ void generateRandomState(spin_t trotters[MAX_NTROT][MAX_NSPIN], int nTrot,
     }
 }
 
-fp_t computeEnergyPerTrotter(int nSpin, spin_t trotter[MAX_NSPIN],
-                             fp_t Jcoup[MAX_NSPIN][MAX_NSPIN],
-                             fp_t h[MAX_NSPIN]) {
+fp_t computeEnergyPerTrotter(int nSpin, spin_t trotter[NUM_SPIN],
+                             fp_t Jcoup[NUM_SPIN][NUM_SPIN],
+                             fp_t h[NUM_SPIN]) {
     /* Follow the Formula */
     /* H = sum(J(i,j) * spin[i] * spin[j]) + sum(h[i] * spin[i]) */
 
