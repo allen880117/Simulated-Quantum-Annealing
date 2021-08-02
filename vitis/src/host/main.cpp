@@ -11,7 +11,9 @@
 #include "../include/sqa.hpp"
 #include "hls_stream.h"
 
-#define LOG_STATE 1
+#define BASIC 0
+
+#define RECORD 1
 #define REPLAY 1
 
 /* Field */
@@ -20,6 +22,8 @@ fp_t h[NUM_SPIN];
 
 /* Main Program */
 int main(int argc, char *argv[]) {
+    std::cout << "BASIC: " << BASIC << std::endl;
+
     /* Const nTrot and nSpin */
     const int nTrot = NUM_TROT;
     const int nSpin = NUM_SPIN;
@@ -34,7 +38,7 @@ int main(int argc, char *argv[]) {
     spin_t trotters[NUM_TROT][NUM_SPIN];
 #if !REPLAY
     generateRandomState(trotters, nTrot, nSpin);
-#if LOG_STATE
+#if RECORD
     /* Dump Initial Trotter */
     std::ofstream init_trotter("../../../init_trotter.txt");
     for (int t = 0; t < nTrot; t++) {
@@ -57,6 +61,7 @@ int main(int argc, char *argv[]) {
     init_trotter.close();
 #endif
 
+#if !BASIC
     /* Convert to Pack Form */
     spin_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE][PACKET_SIZE];
     for (int t = 0; t < nTrot; t++) {
@@ -66,6 +71,7 @@ int main(int argc, char *argv[]) {
             }
         }
     }
+#endif
 
     /* Generate Random Numbers */
     fp_t rndNum[NUM_SPIN];
@@ -103,7 +109,7 @@ int main(int argc, char *argv[]) {
     /* Log */
     std::ofstream out("out.txt");
 #if !REPLAY
-#if LOG_STATE
+#if RECORD
     std::ofstream log_rnd("../../../log_rnd.txt");
 #endif
 #else
@@ -124,10 +130,11 @@ int main(int argc, char *argv[]) {
         fp_t logRandNum[NUM_TROT][NUM_SPIN];
         for (int j = 0; j < nTrot; j++) {
             for (int k = 0; k < nSpin; k++) {
+            // for (int k = nSpin - 1; k > 0; k--) {
 #if !REPLAY
                 /* Do some computation first */
                 logRandNum[j][k] = log(unif(rng)) * nTrot;
-#if LOG_STATE
+#if RECORD
                 log_rnd << logRandNum[j][k] << " ";
 #endif
 #else
@@ -140,7 +147,8 @@ int main(int argc, char *argv[]) {
         fp_t Gamma = G0 * (1 - (float)i / iter);
         fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
 
-        /* Do Quantum Monte-Carlo */
+#if !BASIC
+        /* Make Jcoup Stream */
         hls::stream<fp_pack_t> JcoupStream_0;
         for (int j = 0; j < nSpin; j++) {
             for (int k = 0; k < nSpin; k += PACKET_SIZE) {
@@ -151,11 +159,18 @@ int main(int argc, char *argv[]) {
                 JcoupStream_0 << tmp;
             }
         }
+#endif
 
+#if !BASIC
         /* Execute */
         QuantumMonteCarlo(trottersPack, JcoupStream_0, h, Jperp, Beta,
                           logRandNum);
+#else
+        QuantumMonteCarloBasic(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
+                               logRandNum);
+#endif
 
+#if !BASIC
         /* Convert */
         for (int t = 0; t < nTrot; t++) {
             for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
@@ -164,6 +179,7 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
+#endif
 
         /* Calculate energy of each turn */
         fp_t sumEnergy = 0;
@@ -190,7 +206,7 @@ int main(int argc, char *argv[]) {
 
     /* Output Close */
     out.close();
-#if LOG_STATE || REPLAY
+#if RECORD || REPLAY
     log_rnd.close();
 #endif
 

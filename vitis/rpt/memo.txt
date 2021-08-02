@@ -1,0 +1,12 @@
+rpt_1:
+* 16 4096 64 1
+* Remove register
+* Confine the number of FADD
+
+rpt_2:
+* 16 4096 64 1
+* Remove register
+* Confine the number of FADD
+* Add fpBuffer Cache
+  - Disaggregate
+

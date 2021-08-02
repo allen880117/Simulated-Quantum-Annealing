@@ -3,9 +3,9 @@
 #include "../include/sqa.hpp"
 
 template <u32_t SIZE>
-void Reduction(fp_t fpBuffer[PACKET_SIZE]) {
+void reductionIntraBuffer(fp_t fpBuffer[PACKET_SIZE]) {
 #pragma HLS INLINE
-    Reduction<SIZE / 2>(fpBuffer);
+    reductionIntraBuffer<SIZE / 2>(fpBuffer);
     for (u32_t i = 0; i < PACKET_SIZE; i += SIZE) {
 #pragma HLS UNROLL
         fpBuffer[i] += fpBuffer[i + SIZE / 2];
@@ -13,12 +13,41 @@ void Reduction(fp_t fpBuffer[PACKET_SIZE]) {
 }
 
 template <>
-void Reduction<2>(fp_t fpBuffer[PACKET_SIZE]) {
+void reductionIntraBuffer<2>(fp_t fpBuffer[PACKET_SIZE]) {
 #pragma HLS INLINE
     for (u32_t i = 0; i < PACKET_SIZE; i += 2) {
 #pragma HLS UNROLL
         fpBuffer[i] += fpBuffer[i + 1];
     }
+}
+
+template <>
+void reductionIntraBuffer<1>(fp_t fpBuffer[PACKET_SIZE]) {
+    ;
+}
+
+template <u32_t NSTRM>
+void reductionInterBuffer(fp_t fpBuffer[NUM_STREAM][PACKET_SIZE]) {
+#pragma HLS INLINE
+    reductionInterBuffer<NSTRM / 2>(fpBuffer);
+    for (u32_t i = 0; i < NUM_STREAM; i += NSTRM) {
+#pragma HLS UNROLL
+        fpBuffer[i][0] += fpBuffer[i + NSTRM / 2][0];
+    }
+}
+
+template <>
+void reductionInterBuffer<2>(fp_t fpBuffer[NUM_STREAM][PACKET_SIZE]) {
+#pragma HLS INLINE
+    for (u32_t i = 0; i < NUM_STREAM; i += 2) {
+#pragma HLS UNROLL
+        fpBuffer[i][0] += fpBuffer[i + 1][0];
+    }
+}
+
+template <>
+void reductionInterBuffer<1>(fp_t fpBuffer[NUM_STREAM][PACKET_SIZE]) {
+    ;
 }
 
 void TrotterUnit(
@@ -56,25 +85,12 @@ void TrotterUnit(
         }
     }
 
-    /* Summation::Reduction */
+    /* Summation::reductionIntraBuffer */
     for (u32_t sC = 0; sC < NUM_STREAM; sC++) {
 #pragma HLS UNROLL
-        Reduction<PACKET_SIZE>(fpBuffer[sC]);
+        reductionIntraBuffer<PACKET_SIZE>(fpBuffer[sC]);
     }
-
-#if NUM_STREAM >= 8
-    fpBuffer[0][0] += fpBuffer[4][0];
-    fpBuffer[1][0] += fpBuffer[5][0];
-    fpBuffer[2][0] += fpBuffer[6][0];
-    fpBuffer[3][0] += fpBuffer[7][0];
-#endif
-#if NUM_STREAM >= 4
-    fpBuffer[0][0] += fpBuffer[2][0];
-    fpBuffer[1][0] += fpBuffer[3][0];
-#endif
-#if NUM_STREAM >= 2
-    fpBuffer[0][0] += fpBuffer[1][0];
-#endif
+    reductionInterBuffer<NUM_STREAM>(fpBuffer);
     dHTmp += fpBuffer[0][0];
 
     /* Write Back */

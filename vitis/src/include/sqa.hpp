@@ -8,7 +8,7 @@
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#define CONFIG_VERSION 0
+#define CONFIG_VERSION 2
 
 #if (CONFIG_VERSION == 0)
 #define NUM_TROT 16
@@ -57,5 +57,13 @@ void QuantumMonteCarlo(
     const fp_t Beta,
     /* Log(Random Number = [0, 1]) */
     const fp_t logRand[NUM_TROT][NUM_SPIN]);
+
+/* Naive Version */
+void QuantumMonteCarloBasic(const int nTrot, const int nSpin,
+                            spin_t trotters[NUM_TROT][NUM_SPIN],
+                            const fp_t Jcoup[NUM_SPIN][NUM_SPIN],
+                            const fp_t h[NUM_SPIN], const fp_t Jperp,
+                            const fp_t Beta,
+                            const fp_t logRandNumber[NUM_TROT][NUM_SPIN]);
 
 #endif

@@ -1,0 +1,609 @@
+
+
+================================================================
+== Vitis HLS Report for 'QuantumMonteCarlo'
+================================================================
+* Date:           Mon Aug  2 07:12:01 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:33 MDT 2021)
+* Project:        SQA-Vitis
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu35p-fsvh2892-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  8.141 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+--------+---------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |     Interval     | Pipeline|
+    |   min   |   max   |    min   |    max    |   min  |   max   |   Type  |
+    +---------+---------+----------+-----------+--------+---------+---------+
+    |   106576|  1287088|  1.066 ms|  12.871 ms|  106577|  1287089|       no|
+    +---------+---------+----------+-----------+--------+---------+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------------------+-------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                                                      |                                           |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |                       Instance                       |                   Module                  |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +------------------------------------------------------+-------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_QuantumMonteCarlo_Pipeline_READ_NEW_JCOUP_fu_617  |QuantumMonteCarlo_Pipeline_READ_NEW_JCOUP  |       66|       66|   0.660 us|   0.660 us|   66|   66|       no|
+        |grp_TrotterUnit_fu_639                                |TrotterUnit                                |        1|       56|  10.000 ns|   0.560 us|    1|   56|       no|
+        |grp_TrotterUnit_fu_670                                |TrotterUnit                                |        1|       56|  10.000 ns|   0.560 us|    1|   56|       no|
+        |grp_TrotterUnit_fu_701                                |TrotterUnit                                |        1|       56|  10.000 ns|   0.560 us|    1|   56|       no|
+        |grp_TrotterUnit_fu_732                                |TrotterUnit                                |        1|       56|  10.000 ns|   0.560 us|    1|   56|       no|
+        |grp_TrotterUnitFinal_fu_763                           |TrotterUnitFinal                           |        1|        8|  10.000 ns|  80.000 ns|    1|    8|       no|
+        |grp_TrotterUnitFinal_fu_782                           |TrotterUnitFinal                           |        1|        8|  10.000 ns|  80.000 ns|    1|    8|       no|
+        |grp_TrotterUnitFinal_fu_801                           |TrotterUnitFinal                           |        1|        8|  10.000 ns|  80.000 ns|    1|    8|       no|
+        |grp_TrotterUnitFinal_fu_820                           |TrotterUnitFinal                           |        1|        8|  10.000 ns|  80.000 ns|    1|    8|       no|
+        |grp_QuantumMonteCarlo_Pipeline_SHIFT_JCOUP_fu_839     |QuantumMonteCarlo_Pipeline_SHIFT_JCOUP     |        6|        6|  60.000 ns|  60.000 ns|    6|    6|       no|
+        +------------------------------------------------------+-------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+        |              |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name  |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- LOOP_STAGE  |   106574|  1287086|  26 ~ 314|          -|          -|  4099|        no|
+        | + LOOP_STEP  |       12|      232|    3 ~ 58|          -|          -|     4|        no|
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|    4189|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        0|   543|   357248|  142180|    5|
+|Memory               |        0|     -|    16384|   16448|    0|
+|Multiplexer          |        -|     -|        -|    3023|    -|
+|Register             |        -|     -|      585|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|   543|   374217|  165840|    5|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|    18|       42|      38|    1|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     9|       21|      19|   ~0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------------------+-------------------------------------------+---------+-----+-------+-------+-----+
+    |                       Instance                       |                   Module                  | BRAM_18K| DSP |   FF  |  LUT  | URAM|
+    +------------------------------------------------------+-------------------------------------------+---------+-----+-------+-------+-----+
+    |grp_QuantumMonteCarlo_Pipeline_READ_NEW_JCOUP_fu_617  |QuantumMonteCarlo_Pipeline_READ_NEW_JCOUP  |        0|    0|     23|    140|    0|
+    |grp_QuantumMonteCarlo_Pipeline_SHIFT_JCOUP_fu_839     |QuantumMonteCarlo_Pipeline_SHIFT_JCOUP     |        0|    0|     73|     57|    0|
+    |grp_TrotterUnit_fu_639                                |TrotterUnit                                |        0|  128|  88252|  33291|    0|
+    |grp_TrotterUnit_fu_670                                |TrotterUnit                                |        0|  128|  88252|  33291|    0|
+    |grp_TrotterUnit_fu_701                                |TrotterUnit                                |        0|  128|  88252|  33291|    0|
+    |grp_TrotterUnit_fu_732                                |TrotterUnit                                |        0|  128|  88252|  33291|    0|
+    |grp_TrotterUnitFinal_fu_763                           |TrotterUnitFinal                           |        0|    7|    796|   1986|    0|
+    |grp_TrotterUnitFinal_fu_782                           |TrotterUnitFinal                           |        0|    7|    796|   1986|    0|
+    |grp_TrotterUnitFinal_fu_801                           |TrotterUnitFinal                           |        0|    7|    796|   1986|    0|
+    |grp_TrotterUnitFinal_fu_820                           |TrotterUnitFinal                           |        0|    7|    796|   1986|    0|
+    |control_s_axi_U                                       |control_s_axi                              |        0|    0|    832|    798|    5|
+    |fmul_32ns_32ns_32_2_max_dsp_1_U189                    |fmul_32ns_32ns_32_2_max_dsp_1              |        0|    3|    128|     77|    0|
+    +------------------------------------------------------+-------------------------------------------+---------+-----+-------+-------+-----+
+    |Total                                                 |                                           |        0|  543| 357248| 142180|    5|
+    +------------------------------------------------------+-------------------------------------------+---------+-----+-------+-------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-------------------+----------------+---------+-----+-----+-----+------+------+------+-------------+
+    |       Memory      |     Module     | BRAM_18K|  FF | LUT | URAM| Words| Bits | Banks| W*Bits*Banks|
+    +-------------------+----------------+---------+-----+-----+-----+------+------+------+-------------+
+    |JcoupLocal_0_0_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_1_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_2_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_3_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_4_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_5_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_6_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_7_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_8_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_9_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_10_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_11_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_12_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_13_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_14_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_0_15_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_0_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_1_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_2_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_3_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_4_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_5_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_6_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_7_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_8_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_9_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_10_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_11_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_12_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_13_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_14_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_1_15_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_0_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_1_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_2_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_3_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_4_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_5_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_6_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_7_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_8_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_9_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_10_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_11_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_12_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_13_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_14_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_2_15_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_0_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_1_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_2_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_3_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_4_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_5_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_6_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_7_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_8_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_9_U   |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_10_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_11_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_12_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_13_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_14_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    |JcoupLocal_3_15_U  |JcoupLocal_0_0  |        0|  256|  257|    0|     4|  2048|     1|         8192|
+    +-------------------+----------------+---------+-----+-----+-----+------+------+------+-------------+
+    |Total              |                |        0|16384|16448|    0|   256|131072|    64|       524288|
+    +-------------------+----------------+---------+-----+-----+-----+------+------+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+-----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT | Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+-----+------------+------------+
+    |add_ln222_1_fu_1103_p2            |         +|   0|  0|   14|           7|           1|
+    |add_ln222_2_fu_1229_p2            |         +|   0|  0|   14|           7|           1|
+    |add_ln222_3_fu_1321_p2            |         +|   0|  0|   14|           7|           1|
+    |add_ln222_fu_1013_p2              |         +|   0|  0|   14|           7|           1|
+    |jc_fu_1422_p2                     |         +|   0|  0|   10|           3|           1|
+    |offset_1_fu_942_p2                |         +|   0|  0|   19|          12|           2|
+    |offset_2_fu_982_p2                |         +|   0|  0|   19|          12|           3|
+    |offset_3_fu_1184_p2               |         +|   0|  0|   19|          12|           3|
+    |spinOffset_1_fu_1089_p2           |         +|   0|  0|   13|           6|           2|
+    |spinOffset_2_fu_1216_p2           |         +|   0|  0|   13|           6|           3|
+    |spinOffset_3_fu_1308_p2           |         +|   0|  0|   13|           6|           3|
+    |stage_2_fu_927_p2                 |         +|   0|  0|   20|          13|           1|
+    |step_1_fu_1442_p2                 |         +|   0|  0|   20|          13|          11|
+    |sub_ln222_1_fu_1141_p2            |         -|   0|  0|   71|          64|          64|
+    |sub_ln222_2_fu_1267_p2            |         -|   0|  0|   71|          64|          64|
+    |sub_ln222_3_fu_1359_p2            |         -|   0|  0|   71|          64|          64|
+    |sub_ln222_fu_1051_p2              |         -|   0|  0|   71|          64|          64|
+    |and_ln222_1_fu_1147_p2            |       and|   0|  0|   64|          64|          64|
+    |and_ln222_2_fu_1273_p2            |       and|   0|  0|   64|          64|          64|
+    |and_ln222_3_fu_1365_p2            |       and|   0|  0|   64|          64|          64|
+    |and_ln222_fu_1057_p2              |       and|   0|  0|   64|          64|          64|
+    |and_ln223_1_fu_1163_p2            |       and|   0|  0|   64|          64|          64|
+    |and_ln223_2_fu_1289_p2            |       and|   0|  0|   64|          64|          64|
+    |and_ln223_3_fu_1381_p2            |       and|   0|  0|   64|          64|          64|
+    |and_ln223_fu_1073_p2              |       and|   0|  0|   64|          64|          64|
+    |ap_block_state8_on_subcall_done   |       and|   0|  0|    2|           1|           1|
+    |icmp_ln206_fu_921_p2              |      icmp|   0|  0|   12|          13|          13|
+    |icmp_ln243_fu_1416_p2             |      icmp|   0|  0|    9|           3|           4|
+    |lshr_ln222_1_fu_1153_p2           |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln222_2_fu_1279_p2           |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln222_3_fu_1371_p2           |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln222_fu_1063_p2             |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln223_1_fu_1169_p2           |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln223_2_fu_1295_p2           |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln223_3_fu_1387_p2           |      lshr|   0|  0|  182|          64|          64|
+    |lshr_ln223_fu_1079_p2             |      lshr|   0|  0|  182|          64|          64|
+    |ap_block_state10_on_subcall_done  |        or|   0|  0|    2|           1|           1|
+    |ap_block_state11_on_subcall_done  |        or|   0|  0|    2|           1|           1|
+    |select_ln222_1_fu_1127_p3         |    select|   0|  0|   63|           1|           1|
+    |select_ln222_2_fu_1253_p3         |    select|   0|  0|   63|           1|           1|
+    |select_ln222_3_fu_1345_p3         |    select|   0|  0|   63|           1|           1|
+    |select_ln222_fu_1037_p3           |    select|   0|  0|   63|           1|           1|
+    |shl_ln222_1_fu_1045_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_2_fu_1113_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_3_fu_1135_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_4_fu_1239_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_5_fu_1261_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_6_fu_1331_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_7_fu_1353_p2            |       shl|   0|  0|  182|           1|          64|
+    |shl_ln222_fu_1023_p2              |       shl|   0|  0|  182|           1|          64|
+    +----------------------------------+----------+----+---+-----+------------+------------+
+    |Total                             |          |   0|  0| 4189|        1422|        1849|
+    +----------------------------------+----------+----+---+-----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+----+-----------+-----+-----------+
+    |             Name            | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------+----+-----------+-----+-----------+
+    |JcoupLocal_0_0_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_0_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_0_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_0_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_10_address0     |  14|          3|    2|          6|
+    |JcoupLocal_0_10_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_0_10_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_0_10_we1          |   9|          2|    1|          2|
+    |JcoupLocal_0_11_address0     |  14|          3|    2|          6|
+    |JcoupLocal_0_11_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_0_11_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_0_11_we1          |   9|          2|    1|          2|
+    |JcoupLocal_0_12_address0     |  14|          3|    2|          6|
+    |JcoupLocal_0_12_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_0_12_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_0_12_we1          |   9|          2|    1|          2|
+    |JcoupLocal_0_13_address0     |  14|          3|    2|          6|
+    |JcoupLocal_0_13_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_0_13_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_0_13_we1          |   9|          2|    1|          2|
+    |JcoupLocal_0_14_address0     |  14|          3|    2|          6|
+    |JcoupLocal_0_14_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_0_14_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_0_14_we1          |   9|          2|    1|          2|
+    |JcoupLocal_0_15_address0     |  14|          3|    2|          6|
+    |JcoupLocal_0_15_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_0_15_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_0_15_we1          |   9|          2|    1|          2|
+    |JcoupLocal_0_1_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_1_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_1_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_1_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_2_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_2_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_2_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_2_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_3_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_3_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_3_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_3_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_4_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_4_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_4_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_4_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_5_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_5_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_5_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_5_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_6_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_6_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_6_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_6_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_7_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_7_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_7_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_7_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_8_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_8_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_8_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_8_we1           |   9|          2|    1|          2|
+    |JcoupLocal_0_9_address0      |  14|          3|    2|          6|
+    |JcoupLocal_0_9_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_0_9_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_0_9_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_0_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_0_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_0_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_0_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_10_address0     |  14|          3|    2|          6|
+    |JcoupLocal_1_10_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_1_10_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_1_10_we1          |   9|          2|    1|          2|
+    |JcoupLocal_1_11_address0     |  14|          3|    2|          6|
+    |JcoupLocal_1_11_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_1_11_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_1_11_we1          |   9|          2|    1|          2|
+    |JcoupLocal_1_12_address0     |  14|          3|    2|          6|
+    |JcoupLocal_1_12_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_1_12_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_1_12_we1          |   9|          2|    1|          2|
+    |JcoupLocal_1_13_address0     |  14|          3|    2|          6|
+    |JcoupLocal_1_13_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_1_13_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_1_13_we1          |   9|          2|    1|          2|
+    |JcoupLocal_1_14_address0     |  14|          3|    2|          6|
+    |JcoupLocal_1_14_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_1_14_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_1_14_we1          |   9|          2|    1|          2|
+    |JcoupLocal_1_15_address0     |  14|          3|    2|          6|
+    |JcoupLocal_1_15_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_1_15_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_1_15_we1          |   9|          2|    1|          2|
+    |JcoupLocal_1_1_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_1_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_1_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_1_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_2_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_2_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_2_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_2_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_3_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_3_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_3_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_3_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_4_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_4_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_4_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_4_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_5_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_5_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_5_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_5_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_6_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_6_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_6_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_6_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_7_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_7_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_7_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_7_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_8_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_8_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_8_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_8_we1           |   9|          2|    1|          2|
+    |JcoupLocal_1_9_address0      |  14|          3|    2|          6|
+    |JcoupLocal_1_9_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_1_9_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_1_9_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_0_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_0_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_0_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_0_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_10_address0     |  14|          3|    2|          6|
+    |JcoupLocal_2_10_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_2_10_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_2_10_we1          |   9|          2|    1|          2|
+    |JcoupLocal_2_11_address0     |  14|          3|    2|          6|
+    |JcoupLocal_2_11_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_2_11_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_2_11_we1          |   9|          2|    1|          2|
+    |JcoupLocal_2_12_address0     |  14|          3|    2|          6|
+    |JcoupLocal_2_12_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_2_12_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_2_12_we1          |   9|          2|    1|          2|
+    |JcoupLocal_2_13_address0     |  14|          3|    2|          6|
+    |JcoupLocal_2_13_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_2_13_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_2_13_we1          |   9|          2|    1|          2|
+    |JcoupLocal_2_14_address0     |  14|          3|    2|          6|
+    |JcoupLocal_2_14_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_2_14_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_2_14_we1          |   9|          2|    1|          2|
+    |JcoupLocal_2_15_address0     |  14|          3|    2|          6|
+    |JcoupLocal_2_15_ce0          |  14|          3|    1|          3|
+    |JcoupLocal_2_15_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_2_15_we1          |   9|          2|    1|          2|
+    |JcoupLocal_2_1_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_1_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_1_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_1_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_2_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_2_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_2_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_2_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_3_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_3_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_3_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_3_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_4_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_4_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_4_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_4_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_5_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_5_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_5_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_5_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_6_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_6_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_6_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_6_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_7_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_7_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_7_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_7_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_8_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_8_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_8_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_8_we1           |   9|          2|    1|          2|
+    |JcoupLocal_2_9_address0      |  14|          3|    2|          6|
+    |JcoupLocal_2_9_ce0           |  14|          3|    1|          3|
+    |JcoupLocal_2_9_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_2_9_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_0_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_0_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_0_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_10_ce0          |   9|          2|    1|          2|
+    |JcoupLocal_3_10_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_3_10_we1          |   9|          2|    1|          2|
+    |JcoupLocal_3_11_ce0          |   9|          2|    1|          2|
+    |JcoupLocal_3_11_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_3_11_we1          |   9|          2|    1|          2|
+    |JcoupLocal_3_12_ce0          |   9|          2|    1|          2|
+    |JcoupLocal_3_12_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_3_12_we1          |   9|          2|    1|          2|
+    |JcoupLocal_3_13_ce0          |   9|          2|    1|          2|
+    |JcoupLocal_3_13_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_3_13_we1          |   9|          2|    1|          2|
+    |JcoupLocal_3_14_ce0          |   9|          2|    1|          2|
+    |JcoupLocal_3_14_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_3_14_we1          |   9|          2|    1|          2|
+    |JcoupLocal_3_15_ce0          |   9|          2|    1|          2|
+    |JcoupLocal_3_15_ce1          |   9|          2|    1|          2|
+    |JcoupLocal_3_15_we1          |   9|          2|    1|          2|
+    |JcoupLocal_3_1_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_1_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_1_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_2_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_2_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_2_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_3_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_3_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_3_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_4_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_4_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_4_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_5_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_5_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_5_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_6_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_6_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_6_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_7_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_7_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_7_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_8_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_8_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_8_we1           |   9|          2|    1|          2|
+    |JcoupLocal_3_9_ce0           |   9|          2|    1|          2|
+    |JcoupLocal_3_9_ce1           |   9|          2|    1|          2|
+    |JcoupLocal_3_9_we1           |   9|          2|    1|          2|
+    |Jcoup_V_TREADY_int_regslice  |   9|          2|    1|          2|
+    |ap_NS_fsm                    |  65|         12|    1|         12|
+    |dH_0_0_reg_585               |   9|          2|   32|         64|
+    |dH_1_0_reg_575               |   9|          2|   32|         64|
+    |dH_2_0_reg_565               |   9|          2|   32|         64|
+    |dH_3_0_reg_555               |   9|          2|   32|         64|
+    |h_address0                   |  26|          5|   12|         60|
+    |jc_1_reg_595                 |   9|          2|    3|          6|
+    |stage_fu_162                 |   9|          2|   13|         26|
+    |step_reg_606                 |   9|          2|   13|         26|
+    |trotters_0_address0          |  26|          5|    6|         30|
+    |trotters_0_ce0               |  20|          4|    1|          4|
+    |trotters_0_we0               |   9|          2|    1|          2|
+    |trotters_1_address0          |  26|          5|    6|         30|
+    |trotters_1_ce0               |  20|          4|    1|          4|
+    |trotters_1_we0               |   9|          2|    1|          2|
+    |trotters_2_address0          |  26|          5|    6|         30|
+    |trotters_2_ce0               |  20|          4|    1|          4|
+    |trotters_2_we0               |   9|          2|    1|          2|
+    |trotters_3_address0          |  26|          5|    6|         30|
+    |trotters_3_ce0               |  20|          4|    1|          4|
+    |trotters_3_we0               |   9|          2|    1|          2|
+    +-----------------------------+----+-----------+-----+-----------+
+    |Total                        |3023|        653|  491|       1252|
+    +-----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------------------------+----+----+-----+-----------+
+    |                                Name                               | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------------------------+----+----+-----+-----------+
+    |Beta_read_reg_1459                                                 |  32|   0|   32|          0|
+    |ap_CS_fsm                                                          |  11|   0|   11|          0|
+    |dHTunnel_reg_1472                                                  |  32|   0|   32|          0|
+    |dH_0_0_reg_585                                                     |  32|   0|   32|          0|
+    |dH_0_reg_1636                                                      |  32|   0|   32|          0|
+    |dH_1_0_reg_575                                                     |  32|   0|   32|          0|
+    |dH_1_reg_1641                                                      |  32|   0|   32|          0|
+    |dH_2_0_reg_565                                                     |  32|   0|   32|          0|
+    |dH_2_reg_1661                                                      |  32|   0|   32|          0|
+    |dH_3_0_reg_555                                                     |  32|   0|   32|          0|
+    |dH_3_reg_1681                                                      |  32|   0|   32|          0|
+    |grp_QuantumMonteCarlo_Pipeline_READ_NEW_JCOUP_fu_617_ap_start_reg  |   1|   0|    1|          0|
+    |grp_QuantumMonteCarlo_Pipeline_SHIFT_JCOUP_fu_839_ap_start_reg     |   1|   0|    1|          0|
+    |grp_TrotterUnitFinal_fu_763_ap_start_reg                           |   1|   0|    1|          0|
+    |grp_TrotterUnitFinal_fu_782_ap_start_reg                           |   1|   0|    1|          0|
+    |grp_TrotterUnitFinal_fu_801_ap_start_reg                           |   1|   0|    1|          0|
+    |grp_TrotterUnitFinal_fu_820_ap_start_reg                           |   1|   0|    1|          0|
+    |grp_TrotterUnit_fu_639_ap_start_reg                                |   1|   0|    1|          0|
+    |grp_TrotterUnit_fu_670_ap_start_reg                                |   1|   0|    1|          0|
+    |grp_TrotterUnit_fu_701_ap_start_reg                                |   1|   0|    1|          0|
+    |grp_TrotterUnit_fu_732_ap_start_reg                                |   1|   0|    1|          0|
+    |h_load_1_reg_1553                                                  |  32|   0|   32|          0|
+    |h_load_2_reg_1611                                                  |  32|   0|   32|          0|
+    |h_load_reg_1512                                                    |  32|   0|   32|          0|
+    |jc_1_reg_595                                                       |   3|   0|    3|          0|
+    |jc_reg_1701                                                        |   3|   0|    3|          0|
+    |offset_reg_1500                                                    |  12|   0|   12|          0|
+    |packOffset_1_reg_1517                                              |   6|   0|    6|          0|
+    |packOffset_2_reg_1558                                              |   6|   0|    6|          0|
+    |packOffset_3_reg_1616                                              |   6|   0|    6|          0|
+    |packOffset_reg_1528                                                |   6|   0|    6|          0|
+    |spinOffset_1_reg_1586                                              |   6|   0|    6|          0|
+    |spinOffset_2_reg_1646                                              |   6|   0|    6|          0|
+    |spinOffset_3_reg_1666                                              |   6|   0|    6|          0|
+    |spinOffset_reg_1569                                                |   6|   0|    6|          0|
+    |stage_1_reg_1480                                                   |  13|   0|   13|          0|
+    |stage_2_reg_1495                                                   |  13|   0|   13|          0|
+    |stage_fu_162                                                       |  13|   0|   13|          0|
+    |step_1_reg_1714                                                    |  13|   0|   13|          0|
+    |step_reg_606                                                       |  13|   0|   13|          0|
+    |tmp_1011_reg_1686                                                  |   1|   0|    1|          0|
+    |trunc_ln222_1_reg_1591                                             |   1|   0|    1|          0|
+    |trunc_ln222_2_reg_1651                                             |   1|   0|    1|          0|
+    |trunc_ln222_3_reg_1671                                             |   1|   0|    1|          0|
+    |trunc_ln222_reg_1576                                               |   1|   0|    1|          0|
+    |trunc_ln223_1_reg_1596                                             |   1|   0|    1|          0|
+    |trunc_ln223_2_reg_1656                                             |   1|   0|    1|          0|
+    |trunc_ln223_3_reg_1676                                             |   1|   0|    1|          0|
+    |trunc_ln223_reg_1581                                               |   1|   0|    1|          0|
+    |trunc_ln243_reg_1690                                               |   2|   0|    2|          0|
+    |trunc_ln6_reg_1706                                                 |   6|   0|    6|          0|
+    +-------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                              | 585|   0|  585|          0|
+    +-------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+------+------------+-------------------+--------------+
+|       RTL Ports       | Dir | Bits |  Protocol  |   Source Object   |    C Type    |
++-----------------------+-----+------+------------+-------------------+--------------+
+|s_axi_control_AWVALID  |   in|     1|       s_axi|            control|         array|
+|s_axi_control_AWREADY  |  out|     1|       s_axi|            control|         array|
+|s_axi_control_AWADDR   |   in|    17|       s_axi|            control|         array|
+|s_axi_control_WVALID   |   in|     1|       s_axi|            control|         array|
+|s_axi_control_WREADY   |  out|     1|       s_axi|            control|         array|
+|s_axi_control_WDATA    |   in|    32|       s_axi|            control|         array|
+|s_axi_control_WSTRB    |   in|     4|       s_axi|            control|         array|
+|s_axi_control_ARVALID  |   in|     1|       s_axi|            control|         array|
+|s_axi_control_ARREADY  |  out|     1|       s_axi|            control|         array|
+|s_axi_control_ARADDR   |   in|    17|       s_axi|            control|         array|
+|s_axi_control_RVALID   |  out|     1|       s_axi|            control|         array|
+|s_axi_control_RREADY   |   in|     1|       s_axi|            control|         array|
+|s_axi_control_RDATA    |  out|    32|       s_axi|            control|         array|
+|s_axi_control_RRESP    |  out|     2|       s_axi|            control|         array|
+|s_axi_control_BVALID   |  out|     1|       s_axi|            control|         array|
+|s_axi_control_BREADY   |   in|     1|       s_axi|            control|         array|
+|s_axi_control_BRESP    |  out|     2|       s_axi|            control|         array|
+|ap_clk                 |   in|     1|  ap_ctrl_hs|  QuantumMonteCarlo|  return value|
+|ap_rst_n               |   in|     1|  ap_ctrl_hs|  QuantumMonteCarlo|  return value|
+|interrupt              |  out|     1|  ap_ctrl_hs|  QuantumMonteCarlo|  return value|
+|Jcoup_V_TDATA          |   in|  2048|        axis|            Jcoup_V|       pointer|
+|Jcoup_V_TVALID         |   in|     1|        axis|            Jcoup_V|       pointer|
+|Jcoup_V_TREADY         |  out|     1|        axis|            Jcoup_V|       pointer|
++-----------------------+-----+------+------------+-------------------+--------------+
+
