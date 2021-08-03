@@ -8,7 +8,9 @@
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#define CONFIG_VERSION 2
+#define COPYSIGNF 1
+
+#define CONFIG_VERSION 1
 
 #if (CONFIG_VERSION == 0)
 #define NUM_TROT 16
@@ -40,8 +42,6 @@ typedef float fp_t;
 typedef bool spin_t;
 typedef hls::vector<fp_t, PACKET_SIZE> fp_pack_t;
 typedef hls::vector<spin_t, PACKET_SIZE> spin_pack_t;
-
-#define COPYSIGNF 0
 
 /* Quantum Monte-Carlo */
 void QuantumMonteCarlo(
