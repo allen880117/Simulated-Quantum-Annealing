@@ -12,6 +12,7 @@
 #include "hls_stream.h"
 
 #define BASIC 0
+#define WIDTH 1
 
 #define RECORD 1
 #define REPLAY 1
@@ -62,6 +63,7 @@ int main(int argc, char *argv[]) {
 #endif
 
 #if !BASIC
+#if !WIDTH
     /* Convert to Pack Form */
     spin_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE][PACKET_SIZE];
     for (int t = 0; t < nTrot; t++) {
@@ -71,6 +73,21 @@ int main(int argc, char *argv[]) {
             }
         }
     }
+#else
+    spin_pack_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
+                            [NUM_STREAM];
+    for (int t = 0; t < nTrot; t++) {
+        for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
+            for (int sC = 0; sC < NUM_STREAM; sC++) {
+                for (int k = 0; k < PACKET_SIZE; k++) {
+                    trottersPack[t][i][sC][k] =
+                        trotters[t][i * PACKET_SIZE * NUM_STREAM +
+                                    sC * PACKET_SIZE + k];
+                }
+            }
+        }
+    }
+#endif
 #endif
 
     /* Generate Random Numbers */
@@ -130,7 +147,7 @@ int main(int argc, char *argv[]) {
         fp_t logRandNum[NUM_TROT][NUM_SPIN];
         for (int j = 0; j < nTrot; j++) {
             for (int k = 0; k < nSpin; k++) {
-            // for (int k = nSpin - 1; k > 0; k--) {
+                // for (int k = nSpin - 1; k > 0; k--) {
 #if !REPLAY
                 /* Do some computation first */
                 logRandNum[j][k] = log(unif(rng)) * nTrot;
@@ -171,6 +188,7 @@ int main(int argc, char *argv[]) {
 #endif
 
 #if !BASIC
+#if !WIDTH
         /* Convert */
         for (int t = 0; t < nTrot; t++) {
             for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
@@ -179,6 +197,19 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
+#else
+        for (int t = 0; t < nTrot; t++) {
+            for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
+                for (int sC = 0; sC < NUM_STREAM; sC++) {
+                    for (int k = 0; k < PACKET_SIZE; k++) {
+                        trotters[t][i * PACKET_SIZE * NUM_STREAM +
+                                    sC * PACKET_SIZE + k] =
+                            trottersPack[t][i][sC][k];
+                    }
+                }
+            }
+        }
+#endif
 #endif
 
         /* Calculate energy of each turn */

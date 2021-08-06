@@ -8,8 +8,6 @@
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#define COPYSIGNF 1
-
 #define CONFIG_VERSION 1
 
 #if (CONFIG_VERSION == 0)
@@ -18,35 +16,45 @@
 #define PACKET_SIZE 64
 #define LOG2_PACKET_SIZE 6
 #define NUM_STREAM 1
+#define LOG2_NUM_STREAM 0
 #define NUM_FADD 4
+#define COPYSIGNF 1
+
 #elif (CONFIG_VERSION == 1)
 #define NUM_TROT 4
 #define NUM_SPIN 4096
 #define PACKET_SIZE 128
 #define LOG2_PACKET_SIZE 7
 #define NUM_STREAM 8
+#define LOG2_NUM_STREAM 3
 #define NUM_FADD 64
+#define COPYSIGNF 1
+
 #else
 #define NUM_TROT 8
 #define NUM_SPIN 1024
 #define PACKET_SIZE 16
 #define LOG2_PACKET_SIZE 4
 #define NUM_STREAM 4
+#define LOG2_NUM_STREAM 2
 #define NUM_FADD 16
+#define COPYSIGNF 0
+
 #endif
 
 typedef unsigned int u32_t;
 typedef int i32_t;
 
 typedef float fp_t;
-typedef bool spin_t;
+typedef ap_uint<1> spin_t;
 typedef hls::vector<fp_t, PACKET_SIZE> fp_pack_t;
-typedef hls::vector<spin_t, PACKET_SIZE> spin_pack_t;
+typedef ap_uint<PACKET_SIZE> spin_pack_t;
 
 /* Quantum Monte-Carlo */
 void QuantumMonteCarlo(
     /* Spins */
-    spin_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE][PACKET_SIZE],
+    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
+                        [NUM_STREAM],
     /* Jcoup */
     hls::stream<fp_pack_t> &Jcoup,
     /* Array of h */
