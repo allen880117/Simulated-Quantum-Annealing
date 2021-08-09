@@ -50,11 +50,11 @@ void reductionInterBuffer<1>(fp_t fpBuffer[NUM_STREAM][PACKET_SIZE]) {
     ;
 }
 
-void TrotterUnit(
-    const u32_t t, const u32_t stage, const u32_t packOffset,
-    spin_pack_t trotters[NUM_SPIN / PACKET_SIZE / NUM_STREAM][NUM_STREAM],
-    fp_t &dH,
-    fp_pack_t JcoupLocal[NUM_SPIN / PACKET_SIZE / NUM_STREAM][NUM_STREAM]) {
+void TrotterUnit(const u32_t t, const u32_t stage, const u32_t packOfst,
+                 spin_pack_t trotters[NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+                 fp_t &dH,
+                 fp_t JcoupLocal[NUM_SPIN / PACKET_SIZE / NUM_STREAM]
+                                [PACKET_SIZE * NUM_STREAM]) {
     /* Limit the number of fadd */
     CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = NUM_FADD)
 
@@ -69,26 +69,27 @@ void TrotterUnit(
     /* Summation::Multiply */
     for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
-        for (u32_t strmOffset = 0; strmOffset < NUM_STREAM; strmOffset++) {
+        for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
-            if (!trotters[packOffset][strmOffset][k]) {
+            if (!trotters[packOfst][strmOfst * PACKET_SIZE + k]) {
 #if COPYSIGNF
-                fpBuffer[strmOffset][k] = hls::copysignf(
-                    JcoupLocal[packOffset][strmOffset][k], -1.0f);
+                fpBuffer[strmOfst][k] = hls::copysignf(
+                    JcoupLocal[packOfst][strmOfst * PACKET_SIZE + k], -1.0f);
 #else
-                fpBuffer[strmOffset][k] =
-                    -JcoupLocal[packOffset][strmOffset][k];
+                fpBuffer[strmOfst][k] =
+                    -JcoupLocal[packOfst][strmOfst * PACKET_SIZE + k];
 #endif
             } else {
-                fpBuffer[strmOffset][k] = JcoupLocal[packOffset][strmOffset][k];
+                fpBuffer[strmOfst][k] =
+                    JcoupLocal[packOfst][strmOfst * PACKET_SIZE + k];
             }
         }
     }
 
     /* Summation::reductionIntraBuffer */
-    for (u32_t strmOffset = 0; strmOffset < NUM_STREAM; strmOffset++) {
+    for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
-        reductionIntraBuffer<PACKET_SIZE>(fpBuffer[strmOffset]);
+        reductionIntraBuffer<PACKET_SIZE>(fpBuffer[strmOfst]);
     }
     reductionInterBuffer<NUM_STREAM>(fpBuffer);
     dHTmp += fpBuffer[0][0];
@@ -97,19 +98,19 @@ void TrotterUnit(
     dH = dHTmp;
 };
 
-void TrotterUnitFinal(
-    const u32_t t, const u32_t stage, const u32_t iPack, const u32_t iStrm,
-    const u32_t iSpin,
-    spin_pack_t trotters[NUM_SPIN / PACKET_SIZE / NUM_STREAM][NUM_STREAM],
-    const fp_t dH, const spin_t upSpin, const spin_t downSpin, const fp_t Beta,
-    const fp_t dHTunnel, const fp_t logRandNumber[NUM_SPIN]) {
+void TrotterUnitFinal(const u32_t t, const u32_t stage, const u32_t iPack,
+                      const u32_t iSpin,
+                      spin_pack_t trotters[NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+                      const fp_t dH, const spin_t upSpin, const spin_t downSpin,
+                      const fp_t Beta, const fp_t dHTunnel,
+                      const fp_t logRandNumber[NUM_SPIN]) {
     /* Check stage */
     bool inside = (stage >= t && stage < NUM_SPIN + t);
     if (!inside) { return; }
 
     /* Cache */
     fp_t dHTmp = dH;
-    spin_t this_spin = trotters[iPack][iStrm][iSpin];
+    spin_t this_spin = trotters[iPack][iSpin];
 
     /* Add tunnel energy */
     bool sameDirection = (upSpin == downSpin);
@@ -126,18 +127,15 @@ void TrotterUnitFinal(
 
     /* Flip */
     if ((dHTmp) >
-        logRandNumber[(iPack << (LOG2_PACKET_SIZE + LOG2_NUM_STREAM)) +
-                      (iStrm << (LOG2_PACKET_SIZE)) + iSpin] /
+        logRandNumber[(iPack << (LOG2_PACKET_SIZE + LOG2_NUM_STREAM)) + iSpin] /
             Beta) {
-        trotters[iPack][iStrm][iSpin] = (!this_spin);
+        trotters[iPack][iSpin] = (!this_spin);
     }
 };
 
 void QuantumMonteCarlo(
     /* Spins */
-    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
-                        [NUM_STREAM],
-    /* Jcoup */
+    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     /* Jcoup */
     hls::stream<fp_pack_t> &Jcoup,
     /* Array of h */
@@ -158,7 +156,6 @@ void QuantumMonteCarlo(
 #pragma HLS INTERFACE mode = s_axilite port = logRand
 
 #pragma HLS ARRAY_PARTITION variable = trotters type = complete dim = 1
-#pragma HLS ARRAY_RESHAPE variable = trotters type = complete dim = 3
 
 #pragma HLS ARRAY_PARTITION variable = logRand type = complete dim = 1
 
@@ -171,8 +168,6 @@ void QuantumMonteCarlo(
     /* Local Memory iPre */
     u32_t iPack[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iPack
-    u32_t iStrm[NUM_TROT];
-#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iStrm
     u32_t iSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iSpin
 
@@ -187,8 +182,8 @@ void QuantumMonteCarlo(
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = dH
 
     /* Local Memory :: Jcoup_0 */
-    fp_pack_t JcoupLocal[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
-                        [NUM_STREAM];
+    fp_t JcoupLocal[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
+                   [PACKET_SIZE * NUM_STREAM];
 #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
 #pragma HLS ARRAY_RESHAPE dim = 3 type = complete variable = JcoupLocal
@@ -214,48 +209,51 @@ LOOP_STAGE:
     UPDATE_INPUT_STATE:
         for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-            /* Compute offset  & Clamp into [0~NUM_SPIN) */
-            u32_t offset = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
-            u32_t packOffset = (offset >> (LOG2_PACKET_SIZE + LOG2_NUM_STREAM));
-            u32_t packOffsetRem = (offset & (PACKET_SIZE * NUM_STREAM - 1));
-            u32_t strmOffset = (packOffsetRem >> (LOG2_PACKET_SIZE));
-            u32_t spinOffset = (packOffsetRem & (PACKET_SIZE - 1));
+            /* Compute Ofst  & Clamp into [0~NUM_SPIN) */
+            u32_t Ofst = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
+            u32_t packOfst = (Ofst >> (LOG2_PACKET_SIZE + LOG2_NUM_STREAM));
+            u32_t spinOfst = (Ofst & (PACKET_SIZE * NUM_STREAM - 1));
 
             /* Update iPre, upSpin/downSpin */
-            iPack[t] = packOffset;
-            iStrm[t] = strmOffset;
-            iSpin[t] = spinOffset;
-            upSpin[t] = trotters[idxUp[t]][packOffset][strmOffset][spinOffset];
-            downSpin[t] =
-                trotters[idxDown[t]][packOffset][strmOffset][spinOffset];
+            iPack[t] = packOfst;
+            iSpin[t] = spinOfst;
+            upSpin[t] = trotters[idxUp[t]][packOfst][spinOfst];
+            downSpin[t] = trotters[idxDown[t]][packOfst][spinOfst];
 
             /* Reset dH */
-            dH[t] = h[offset];
+            dH[t] = h[Ofst];
         }
 
         /* Read New Jcoup_0 */
         if (stage < NUM_SPIN) {
         READ_NEW_JCOUP:
-            for (u32_t packOffset = 0;
-                 packOffset < NUM_SPIN / PACKET_SIZE / NUM_STREAM;
-                 packOffset++) {
+            for (u32_t packOfst = 0;
+                 packOfst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; packOfst++) {
 #pragma HLS PIPELINE
-                for (u32_t strmOffset = 0; strmOffset < NUM_STREAM;
-                     strmOffset++) {
-                    JcoupLocal[0][packOffset][strmOffset] = Jcoup.read();
+                for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
+#pragma HLS UNROLL
+                    /* Cache */
+                    fp_pack_t tmp = Jcoup.read();
+                    /* Assign */
+                    for (u32_t spinOfst = 0; spinOfst < PACKET_SIZE;
+                         spinOfst++) {
+#pragma HLS UNROLL
+                        JcoupLocal[0][packOfst][strmOfst * PACKET_SIZE +
+                                                spinOfst] = tmp[spinOfst];
+                    }
                 }
             }
         }
 
         /* Loop Step */
     LOOP_STEP:
-        for (u32_t step = 0, packOffset = 0; step < NUM_SPIN;
-             step += PACKET_SIZE * NUM_STREAM, packOffset++) {
+        for (u32_t step = 0, packOfst = 0; step < NUM_SPIN;
+             step += PACKET_SIZE * NUM_STREAM, packOfst++) {
 #pragma HLS PIPELINE off
         RUN_TU:
             for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-                TrotterUnit(t, stage, packOffset, trotters[t], dH[t],
+                TrotterUnit(t, stage, packOfst, trotters[t], dH[t],
                             JcoupLocal[t]);
             }
         }
@@ -263,23 +261,28 @@ LOOP_STAGE:
     RUN_TU_FINAL:
         for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-            TrotterUnitFinal(t, stage, iPack[t], iStrm[t], iSpin[t],
-                             trotters[t], dH[t], upSpin[t], downSpin[t], Beta,
-                             dHTunnel, logRand[t]);
+            TrotterUnitFinal(t, stage, iPack[t], iSpin[t], trotters[t], dH[t],
+                             upSpin[t], downSpin[t], Beta, dHTunnel,
+                             logRand[t]);
         }
 
         /* Shift Down JcoupLocal_0 */
     SHIFT_JCOUP:
-        for (u32_t packOffset = 0;
-             packOffset < NUM_SPIN / PACKET_SIZE / NUM_STREAM; packOffset++) {
+        for (u32_t packOfst = 0; packOfst < NUM_SPIN / PACKET_SIZE / NUM_STREAM;
+             packOfst++) {
 #pragma HLS PIPELINE
             for (i32_t t = NUM_TROT - 2; t >= 0; t--) {
 #pragma HLS UNROLL
-                for (u32_t strmOffset = 0; strmOffset < NUM_STREAM;
-                     strmOffset++) {
+                for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
-                    JcoupLocal[t + 1][packOffset][strmOffset] =
-                        JcoupLocal[t][packOffset][strmOffset];
+                    for (u32_t spinOfst = 0; spinOfst < PACKET_SIZE;
+                         spinOfst++) {
+#pragma HLS UNROLL
+                        JcoupLocal[t + 1][packOfst][strmOfst * PACKET_SIZE +
+                                                    spinOfst] =
+                            JcoupLocal[t][packOfst]
+                                      [strmOfst * PACKET_SIZE + spinOfst];
+                    }
                 }
             }
         }

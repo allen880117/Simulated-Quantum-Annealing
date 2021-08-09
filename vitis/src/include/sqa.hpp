@@ -48,13 +48,12 @@ typedef int i32_t;
 typedef float fp_t;
 typedef ap_uint<1> spin_t;
 typedef hls::vector<fp_t, PACKET_SIZE> fp_pack_t;
-typedef ap_uint<PACKET_SIZE> spin_pack_t;
+typedef ap_uint<PACKET_SIZE * NUM_STREAM> spin_pack_t;
 
 /* Quantum Monte-Carlo */
 void QuantumMonteCarlo(
     /* Spins */
-    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
-                        [NUM_STREAM],
+    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     /* Jcoup */
     hls::stream<fp_pack_t> &Jcoup,
     /* Array of h */

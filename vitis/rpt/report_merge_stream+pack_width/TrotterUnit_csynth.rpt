@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'TrotterUnit'
 ================================================================
-* Date:           Mon Aug  9 16:04:19 2021
+* Date:           Mon Aug  9 17:54:21 2021
 
 * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:33 MDT 2021)
 * Project:        SQA-Vitis
@@ -2343,7 +2343,7 @@
     |ap_phi_mux_fpBuffer_977_phi_fu_11013_p4   |   14|          3|   32|         96|
     |ap_phi_mux_fpBuffer_97_phi_fu_6613_p4     |   14|          3|   32|         96|
     |ap_phi_mux_fpBuffer_993_phi_fu_11093_p4   |   14|          3|   32|         96|
-    |ap_phi_mux_phi_ln98_phi_fu_16373_p4       |    9|          2|   32|         64|
+    |ap_phi_mux_phi_ln99_phi_fu_16373_p4       |    9|          2|   32|         64|
     |ap_return                                 |    9|          2|   32|         64|
     |fpBuffer_1001_reg_11130                   |    9|          2|   32|         64|
     |fpBuffer_1003_reg_11140                   |    9|          2|   32|         64|
@@ -3371,7 +3371,7 @@
     |grp_fu_16441_p1                           |   65|         16|   32|        512|
     |grp_fu_16442_p0                           |   65|         16|   32|        512|
     |grp_fu_16442_p1                           |   65|         16|   32|        512|
-    |phi_ln98_reg_16370                        |    9|          2|   32|         64|
+    |phi_ln99_reg_16370                        |    9|          2|   32|         64|
     +------------------------------------------+-----+-----------+-----+-----------+
     |Total                                     |18405|       4271|36993|     135308|
     +------------------------------------------+-----+-----------+-----+-----------+
@@ -4537,7 +4537,8 @@
     |fpBuffer_99_reg_6620        |     32|   0|     32|          0|
     |fpBuffer_9_reg_6170         |     32|   0|     32|          0|
     |inside_reg_128986           |      1|   0|      1|          0|
-    |phi_ln98_reg_16370          |     32|   0|     32|          0|
+    |p_Val2_s_reg_129000         |   1024|   0|   1024|          0|
+    |phi_ln99_reg_16370          |     32|   0|     32|          0|
     |reg_104758                  |     32|   0|     32|          0|
     |reg_104766                  |     32|   0|     32|          0|
     |reg_104774                  |     32|   0|     32|          0|
@@ -4794,7 +4795,6 @@
     |reg_106398                  |     32|   0|     32|          0|
     |reg_106404                  |     32|   0|     32|          0|
     |reg_106410                  |     32|   0|     32|          0|
-    |trotters_0_load_reg_129000  |   1024|   0|   1024|          0|
     +----------------------------+-------+----+-------+-----------+
     |Total                       |  78988|   0|  78988|          0|
     +----------------------------+-------+----+-------+-----------+
@@ -4817,7 +4817,7 @@
 |ap_return            |  out|     32|  ap_ctrl_hs|   TrotterUnit|  return value|
 |t_offset             |   in|      2|     ap_none|      t_offset|        scalar|
 |stage                |   in|     13|     ap_none|         stage|        scalar|
-|packOffset           |   in|      2|     ap_none|    packOffset|        scalar|
+|packOfst             |   in|      2|     ap_none|      packOfst|        scalar|
 |trotters_0_address0  |  out|      2|   ap_memory|    trotters_0|         array|
 |trotters_0_ce0       |  out|      1|   ap_memory|    trotters_0|         array|
 |trotters_0_q0        |   in|   1024|   ap_memory|    trotters_0|         array|

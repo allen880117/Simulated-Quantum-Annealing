@@ -74,13 +74,12 @@ int main(int argc, char *argv[]) {
         }
     }
 #else
-    spin_pack_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM]
-                            [NUM_STREAM];
+    spin_pack_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
     for (int t = 0; t < nTrot; t++) {
         for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
             for (int sC = 0; sC < NUM_STREAM; sC++) {
                 for (int k = 0; k < PACKET_SIZE; k++) {
-                    trottersPack[t][i][sC][k] =
+                    trottersPack[t][i][sC * PACKET_SIZE + k] =
                         trotters[t][i * PACKET_SIZE * NUM_STREAM +
                                     sC * PACKET_SIZE + k];
                 }
@@ -204,7 +203,7 @@ int main(int argc, char *argv[]) {
                     for (int k = 0; k < PACKET_SIZE; k++) {
                         trotters[t][i * PACKET_SIZE * NUM_STREAM +
                                     sC * PACKET_SIZE + k] =
-                            trottersPack[t][i][sC][k];
+                            trottersPack[t][i][sC * PACKET_SIZE + k];
                     }
                 }
             }
