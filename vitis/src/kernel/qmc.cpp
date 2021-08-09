@@ -156,8 +156,10 @@ void QuantumMonteCarlo(
 #pragma HLS INTERFACE mode = s_axilite port = Jperp
 #pragma HLS INTERFACE mode = s_axilite port = Beta
 #pragma HLS INTERFACE mode = s_axilite port = logRand
+
 #pragma HLS ARRAY_PARTITION variable = trotters type = complete dim = 1
-#pragma HLS ARRAY_PARTITION variable = trotters type = complete dim = 3
+#pragma HLS ARRAY_RESHAPE variable = trotters type = complete dim = 3
+
 #pragma HLS ARRAY_PARTITION variable = logRand type = complete dim = 1
 
     /* Local Memory :: idxUp/idxDown */
@@ -189,7 +191,7 @@ void QuantumMonteCarlo(
                         [NUM_STREAM];
 #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
-#pragma HLS ARRAY_PARTITION dim = 3 type = complete variable = JcoupLocal
+#pragma HLS ARRAY_RESHAPE dim = 3 type = complete variable = JcoupLocal
 
     /* Initialize idxUp/idxDown */
 INIT_IDX:
@@ -240,7 +242,6 @@ LOOP_STAGE:
 #pragma HLS PIPELINE
                 for (u32_t strmOffset = 0; strmOffset < NUM_STREAM;
                      strmOffset++) {
-#pragma HLS PIPELINE
                     JcoupLocal[0][packOffset][strmOffset] = Jcoup.read();
                 }
             }
