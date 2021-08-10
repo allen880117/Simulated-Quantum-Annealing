@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
             for (int k = 0; k < nSpin; k += PACKET_SIZE) {
                 fp_pack_t tmp;
                 for (int l = 0; l < PACKET_SIZE; l++) {
-                    tmp[l] = Jcoup[j][k + l];
+                    tmp.data[l] = Jcoup[j][k + l];
                 }
                 JcoupStream_0 << tmp;
             }

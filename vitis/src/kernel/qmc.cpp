@@ -239,7 +239,7 @@ LOOP_STAGE:
                          spinOfst++) {
 #pragma HLS UNROLL
                         JcoupLocal[0][packOfst][strmOfst * PACKET_SIZE +
-                                                spinOfst] = tmp[spinOfst];
+                                                spinOfst] = tmp.data[spinOfst];
                     }
                 }
             }

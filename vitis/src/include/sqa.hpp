@@ -3,7 +3,6 @@
 
 #include "hls_math.h"
 #include "hls_stream.h"
-#include "hls_vector.h"
 
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
@@ -47,7 +46,9 @@ typedef int i32_t;
 
 typedef float fp_t;
 typedef ap_uint<1> spin_t;
-typedef hls::vector<fp_t, PACKET_SIZE> fp_pack_t;
+typedef struct {
+    fp_t data[PACKET_SIZE];
+} fp_pack_t;
 typedef ap_uint<PACKET_SIZE * NUM_STREAM> spin_pack_t;
 
 /* Quantum Monte-Carlo */
