@@ -12,18 +12,22 @@
 #include "hls_stream.h"
 
 #define BASIC 0
-#define WIDTH 1
 
 #define RECORD 1
 #define REPLAY 1
 
+#define U50 0
+
 /* Field */
 fp_t Jcoup[NUM_SPIN][NUM_SPIN];
+fp_pack_t JcoupPack[NUM_SPIN][NUM_SPIN / PACKET_SIZE];
 fp_t h[NUM_SPIN];
+fp_pack_t hPack[NUM_SPIN / PACKET_SIZE];
 
 /* Main Program */
 int main(int argc, char *argv[]) {
     std::cout << "BASIC: " << BASIC << std::endl;
+    std::cout << "U50: " << U50 << std::endl;
 
     /* Const nTrot and nSpin */
     const int nTrot = NUM_TROT;
@@ -63,30 +67,15 @@ int main(int argc, char *argv[]) {
 #endif
 
 #if !BASIC
-#if !WIDTH
-    /* Convert to Pack Form */
-    spin_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE][PACKET_SIZE];
-    for (int t = 0; t < nTrot; t++) {
-        for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
-            for (int k = 0; k < PACKET_SIZE; k++) {
-                trottersPack[t][i][k] = trotters[t][i * PACKET_SIZE + k];
-            }
-        }
-    }
-#else
     spin_pack_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
     for (int t = 0; t < nTrot; t++) {
         for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
-            for (int sC = 0; sC < NUM_STREAM; sC++) {
-                for (int k = 0; k < PACKET_SIZE; k++) {
-                    trottersPack[t][i][sC * PACKET_SIZE + k] =
-                        trotters[t][i * PACKET_SIZE * NUM_STREAM +
-                                    sC * PACKET_SIZE + k];
-                }
+            for (int k = 0; k < PACKET_SIZE * NUM_STREAM; k++) {
+                trottersPack[t][i][k] =
+                    trotters[t][i * PACKET_SIZE * NUM_STREAM + k];
             }
         }
     }
-#endif
 #endif
 
     /* Generate Random Numbers */
@@ -108,6 +97,17 @@ int main(int argc, char *argv[]) {
             Jcoup[i][j] = -(rndNum[i] * rndNum[j]);
         }
     }
+
+#if U50
+    for (int i = 0; i < nSpin; i++) {
+        for (int j = 0; j < nSpin / PACKET_SIZE; j++) {
+            for (int k = 0; k < PACKET_SIZE; k++) {
+                JcoupPack[i][j].data[k] = Jcoup[i][j * PACKET_SIZE + k];
+                hPack[j].data[k] = 0.0f;
+            }
+        }
+    }
+#endif
 
     /* Parameters */
     fp_t iter = 500;                  // default 500
@@ -142,6 +142,7 @@ int main(int argc, char *argv[]) {
         std::cout << std::setw(3) << i << " ";
         if ((i + 1) % 20 == 0) std::cout << std::endl;
 
+#if !U50
         /* Generate Random Number for Flipping */
         fp_t logRandNum[NUM_TROT][NUM_SPIN];
         for (int j = 0; j < nTrot; j++) {
@@ -159,11 +160,23 @@ int main(int argc, char *argv[]) {
             }
         }
 
+#else
+        fp_pack_t logRNPack[NUM_TROT][NUM_SPIN / PACKET_SIZE];
+        for (int j = 0; j < nTrot; j++) {
+            for (int k = 0; k < nSpin / PACKET_SIZE; k++) {
+                for (int l = 0; l < PACKET_SIZE; l++) {
+                    log_rnd >> logRNPack[j][k].data[l];
+                }
+            }
+        }
+#endif
+
         /* Get Jperp */
         fp_t Gamma = G0 * (1 - (float)i / iter);
         fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
 
 #if !BASIC
+#if !U50
         /* Make Jcoup Stream */
         hls::stream<fp_pack_t> JcoupStream_0;
         for (int j = 0; j < nSpin; j++) {
@@ -176,39 +189,30 @@ int main(int argc, char *argv[]) {
             }
         }
 #endif
-
+#endif
 #if !BASIC
+#if !U50
         /* Execute */
         QuantumMonteCarlo(trottersPack, JcoupStream_0, h, Jperp, Beta,
                           logRandNum);
+#else
+        QuantumMonteCarloU50(trottersPack, JcoupPack, hPack, Jperp, Beta,
+                             logRNPack);
+#endif
 #else
         QuantumMonteCarloBasic(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
                                logRandNum);
 #endif
 
 #if !BASIC
-#if !WIDTH
-        /* Convert */
-        for (int t = 0; t < nTrot; t++) {
-            for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
-                for (int k = 0; k < PACKET_SIZE; k++) {
-                    trotters[t][i * PACKET_SIZE + k] = trottersPack[t][i][k];
-                }
-            }
-        }
-#else
         for (int t = 0; t < nTrot; t++) {
             for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
-                for (int sC = 0; sC < NUM_STREAM; sC++) {
-                    for (int k = 0; k < PACKET_SIZE; k++) {
-                        trotters[t][i * PACKET_SIZE * NUM_STREAM +
-                                    sC * PACKET_SIZE + k] =
-                            trottersPack[t][i][sC * PACKET_SIZE + k];
-                    }
+                for (int k = 0; k < PACKET_SIZE * NUM_STREAM; k++) {
+                    trotters[t][i * PACKET_SIZE * NUM_STREAM + k] =
+                        trottersPack[t][i][k];
                 }
             }
         }
-#endif
 #endif
 
         /* Calculate energy of each turn */
