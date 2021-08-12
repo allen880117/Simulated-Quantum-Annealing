@@ -1,7 +1,7 @@
 #include "../include/sqa.hpp"
 
-#define BUNDLE_SIZE 512
-#define LOG2_BUNDLE_SIZE 9
+#define BUNDLE_SIZE (PACKET_SIZE * NUM_STREAM)
+#define LOG2_BUNDLE_SIZE (LOG2_PACKET_SIZE + LOG2_NUM_STREAM)
 
 namespace U50 {
 
@@ -109,9 +109,10 @@ void TrotterUnitFinal(const u32_t t, const u32_t stage, const u32_t iOfst,
 
 }  // namespace U50
 
-void MainProcess(
+extern "C" {
+void QuantumMonteCarloU50(
     /* Spins */
-    ap_uint<BUNDLE_SIZE> trotterLocal[NUM_TROT][NUM_SPIN / BUNDLE_SIZE],
+    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     /* Jcoup */
     const fp_pack_t Jcoup[NUM_TROT][NUM_SPIN / PACKET_SIZE],
     /* Array of h */
@@ -122,6 +123,7 @@ void MainProcess(
     const fp_t Beta,
     /* Log(Random Number = [0, 1]) */
     const fp_pack_t logRand[NUM_TROT][NUM_SPIN / PACKET_SIZE]) {
+        
     /* Local Memory :: idxUp/idxDown */
     u32_t idxUp[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = idxUp
@@ -154,9 +156,7 @@ void MainProcess(
     fp_t JcoupLocal[NUM_TROT][NUM_SPIN / BUNDLE_SIZE][BUNDLE_SIZE];
 #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
-//#pragma HLS ARRAY_RESHAPE dim = 3 type = complete variable = JcoupLocal
-    // CTX_PRAGMA(HLS ARRAY_PARTITION dim = 2 type = cyclic factor = PACKET_SIZE
-    // variable = JcoupLocal)
+#pragma HLS ARRAY_RESHAPE dim = 3 type = complete variable = JcoupLocal
 
     /* Precomputation of Tunnel-Related Energy */
     const fp_t dHTunnel = Jperp * ((fp_t)(2 * NUM_TROT));
@@ -187,8 +187,8 @@ LOOP_STAGE:
             u32_t bundleSpinOfst = (ofst & (BUNDLE_SIZE - 1));
 
             /* Update iPre, upSpin/downSpin */
-            upSpin[t] = trotterLocal[idxUp[t]][bundleOfst][bundleSpinOfst];
-            downSpin[t] = trotterLocal[idxDown[t]][bundleOfst][bundleSpinOfst];
+            upSpin[t] = trotters[idxUp[t]][bundleOfst][bundleSpinOfst];
+            downSpin[t] = trotters[idxDown[t]][bundleOfst][bundleSpinOfst];
 
             /* h/logRN pack/spin offset */
             u32_t packOfst = (ofst >> (LOG2_PACKET_SIZE));
@@ -223,7 +223,7 @@ LOOP_STAGE:
         RUN_TU:
             for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-                U50::TrotterUnit(t, stage, bundleOfst, trotterLocal[t], dH[t],
+                U50::TrotterUnit(t, stage, bundleOfst, trotters[t], dH[t],
                                  JcoupLocal[t]);
             }
         }
@@ -231,7 +231,7 @@ LOOP_STAGE:
     RUN_TU_FINAL:
         for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-            U50::TrotterUnitFinal(t, stage, iOfst[t], trotterLocal[t], dH[t],
+            U50::TrotterUnitFinal(t, stage, iOfst[t], trotters[t], dH[t],
                                   upSpin[t], downSpin[t], Beta, dHTunnel,
                                   logRNLocal[t]);
         }
@@ -246,62 +246,6 @@ LOOP_STAGE:
                     JcoupLocal[t + 1][bundleOfst][spinOfst] =
                         JcoupLocal[t][bundleOfst][spinOfst];
                 }
-        }
-    }
-}
-
-extern "C" {
-void QuantumMonteCarloU50(
-    /* Spins */
-    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-    /* Jcoup */
-    const fp_pack_t Jcoup[NUM_TROT][NUM_SPIN / PACKET_SIZE],
-    /* Array of h */
-    const fp_pack_t h[NUM_SPIN / PACKET_SIZE],
-    /* Thermal Related */
-    const fp_t Jperp,
-    /* Thermal Related */
-    const fp_t Beta,
-    /* Log(Random Number = [0, 1]) */
-    const fp_pack_t logRand[NUM_TROT][NUM_SPIN / PACKET_SIZE]) {
-    /* Local Memory :: trotterLocal */
-    ap_uint<BUNDLE_SIZE> trotterLocal[NUM_TROT][NUM_SPIN / BUNDLE_SIZE];
-#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = trotterLocal
-    // CTX_PRAGMA(HLS ARRAY_PARTITION dim = 2 type = cyclic factor = PACKET_SIZE
-    // variable = trotterLocal)
-
-    /* Cache trotters */
-READ_TROTTERS:
-    for (u32_t t = 0; t < NUM_TROT; t++) {
-        for (u32_t packOfst = 0, totalOfst = 0;
-             packOfst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; packOfst++) {
-#pragma HLS PIPELINE
-            for (u32_t spinOfst = 0; spinOfst < PACKET_SIZE * NUM_STREAM;
-                 spinOfst++, totalOfst++) {
-#pragma HLS UNROLL
-                trotterLocal[t][(totalOfst >> (LOG2_BUNDLE_SIZE))]
-                            [(totalOfst & (BUNDLE_SIZE - 1))] =
-                                trotters[t][packOfst][spinOfst];
-            }
-        }
-    }
-
-    /* Main Process */
-    MainProcess(trotterLocal, Jcoup, h, Jperp, Beta, logRand);
-
-    /* Write out results */
-WRITE_TROTTERS:
-    for (u32_t t = 0; t < NUM_TROT; t++) {
-        for (u32_t packOfst = 0, totalOfst = 0;
-             packOfst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; packOfst++) {
-#pragma HLS PIPELINE
-            for (u32_t spinOfst = 0; spinOfst < PACKET_SIZE * NUM_STREAM;
-                 spinOfst++, totalOfst++) {
-#pragma HLS UNROLL
-                trotters[t][packOfst][spinOfst] =
-                    trotterLocal[t][(totalOfst >> (LOG2_BUNDLE_SIZE))]
-                                [(totalOfst & (BUNDLE_SIZE - 1))];
-            }
         }
     }
 }
