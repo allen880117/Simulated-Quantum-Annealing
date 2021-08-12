@@ -16,7 +16,7 @@
 #define RECORD 1
 #define REPLAY 1
 
-#define U50 0
+#define U50 1
 
 /* Field */
 fp_t Jcoup[NUM_SPIN][NUM_SPIN];

@@ -7,7 +7,7 @@
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#define CONFIG_VERSION 1
+#define CONFIG_VERSION 2
 
 #if (CONFIG_VERSION == 0)
 #define NUM_TROT 16
@@ -66,6 +66,7 @@ void QuantumMonteCarlo(
     /* Log(Random Number = [0, 1]) */
     const fp_t logRand[NUM_TROT][NUM_SPIN]);
 
+extern "C" {
 /* Quantum Monte-Carlo U50 */
 void QuantumMonteCarloU50(
     /* Spins */
@@ -80,6 +81,7 @@ void QuantumMonteCarloU50(
     const fp_t Beta,
     /* Log(Random Number = [0, 1]) */
     const fp_pack_t logRand[NUM_TROT][NUM_SPIN / PACKET_SIZE]);
+}
 
 /* Naive Version */
 void QuantumMonteCarloBasic(const int nTrot, const int nSpin,
