@@ -61,7 +61,9 @@ int main(int argc, char *argv[]) {
         return -1;
     }
     for (int t = 0; t < nTrot; t++) {
-        for (int i = 0; i < nSpin; i++) { init_trotter >> trotters[t][i]; }
+        for (int i = 0; i < nSpin; i++) {
+            init_trotter >> trotters[t][i];
+        }
     }
     init_trotter.close();
 #endif
@@ -88,7 +90,9 @@ int main(int argc, char *argv[]) {
     /* Field Initialization */
     for (int i = 0; i < nSpin; i++) {
         h[i] = 0.0f;
-        for (int j = 0; j < nSpin; j++) { Jcoup[i][j] = 0.0f; }
+        for (int j = 0; j < nSpin; j++) {
+            Jcoup[i][j] = 0.0f;
+        }
     }
 
     /* The problem we solved here is "Number Partition" */
@@ -142,7 +146,6 @@ int main(int argc, char *argv[]) {
         std::cout << std::setw(3) << i << " ";
         if ((i + 1) % 20 == 0) std::cout << std::endl;
 
-#if !U50
         /* Generate Random Number for Flipping */
         fp_t logRandNum[NUM_TROT][NUM_SPIN];
         for (int j = 0; j < nTrot; j++) {
@@ -159,17 +162,6 @@ int main(int argc, char *argv[]) {
 #endif
             }
         }
-
-#else
-        fp_pack_t logRNPack[NUM_TROT][NUM_SPIN / PACKET_SIZE];
-        for (int j = 0; j < nTrot; j++) {
-            for (int k = 0; k < nSpin / PACKET_SIZE; k++) {
-                for (int l = 0; l < PACKET_SIZE; l++) {
-                    log_rnd >> logRNPack[j][k].data[l];
-                }
-            }
-        }
-#endif
 
         /* Get Jperp */
         fp_t Gamma = G0 * (1 - (float)i / iter);
@@ -196,8 +188,8 @@ int main(int argc, char *argv[]) {
         QuantumMonteCarlo(trottersPack, JcoupStream_0, h, Jperp, Beta,
                           logRandNum);
 #else
-        QuantumMonteCarloU50(trottersPack, JcoupPack, hPack, Jperp, Beta,
-                             logRNPack);
+        QuantumMonteCarloU50(trottersPack, JcoupPack, h, Jperp, Beta,
+                             logRandNum);
 #endif
 #else
         QuantumMonteCarloBasic(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
@@ -247,7 +239,9 @@ int main(int argc, char *argv[]) {
     /* Print Best Trotter */
     std::cout << "Run, Trotter: " << bestRun << " ," << bestTrotNum
               << std::endl;
-    for (int i = 0; i < nSpin; i++) { std::cout << bestTrotter[i] << " "; }
+    for (int i = 0; i < nSpin; i++) {
+        std::cout << bestTrotter[i] << " ";
+    }
     std::cout << std::endl;
 
     /* Print Best Energy */

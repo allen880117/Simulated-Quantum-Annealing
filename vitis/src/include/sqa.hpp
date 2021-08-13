@@ -72,15 +72,15 @@ void QuantumMonteCarloU50(
     /* Spins */
     spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     /* Jcoup */
-    const fp_pack_t Jcoup[NUM_TROT][NUM_SPIN / PACKET_SIZE],
+    const fp_pack_t Jcoup[NUM_SPIN][NUM_SPIN / PACKET_SIZE],
     /* Array of h */
-    const fp_pack_t h[NUM_SPIN / PACKET_SIZE],
+    const fp_t h[NUM_SPIN],
     /* Thermal Related */
     const fp_t Jperp,
     /* Thermal Related */
     const fp_t Beta,
     /* Log(Random Number = [0, 1]) */
-    const fp_pack_t logRand[NUM_TROT][NUM_SPIN / PACKET_SIZE]);
+    const fp_t logRand[NUM_TROT][NUM_SPIN]);
 }
 
 /* Naive Version */
