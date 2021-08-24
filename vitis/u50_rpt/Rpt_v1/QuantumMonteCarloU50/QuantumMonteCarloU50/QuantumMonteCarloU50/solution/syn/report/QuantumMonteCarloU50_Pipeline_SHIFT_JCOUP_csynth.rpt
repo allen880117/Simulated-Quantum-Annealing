@@ -1,0 +1,163 @@
+
+
+================================================================
+== Vitis HLS Report for 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP'
+================================================================
+* Date:           Tue Aug 24 10:56:48 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        QuantumMonteCarloU50
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.400 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |       10|       10|  33.330 ns|  33.330 ns|   10|   10|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- SHIFT_JCOUP  |        8|        8|         2|          1|          1|     8|       yes|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|      23|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|      36|    -|
+|Register             |        -|     -|       17|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|       17|      59|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln288_fu_127_p2   |         +|   0|  0|  12|           4|           1|
+    |icmp_ln287_fu_121_p2  |      icmp|   0|  0|   9|           4|           5|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  23|           9|           8|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+----+-----------+-----+-----------+
+    |             Name            | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------+----+-----------+-----+-----------+
+    |ap_done_int                  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1      |   9|          2|    1|          2|
+    |ap_sig_allocacmp_packOfst_1  |   9|          2|    4|          8|
+    |packOfst_fu_42               |   9|          2|    4|          8|
+    +-----------------------------+----+-----------+-----+-----------+
+    |Total                        |  36|          8|   10|         20|
+    +-----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------+---+----+-----+-----------+
+    |            Name           | FF| LUT| Bits| Const Bits|
+    +---------------------------+---+----+-----+-----------+
+    |JcoupLocal_1_addr_reg_166  |  3|   0|    3|          0|
+    |JcoupLocal_2_addr_reg_160  |  3|   0|    3|          0|
+    |ap_CS_fsm                  |  1|   0|    1|          0|
+    |ap_done_reg                |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1    |  1|   0|    1|          0|
+    |packOfst_fu_42             |  4|   0|    4|          0|
+    |zext_ln287_reg_155         |  4|   0|   64|         60|
+    +---------------------------+---+----+-----+-----------+
+    |Total                      | 17|   0|   77|         60|
+    +---------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-------+------------+-------------------------------------------+--------------+
+|       RTL Ports       | Dir |  Bits |  Protocol  |               Source Object               |    C Type    |
++-----------------------+-----+-------+------------+-------------------------------------------+--------------+
+|ap_clk                 |   in|      1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_rst                 |   in|      1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_start               |   in|      1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_done                |  out|      1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_idle                |  out|      1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_ready               |  out|      1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|JcoupLocal_2_address0  |  out|      3|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_2_ce0       |  out|      1|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_2_q0        |   in|  16384|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_2_address1  |  out|      3|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_2_ce1       |  out|      1|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_2_we1       |  out|      1|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_2_d1        |  out|  16384|   ap_memory|                               JcoupLocal_2|         array|
+|JcoupLocal_3_address1  |  out|      3|   ap_memory|                               JcoupLocal_3|         array|
+|JcoupLocal_3_ce1       |  out|      1|   ap_memory|                               JcoupLocal_3|         array|
+|JcoupLocal_3_we1       |  out|      1|   ap_memory|                               JcoupLocal_3|         array|
+|JcoupLocal_3_d1        |  out|  16384|   ap_memory|                               JcoupLocal_3|         array|
+|JcoupLocal_1_address0  |  out|      3|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_1_ce0       |  out|      1|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_1_q0        |   in|  16384|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_1_address1  |  out|      3|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_1_ce1       |  out|      1|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_1_we1       |  out|      1|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_1_d1        |  out|  16384|   ap_memory|                               JcoupLocal_1|         array|
+|JcoupLocal_0_address0  |  out|      3|   ap_memory|                               JcoupLocal_0|         array|
+|JcoupLocal_0_ce0       |  out|      1|   ap_memory|                               JcoupLocal_0|         array|
+|JcoupLocal_0_q0        |   in|  16384|   ap_memory|                               JcoupLocal_0|         array|
++-----------------------+-----+-------+------------+-------------------------------------------+--------------+
+

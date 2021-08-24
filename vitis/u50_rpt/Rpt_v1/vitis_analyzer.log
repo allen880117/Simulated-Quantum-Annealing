@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vitis Analyzer v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# 
+# Start of session at: Tue Aug 24 11:12:02 2021
+# Process ID: 93787
+# Current directory: /home/edci/Simulated-Quantum-Annealing/vitis/u50_rpt/Rpt_v1
+# Command line: vitis_analyzer QuantumMonteCarloU50.xo.compile_summary
+# Log file: /home/edci/Simulated-Quantum-Annealing/vitis/u50_rpt/Rpt_v1/vitis_analyzer.log
+# Journal file: /home/edci/Simulated-Quantum-Annealing/vitis/u50_rpt/Rpt_v1/vitis_analyzer.jou
+#-----------------------------------------------------------
+start_gui
+create_project dummy
+exit
+INFO: [Common 17-206] Exiting vitis_analyzer at Tue Aug 24 11:15:27 2021...

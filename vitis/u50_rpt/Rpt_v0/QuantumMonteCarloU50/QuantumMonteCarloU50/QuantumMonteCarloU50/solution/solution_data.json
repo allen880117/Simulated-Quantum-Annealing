@@ -1,0 +1,4183 @@
+{
+  "Top": "QuantumMonteCarloU50",
+  "RtlTop": "QuantumMonteCarloU50",
+  "RtlPrefix": "",
+  "RtlSubPrefix": "QuantumMonteCarloU50_",
+  "SourceLanguage": "cpp",
+  "HostMachineBits": "64",
+  "FunctionProtocol": "ap_ctrl_chain",
+  "ResetStyle": "control",
+  "Target": {
+    "Family": "virtexuplushbm",
+    "Device": "xcu50",
+    "Package": "-fsvh2104",
+    "Speed": "-2-e",
+    "Triple": "fpga64-xilinx-none"
+  },
+  "Args": {
+    "trotters": {
+      "index": "0",
+      "direction": "inout",
+      "srcType": "ap_uint<512>*",
+      "srcSize": "512",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem0",
+          "name": "",
+          "usage": "data",
+          "direction": "inout"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "trotters_1",
+          "usage": "address",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "trotters_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    },
+    "Jcoup": {
+      "index": "1",
+      "direction": "in",
+      "srcType": " const *",
+      "srcSize": "512",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem1",
+          "name": "",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "Jcoup_1",
+          "usage": "address",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "Jcoup_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    },
+    "h": {
+      "index": "2",
+      "direction": "in",
+      "srcType": "float const *",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem2",
+          "name": "",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "h_1",
+          "usage": "address",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "h_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    },
+    "Jperp": {
+      "index": "3",
+      "direction": "in",
+      "srcType": "float const ",
+      "srcSize": "32",
+      "hwRefs": [{
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "Jperp",
+          "usage": "data",
+          "direction": "in"
+        }]
+    },
+    "Beta": {
+      "index": "4",
+      "direction": "in",
+      "srcType": "float const ",
+      "srcSize": "32",
+      "hwRefs": [{
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "Beta",
+          "usage": "data",
+          "direction": "in"
+        }]
+    },
+    "logRand": {
+      "index": "5",
+      "direction": "in",
+      "srcType": "float const *",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem3",
+          "name": "",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "logRand_1",
+          "usage": "address",
+          "direction": "in"
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "logRand_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    }
+  },
+  "HlsSolution": {
+    "FlowTarget": "vitis",
+    "ConfigTcl": [
+      "config_interface -m_axi_latency=64",
+      "config_interface -m_axi_alignment_byte_size=64",
+      "config_interface -m_axi_max_widen_bitwidth=512",
+      "config_interface -default_interface=kernel",
+      "config_interface -m_axi_addr64=1",
+      "config_interface -m_axi_conservative_mode=1",
+      "config_interface -m_axi_auto_max_ports=1",
+      "config_interface -m_axi_min_bitwidth=512",
+      "config_interface -m_axi_max_bitwidth=512",
+      "config_rtl -register_reset_num=3",
+      "config_dataflow -strict_mode=warning",
+      "config_export -disable_deadlock_detection=1",
+      "config_export -format=ip_catalog",
+      "config_export -ipname=QuantumMonteCarloU50"
+    ],
+    "DirectiveTcl": ["set_directive_top QuantumMonteCarloU50 -name QuantumMonteCarloU50"],
+    "ProfileOption": "0",
+    "ProfileType": "none",
+    "KernelName": "QuantumMonteCarloU50"
+  },
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "ClockPeriod": "3.333",
+    "Uncertainty": "0.89991",
+    "IsCombinational": "0",
+    "II": "811608 ~ 38182191",
+    "Latency": "811607"
+  },
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 3.333 [get_ports ap_clk]"]},
+  "Ipx": {
+    "Vendor": "xilinx.com",
+    "Library": "hls",
+    "Name": "QuantumMonteCarloU50",
+    "Version": "1.0",
+    "DisplayName": "Quantummontecarlou50",
+    "Revision": "",
+    "Description": "An IP generated by Vitis HLS",
+    "Taxonomy": "\/VITIS_HLS_IP",
+    "AutoFamilySupport": "",
+    "ZipFile": "xilinx_com_hls_QuantumMonteCarloU50_1_0.zip"
+  },
+  "Files": {
+    "CSource": ["\/home\/edci\/workspace\/SQA_kernels\/src\/qmc.cpp"],
+    "Vhdl": [
+      "impl\/vhdl\/QuantumMonteCarloU50_control_s_axi.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_copysignf.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_flow_control_loop_pipe_sequential_init.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_gmem0_m_axi.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_gmem1_m_axi.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_gmem2_m_axi.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_gmem3_m_axi.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_JcoupLocal_0.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_TrotterUnit.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50_TrotterUnitFinal.vhd",
+      "impl\/vhdl\/QuantumMonteCarloU50.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/QuantumMonteCarloU50_control_s_axi.v",
+      "impl\/verilog\/QuantumMonteCarloU50_copysignf.v",
+      "impl\/verilog\/QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1.v",
+      "impl\/verilog\/QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1.v",
+      "impl\/verilog\/QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1.v",
+      "impl\/verilog\/QuantumMonteCarloU50_flow_control_loop_pipe_sequential_init.v",
+      "impl\/verilog\/QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1.v",
+      "impl\/verilog\/QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1.v",
+      "impl\/verilog\/QuantumMonteCarloU50_gmem0_m_axi.v",
+      "impl\/verilog\/QuantumMonteCarloU50_gmem1_m_axi.v",
+      "impl\/verilog\/QuantumMonteCarloU50_gmem2_m_axi.v",
+      "impl\/verilog\/QuantumMonteCarloU50_gmem3_m_axi.v",
+      "impl\/verilog\/QuantumMonteCarloU50_JcoupLocal_0.v",
+      "impl\/verilog\/QuantumMonteCarloU50_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1.v",
+      "impl\/verilog\/QuantumMonteCarloU50_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP.v",
+      "impl\/verilog\/QuantumMonteCarloU50_TrotterUnit.v",
+      "impl\/verilog\/QuantumMonteCarloU50_TrotterUnitFinal.v",
+      "impl\/verilog\/QuantumMonteCarloU50.v"
+    ],
+    "SwDriver": [
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/data\/QuantumMonteCarloU50.mdd",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/data\/QuantumMonteCarloU50.tcl",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/src\/Makefile",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/src\/xquantummontecarlou50.c",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/src\/xquantummontecarlou50.h",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/src\/xquantummontecarlou50_hw.h",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/src\/xquantummontecarlou50_linux.c",
+      "impl\/misc\/drivers\/QuantumMonteCarloU50_v1_0\/src\/xquantummontecarlou50_sinit.c"
+    ],
+    "IpMisc": ["impl\/misc\/logo.png"],
+    "Subcore": [
+      "impl\/misc\/QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1_ip.tcl",
+      "impl\/misc\/QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1_ip.tcl",
+      "impl\/misc\/QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1_ip.tcl",
+      "impl\/misc\/QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1_ip.tcl",
+      "impl\/misc\/QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1_ip.tcl"
+    ],
+    "CsynthXml": "syn\/report\/csynth.xml",
+    "DebugDir": ".debug",
+    "KernelXml": "..\/kernel.xml",
+    "Xo": "",
+    "XoHlsDir": "impl\/misc\/hls_files",
+    "ProtoInst": [".debug\/QuantumMonteCarloU50.protoinst"]
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "Ip": [
+      {
+        "Name": "QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1_ip",
+        "Vlnv": "xilinx.com:ip:floating_point:7.1",
+        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Add CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 5 CONFIG.c_mult_usage Full_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 8 CONFIG.c_result_fraction_width 24 CONFIG.component_name QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken true CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Add_Subtract CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
+      },
+      {
+        "Name": "QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1_ip",
+        "Vlnv": "xilinx.com:ip:floating_point:7.1",
+        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Both CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 0 CONFIG.c_mult_usage No_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 1 CONFIG.c_result_fraction_width 0 CONFIG.component_name QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken false CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Compare CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
+      },
+      {
+        "Name": "QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1_ip",
+        "Vlnv": "xilinx.com:ip:floating_point:7.1",
+        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Both CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 10 CONFIG.c_mult_usage No_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 8 CONFIG.c_result_fraction_width 24 CONFIG.component_name QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken true CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Divide CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
+      },
+      {
+        "Name": "QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1_ip",
+        "Vlnv": "xilinx.com:ip:floating_point:7.1",
+        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Both CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 2 CONFIG.c_mult_usage Max_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 8 CONFIG.c_result_fraction_width 24 CONFIG.component_name QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken true CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Multiply CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
+      },
+      {
+        "Name": "QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1_ip",
+        "Vlnv": "xilinx.com:ip:floating_point:7.1",
+        "Params": "CONFIG.a_precision_type Single CONFIG.a_tuser_width 1 CONFIG.add_sub_value Subtract CONFIG.b_tuser_width 1 CONFIG.c_a_exponent_width 8 CONFIG.c_a_fraction_width 24 CONFIG.c_compare_operation Programmable CONFIG.c_has_divide_by_zero false CONFIG.c_has_invalid_op false CONFIG.c_has_overflow false CONFIG.c_has_underflow false CONFIG.c_latency 5 CONFIG.c_mult_usage Full_Usage CONFIG.c_optimization Speed_Optimized CONFIG.c_rate 1 CONFIG.c_result_exponent_width 8 CONFIG.c_result_fraction_width 24 CONFIG.component_name QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1_ip CONFIG.flow_control NonBlocking CONFIG.has_a_tlast false CONFIG.has_a_tuser false CONFIG.has_aclken true CONFIG.has_aresetn false CONFIG.has_b_tlast false CONFIG.has_b_tuser false CONFIG.has_operation_tlast false CONFIG.has_operation_tuser false CONFIG.has_result_tready false CONFIG.maximum_latency false CONFIG.operation_tuser_width 1 CONFIG.operation_type Add_Subtract CONFIG.result_precision_type Single CONFIG.result_tlast_behv Null"
+      }
+    ]
+  },
+  "Interfaces": {
+    "s_axi_control": {
+      "type": "axi4lite",
+      "busTypeName": "aximm",
+      "mode": "slave",
+      "dataWidth": "32",
+      "addrWidth": "7",
+      "portPrefix": "s_axi_control_",
+      "paramPrefix": "C_S_AXI_CONTROL_",
+      "offsetMasterName": "m_axi_gmem3",
+      "ports": [
+        "s_axi_control_ARADDR",
+        "s_axi_control_ARREADY",
+        "s_axi_control_ARVALID",
+        "s_axi_control_AWADDR",
+        "s_axi_control_AWREADY",
+        "s_axi_control_AWVALID",
+        "s_axi_control_BREADY",
+        "s_axi_control_BRESP",
+        "s_axi_control_BVALID",
+        "s_axi_control_RDATA",
+        "s_axi_control_RREADY",
+        "s_axi_control_RRESP",
+        "s_axi_control_RVALID",
+        "s_axi_control_WDATA",
+        "s_axi_control_WREADY",
+        "s_axi_control_WSTRB",
+        "s_axi_control_WVALID"
+      ],
+      "registers": [
+        {
+          "offset": "0x00",
+          "name": "CTRL",
+          "access": "RW",
+          "description": "Control signals",
+          "range": "32",
+          "fields": [
+            {
+              "offset": "0",
+              "width": "1",
+              "name": "AP_START",
+              "access": "RW",
+              "description": "Control signal Register for 'ap_start'."
+            },
+            {
+              "offset": "1",
+              "width": "1",
+              "name": "AP_DONE",
+              "access": "R",
+              "description": "Control signal Register for 'ap_done'."
+            },
+            {
+              "offset": "2",
+              "width": "1",
+              "name": "AP_IDLE",
+              "access": "R",
+              "description": "Control signal Register for 'ap_idle'."
+            },
+            {
+              "offset": "3",
+              "width": "1",
+              "name": "AP_READY",
+              "access": "R",
+              "description": "Control signal Register for 'ap_ready'."
+            },
+            {
+              "offset": "4",
+              "width": "1",
+              "name": "AP_CONTINUE",
+              "access": "R",
+              "description": "Control signal Register for 'ap_continue'."
+            },
+            {
+              "offset": "5",
+              "width": "2",
+              "name": "RESERVED_1",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            },
+            {
+              "offset": "7",
+              "width": "1",
+              "name": "AUTO_RESTART",
+              "access": "RW",
+              "description": "Control signal Register for 'auto_restart'."
+            },
+            {
+              "offset": "8",
+              "width": "1",
+              "name": "RESERVED_2",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            },
+            {
+              "offset": "9",
+              "width": "1",
+              "name": "RESERVED_3",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            },
+            {
+              "offset": "10",
+              "width": "22",
+              "name": "RESERVED_4",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            }
+          ]
+        },
+        {
+          "offset": "0x04",
+          "name": "GIER",
+          "access": "RW",
+          "description": "Global Interrupt Enable Register",
+          "range": "32",
+          "fields": [
+            {
+              "offset": "0",
+              "width": "1",
+              "name": "Enable",
+              "access": "RW",
+              "description": "Master enable for the device interrupt output to the system interrupt controller: 0 = Disabled, 1 = Enabled"
+            },
+            {
+              "offset": "1",
+              "width": "31",
+              "name": "RESERVED",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            }
+          ]
+        },
+        {
+          "offset": "0x08",
+          "name": "IP_IER",
+          "access": "RW",
+          "description": "IP Interrupt Enable Register",
+          "range": "32",
+          "fields": [
+            {
+              "offset": "0",
+              "width": "1",
+              "name": "CHAN0_INT_EN",
+              "access": "RW",
+              "description": "Enable Channel 0 (ap_done) Interrupt.  0 = Disabled, 1 = Enabled."
+            },
+            {
+              "offset": "1",
+              "width": "1",
+              "name": "CHAN1_INT_EN",
+              "access": "RW",
+              "description": "Enable Channel 1 (ap_ready) Interrupt.  0 = Disabled, 1 = Enabled."
+            },
+            {
+              "offset": "2",
+              "width": "30",
+              "name": "RESERVED",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            },
+            {
+              "offset": "2",
+              "width": "30",
+              "name": "RESERVED",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            }
+          ]
+        },
+        {
+          "offset": "0x0c",
+          "name": "IP_ISR",
+          "access": "RW",
+          "description": "IP Interrupt Status Register",
+          "range": "32",
+          "fields": [
+            {
+              "offset": "0",
+              "width": "1",
+              "name": "CHAN0_INT_ST",
+              "access": "RTOW",
+              "description": "Channel 0 (ap_done) Interrupt Status. 0 = No Channel 0 input interrupt, 1 = Channel 0 input interrup"
+            },
+            {
+              "offset": "1",
+              "width": "1",
+              "name": "CHAN1_INT_ST",
+              "access": "RTOW",
+              "description": "Channel 1 (ap_ready) Interrupt Status. 0 = No Channel 1 input interrupt, 1 = Channel 1 input interrup"
+            },
+            {
+              "offset": "2",
+              "width": "30",
+              "name": "RESERVED",
+              "access": "R",
+              "description": "Reserved.  0s on read."
+            }
+          ]
+        },
+        {
+          "offset": "0x10",
+          "name": "trotters_1",
+          "access": "W",
+          "description": "Data signal of trotters",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "trotters",
+              "access": "W",
+              "description": "Bit 31 to 0 of trotters"
+            }]
+        },
+        {
+          "offset": "0x14",
+          "name": "trotters_2",
+          "access": "W",
+          "description": "Data signal of trotters",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "trotters",
+              "access": "W",
+              "description": "Bit 63 to 32 of trotters"
+            }]
+        },
+        {
+          "offset": "0x1c",
+          "name": "Jcoup_1",
+          "access": "W",
+          "description": "Data signal of Jcoup",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "Jcoup",
+              "access": "W",
+              "description": "Bit 31 to 0 of Jcoup"
+            }]
+        },
+        {
+          "offset": "0x20",
+          "name": "Jcoup_2",
+          "access": "W",
+          "description": "Data signal of Jcoup",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "Jcoup",
+              "access": "W",
+              "description": "Bit 63 to 32 of Jcoup"
+            }]
+        },
+        {
+          "offset": "0x28",
+          "name": "h_1",
+          "access": "W",
+          "description": "Data signal of h",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "h",
+              "access": "W",
+              "description": "Bit 31 to 0 of h"
+            }]
+        },
+        {
+          "offset": "0x2c",
+          "name": "h_2",
+          "access": "W",
+          "description": "Data signal of h",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "h",
+              "access": "W",
+              "description": "Bit 63 to 32 of h"
+            }]
+        },
+        {
+          "offset": "0x34",
+          "name": "Jperp",
+          "access": "W",
+          "description": "Data signal of Jperp",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "Jperp",
+              "access": "W",
+              "description": "Bit 31 to 0 of Jperp"
+            }]
+        },
+        {
+          "offset": "0x3c",
+          "name": "Beta",
+          "access": "W",
+          "description": "Data signal of Beta",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "Beta",
+              "access": "W",
+              "description": "Bit 31 to 0 of Beta"
+            }]
+        },
+        {
+          "offset": "0x44",
+          "name": "logRand_1",
+          "access": "W",
+          "description": "Data signal of logRand",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "logRand",
+              "access": "W",
+              "description": "Bit 31 to 0 of logRand"
+            }]
+        },
+        {
+          "offset": "0x48",
+          "name": "logRand_2",
+          "access": "W",
+          "description": "Data signal of logRand",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "logRand",
+              "access": "W",
+              "description": "Bit 63 to 32 of logRand"
+            }]
+        }
+      ],
+      "constraints": [
+        {
+          "constraint_type": "pragma interface",
+          "mode": "s_axilite",
+          "register_option": "0",
+          "offset": "16",
+          "argName": "trotters"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "s_axilite",
+          "register_option": "0",
+          "offset": "28",
+          "argName": "Jcoup"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "s_axilite",
+          "register_option": "0",
+          "offset": "40",
+          "argName": "h"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "s_axilite",
+          "register_option": "0",
+          "offset": "52",
+          "argName": "Jperp"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "s_axilite",
+          "register_option": "0",
+          "offset": "60",
+          "argName": "Beta"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "s_axilite",
+          "register_option": "0",
+          "offset": "68",
+          "argName": "logRand"
+        }
+      ]
+    },
+    "ap_clk": {
+      "type": "clock",
+      "busTypeName": "clock",
+      "mode": "slave",
+      "busParams": {
+        "ASSOCIATED_BUSIF": "s_axi_control:m_axi_gmem0:m_axi_gmem1:m_axi_gmem2:m_axi_gmem3",
+        "ASSOCIATED_RESET": "ap_rst_n"
+      },
+      "portMap": {"ap_clk": "CLK"},
+      "ports": ["ap_clk"]
+    },
+    "ap_rst_n": {
+      "type": "reset",
+      "busTypeName": "reset",
+      "mode": "slave",
+      "busParams": {"POLARITY": "ACTIVE_LOW"},
+      "portMap": {"ap_rst_n": "RST"},
+      "ports": ["ap_rst_n"]
+    },
+    "interrupt": {
+      "type": "interrupt",
+      "busTypeName": "interrupt",
+      "mode": "master",
+      "dataWidth": "1",
+      "busParams": {"SENSITIVITY": "LEVEL_HIGH"},
+      "portMap": {"interrupt": "INTERRUPT"},
+      "ports": ["interrupt"]
+    },
+    "m_axi_gmem0": {
+      "type": "axi4full",
+      "busTypeName": "aximm",
+      "mode": "master",
+      "dataWidth": "512",
+      "addrWidth": "64",
+      "portPrefix": "m_axi_gmem0_",
+      "paramPrefix": "C_M_AXI_GMEM0_",
+      "offsetSlaveName": "s_axi_control",
+      "preferredUsageValue": "MEMORY",
+      "busParams": {
+        "NUM_READ_OUTSTANDING": "16",
+        "NUM_WRITE_OUTSTANDING": "16",
+        "MAX_READ_BURST_LENGTH": "16",
+        "MAX_WRITE_BURST_LENGTH": "16",
+        "MAX_BURST_LENGTH": "256",
+        "PROTOCOL": "AXI4",
+        "READ_WRITE_MODE": "READ_WRITE",
+        "HAS_BURST": "0",
+        "SUPPORTS_NARROW_BURST": "0"
+      },
+      "ports": [
+        "m_axi_gmem0_ARADDR",
+        "m_axi_gmem0_ARBURST",
+        "m_axi_gmem0_ARCACHE",
+        "m_axi_gmem0_ARID",
+        "m_axi_gmem0_ARLEN",
+        "m_axi_gmem0_ARLOCK",
+        "m_axi_gmem0_ARPROT",
+        "m_axi_gmem0_ARQOS",
+        "m_axi_gmem0_ARREADY",
+        "m_axi_gmem0_ARREGION",
+        "m_axi_gmem0_ARSIZE",
+        "m_axi_gmem0_ARUSER",
+        "m_axi_gmem0_ARVALID",
+        "m_axi_gmem0_AWADDR",
+        "m_axi_gmem0_AWBURST",
+        "m_axi_gmem0_AWCACHE",
+        "m_axi_gmem0_AWID",
+        "m_axi_gmem0_AWLEN",
+        "m_axi_gmem0_AWLOCK",
+        "m_axi_gmem0_AWPROT",
+        "m_axi_gmem0_AWQOS",
+        "m_axi_gmem0_AWREADY",
+        "m_axi_gmem0_AWREGION",
+        "m_axi_gmem0_AWSIZE",
+        "m_axi_gmem0_AWUSER",
+        "m_axi_gmem0_AWVALID",
+        "m_axi_gmem0_BID",
+        "m_axi_gmem0_BREADY",
+        "m_axi_gmem0_BRESP",
+        "m_axi_gmem0_BUSER",
+        "m_axi_gmem0_BVALID",
+        "m_axi_gmem0_RDATA",
+        "m_axi_gmem0_RID",
+        "m_axi_gmem0_RLAST",
+        "m_axi_gmem0_RREADY",
+        "m_axi_gmem0_RRESP",
+        "m_axi_gmem0_RUSER",
+        "m_axi_gmem0_RVALID",
+        "m_axi_gmem0_WDATA",
+        "m_axi_gmem0_WID",
+        "m_axi_gmem0_WLAST",
+        "m_axi_gmem0_WREADY",
+        "m_axi_gmem0_WSTRB",
+        "m_axi_gmem0_WUSER",
+        "m_axi_gmem0_WVALID"
+      ],
+      "constraints": [
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "slave",
+          "latency": "64",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "trotters"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "512",
+          "final_bitwidth": "512",
+          "argName": "trotters"
+        }
+      ]
+    },
+    "m_axi_gmem1": {
+      "type": "axi4full",
+      "busTypeName": "aximm",
+      "mode": "master",
+      "dataWidth": "512",
+      "addrWidth": "64",
+      "portPrefix": "m_axi_gmem1_",
+      "paramPrefix": "C_M_AXI_GMEM1_",
+      "offsetSlaveName": "s_axi_control",
+      "preferredUsageValue": "MEMORY",
+      "busParams": {
+        "NUM_READ_OUTSTANDING": "16",
+        "NUM_WRITE_OUTSTANDING": "16",
+        "MAX_READ_BURST_LENGTH": "16",
+        "MAX_WRITE_BURST_LENGTH": "16",
+        "MAX_BURST_LENGTH": "256",
+        "PROTOCOL": "AXI4",
+        "READ_WRITE_MODE": "READ_WRITE",
+        "HAS_BURST": "0",
+        "SUPPORTS_NARROW_BURST": "0"
+      },
+      "ports": [
+        "m_axi_gmem1_ARADDR",
+        "m_axi_gmem1_ARBURST",
+        "m_axi_gmem1_ARCACHE",
+        "m_axi_gmem1_ARID",
+        "m_axi_gmem1_ARLEN",
+        "m_axi_gmem1_ARLOCK",
+        "m_axi_gmem1_ARPROT",
+        "m_axi_gmem1_ARQOS",
+        "m_axi_gmem1_ARREADY",
+        "m_axi_gmem1_ARREGION",
+        "m_axi_gmem1_ARSIZE",
+        "m_axi_gmem1_ARUSER",
+        "m_axi_gmem1_ARVALID",
+        "m_axi_gmem1_AWADDR",
+        "m_axi_gmem1_AWBURST",
+        "m_axi_gmem1_AWCACHE",
+        "m_axi_gmem1_AWID",
+        "m_axi_gmem1_AWLEN",
+        "m_axi_gmem1_AWLOCK",
+        "m_axi_gmem1_AWPROT",
+        "m_axi_gmem1_AWQOS",
+        "m_axi_gmem1_AWREADY",
+        "m_axi_gmem1_AWREGION",
+        "m_axi_gmem1_AWSIZE",
+        "m_axi_gmem1_AWUSER",
+        "m_axi_gmem1_AWVALID",
+        "m_axi_gmem1_BID",
+        "m_axi_gmem1_BREADY",
+        "m_axi_gmem1_BRESP",
+        "m_axi_gmem1_BUSER",
+        "m_axi_gmem1_BVALID",
+        "m_axi_gmem1_RDATA",
+        "m_axi_gmem1_RID",
+        "m_axi_gmem1_RLAST",
+        "m_axi_gmem1_RREADY",
+        "m_axi_gmem1_RRESP",
+        "m_axi_gmem1_RUSER",
+        "m_axi_gmem1_RVALID",
+        "m_axi_gmem1_WDATA",
+        "m_axi_gmem1_WID",
+        "m_axi_gmem1_WLAST",
+        "m_axi_gmem1_WREADY",
+        "m_axi_gmem1_WSTRB",
+        "m_axi_gmem1_WUSER",
+        "m_axi_gmem1_WVALID"
+      ],
+      "constraints": [
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "slave",
+          "latency": "64",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "Jcoup"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "512",
+          "final_bitwidth": "512",
+          "argName": "Jcoup"
+        }
+      ]
+    },
+    "m_axi_gmem2": {
+      "type": "axi4full",
+      "busTypeName": "aximm",
+      "mode": "master",
+      "dataWidth": "512",
+      "addrWidth": "64",
+      "portPrefix": "m_axi_gmem2_",
+      "paramPrefix": "C_M_AXI_GMEM2_",
+      "offsetSlaveName": "s_axi_control",
+      "preferredUsageValue": "MEMORY",
+      "busParams": {
+        "NUM_READ_OUTSTANDING": "16",
+        "NUM_WRITE_OUTSTANDING": "16",
+        "MAX_READ_BURST_LENGTH": "16",
+        "MAX_WRITE_BURST_LENGTH": "16",
+        "MAX_BURST_LENGTH": "256",
+        "PROTOCOL": "AXI4",
+        "READ_WRITE_MODE": "READ_WRITE",
+        "HAS_BURST": "0",
+        "SUPPORTS_NARROW_BURST": "0"
+      },
+      "ports": [
+        "m_axi_gmem2_ARADDR",
+        "m_axi_gmem2_ARBURST",
+        "m_axi_gmem2_ARCACHE",
+        "m_axi_gmem2_ARID",
+        "m_axi_gmem2_ARLEN",
+        "m_axi_gmem2_ARLOCK",
+        "m_axi_gmem2_ARPROT",
+        "m_axi_gmem2_ARQOS",
+        "m_axi_gmem2_ARREADY",
+        "m_axi_gmem2_ARREGION",
+        "m_axi_gmem2_ARSIZE",
+        "m_axi_gmem2_ARUSER",
+        "m_axi_gmem2_ARVALID",
+        "m_axi_gmem2_AWADDR",
+        "m_axi_gmem2_AWBURST",
+        "m_axi_gmem2_AWCACHE",
+        "m_axi_gmem2_AWID",
+        "m_axi_gmem2_AWLEN",
+        "m_axi_gmem2_AWLOCK",
+        "m_axi_gmem2_AWPROT",
+        "m_axi_gmem2_AWQOS",
+        "m_axi_gmem2_AWREADY",
+        "m_axi_gmem2_AWREGION",
+        "m_axi_gmem2_AWSIZE",
+        "m_axi_gmem2_AWUSER",
+        "m_axi_gmem2_AWVALID",
+        "m_axi_gmem2_BID",
+        "m_axi_gmem2_BREADY",
+        "m_axi_gmem2_BRESP",
+        "m_axi_gmem2_BUSER",
+        "m_axi_gmem2_BVALID",
+        "m_axi_gmem2_RDATA",
+        "m_axi_gmem2_RID",
+        "m_axi_gmem2_RLAST",
+        "m_axi_gmem2_RREADY",
+        "m_axi_gmem2_RRESP",
+        "m_axi_gmem2_RUSER",
+        "m_axi_gmem2_RVALID",
+        "m_axi_gmem2_WDATA",
+        "m_axi_gmem2_WID",
+        "m_axi_gmem2_WLAST",
+        "m_axi_gmem2_WREADY",
+        "m_axi_gmem2_WSTRB",
+        "m_axi_gmem2_WUSER",
+        "m_axi_gmem2_WVALID"
+      ],
+      "constraints": [
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "slave",
+          "latency": "64",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "h"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "32",
+          "final_bitwidth": "512",
+          "argName": "h"
+        }
+      ]
+    },
+    "m_axi_gmem3": {
+      "type": "axi4full",
+      "busTypeName": "aximm",
+      "mode": "master",
+      "dataWidth": "512",
+      "addrWidth": "64",
+      "portPrefix": "m_axi_gmem3_",
+      "paramPrefix": "C_M_AXI_GMEM3_",
+      "offsetSlaveName": "s_axi_control",
+      "preferredUsageValue": "MEMORY",
+      "busParams": {
+        "NUM_READ_OUTSTANDING": "16",
+        "NUM_WRITE_OUTSTANDING": "16",
+        "MAX_READ_BURST_LENGTH": "16",
+        "MAX_WRITE_BURST_LENGTH": "16",
+        "MAX_BURST_LENGTH": "256",
+        "PROTOCOL": "AXI4",
+        "READ_WRITE_MODE": "READ_WRITE",
+        "HAS_BURST": "0",
+        "SUPPORTS_NARROW_BURST": "0"
+      },
+      "ports": [
+        "m_axi_gmem3_ARADDR",
+        "m_axi_gmem3_ARBURST",
+        "m_axi_gmem3_ARCACHE",
+        "m_axi_gmem3_ARID",
+        "m_axi_gmem3_ARLEN",
+        "m_axi_gmem3_ARLOCK",
+        "m_axi_gmem3_ARPROT",
+        "m_axi_gmem3_ARQOS",
+        "m_axi_gmem3_ARREADY",
+        "m_axi_gmem3_ARREGION",
+        "m_axi_gmem3_ARSIZE",
+        "m_axi_gmem3_ARUSER",
+        "m_axi_gmem3_ARVALID",
+        "m_axi_gmem3_AWADDR",
+        "m_axi_gmem3_AWBURST",
+        "m_axi_gmem3_AWCACHE",
+        "m_axi_gmem3_AWID",
+        "m_axi_gmem3_AWLEN",
+        "m_axi_gmem3_AWLOCK",
+        "m_axi_gmem3_AWPROT",
+        "m_axi_gmem3_AWQOS",
+        "m_axi_gmem3_AWREADY",
+        "m_axi_gmem3_AWREGION",
+        "m_axi_gmem3_AWSIZE",
+        "m_axi_gmem3_AWUSER",
+        "m_axi_gmem3_AWVALID",
+        "m_axi_gmem3_BID",
+        "m_axi_gmem3_BREADY",
+        "m_axi_gmem3_BRESP",
+        "m_axi_gmem3_BUSER",
+        "m_axi_gmem3_BVALID",
+        "m_axi_gmem3_RDATA",
+        "m_axi_gmem3_RID",
+        "m_axi_gmem3_RLAST",
+        "m_axi_gmem3_RREADY",
+        "m_axi_gmem3_RRESP",
+        "m_axi_gmem3_RUSER",
+        "m_axi_gmem3_RVALID",
+        "m_axi_gmem3_WDATA",
+        "m_axi_gmem3_WID",
+        "m_axi_gmem3_WLAST",
+        "m_axi_gmem3_WREADY",
+        "m_axi_gmem3_WSTRB",
+        "m_axi_gmem3_WUSER",
+        "m_axi_gmem3_WVALID"
+      ],
+      "constraints": [
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "slave",
+          "latency": "64",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "logRand"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "32",
+          "final_bitwidth": "512",
+          "argName": "logRand"
+        }
+      ]
+    }
+  },
+  "RtlPorts": {
+    "s_axi_control_AWVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_control_AWREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_control_AWADDR": {
+      "dir": "in",
+      "width": "7"
+    },
+    "s_axi_control_WVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_control_WREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_control_WDATA": {
+      "dir": "in",
+      "width": "32"
+    },
+    "s_axi_control_WSTRB": {
+      "dir": "in",
+      "width": "4"
+    },
+    "s_axi_control_ARVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_control_ARREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_control_ARADDR": {
+      "dir": "in",
+      "width": "7"
+    },
+    "s_axi_control_RVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_control_RREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_control_RDATA": {
+      "dir": "out",
+      "width": "32"
+    },
+    "s_axi_control_RRESP": {
+      "dir": "out",
+      "width": "2"
+    },
+    "s_axi_control_BVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_control_BREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_control_BRESP": {
+      "dir": "out",
+      "width": "2"
+    },
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "interrupt": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_AWVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_AWREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem0_AWADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem0_AWID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_AWLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem0_AWSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem0_AWBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem0_AWLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem0_AWCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem0_AWPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem0_AWQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem0_AWREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem0_AWUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_WVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_WREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem0_WDATA": {
+      "dir": "out",
+      "width": "512"
+    },
+    "m_axi_gmem0_WSTRB": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem0_WLAST": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_WID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_WUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_ARVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_ARREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem0_ARADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem0_ARID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_ARLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem0_ARSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem0_ARBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem0_ARLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem0_ARCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem0_ARPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem0_ARQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem0_ARREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem0_ARUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_RVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem0_RREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_RDATA": {
+      "dir": "in",
+      "width": "512"
+    },
+    "m_axi_gmem0_RLAST": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem0_RID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_RUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_RRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem0_BVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem0_BREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem0_BRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem0_BID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem0_BUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_AWVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem1_AWREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem1_AWADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem1_AWID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_AWLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem1_AWSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem1_AWBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem1_AWLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem1_AWCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem1_AWPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem1_AWQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem1_AWREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem1_AWUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_WVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem1_WREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem1_WDATA": {
+      "dir": "out",
+      "width": "512"
+    },
+    "m_axi_gmem1_WSTRB": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem1_WLAST": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem1_WID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_WUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_ARVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem1_ARREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem1_ARADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem1_ARID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_ARLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem1_ARSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem1_ARBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem1_ARLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem1_ARCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem1_ARPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem1_ARQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem1_ARREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem1_ARUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_RVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem1_RREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem1_RDATA": {
+      "dir": "in",
+      "width": "512"
+    },
+    "m_axi_gmem1_RLAST": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem1_RID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_RUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_RRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem1_BVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem1_BREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem1_BRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem1_BID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem1_BUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_AWVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem2_AWREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem2_AWADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem2_AWID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_AWLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem2_AWSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem2_AWBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem2_AWLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem2_AWCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem2_AWPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem2_AWQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem2_AWREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem2_AWUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_WVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem2_WREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem2_WDATA": {
+      "dir": "out",
+      "width": "512"
+    },
+    "m_axi_gmem2_WSTRB": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem2_WLAST": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem2_WID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_WUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_ARVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem2_ARREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem2_ARADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem2_ARID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_ARLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem2_ARSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem2_ARBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem2_ARLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem2_ARCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem2_ARPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem2_ARQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem2_ARREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem2_ARUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_RVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem2_RREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem2_RDATA": {
+      "dir": "in",
+      "width": "512"
+    },
+    "m_axi_gmem2_RLAST": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem2_RID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_RUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_RRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem2_BVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem2_BREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem2_BRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem2_BID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem2_BUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_AWVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem3_AWREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem3_AWADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem3_AWID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_AWLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem3_AWSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem3_AWBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem3_AWLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem3_AWCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem3_AWPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem3_AWQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem3_AWREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem3_AWUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_WVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem3_WREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem3_WDATA": {
+      "dir": "out",
+      "width": "512"
+    },
+    "m_axi_gmem3_WSTRB": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem3_WLAST": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem3_WID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_WUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_ARVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem3_ARREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem3_ARADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_gmem3_ARID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_ARLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_gmem3_ARSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem3_ARBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem3_ARLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_gmem3_ARCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem3_ARPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_gmem3_ARQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem3_ARREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_gmem3_ARUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_RVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem3_RREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem3_RDATA": {
+      "dir": "in",
+      "width": "512"
+    },
+    "m_axi_gmem3_RLAST": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem3_RID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_RUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_RRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem3_BVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_gmem3_BREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_gmem3_BRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_gmem3_BID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_gmem3_BUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {
+      "ModuleName": "QuantumMonteCarloU50",
+      "Instances": [
+        {
+          "ModuleName": "QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1",
+          "InstanceName": "grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1_fu_491"
+        },
+        {
+          "ModuleName": "TrotterUnit",
+          "InstanceName": "grp_TrotterUnit_fu_500",
+          "Instances": [
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55633"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55639"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55645"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55651"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55657"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55663"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55669"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55675"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55681"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55687"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55693"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55699"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55705"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55711"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55717"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55723"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55729"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55735"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55741"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55747"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55753"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55759"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55765"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "grp_copysignf_fu_55771"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_48_copysignf_fu_55777"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_50_copysignf_fu_55783"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_52_copysignf_fu_55789"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_54_copysignf_fu_55795"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_56_copysignf_fu_55801"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_58_copysignf_fu_55807"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_60_copysignf_fu_55813"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_62_copysignf_fu_55819"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_64_copysignf_fu_55825"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_66_copysignf_fu_55831"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_68_copysignf_fu_55837"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_70_copysignf_fu_55843"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_72_copysignf_fu_55849"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_74_copysignf_fu_55855"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_76_copysignf_fu_55861"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_78_copysignf_fu_55867"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_80_copysignf_fu_55873"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_82_copysignf_fu_55879"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_84_copysignf_fu_55885"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_86_copysignf_fu_55891"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_88_copysignf_fu_55897"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_90_copysignf_fu_55903"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_92_copysignf_fu_55909"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_94_copysignf_fu_55915"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_96_copysignf_fu_55921"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_98_copysignf_fu_55927"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_100_copysignf_fu_55933"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_102_copysignf_fu_55939"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_104_copysignf_fu_55945"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_106_copysignf_fu_55951"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_108_copysignf_fu_55957"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_110_copysignf_fu_55963"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_112_copysignf_fu_55969"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_114_copysignf_fu_55975"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_116_copysignf_fu_55981"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_118_copysignf_fu_55987"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_120_copysignf_fu_55993"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_122_copysignf_fu_55999"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_124_copysignf_fu_56005"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_126_copysignf_fu_56011"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_128_copysignf_fu_56017"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_130_copysignf_fu_56023"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_132_copysignf_fu_56029"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_134_copysignf_fu_56035"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_136_copysignf_fu_56041"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_138_copysignf_fu_56047"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_140_copysignf_fu_56053"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_142_copysignf_fu_56059"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_144_copysignf_fu_56065"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_146_copysignf_fu_56071"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_148_copysignf_fu_56077"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_150_copysignf_fu_56083"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_152_copysignf_fu_56089"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_154_copysignf_fu_56095"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_156_copysignf_fu_56101"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_158_copysignf_fu_56107"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_160_copysignf_fu_56113"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_162_copysignf_fu_56119"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_164_copysignf_fu_56125"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_166_copysignf_fu_56131"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_168_copysignf_fu_56137"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_170_copysignf_fu_56143"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_172_copysignf_fu_56149"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_174_copysignf_fu_56155"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_176_copysignf_fu_56161"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_178_copysignf_fu_56167"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_180_copysignf_fu_56173"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_182_copysignf_fu_56179"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_184_copysignf_fu_56185"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_186_copysignf_fu_56191"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_188_copysignf_fu_56197"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_190_copysignf_fu_56203"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_192_copysignf_fu_56209"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_194_copysignf_fu_56215"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_196_copysignf_fu_56221"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_198_copysignf_fu_56227"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_200_copysignf_fu_56233"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_202_copysignf_fu_56239"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_204_copysignf_fu_56245"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_206_copysignf_fu_56251"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_208_copysignf_fu_56257"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_210_copysignf_fu_56263"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_212_copysignf_fu_56269"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_214_copysignf_fu_56275"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_216_copysignf_fu_56281"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_218_copysignf_fu_56287"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_220_copysignf_fu_56293"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_222_copysignf_fu_56299"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_224_copysignf_fu_56305"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_226_copysignf_fu_56311"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_228_copysignf_fu_56317"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_230_copysignf_fu_56323"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_232_copysignf_fu_56329"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_234_copysignf_fu_56335"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_236_copysignf_fu_56341"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_238_copysignf_fu_56347"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_240_copysignf_fu_56353"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_242_copysignf_fu_56359"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_244_copysignf_fu_56365"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_246_copysignf_fu_56371"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_248_copysignf_fu_56377"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_250_copysignf_fu_56383"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_252_copysignf_fu_56389"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_254_copysignf_fu_56395"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_256_copysignf_fu_56401"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_258_copysignf_fu_56407"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_260_copysignf_fu_56413"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_262_copysignf_fu_56419"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_264_copysignf_fu_56425"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_266_copysignf_fu_56431"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_268_copysignf_fu_56437"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_270_copysignf_fu_56443"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_272_copysignf_fu_56449"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_274_copysignf_fu_56455"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_276_copysignf_fu_56461"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_278_copysignf_fu_56467"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_280_copysignf_fu_56473"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_282_copysignf_fu_56479"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_284_copysignf_fu_56485"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_286_copysignf_fu_56491"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_288_copysignf_fu_56497"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_290_copysignf_fu_56503"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_292_copysignf_fu_56509"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_294_copysignf_fu_56515"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_296_copysignf_fu_56521"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_298_copysignf_fu_56527"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_300_copysignf_fu_56533"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_302_copysignf_fu_56539"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_304_copysignf_fu_56545"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_306_copysignf_fu_56551"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_308_copysignf_fu_56557"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_310_copysignf_fu_56563"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_312_copysignf_fu_56569"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_314_copysignf_fu_56575"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_316_copysignf_fu_56581"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_318_copysignf_fu_56587"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_320_copysignf_fu_56593"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_322_copysignf_fu_56599"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_324_copysignf_fu_56605"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_326_copysignf_fu_56611"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_328_copysignf_fu_56617"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_330_copysignf_fu_56623"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_332_copysignf_fu_56629"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_334_copysignf_fu_56635"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_336_copysignf_fu_56641"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_338_copysignf_fu_56647"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_340_copysignf_fu_56653"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_342_copysignf_fu_56659"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_344_copysignf_fu_56665"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_346_copysignf_fu_56671"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_348_copysignf_fu_56677"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_350_copysignf_fu_56683"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_352_copysignf_fu_56689"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_354_copysignf_fu_56695"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_356_copysignf_fu_56701"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_358_copysignf_fu_56707"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_360_copysignf_fu_56713"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_362_copysignf_fu_56719"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_364_copysignf_fu_56725"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_366_copysignf_fu_56731"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_368_copysignf_fu_56737"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_370_copysignf_fu_56743"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_372_copysignf_fu_56749"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_374_copysignf_fu_56755"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_376_copysignf_fu_56761"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_378_copysignf_fu_56767"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_380_copysignf_fu_56773"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_382_copysignf_fu_56779"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_384_copysignf_fu_56785"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_386_copysignf_fu_56791"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_388_copysignf_fu_56797"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_390_copysignf_fu_56803"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_392_copysignf_fu_56809"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_394_copysignf_fu_56815"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_396_copysignf_fu_56821"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_398_copysignf_fu_56827"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_400_copysignf_fu_56833"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_402_copysignf_fu_56839"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_404_copysignf_fu_56845"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_406_copysignf_fu_56851"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_408_copysignf_fu_56857"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_410_copysignf_fu_56863"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_412_copysignf_fu_56869"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_414_copysignf_fu_56875"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_416_copysignf_fu_56881"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_418_copysignf_fu_56887"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_420_copysignf_fu_56893"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_422_copysignf_fu_56899"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_424_copysignf_fu_56905"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_426_copysignf_fu_56911"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_428_copysignf_fu_56917"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_430_copysignf_fu_56923"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_432_copysignf_fu_56929"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_434_copysignf_fu_56935"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_436_copysignf_fu_56941"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_438_copysignf_fu_56947"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_440_copysignf_fu_56953"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_442_copysignf_fu_56959"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_444_copysignf_fu_56965"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_446_copysignf_fu_56971"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_448_copysignf_fu_56977"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_450_copysignf_fu_56983"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_452_copysignf_fu_56989"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_454_copysignf_fu_56995"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_456_copysignf_fu_57001"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_458_copysignf_fu_57007"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_460_copysignf_fu_57013"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_462_copysignf_fu_57019"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_464_copysignf_fu_57025"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_466_copysignf_fu_57031"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_468_copysignf_fu_57037"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_470_copysignf_fu_57043"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_472_copysignf_fu_57049"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_474_copysignf_fu_57055"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_476_copysignf_fu_57061"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_478_copysignf_fu_57067"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_480_copysignf_fu_57073"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_482_copysignf_fu_57079"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_484_copysignf_fu_57085"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_486_copysignf_fu_57091"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_488_copysignf_fu_57097"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_490_copysignf_fu_57103"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_492_copysignf_fu_57109"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_494_copysignf_fu_57115"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_496_copysignf_fu_57121"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_498_copysignf_fu_57127"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_500_copysignf_fu_57133"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_502_copysignf_fu_57139"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_504_copysignf_fu_57145"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_506_copysignf_fu_57151"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_508_copysignf_fu_57157"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_510_copysignf_fu_57163"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_512_copysignf_fu_57169"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_514_copysignf_fu_57175"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_516_copysignf_fu_57181"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_518_copysignf_fu_57187"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_520_copysignf_fu_57193"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_522_copysignf_fu_57199"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_524_copysignf_fu_57205"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_526_copysignf_fu_57211"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_528_copysignf_fu_57217"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_530_copysignf_fu_57223"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_532_copysignf_fu_57229"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_534_copysignf_fu_57235"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_536_copysignf_fu_57241"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_538_copysignf_fu_57247"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_540_copysignf_fu_57253"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_542_copysignf_fu_57259"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_544_copysignf_fu_57265"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_546_copysignf_fu_57271"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_548_copysignf_fu_57277"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_550_copysignf_fu_57283"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_552_copysignf_fu_57289"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_554_copysignf_fu_57295"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_556_copysignf_fu_57301"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_558_copysignf_fu_57307"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_560_copysignf_fu_57313"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_562_copysignf_fu_57319"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_564_copysignf_fu_57325"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_566_copysignf_fu_57331"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_568_copysignf_fu_57337"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_570_copysignf_fu_57343"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_572_copysignf_fu_57349"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_574_copysignf_fu_57355"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_576_copysignf_fu_57361"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_578_copysignf_fu_57367"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_580_copysignf_fu_57373"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_582_copysignf_fu_57379"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_584_copysignf_fu_57385"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_586_copysignf_fu_57391"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_588_copysignf_fu_57397"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_590_copysignf_fu_57403"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_592_copysignf_fu_57409"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_594_copysignf_fu_57415"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_596_copysignf_fu_57421"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_598_copysignf_fu_57427"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_600_copysignf_fu_57433"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_602_copysignf_fu_57439"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_604_copysignf_fu_57445"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_606_copysignf_fu_57451"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_608_copysignf_fu_57457"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_610_copysignf_fu_57463"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_612_copysignf_fu_57469"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_614_copysignf_fu_57475"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_616_copysignf_fu_57481"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_618_copysignf_fu_57487"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_620_copysignf_fu_57493"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_622_copysignf_fu_57499"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_624_copysignf_fu_57505"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_626_copysignf_fu_57511"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_628_copysignf_fu_57517"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_630_copysignf_fu_57523"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_632_copysignf_fu_57529"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_634_copysignf_fu_57535"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_636_copysignf_fu_57541"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_638_copysignf_fu_57547"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_640_copysignf_fu_57553"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_642_copysignf_fu_57559"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_644_copysignf_fu_57565"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_646_copysignf_fu_57571"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_648_copysignf_fu_57577"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_650_copysignf_fu_57583"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_652_copysignf_fu_57589"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_654_copysignf_fu_57595"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_656_copysignf_fu_57601"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_658_copysignf_fu_57607"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_660_copysignf_fu_57613"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_662_copysignf_fu_57619"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_664_copysignf_fu_57625"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_666_copysignf_fu_57631"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_668_copysignf_fu_57637"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_670_copysignf_fu_57643"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_672_copysignf_fu_57649"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_674_copysignf_fu_57655"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_676_copysignf_fu_57661"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_678_copysignf_fu_57667"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_680_copysignf_fu_57673"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_682_copysignf_fu_57679"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_684_copysignf_fu_57685"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_686_copysignf_fu_57691"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_688_copysignf_fu_57697"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_690_copysignf_fu_57703"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_692_copysignf_fu_57709"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_694_copysignf_fu_57715"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_696_copysignf_fu_57721"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_698_copysignf_fu_57727"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_700_copysignf_fu_57733"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_702_copysignf_fu_57739"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_704_copysignf_fu_57745"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_706_copysignf_fu_57751"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_708_copysignf_fu_57757"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_710_copysignf_fu_57763"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_712_copysignf_fu_57769"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_714_copysignf_fu_57775"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_716_copysignf_fu_57781"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_718_copysignf_fu_57787"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_720_copysignf_fu_57793"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_722_copysignf_fu_57799"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_724_copysignf_fu_57805"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_726_copysignf_fu_57811"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_728_copysignf_fu_57817"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_730_copysignf_fu_57823"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_732_copysignf_fu_57829"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_734_copysignf_fu_57835"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_736_copysignf_fu_57841"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_738_copysignf_fu_57847"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_740_copysignf_fu_57853"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_742_copysignf_fu_57859"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_744_copysignf_fu_57865"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_746_copysignf_fu_57871"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_748_copysignf_fu_57877"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_750_copysignf_fu_57883"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_752_copysignf_fu_57889"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_754_copysignf_fu_57895"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_756_copysignf_fu_57901"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_758_copysignf_fu_57907"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_760_copysignf_fu_57913"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_762_copysignf_fu_57919"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_764_copysignf_fu_57925"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_766_copysignf_fu_57931"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_768_copysignf_fu_57937"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_770_copysignf_fu_57943"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_772_copysignf_fu_57949"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_774_copysignf_fu_57955"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_776_copysignf_fu_57961"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_778_copysignf_fu_57967"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_780_copysignf_fu_57973"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_782_copysignf_fu_57979"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_784_copysignf_fu_57985"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_786_copysignf_fu_57991"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_788_copysignf_fu_57997"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_790_copysignf_fu_58003"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_792_copysignf_fu_58009"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_794_copysignf_fu_58015"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_796_copysignf_fu_58021"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_798_copysignf_fu_58027"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_800_copysignf_fu_58033"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_802_copysignf_fu_58039"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_804_copysignf_fu_58045"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_806_copysignf_fu_58051"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_808_copysignf_fu_58057"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_810_copysignf_fu_58063"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_812_copysignf_fu_58069"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_814_copysignf_fu_58075"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_816_copysignf_fu_58081"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_818_copysignf_fu_58087"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_820_copysignf_fu_58093"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_822_copysignf_fu_58099"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_824_copysignf_fu_58105"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_826_copysignf_fu_58111"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_828_copysignf_fu_58117"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_830_copysignf_fu_58123"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_832_copysignf_fu_58129"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_834_copysignf_fu_58135"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_836_copysignf_fu_58141"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_838_copysignf_fu_58147"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_840_copysignf_fu_58153"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_842_copysignf_fu_58159"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_844_copysignf_fu_58165"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_846_copysignf_fu_58171"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_848_copysignf_fu_58177"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_850_copysignf_fu_58183"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_852_copysignf_fu_58189"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_854_copysignf_fu_58195"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_856_copysignf_fu_58201"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_858_copysignf_fu_58207"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_860_copysignf_fu_58213"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_862_copysignf_fu_58219"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_864_copysignf_fu_58225"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_866_copysignf_fu_58231"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_868_copysignf_fu_58237"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_870_copysignf_fu_58243"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_872_copysignf_fu_58249"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_874_copysignf_fu_58255"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_876_copysignf_fu_58261"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_878_copysignf_fu_58267"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_880_copysignf_fu_58273"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_882_copysignf_fu_58279"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_884_copysignf_fu_58285"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_886_copysignf_fu_58291"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_888_copysignf_fu_58297"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_890_copysignf_fu_58303"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_892_copysignf_fu_58309"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_894_copysignf_fu_58315"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_896_copysignf_fu_58321"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_898_copysignf_fu_58327"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_900_copysignf_fu_58333"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_902_copysignf_fu_58339"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_904_copysignf_fu_58345"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_906_copysignf_fu_58351"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_908_copysignf_fu_58357"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_910_copysignf_fu_58363"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_912_copysignf_fu_58369"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_914_copysignf_fu_58375"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_916_copysignf_fu_58381"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_918_copysignf_fu_58387"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_920_copysignf_fu_58393"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_922_copysignf_fu_58399"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_924_copysignf_fu_58405"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_926_copysignf_fu_58411"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_928_copysignf_fu_58417"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_930_copysignf_fu_58423"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_932_copysignf_fu_58429"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_934_copysignf_fu_58435"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_936_copysignf_fu_58441"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_938_copysignf_fu_58447"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_940_copysignf_fu_58453"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_942_copysignf_fu_58459"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_944_copysignf_fu_58465"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_946_copysignf_fu_58471"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_948_copysignf_fu_58477"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_950_copysignf_fu_58483"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_952_copysignf_fu_58489"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_954_copysignf_fu_58495"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_956_copysignf_fu_58501"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_958_copysignf_fu_58507"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_960_copysignf_fu_58513"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_962_copysignf_fu_58519"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_964_copysignf_fu_58525"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_966_copysignf_fu_58531"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_968_copysignf_fu_58537"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_970_copysignf_fu_58543"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_972_copysignf_fu_58549"
+            },
+            {
+              "ModuleName": "copysignf",
+              "InstanceName": "fpBuffer_974_copysignf_fu_58555"
+            }
+          ]
+        },
+        {
+          "ModuleName": "TrotterUnitFinal",
+          "InstanceName": "grp_TrotterUnitFinal_fu_525"
+        },
+        {
+          "ModuleName": "QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP",
+          "InstanceName": "grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_550"
+        }
+      ]
+    },
+    "Info": {
+      "QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "copysignf": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "1",
+        "isOneStateSeq": "0"
+      },
+      "TrotterUnit": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "TrotterUnitFinal": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "QuantumMonteCarloU50": {
+        "FunctionProtocol": "ap_ctrl_chain",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      }
+    },
+    "Metrics": {
+      "QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1": {
+        "Latency": {
+          "LatencyBest": "3918",
+          "LatencyAvg": "3918",
+          "LatencyWorst": "3918",
+          "PipelineII": "3918",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "3.33",
+          "Uncertainty": "0.90",
+          "Estimate": "2.433"
+        },
+        "Loops": [{
+            "Name": "READ_NEW_JCOUP_VITIS_LOOP_234_1",
+            "TripCount": "256",
+            "Latency": "3916",
+            "PipelineII": "15",
+            "PipelineDepth": "92"
+          }],
+        "Area": {
+          "FF": "856600",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "49",
+          "LUT": "505393",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "57",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "copysignf": {
+        "Latency": {
+          "LatencyBest": "0",
+          "LatencyAvg": "0",
+          "LatencyWorst": "0",
+          "PipelineII": "0",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "3.33",
+          "Uncertainty": "0.90",
+          "Estimate": "0.000"
+        },
+        "Area": {
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "FF": "0",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "0",
+          "LUT": "0",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "TrotterUnit": {
+        "Latency": {
+          "LatencyBest": "1",
+          "LatencyAvg": "74",
+          "LatencyWorst": "146",
+          "PipelineIIMin": "1",
+          "PipelineIIMax": "146",
+          "PipelineII": "1 ~ 146",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "3.33",
+          "Uncertainty": "0.90",
+          "Estimate": "2.433"
+        },
+        "Area": {
+          "DSP": "128",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "2",
+          "FF": "62127",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "3",
+          "LUT": "24794",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "2",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "TrotterUnitFinal": {
+        "Latency": {
+          "LatencyBest": "1",
+          "LatencyAvg": "73",
+          "LatencyWorst": "143",
+          "PipelineIIMin": "1",
+          "PipelineIIMax": "143",
+          "PipelineII": "1 ~ 143",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "3.33",
+          "Uncertainty": "0.90",
+          "Estimate": "2.433"
+        },
+        "Area": {
+          "DSP": "7",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "~0",
+          "FF": "2246",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "1585",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP": {
+        "Latency": {
+          "LatencyBest": "10",
+          "LatencyAvg": "10",
+          "LatencyWorst": "10",
+          "PipelineII": "10",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "3.33",
+          "Uncertainty": "0.90",
+          "Estimate": "2.400"
+        },
+        "Loops": [{
+            "Name": "SHIFT_JCOUP",
+            "TripCount": "8",
+            "Latency": "8",
+            "PipelineII": "1",
+            "PipelineDepth": "2"
+          }],
+        "Area": {
+          "FF": "17",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "~0",
+          "LUT": "59",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      },
+      "QuantumMonteCarloU50": {
+        "Latency": {
+          "LatencyBest": "811607",
+          "LatencyAvg": "19560433",
+          "LatencyWorst": "38182190",
+          "PipelineIIMin": "811608",
+          "PipelineIIMax": "38182191",
+          "PipelineII": "811608 ~ 38182191",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "3.33",
+          "Uncertainty": "0.90",
+          "Estimate": "2.433"
+        },
+        "Loops": [{
+            "Name": "LOOP_STAGE",
+            "TripCount": "4099",
+            "LatencyMin": "811602",
+            "LatencyMax": "38182185",
+            "Latency": "811602 ~ 38182185",
+            "PipelineII": "",
+            "PipelineDepthMin": "198",
+            "PipelineDepthMax": "9315",
+            "PipelineDepth": "198 ~ 9315",
+            "Loops": [{
+                "Name": "LOOP_STEP",
+                "TripCount": "8",
+                "LatencyMin": "96",
+                "LatencyMax": "4736",
+                "Latency": "96 ~ 4736",
+                "PipelineII": "",
+                "PipelineDepthMin": "12",
+                "PipelineDepthMax": "592",
+                "PipelineDepth": "12 ~ 592"
+              }]
+          }],
+        "Area": {
+          "BRAM_18K": "152",
+          "AVAIL_BRAM": "2688",
+          "UTIL_BRAM": "5",
+          "DSP": "138",
+          "AVAIL_DSP": "5952",
+          "UTIL_DSP": "2",
+          "FF": "933591",
+          "AVAIL_FF": "1743360",
+          "UTIL_FF": "53",
+          "LUT": "559471",
+          "AVAIL_LUT": "871680",
+          "UTIL_LUT": "64",
+          "URAM": "0",
+          "AVAIL_URAM": "640",
+          "UTIL_URAM": "0"
+        }
+      }
+    }
+  },
+  "GenerateBdFiles": "0",
+  "GenData": {
+    "DataVersion": "0.2",
+    "Time": "2021-08-24 11:14:08 CST",
+    "ToolName": "vitis_hls",
+    "ToolVersion": "2021.1"
+  }
+}

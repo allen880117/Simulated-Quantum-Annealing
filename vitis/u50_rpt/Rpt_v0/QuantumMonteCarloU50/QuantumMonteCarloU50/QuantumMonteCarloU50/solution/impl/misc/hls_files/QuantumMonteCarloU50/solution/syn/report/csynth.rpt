@@ -1,0 +1,603 @@
+
+
+================================================================
+== Synthesis Summary Report of 'QuantumMonteCarloU50'
+================================================================
++ General Information: 
+    * Date:           Tue Aug 24 11:13:48 2021
+    * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+    * Project:        QuantumMonteCarloU50
+    * Solution:       solution (Vitis Kernel Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu50-fsvh2104-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------------------------------------------+------+------+----------+-----------+----------+----------+------+----------+----------+----------+--------------+--------------+-----+
+    |                                   Modules                                   | Issue|      | Latency  |  Latency  | Iteration|          | Trip |          |          |          |              |              |     |
+    |                                   & Loops                                   | Type | Slack| (cycles) |    (ns)   |  Latency | Interval | Count| Pipelined|   BRAM   |    DSP   |      FF      |      LUT     | URAM|
+    +-----------------------------------------------------------------------------+------+------+----------+-----------+----------+----------+------+----------+----------+----------+--------------+--------------+-----+
+    |+ QuantumMonteCarloU50                                                       |     -|  0.00|  38182190|  1.273e+08|         -|  38182191|     -|        no|  152 (5%)|  138 (2%)|  933591 (53%)|  559471 (64%)|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_VITIS_LOOP_234_1_fu_491  |     -|  0.00|      3918|  1.306e+04|         -|      3918|     -|        no|         -|         -|  856600 (49%)|  505393 (57%)|    -|
+    |  o READ_NEW_JCOUP_VITIS_LOOP_234_1                                          |    II|  2.43|      3916|  1.305e+04|        92|        15|   256|       yes|         -|         -|             -|             -|    -|
+    | + grp_TrotterUnit_fu_500                                                    |     -|  0.00|       146|    486.618|         -|       146|     -|        no|         -|  128 (2%)|    62127 (3%)|    24794 (2%)|    -|
+    |  + grp_copysignf_fu_55633                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55639                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55645                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55651                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55657                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55663                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55669                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55675                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55681                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55687                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55693                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55699                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55705                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55711                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55717                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55723                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55729                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55735                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55741                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55747                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55753                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55759                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55765                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + grp_copysignf_fu_55771                                                   |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_48_copysignf_fu_55777                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_50_copysignf_fu_55783                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_52_copysignf_fu_55789                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_54_copysignf_fu_55795                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_56_copysignf_fu_55801                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_58_copysignf_fu_55807                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_60_copysignf_fu_55813                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_62_copysignf_fu_55819                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_64_copysignf_fu_55825                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_66_copysignf_fu_55831                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_68_copysignf_fu_55837                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_70_copysignf_fu_55843                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_72_copysignf_fu_55849                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_74_copysignf_fu_55855                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_76_copysignf_fu_55861                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_78_copysignf_fu_55867                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_80_copysignf_fu_55873                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_82_copysignf_fu_55879                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_84_copysignf_fu_55885                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_86_copysignf_fu_55891                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_88_copysignf_fu_55897                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_90_copysignf_fu_55903                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_92_copysignf_fu_55909                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_94_copysignf_fu_55915                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_96_copysignf_fu_55921                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_98_copysignf_fu_55927                                           |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_100_copysignf_fu_55933                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_102_copysignf_fu_55939                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_104_copysignf_fu_55945                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_106_copysignf_fu_55951                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_108_copysignf_fu_55957                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_110_copysignf_fu_55963                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_112_copysignf_fu_55969                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_114_copysignf_fu_55975                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_116_copysignf_fu_55981                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_118_copysignf_fu_55987                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_120_copysignf_fu_55993                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_122_copysignf_fu_55999                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_124_copysignf_fu_56005                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_126_copysignf_fu_56011                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_128_copysignf_fu_56017                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_130_copysignf_fu_56023                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_132_copysignf_fu_56029                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_134_copysignf_fu_56035                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_136_copysignf_fu_56041                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_138_copysignf_fu_56047                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_140_copysignf_fu_56053                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_142_copysignf_fu_56059                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_144_copysignf_fu_56065                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_146_copysignf_fu_56071                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_148_copysignf_fu_56077                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_150_copysignf_fu_56083                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_152_copysignf_fu_56089                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_154_copysignf_fu_56095                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_156_copysignf_fu_56101                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_158_copysignf_fu_56107                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_160_copysignf_fu_56113                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_162_copysignf_fu_56119                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_164_copysignf_fu_56125                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_166_copysignf_fu_56131                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_168_copysignf_fu_56137                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_170_copysignf_fu_56143                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_172_copysignf_fu_56149                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_174_copysignf_fu_56155                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_176_copysignf_fu_56161                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_178_copysignf_fu_56167                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_180_copysignf_fu_56173                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_182_copysignf_fu_56179                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_184_copysignf_fu_56185                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_186_copysignf_fu_56191                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_188_copysignf_fu_56197                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_190_copysignf_fu_56203                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_192_copysignf_fu_56209                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_194_copysignf_fu_56215                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_196_copysignf_fu_56221                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_198_copysignf_fu_56227                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_200_copysignf_fu_56233                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_202_copysignf_fu_56239                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_204_copysignf_fu_56245                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_206_copysignf_fu_56251                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_208_copysignf_fu_56257                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_210_copysignf_fu_56263                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_212_copysignf_fu_56269                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_214_copysignf_fu_56275                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_216_copysignf_fu_56281                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_218_copysignf_fu_56287                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_220_copysignf_fu_56293                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_222_copysignf_fu_56299                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_224_copysignf_fu_56305                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_226_copysignf_fu_56311                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_228_copysignf_fu_56317                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_230_copysignf_fu_56323                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_232_copysignf_fu_56329                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_234_copysignf_fu_56335                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_236_copysignf_fu_56341                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_238_copysignf_fu_56347                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_240_copysignf_fu_56353                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_242_copysignf_fu_56359                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_244_copysignf_fu_56365                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_246_copysignf_fu_56371                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_248_copysignf_fu_56377                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_250_copysignf_fu_56383                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_252_copysignf_fu_56389                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_254_copysignf_fu_56395                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_256_copysignf_fu_56401                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_258_copysignf_fu_56407                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_260_copysignf_fu_56413                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_262_copysignf_fu_56419                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_264_copysignf_fu_56425                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_266_copysignf_fu_56431                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_268_copysignf_fu_56437                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_270_copysignf_fu_56443                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_272_copysignf_fu_56449                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_274_copysignf_fu_56455                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_276_copysignf_fu_56461                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_278_copysignf_fu_56467                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_280_copysignf_fu_56473                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_282_copysignf_fu_56479                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_284_copysignf_fu_56485                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_286_copysignf_fu_56491                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_288_copysignf_fu_56497                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_290_copysignf_fu_56503                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_292_copysignf_fu_56509                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_294_copysignf_fu_56515                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_296_copysignf_fu_56521                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_298_copysignf_fu_56527                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_300_copysignf_fu_56533                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_302_copysignf_fu_56539                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_304_copysignf_fu_56545                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_306_copysignf_fu_56551                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_308_copysignf_fu_56557                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_310_copysignf_fu_56563                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_312_copysignf_fu_56569                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_314_copysignf_fu_56575                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_316_copysignf_fu_56581                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_318_copysignf_fu_56587                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_320_copysignf_fu_56593                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_322_copysignf_fu_56599                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_324_copysignf_fu_56605                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_326_copysignf_fu_56611                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_328_copysignf_fu_56617                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_330_copysignf_fu_56623                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_332_copysignf_fu_56629                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_334_copysignf_fu_56635                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_336_copysignf_fu_56641                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_338_copysignf_fu_56647                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_340_copysignf_fu_56653                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_342_copysignf_fu_56659                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_344_copysignf_fu_56665                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_346_copysignf_fu_56671                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_348_copysignf_fu_56677                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_350_copysignf_fu_56683                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_352_copysignf_fu_56689                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_354_copysignf_fu_56695                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_356_copysignf_fu_56701                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_358_copysignf_fu_56707                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_360_copysignf_fu_56713                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_362_copysignf_fu_56719                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_364_copysignf_fu_56725                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_366_copysignf_fu_56731                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_368_copysignf_fu_56737                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_370_copysignf_fu_56743                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_372_copysignf_fu_56749                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_374_copysignf_fu_56755                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_376_copysignf_fu_56761                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_378_copysignf_fu_56767                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_380_copysignf_fu_56773                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_382_copysignf_fu_56779                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_384_copysignf_fu_56785                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_386_copysignf_fu_56791                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_388_copysignf_fu_56797                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_390_copysignf_fu_56803                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_392_copysignf_fu_56809                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_394_copysignf_fu_56815                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_396_copysignf_fu_56821                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_398_copysignf_fu_56827                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_400_copysignf_fu_56833                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_402_copysignf_fu_56839                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_404_copysignf_fu_56845                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_406_copysignf_fu_56851                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_408_copysignf_fu_56857                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_410_copysignf_fu_56863                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_412_copysignf_fu_56869                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_414_copysignf_fu_56875                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_416_copysignf_fu_56881                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_418_copysignf_fu_56887                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_420_copysignf_fu_56893                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_422_copysignf_fu_56899                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_424_copysignf_fu_56905                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_426_copysignf_fu_56911                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_428_copysignf_fu_56917                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_430_copysignf_fu_56923                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_432_copysignf_fu_56929                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_434_copysignf_fu_56935                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_436_copysignf_fu_56941                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_438_copysignf_fu_56947                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_440_copysignf_fu_56953                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_442_copysignf_fu_56959                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_444_copysignf_fu_56965                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_446_copysignf_fu_56971                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_448_copysignf_fu_56977                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_450_copysignf_fu_56983                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_452_copysignf_fu_56989                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_454_copysignf_fu_56995                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_456_copysignf_fu_57001                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_458_copysignf_fu_57007                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_460_copysignf_fu_57013                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_462_copysignf_fu_57019                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_464_copysignf_fu_57025                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_466_copysignf_fu_57031                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_468_copysignf_fu_57037                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_470_copysignf_fu_57043                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_472_copysignf_fu_57049                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_474_copysignf_fu_57055                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_476_copysignf_fu_57061                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_478_copysignf_fu_57067                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_480_copysignf_fu_57073                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_482_copysignf_fu_57079                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_484_copysignf_fu_57085                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_486_copysignf_fu_57091                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_488_copysignf_fu_57097                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_490_copysignf_fu_57103                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_492_copysignf_fu_57109                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_494_copysignf_fu_57115                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_496_copysignf_fu_57121                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_498_copysignf_fu_57127                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_500_copysignf_fu_57133                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_502_copysignf_fu_57139                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_504_copysignf_fu_57145                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_506_copysignf_fu_57151                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_508_copysignf_fu_57157                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_510_copysignf_fu_57163                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_512_copysignf_fu_57169                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_514_copysignf_fu_57175                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_516_copysignf_fu_57181                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_518_copysignf_fu_57187                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_520_copysignf_fu_57193                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_522_copysignf_fu_57199                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_524_copysignf_fu_57205                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_526_copysignf_fu_57211                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_528_copysignf_fu_57217                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_530_copysignf_fu_57223                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_532_copysignf_fu_57229                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_534_copysignf_fu_57235                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_536_copysignf_fu_57241                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_538_copysignf_fu_57247                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_540_copysignf_fu_57253                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_542_copysignf_fu_57259                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_544_copysignf_fu_57265                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_546_copysignf_fu_57271                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_548_copysignf_fu_57277                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_550_copysignf_fu_57283                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_552_copysignf_fu_57289                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_554_copysignf_fu_57295                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_556_copysignf_fu_57301                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_558_copysignf_fu_57307                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_560_copysignf_fu_57313                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_562_copysignf_fu_57319                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_564_copysignf_fu_57325                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_566_copysignf_fu_57331                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_568_copysignf_fu_57337                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_570_copysignf_fu_57343                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_572_copysignf_fu_57349                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_574_copysignf_fu_57355                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_576_copysignf_fu_57361                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_578_copysignf_fu_57367                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_580_copysignf_fu_57373                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_582_copysignf_fu_57379                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_584_copysignf_fu_57385                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_586_copysignf_fu_57391                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_588_copysignf_fu_57397                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_590_copysignf_fu_57403                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_592_copysignf_fu_57409                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_594_copysignf_fu_57415                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_596_copysignf_fu_57421                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_598_copysignf_fu_57427                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_600_copysignf_fu_57433                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_602_copysignf_fu_57439                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_604_copysignf_fu_57445                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_606_copysignf_fu_57451                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_608_copysignf_fu_57457                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_610_copysignf_fu_57463                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_612_copysignf_fu_57469                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_614_copysignf_fu_57475                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_616_copysignf_fu_57481                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_618_copysignf_fu_57487                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_620_copysignf_fu_57493                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_622_copysignf_fu_57499                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_624_copysignf_fu_57505                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_626_copysignf_fu_57511                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_628_copysignf_fu_57517                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_630_copysignf_fu_57523                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_632_copysignf_fu_57529                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_634_copysignf_fu_57535                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_636_copysignf_fu_57541                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_638_copysignf_fu_57547                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_640_copysignf_fu_57553                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_642_copysignf_fu_57559                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_644_copysignf_fu_57565                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_646_copysignf_fu_57571                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_648_copysignf_fu_57577                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_650_copysignf_fu_57583                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_652_copysignf_fu_57589                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_654_copysignf_fu_57595                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_656_copysignf_fu_57601                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_658_copysignf_fu_57607                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_660_copysignf_fu_57613                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_662_copysignf_fu_57619                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_664_copysignf_fu_57625                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_666_copysignf_fu_57631                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_668_copysignf_fu_57637                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_670_copysignf_fu_57643                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_672_copysignf_fu_57649                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_674_copysignf_fu_57655                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_676_copysignf_fu_57661                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_678_copysignf_fu_57667                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_680_copysignf_fu_57673                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_682_copysignf_fu_57679                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_684_copysignf_fu_57685                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_686_copysignf_fu_57691                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_688_copysignf_fu_57697                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_690_copysignf_fu_57703                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_692_copysignf_fu_57709                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_694_copysignf_fu_57715                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_696_copysignf_fu_57721                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_698_copysignf_fu_57727                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_700_copysignf_fu_57733                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_702_copysignf_fu_57739                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_704_copysignf_fu_57745                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_706_copysignf_fu_57751                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_708_copysignf_fu_57757                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_710_copysignf_fu_57763                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_712_copysignf_fu_57769                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_714_copysignf_fu_57775                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_716_copysignf_fu_57781                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_718_copysignf_fu_57787                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_720_copysignf_fu_57793                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_722_copysignf_fu_57799                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_724_copysignf_fu_57805                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_726_copysignf_fu_57811                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_728_copysignf_fu_57817                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_730_copysignf_fu_57823                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_732_copysignf_fu_57829                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_734_copysignf_fu_57835                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_736_copysignf_fu_57841                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_738_copysignf_fu_57847                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_740_copysignf_fu_57853                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_742_copysignf_fu_57859                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_744_copysignf_fu_57865                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_746_copysignf_fu_57871                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_748_copysignf_fu_57877                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_750_copysignf_fu_57883                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_752_copysignf_fu_57889                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_754_copysignf_fu_57895                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_756_copysignf_fu_57901                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_758_copysignf_fu_57907                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_760_copysignf_fu_57913                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_762_copysignf_fu_57919                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_764_copysignf_fu_57925                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_766_copysignf_fu_57931                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_768_copysignf_fu_57937                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_770_copysignf_fu_57943                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_772_copysignf_fu_57949                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_774_copysignf_fu_57955                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_776_copysignf_fu_57961                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_778_copysignf_fu_57967                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_780_copysignf_fu_57973                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_782_copysignf_fu_57979                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_784_copysignf_fu_57985                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_786_copysignf_fu_57991                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_788_copysignf_fu_57997                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_790_copysignf_fu_58003                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_792_copysignf_fu_58009                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_794_copysignf_fu_58015                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_796_copysignf_fu_58021                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_798_copysignf_fu_58027                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_800_copysignf_fu_58033                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_802_copysignf_fu_58039                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_804_copysignf_fu_58045                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_806_copysignf_fu_58051                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_808_copysignf_fu_58057                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_810_copysignf_fu_58063                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_812_copysignf_fu_58069                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_814_copysignf_fu_58075                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_816_copysignf_fu_58081                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_818_copysignf_fu_58087                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_820_copysignf_fu_58093                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_822_copysignf_fu_58099                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_824_copysignf_fu_58105                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_826_copysignf_fu_58111                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_828_copysignf_fu_58117                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_830_copysignf_fu_58123                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_832_copysignf_fu_58129                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_834_copysignf_fu_58135                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_836_copysignf_fu_58141                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_838_copysignf_fu_58147                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_840_copysignf_fu_58153                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_842_copysignf_fu_58159                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_844_copysignf_fu_58165                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_846_copysignf_fu_58171                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_848_copysignf_fu_58177                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_850_copysignf_fu_58183                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_852_copysignf_fu_58189                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_854_copysignf_fu_58195                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_856_copysignf_fu_58201                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_858_copysignf_fu_58207                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_860_copysignf_fu_58213                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_862_copysignf_fu_58219                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_864_copysignf_fu_58225                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_866_copysignf_fu_58231                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_868_copysignf_fu_58237                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_870_copysignf_fu_58243                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_872_copysignf_fu_58249                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_874_copysignf_fu_58255                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_876_copysignf_fu_58261                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_878_copysignf_fu_58267                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_880_copysignf_fu_58273                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_882_copysignf_fu_58279                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_884_copysignf_fu_58285                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_886_copysignf_fu_58291                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_888_copysignf_fu_58297                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_890_copysignf_fu_58303                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_892_copysignf_fu_58309                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_894_copysignf_fu_58315                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_896_copysignf_fu_58321                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_898_copysignf_fu_58327                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_900_copysignf_fu_58333                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_902_copysignf_fu_58339                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_904_copysignf_fu_58345                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_906_copysignf_fu_58351                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_908_copysignf_fu_58357                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_910_copysignf_fu_58363                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_912_copysignf_fu_58369                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_914_copysignf_fu_58375                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_916_copysignf_fu_58381                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_918_copysignf_fu_58387                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_920_copysignf_fu_58393                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_922_copysignf_fu_58399                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_924_copysignf_fu_58405                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_926_copysignf_fu_58411                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_928_copysignf_fu_58417                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_930_copysignf_fu_58423                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_932_copysignf_fu_58429                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_934_copysignf_fu_58435                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_936_copysignf_fu_58441                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_938_copysignf_fu_58447                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_940_copysignf_fu_58453                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_942_copysignf_fu_58459                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_944_copysignf_fu_58465                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_946_copysignf_fu_58471                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_948_copysignf_fu_58477                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_950_copysignf_fu_58483                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_952_copysignf_fu_58489                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_954_copysignf_fu_58495                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_956_copysignf_fu_58501                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_958_copysignf_fu_58507                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_960_copysignf_fu_58513                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_962_copysignf_fu_58519                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_964_copysignf_fu_58525                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_966_copysignf_fu_58531                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_968_copysignf_fu_58537                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_970_copysignf_fu_58543                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_972_copysignf_fu_58549                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    |  + fpBuffer_974_copysignf_fu_58555                                          |     -|  2.43|         0|      0.000|         -|         0|     -|        no|         -|         -|             -|             -|    -|
+    | + grp_TrotterUnitFinal_fu_525                                               |     -|  0.00|       143|    476.619|         -|       143|     -|        no|         -|   7 (~0%)|    2246 (~0%)|    1585 (~0%)|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_550                      |     -|  0.03|        10|     33.330|         -|        10|     -|        no|         -|         -|      17 (~0%)|      59 (~0%)|    -|
+    |  o SHIFT_JCOUP                                                              |     -|  2.43|         8|     26.664|         2|         1|     8|       yes|         -|         -|             -|             -|    -|
+    | o LOOP_STAGE                                                                |     -|  2.43|  38182185|  1.273e+08|      9315|         -|  4099|        no|         -|         -|             -|             -|    -|
+    |  o LOOP_STEP                                                                |     -|  2.43|      4736|  1.579e+04|       592|         -|     8|        no|         -|         -|             -|             -|    -|
+    +-----------------------------------------------------------------------------+------+------+----------+-----------+----------+----------+------+----------+----------+----------+--------------+--------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| Interface   | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   |
+|             | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |
++-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| m_axi_gmem0 | 512 -> 512 | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem1 | 512 -> 512 | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem2 | 32 -> 512  | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem3 | 32 -> 512  | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
++-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+
+* S_AXILITE
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* TOP LEVEL CONTROL
++-----------+---------------+-----------+
+| Interface | Type          | Ports     |
++-----------+---------------+-----------+
+| ap_clk    | clock         | ap_clk    |
+| ap_rst_n  | reset         | ap_rst_n  |
+| interrupt | interrupt     | interrupt |
+| ap_ctrl   | ap_ctrl_chain |           |
++-----------+---------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------+
+| Argument | Direction | Datatype      |
++----------+-----------+---------------+
+| trotters | inout     | ap_uint<512>* |
+| Jcoup    | in        |  const *      |
+| h        | in        | float const * |
+| Jperp    | in        | float const   |
+| Beta     | in        | float const   |
+| logRand  | in        | float const * |
++----------+-----------+---------------+
+
+* SW-to-HW Mapping
++----------+--------------------------+-----------+----------+-----------------------+
+| Argument | HW Name                  | HW Type   | HW Usage | HW Info               |
++----------+--------------------------+-----------+----------+-----------------------+
+| trotters | m_axi_gmem0              | interface |          |                       |
+| trotters | s_axi_control trotters_1 | register  | offset   | offset=0x10, range=32 |
+| trotters | s_axi_control trotters_2 | register  | offset   | offset=0x14, range=32 |
+| Jcoup    | m_axi_gmem1              | interface |          |                       |
+| Jcoup    | s_axi_control Jcoup_1    | register  | offset   | offset=0x1c, range=32 |
+| Jcoup    | s_axi_control Jcoup_2    | register  | offset   | offset=0x20, range=32 |
+| h        | m_axi_gmem2              | interface |          |                       |
+| h        | s_axi_control h_1        | register  | offset   | offset=0x28, range=32 |
+| h        | s_axi_control h_2        | register  | offset   | offset=0x2c, range=32 |
+| Jperp    | s_axi_control Jperp      | register  |          | offset=0x34, range=32 |
+| Beta     | s_axi_control Beta       | register  |          | offset=0x3c, range=32 |
+| logRand  | m_axi_gmem3              | interface |          |                       |
+| logRand  | s_axi_control logRand_1  | register  | offset   | offset=0x44, range=32 |
+| logRand  | s_axi_control logRand_2  | register  | offset   | offset=0x48, range=32 |
++----------+--------------------------+-----------+----------+-----------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+* Bursts and Widening Missed
++--------------+----------+---------------------------------------------------------------------------------------------------------------------+------------+-----------------------------------------------------+
+| HW Interface | Variable | Problem                                                                                                             | Resolution | Location                                            |
++--------------+----------+---------------------------------------------------------------------------------------------------------------------+------------+-----------------------------------------------------+
+| m_axi_gmem1  | Jcoup    | Alignment is insufficient, current alignment is 4 byte(s) but 64 is required                                        | 214-228    | /home/edci/workspace/SQA_kernels/src/qmc.cpp:241:29 |
+| m_axi_gmem1  | Jcoup    | Could not widen since the size of type 'i512' is greater than or equal to the max_widen_bitwidth threshold of '64'. |            | /home/edci/workspace/SQA_kernels/src/qmc.cpp:232:13 |
+| m_axi_gmem1  |          | Could not burst due to multiple potential reads to the same bundle in the same region.                              | 214-224    | /home/edci/workspace/SQA_kernels/src/qmc.cpp:232:13 |
++--------------+----------+---------------------------------------------------------------------------------------------------------------------+------------+-----------------------------------------------------+
+
+    * Resolution URL: www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=XXX-YYY.html (replace XXX-YYY with column value)
+
