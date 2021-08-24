@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="QuantumMonteCarloU50" dir="">
+  <FileSets>
+    <FileSet Name="kernel_QuantumMonteCarloU50" Type="DesignSrcs">
+      <File Path="/home/edci/workspace/SQA_kernels/src/qmc.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>

@@ -1,0 +1,219 @@
+
+
+================================================================
+== Vitis HLS Report for 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS'
+================================================================
+* Date:           Tue Aug 24 11:37:22 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        QuantumMonteCarloU50
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       42|       42|  0.140 us|  0.140 us|   42|   42|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                 |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name    |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- READ_TROTTERS  |       40|       40|        10|          8|          1|     4|       yes|
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|      27|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|     308|    -|
+|Register             |        -|     -|      533|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|      533|     335|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |add_ln198_fu_441_p2               |         +|   0|  0|  10|           3|           1|
+    |ap_block_pp0_stage0_11001         |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage1_11001         |       and|   0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage1_iter0  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln198_fu_435_p2              |      icmp|   0|  0|   9|           3|           4|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|  27|          10|          10|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  49|          9|    1|          9|
+    |ap_done_int                       |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1           |   9|          2|    1|          2|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_t_2              |   9|          2|    3|          6|
+    |gmem0_blk_n_R                     |   9|          2|    1|          2|
+    |t_fu_80                           |   9|          2|    3|          6|
+    |trottersLocal_V_0_address1        |  49|          9|    3|         27|
+    |trottersLocal_V_1_address1        |  49|          9|    3|         27|
+    |trottersLocal_V_2_address1        |  49|          9|    3|         27|
+    |trottersLocal_V_3_address1        |  49|          9|    3|         27|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             | 308|         59|   24|        139|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------+-----+----+-----+-----------+
+    |                Name               |  FF | LUT| Bits| Const Bits|
+    +-----------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                          |    8|   0|    8|          0|
+    |ap_done_reg                        |    1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg        |    1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1            |    1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg   |    1|   0|    1|          0|
+    |icmp_ln198_reg_474                 |    1|   0|    1|          0|
+    |icmp_ln198_reg_474_pp0_iter1_reg   |    1|   0|    1|          0|
+    |reg_415                            |  512|   0|  512|          0|
+    |t_fu_80                            |    3|   0|    3|          0|
+    |trunc_ln202_reg_478                |    2|   0|    2|          0|
+    |trunc_ln202_reg_478_pp0_iter1_reg  |    2|   0|    2|          0|
+    +-----------------------------------+-----+----+-----+-----------+
+    |Total                              |  533|   0|  533|          0|
+    +-----------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+---------------------------------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |                Source Object                |    C Type    |
++----------------------------+-----+-----+------------+---------------------------------------------+--------------+
+|ap_clk                      |   in|    1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_READ_TROTTERS|  return value|
+|ap_rst                      |   in|    1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_READ_TROTTERS|  return value|
+|ap_start                    |   in|    1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_READ_TROTTERS|  return value|
+|ap_done                     |  out|    1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_READ_TROTTERS|  return value|
+|ap_idle                     |  out|    1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_READ_TROTTERS|  return value|
+|ap_ready                    |  out|    1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_READ_TROTTERS|  return value|
+|m_axi_gmem0_AWVALID         |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWREADY         |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWADDR          |  out|   64|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWID            |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWLEN           |  out|   32|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWSIZE          |  out|    3|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWBURST         |  out|    2|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWLOCK          |  out|    2|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWCACHE         |  out|    4|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWPROT          |  out|    3|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWQOS           |  out|    4|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWREGION        |  out|    4|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_AWUSER          |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WVALID          |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WREADY          |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WDATA           |  out|  512|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WSTRB           |  out|   64|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WLAST           |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WID             |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_WUSER           |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARVALID         |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARREADY         |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARADDR          |  out|   64|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARID            |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARLEN           |  out|   32|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARSIZE          |  out|    3|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARBURST         |  out|    2|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARLOCK          |  out|    2|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARCACHE         |  out|    4|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARPROT          |  out|    3|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARQOS           |  out|    4|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARREGION        |  out|    4|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_ARUSER          |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RVALID          |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RREADY          |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RDATA           |   in|  512|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RLAST           |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RID             |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RUSER           |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_RRESP           |   in|    2|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_BVALID          |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_BREADY          |  out|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_BRESP           |   in|    2|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_BID             |   in|    1|       m_axi|                                        gmem0|       pointer|
+|m_axi_gmem0_BUSER           |   in|    1|       m_axi|                                        gmem0|       pointer|
+|trottersLocal_V_3_address1  |  out|    3|   ap_memory|                            trottersLocal_V_3|         array|
+|trottersLocal_V_3_ce1       |  out|    1|   ap_memory|                            trottersLocal_V_3|         array|
+|trottersLocal_V_3_we1       |  out|    1|   ap_memory|                            trottersLocal_V_3|         array|
+|trottersLocal_V_3_d1        |  out|  512|   ap_memory|                            trottersLocal_V_3|         array|
+|trottersLocal_V_2_address1  |  out|    3|   ap_memory|                            trottersLocal_V_2|         array|
+|trottersLocal_V_2_ce1       |  out|    1|   ap_memory|                            trottersLocal_V_2|         array|
+|trottersLocal_V_2_we1       |  out|    1|   ap_memory|                            trottersLocal_V_2|         array|
+|trottersLocal_V_2_d1        |  out|  512|   ap_memory|                            trottersLocal_V_2|         array|
+|trottersLocal_V_1_address1  |  out|    3|   ap_memory|                            trottersLocal_V_1|         array|
+|trottersLocal_V_1_ce1       |  out|    1|   ap_memory|                            trottersLocal_V_1|         array|
+|trottersLocal_V_1_we1       |  out|    1|   ap_memory|                            trottersLocal_V_1|         array|
+|trottersLocal_V_1_d1        |  out|  512|   ap_memory|                            trottersLocal_V_1|         array|
+|sext_ln198                  |   in|   58|     ap_none|                                   sext_ln198|        scalar|
+|trottersLocal_V_0_address1  |  out|    3|   ap_memory|                            trottersLocal_V_0|         array|
+|trottersLocal_V_0_ce1       |  out|    1|   ap_memory|                            trottersLocal_V_0|         array|
+|trottersLocal_V_0_we1       |  out|    1|   ap_memory|                            trottersLocal_V_0|         array|
+|trottersLocal_V_0_d1        |  out|  512|   ap_memory|                            trottersLocal_V_0|         array|
++----------------------------+-----+-----+------------+---------------------------------------------+--------------+
+

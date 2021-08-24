@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1629776256613">
+  <ports id="1" name="trottersLocal_V_3" type="PortType" coreName="RAM_2P_BRAM" coreId="62" bitwidth="512" iftype="IfTypeRegister" arraysize="8">
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+  </ports>
+  <ports id="2" name="trottersLocal_V_2" type="PortType" coreName="RAM_2P_BRAM" coreId="980447331" bitwidth="512" iftype="IfTypeRegister" arraysize="8">
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+  </ports>
+  <ports id="3" name="trottersLocal_V_1" type="PortType" coreName="RAM_2P_BRAM" coreId="980447331" bitwidth="512" iftype="IfTypeRegister" arraysize="8">
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+  </ports>
+  <ports id="4" name="trottersLocal_V_0" type="PortType" coreName="RAM_2P_BRAM" coreId="980447331" bitwidth="512" iftype="IfTypeRegister" arraysize="8">
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+  </ports>
+  <ports id="5" name="gmem0" type="PortType" coreId="980447331" bitwidth="512" direction="DirOut" iftype="IfTypeFifo">
+    <dataInputObjs>getelementptr</dataInputObjs>
+  </ports>
+  <ports id="6" name="sext_ln198" type="PortType" coreId="980447331" bitwidth="58">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <edges id="117" source_obj="//@ports.5" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="118" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="121" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.3"/>
+  <edges id="122" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="123" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="124" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
+  <edges id="129" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="132" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="135" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.4"/>
+  <edges id="138" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.5"/>
+  <edges id="142" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.6"/>
+  <edges id="145" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.7"/>
+  <edges id="148" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.8"/>
+  <edges id="151" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.9"/>
+  <edges id="155" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.10"/>
+  <edges id="158" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.11"/>
+  <edges id="161" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.12"/>
+  <edges id="164" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.13"/>
+  <edges id="168" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.14"/>
+  <edges id="171" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.15"/>
+  <edges id="174" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.16"/>
+  <edges id="177" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="181" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="184" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="187" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="190" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.21"/>
+  <edges id="194" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.22"/>
+  <edges id="197" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.23"/>
+  <edges id="200" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.24"/>
+  <edges id="203" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.25"/>
+  <edges id="207" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.26"/>
+  <edges id="210" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.27"/>
+  <edges id="213" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.28"/>
+  <edges id="216" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@ports.4"/>
+  <edges id="217" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.29"/>
+  <edges id="218" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.30"/>
+  <edges id="221" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.31"/>
+  <edges id="224" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.32"/>
+  <edges id="227" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.33"/>
+  <edges id="230" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.34"/>
+  <edges id="233" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.35"/>
+  <edges id="236" source_obj="//@regions.0/@basic_blocks.0/@node_objs.34" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.36"/>
+  <edges id="237" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.36"/>
+  <edges id="238" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.36"/>
+  <edges id="239" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.0"/>
+  <edges id="240" source_obj="//@regions.0/@basic_blocks.0/@node_objs.33" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.1"/>
+  <edges id="241" source_obj="//@regions.0/@basic_blocks.0/@node_objs.32" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.2"/>
+  <edges id="242" source_obj="//@regions.0/@basic_blocks.0/@node_objs.31" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.3"/>
+  <edges id="243" source_obj="//@regions.0/@basic_blocks.0/@node_objs.30" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.4"/>
+  <edges id="246" source_obj="//@regions.0/@basic_blocks.1/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.5"/>
+  <edges id="247" source_obj="//@regions.0/@basic_blocks.1/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.5"/>
+  <edges id="248" source_obj="//@regions.0/@basic_blocks.1/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.5"/>
+  <edges id="249" source_obj="//@regions.0/@basic_blocks.1/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.5"/>
+  <edges id="250" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.5"/>
+  <edges id="253" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.6"/>
+  <edges id="254" source_obj="//@regions.0/@basic_blocks.1/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.6"/>
+  <edges id="257" source_obj="//@regions.0/@basic_blocks.0/@node_objs.28" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
+  <edges id="258" source_obj="//@regions.0/@basic_blocks.0/@node_objs.27" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.8"/>
+  <edges id="259" source_obj="//@regions.0/@basic_blocks.0/@node_objs.26" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.9"/>
+  <edges id="260" source_obj="//@regions.0/@basic_blocks.0/@node_objs.25" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.10"/>
+  <edges id="262" source_obj="//@regions.0/@basic_blocks.1/@node_objs.7" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.11"/>
+  <edges id="263" source_obj="//@regions.0/@basic_blocks.1/@node_objs.8" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.11"/>
+  <edges id="264" source_obj="//@regions.0/@basic_blocks.1/@node_objs.9" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.11"/>
+  <edges id="265" source_obj="//@regions.0/@basic_blocks.1/@node_objs.10" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.11"/>
+  <edges id="266" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.11"/>
+  <edges id="268" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.12"/>
+  <edges id="269" source_obj="//@regions.0/@basic_blocks.1/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.12"/>
+  <edges id="271" source_obj="//@regions.0/@basic_blocks.0/@node_objs.24" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.13"/>
+  <edges id="272" source_obj="//@regions.0/@basic_blocks.0/@node_objs.23" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.14"/>
+  <edges id="273" source_obj="//@regions.0/@basic_blocks.0/@node_objs.22" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.15"/>
+  <edges id="274" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.16"/>
+  <edges id="276" source_obj="//@regions.0/@basic_blocks.1/@node_objs.13" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.17"/>
+  <edges id="277" source_obj="//@regions.0/@basic_blocks.1/@node_objs.14" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.17"/>
+  <edges id="278" source_obj="//@regions.0/@basic_blocks.1/@node_objs.15" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.17"/>
+  <edges id="279" source_obj="//@regions.0/@basic_blocks.1/@node_objs.16" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.17"/>
+  <edges id="280" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.17"/>
+  <edges id="282" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.18"/>
+  <edges id="283" source_obj="//@regions.0/@basic_blocks.1/@node_objs.17" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.18"/>
+  <edges id="285" source_obj="//@regions.0/@basic_blocks.0/@node_objs.20" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.19"/>
+  <edges id="286" source_obj="//@regions.0/@basic_blocks.0/@node_objs.19" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.20"/>
+  <edges id="287" source_obj="//@regions.0/@basic_blocks.0/@node_objs.18" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.21"/>
+  <edges id="288" source_obj="//@regions.0/@basic_blocks.0/@node_objs.17" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.22"/>
+  <edges id="290" source_obj="//@regions.0/@basic_blocks.1/@node_objs.19" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.23"/>
+  <edges id="291" source_obj="//@regions.0/@basic_blocks.1/@node_objs.20" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.23"/>
+  <edges id="292" source_obj="//@regions.0/@basic_blocks.1/@node_objs.21" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.23"/>
+  <edges id="293" source_obj="//@regions.0/@basic_blocks.1/@node_objs.22" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.23"/>
+  <edges id="294" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.23"/>
+  <edges id="296" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.24"/>
+  <edges id="297" source_obj="//@regions.0/@basic_blocks.1/@node_objs.23" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.24"/>
+  <edges id="299" source_obj="//@regions.0/@basic_blocks.0/@node_objs.16" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.25"/>
+  <edges id="300" source_obj="//@regions.0/@basic_blocks.0/@node_objs.15" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.26"/>
+  <edges id="301" source_obj="//@regions.0/@basic_blocks.0/@node_objs.14" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.27"/>
+  <edges id="302" source_obj="//@regions.0/@basic_blocks.0/@node_objs.13" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.28"/>
+  <edges id="304" source_obj="//@regions.0/@basic_blocks.1/@node_objs.25" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.29"/>
+  <edges id="305" source_obj="//@regions.0/@basic_blocks.1/@node_objs.26" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.29"/>
+  <edges id="306" source_obj="//@regions.0/@basic_blocks.1/@node_objs.27" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.29"/>
+  <edges id="307" source_obj="//@regions.0/@basic_blocks.1/@node_objs.28" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.29"/>
+  <edges id="308" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.29"/>
+  <edges id="310" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.30"/>
+  <edges id="311" source_obj="//@regions.0/@basic_blocks.1/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.30"/>
+  <edges id="313" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.31"/>
+  <edges id="314" source_obj="//@regions.0/@basic_blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.32"/>
+  <edges id="315" source_obj="//@regions.0/@basic_blocks.0/@node_objs.10" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.33"/>
+  <edges id="316" source_obj="//@regions.0/@basic_blocks.0/@node_objs.9" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.34"/>
+  <edges id="318" source_obj="//@regions.0/@basic_blocks.1/@node_objs.31" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.35"/>
+  <edges id="319" source_obj="//@regions.0/@basic_blocks.1/@node_objs.32" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.35"/>
+  <edges id="320" source_obj="//@regions.0/@basic_blocks.1/@node_objs.33" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.35"/>
+  <edges id="321" source_obj="//@regions.0/@basic_blocks.1/@node_objs.34" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.35"/>
+  <edges id="322" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.35"/>
+  <edges id="324" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.36"/>
+  <edges id="325" source_obj="//@regions.0/@basic_blocks.1/@node_objs.35" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.36"/>
+  <edges id="327" source_obj="//@regions.0/@basic_blocks.0/@node_objs.8" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.37"/>
+  <edges id="328" source_obj="//@regions.0/@basic_blocks.0/@node_objs.7" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.38"/>
+  <edges id="329" source_obj="//@regions.0/@basic_blocks.0/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.39"/>
+  <edges id="330" source_obj="//@regions.0/@basic_blocks.0/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.40"/>
+  <edges id="332" source_obj="//@regions.0/@basic_blocks.1/@node_objs.37" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.41"/>
+  <edges id="333" source_obj="//@regions.0/@basic_blocks.1/@node_objs.38" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.41"/>
+  <edges id="334" source_obj="//@regions.0/@basic_blocks.1/@node_objs.39" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.41"/>
+  <edges id="335" source_obj="//@regions.0/@basic_blocks.1/@node_objs.40" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.41"/>
+  <edges id="336" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.41"/>
+  <edges id="338" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.42"/>
+  <edges id="339" source_obj="//@regions.0/@basic_blocks.1/@node_objs.41" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.42"/>
+  <edges id="341" source_obj="//@regions.0/@basic_blocks.0/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.43"/>
+  <edges id="342" source_obj="//@regions.0/@basic_blocks.0/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.44"/>
+  <edges id="343" source_obj="//@regions.0/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.45"/>
+  <edges id="344" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.46"/>
+  <edges id="346" source_obj="//@regions.0/@basic_blocks.1/@node_objs.43" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.47"/>
+  <edges id="347" source_obj="//@regions.0/@basic_blocks.1/@node_objs.44" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.47"/>
+  <edges id="348" source_obj="//@regions.0/@basic_blocks.1/@node_objs.45" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.47"/>
+  <edges id="349" source_obj="//@regions.0/@basic_blocks.1/@node_objs.46" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.47"/>
+  <edges id="350" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.47"/>
+  <edges id="352" source_obj="//@regions.0/@basic_blocks.0/@node_objs.29" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.48"/>
+  <edges id="353" source_obj="//@regions.0/@basic_blocks.1/@node_objs.47" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.48"/>
+  <edges id="355" source_obj="//@regions.0/@basic_blocks.0/@node_objs.35" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.49"/>
+  <edges id="356" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.49"/>
+  <edges id="357" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.50"/>
+  <edges id="423" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0"/>
+  <edges id="424" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.1"/>
+  <edges id="425" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.1"/>
+  <edges id="426" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0" is_back_edge="1"/>
+  <edges id="427" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.42" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.48"/>
+  <edges id="428" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.36" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.42"/>
+  <edges id="429" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.30" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.36"/>
+  <edges id="430" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.24" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.30"/>
+  <edges id="431" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.18" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.24"/>
+  <edges id="432" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.18"/>
+  <edges id="433" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.1/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.12"/>
+  <edges id="434" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="435" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.49"/>
+  <edges id="436" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.49"/>
+  <edges id="2147483647" source_obj="//@regions.0/@basic_blocks.1/@node_objs.48" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.6" is_back_edge="1"/>
+  <blocks id="17" name="newFuncRoot" type="BlockType">
+    <controlOutputObjs>block_56</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="t" originalName="t" coreId="4294967295" bitwidth="3" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="sext_ln198_read" coreId="3667938048" bitwidth="58" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <dataInputObjs>sext_ln198</dataInputObjs>
+      <dataOutputObjs>sext</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="sext_ln198_cast" coreId="3629302432" bitwidth="64" opcode="sext" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>getelementptr</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="15" name="t_write_ln0" coreId="64" opcode="store" m_display="0" m_delay="0.38" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <dataInputObjs>alloca</dataInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="16" name="br_ln0" coreId="144" opcode="br" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <controlInputObjs>block_56</controlInputObjs>
+    </node_objs>
+  </blocks>
+  <blocks id="112" name=".exitStub" type="BlockType">
+    <controlInputObjs>block_56</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="111" name="_ln0" coreId="3667667952" opcode="ret" nodeLabel="3.0" m_display="0" m_topoIndex="85" m_clusterGroupNumber="-1"/>
+  </blocks>
+  <regions anchor_node="-1" region_type="8" interval="8" typeName="Pipeline" iiViolation="Memory Dependency;mFailedII=7;mDependenceDistancedII=1;mLimitedResource=0;nodes=107__,65__;" id="504" pipe_depth="10" RegionName="WRITE_TROTTERS">
+    <basic_blocks id="56" name="block_56" type="BlockType">
+      <controlInputObjs>newFuncRoot</controlInputObjs>
+      <controlInputObjs>.split3</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>.exitStub</controlOutputObjs>
+      <controlOutputObjs>.split3</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="t_1" lineNumber="303" originalName="t" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="1819113532" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="load" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+        <dataOutputObjs>trunc</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="trottersLocal_V_3_addr" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670196512" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="66" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="trottersLocal_V_2_addr" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668918400" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="67" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="trottersLocal_V_1_addr" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3669555232" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="68" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="trottersLocal_V_0_addr" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="109" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="69" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="trottersLocal_V_3_addr_1" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668415488" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="70" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="24" name="trottersLocal_V_2_addr_1" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="79" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="71" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="trottersLocal_V_1_addr_1" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="448" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="72" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="trottersLocal_V_0_addr_1" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="0" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="3.0" m_display="0" m_topoIndex="73" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="trottersLocal_V_3_addr_2" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668911152" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="46" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="trottersLocal_V_2_addr_2" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668196752" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="47" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="trottersLocal_V_1_addr_2" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670198832" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="48" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="trottersLocal_V_0_addr_2" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670199824" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="49" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="trottersLocal_V_3_addr_3" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="0" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="50" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="32" name="trottersLocal_V_2_addr_3" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="0" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="51" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="trottersLocal_V_1_addr_3" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670185696" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="52" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="trottersLocal_V_0_addr_3" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670192496" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="53" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="35" name="trottersLocal_V_3_addr_4" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668926528" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="28" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="trottersLocal_V_2_addr_4" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3229141264" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="29" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="37" name="trottersLocal_V_1_addr_4" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670188272" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="30" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="38" name="trottersLocal_V_0_addr_4" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3670195232" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="31" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="trottersLocal_V_3_addr_5" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3229141872" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="32" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="40" name="trottersLocal_V_2_addr_5" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="1734439936" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="trottersLocal_V_1_addr_5" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3669151648" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="34" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="trottersLocal_V_0_addr_5" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="0" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="35" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="43" name="trottersLocal_V_3_addr_6" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668920784" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="trottersLocal_V_2_addr_6" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="0" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="45" name="trottersLocal_V_1_addr_6" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668932576" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="46" name="trottersLocal_V_0_addr_6" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668914112" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="47" name="gmem0_addr" lineNumber="198" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="3668054752" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="54" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="198" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>sext</dataInputObjs>
+        <dataOutputObjs>gmem0</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="48" name="trottersLocal_V_3_addr_7" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="176" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_3</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="49" name="trottersLocal_V_2_addr_7" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="1818634299" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_2</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="50" name="trottersLocal_V_1_addr_7" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="544106784" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_1</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="51" name="trottersLocal_V_0_addr_7" lineNumber="202" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="304" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="getelementptr" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="202" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>trottersLocal_V_0</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="52" name="icmp_ln299" lineNumber="299" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="icmp_ln299_fu_525_p2" coreName="Cmp" implIndex="auto" control="no" opType="icmp" coreId="9" contextFuncName="QuantumMonteCarloU50" bitwidth="1" opcode="icmp" m_display="0" m_delay="0.49" m_topoIndex="15" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="299" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="54" name="add_ln299" lineNumber="299" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="add_ln299_fu_531_p2" coreName="Adder" implIndex="fabric" control="no" opType="add" coreId="1" contextFuncName="QuantumMonteCarloU50" bitwidth="3" opcode="add" m_display="0" m_delay="0.57" m_topoIndex="16" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="299" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="br_ln299" lineNumber="299" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="1819243365" contextFuncName="QuantumMonteCarloU50" opcode="br" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="299" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>.split3</controlInputObjs>
+        <controlInputObjs>.exitStub</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp">
+        <validLinenumbers>303</validLinenumbers>
+        <validLinenumbers>202</validLinenumbers>
+        <validLinenumbers>198</validLinenumbers>
+        <validLinenumbers>299</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="110" name=".split3" type="BlockType">
+      <controlInputObjs>block_56</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>block_56</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="trunc_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="trunc_ln303_fu_537_p1" coreId="1881173615" contextFuncName="QuantumMonteCarloU50" bitwidth="2" opcode="trunc" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="trottersLocal_V_0_load" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="19" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="trottersLocal_V_1_load" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="20" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="62" name="trottersLocal_V_2_load" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="21" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="63" name="trottersLocal_V_3_load" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="22" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="tmp" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U108" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="0.45" m_topoIndex="36" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="65" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="2.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_isStartOfPath="true" m_topoIndex="55" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataInputObjs>write</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="66" name="trottersLocal_V_0_load_1" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="23" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="trottersLocal_V_1_load_1" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="24" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="68" name="trottersLocal_V_2_load_1" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="25" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="69" name="trottersLocal_V_3_load_1" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="26" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="70" name="tmp_3" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U109" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="0.45" m_topoIndex="37" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="71" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="3.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="74" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="72" name="trottersLocal_V_0_load_2" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="38" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="73" name="trottersLocal_V_1_load_2" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="39" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="74" name="trottersLocal_V_2_load_2" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="40" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="75" name="trottersLocal_V_3_load_2" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="41" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="76" name="tmp_4" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U108" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="0.45" m_topoIndex="56" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="77" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="4.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="86" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="78" name="trottersLocal_V_0_load_3" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="42" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="79" name="trottersLocal_V_1_load_3" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="43" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="80" name="trottersLocal_V_2_load_3" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="44" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="81" name="trottersLocal_V_3_load_3" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="45" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="82" name="tmp_5" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U109" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="0.45" m_topoIndex="57" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="83" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="5.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="89" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="84" name="trottersLocal_V_0_load_4" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="58" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="85" name="trottersLocal_V_1_load_4" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="59" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="86" name="trottersLocal_V_2_load_4" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="60" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="87" name="trottersLocal_V_3_load_4" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="61" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="88" name="tmp_6" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U108" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="3.0" m_display="0" m_delay="0.45" m_topoIndex="75" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="89" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="6.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="90" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="90" name="trottersLocal_V_0_load_5" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="62" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="91" name="trottersLocal_V_1_load_5" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="63" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="92" name="trottersLocal_V_2_load_5" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="64" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="93" name="trottersLocal_V_3_load_5" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="2.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="65" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="94" name="tmp_7" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U109" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="3.0" m_display="0" m_delay="0.45" m_topoIndex="76" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="95" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="7.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="91" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="96" name="trottersLocal_V_0_load_6" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="77" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="97" name="trottersLocal_V_1_load_6" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="78" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="98" name="trottersLocal_V_2_load_6" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="79" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="99" name="trottersLocal_V_3_load_6" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="80" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="100" name="tmp_8" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U108" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="4.0" m_display="0" m_delay="0.45" m_topoIndex="87" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="101" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="8.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="92" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="102" name="trottersLocal_V_0_load_7" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="81" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="103" name="trottersLocal_V_1_load_7" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="82" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="104" name="trottersLocal_V_2_load_7" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="83" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="105" name="trottersLocal_V_3_load_7" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="RAM_2P_BRAM" implIndex="bram" control="no" opType="ram_2p" coreId="94" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="load" nodeLabel="3.0" nodeLatency="1" m_display="0" m_delay="1.2" m_topoIndex="84" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="106" name="tmp_9" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." rtlName="mux_42_512_1_1_U109" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" contextFuncName="QuantumMonteCarloU50" bitwidth="512" opcode="mux" nodeLabel="4.0" m_display="0" m_delay="0.45" m_topoIndex="88" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="107" name="gmem0_addr_write_ln303" lineNumber="303" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreName="m_axi" implIndex="UNSUPPORTED" control="no" coreId="121" contextFuncName="QuantumMonteCarloU50" opcode="write" nodeLabel="9.0" m_display="1" m_delay="2.43" m_isLCDNode="true" m_topoIndex="93" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="303" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataOutputObjs>write</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="108" name="t_write_ln299" lineNumber="299" fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" fileDirectory=".." coreId="1735289196" contextFuncName="QuantumMonteCarloU50" opcode="store" m_display="0" m_delay="0.38" m_topoIndex="27" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp" linenumber="299" fileDirectory="/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50" functionName="QuantumMonteCarloU50"/>
+        <dataInputObjs>add</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="109" name="br_ln0" coreId="1998616940" opcode="br" nodeLabel="9.0" m_display="0" m_topoIndex="94" m_clusterGroupNumber="-1">
+        <controlInputObjs>block_56</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="/home/edci/workspace/SQA_kernels/src/qmc.cpp">
+        <validLinenumbers>303</validLinenumbers>
+        <validLinenumbers>299</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+  </regions>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <ScheduleInfo time="3"/>
+  <ScheduleInfo time="4"/>
+  <ScheduleInfo time="5"/>
+  <ScheduleInfo time="6"/>
+  <ScheduleInfo time="7"/>
+  <ScheduleInfo time="8"/>
+  <ScheduleInfo time="9"/>
+  <regnodes realName="trottersLocal_V_2_addr_reg_715">
+    <nodeIds>20</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_6_reg_574">
+    <nodeIds>45</nodeIds>
+  </regnodes>
+  <regnodes realName="trunc_ln303_reg_608">
+    <nodeIds>59</nodeIds>
+  </regnodes>
+  <regnodes realName="icmp_ln299_reg_604">
+    <nodeIds>52</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_7_reg_594">
+    <nodeIds>50</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_6_reg_564">
+    <nodeIds>43</nodeIds>
+  </regnodes>
+  <regnodes realName="t_reg_552">
+    <nodeIds>7</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_5_reg_649">
+    <nodeIds>42</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_4_reg_619">
+    <nodeIds>36</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_reg_720">
+    <nodeIds>21</nodeIds>
+  </regnodes>
+  <regnodes realName="gmem0_addr_reg_694">
+    <nodeIds>47</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_5_reg_705">
+    <nodeIds>82</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_5_reg_639">
+    <nodeIds>40</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_2_reg_669">
+    <nodeIds>30</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_5_reg_644">
+    <nodeIds>41</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_4_reg_614">
+    <nodeIds>35</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_1_reg_745">
+    <nodeIds>26</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_1_reg_735">
+    <nodeIds>24</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_3_reg_674">
+    <nodeIds>31</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_5_reg_634">
+    <nodeIds>39</nodeIds>
+  </regnodes>
+  <regnodes realName="reg_507">
+    <nodeIds>70</nodeIds>
+    <nodeIds>94</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_4_reg_629">
+    <nodeIds>38</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_3_reg_684">
+    <nodeIds>33</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_2_reg_654">
+    <nodeIds>27</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_2_reg_664">
+    <nodeIds>29</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_reg_725">
+    <nodeIds>22</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_9_reg_755">
+    <nodeIds>106</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_3_reg_689">
+    <nodeIds>34</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_2_reg_659">
+    <nodeIds>28</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_1_reg_740">
+    <nodeIds>25</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_3_reg_679">
+    <nodeIds>32</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_1_reg_730">
+    <nodeIds>23</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_7_reg_584">
+    <nodeIds>48</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_6_reg_579">
+    <nodeIds>46</nodeIds>
+  </regnodes>
+  <regnodes realName="sext_ln198_cast_reg_559">
+    <nodeIds>9</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_6_reg_750">
+    <nodeIds>88</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_3_addr_reg_710">
+    <nodeIds>19</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_7_reg_589">
+    <nodeIds>49</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_1_addr_4_reg_624">
+    <nodeIds>37</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_2_addr_6_reg_569">
+    <nodeIds>44</nodeIds>
+  </regnodes>
+  <regnodes realName="reg_500">
+    <nodeIds>64</nodeIds>
+    <nodeIds>76</nodeIds>
+    <nodeIds>100</nodeIds>
+  </regnodes>
+  <regnodes realName="trottersLocal_V_0_addr_7_reg_599">
+    <nodeIds>51</nodeIds>
+  </regnodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_1_gep_fu_434">
+    <nodeIds>23</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="t_fu_76">
+    <nodeIds>7</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_gep_fu_418">
+    <nodeIds>21</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_1_gep_fu_442">
+    <nodeIds>24</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_4_gep_fu_258">
+    <nodeIds>35</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_1_gep_fu_450">
+    <nodeIds>25</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_4_gep_fu_266">
+    <nodeIds>36</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_3_gep_fu_370">
+    <nodeIds>32</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_6_gep_fu_158">
+    <nodeIds>44</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_3_gep_fu_362">
+    <nodeIds>31</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_gep_fu_410">
+    <nodeIds>20</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="add_ln299_fu_531">
+    <nodeIds>54</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="sext_ln198_cast_fu_513">
+    <nodeIds>9</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_5_gep_fu_314">
+    <nodeIds>42</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_1_gep_fu_458">
+    <nodeIds>26</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_5_gep_fu_290">
+    <nodeIds>39</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="gmem0_addr_fu_546">
+    <nodeIds>47</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_3_gep_fu_386">
+    <nodeIds>34</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="grp_fu_474">
+    <nodeIds>64</nodeIds>
+    <nodeIds>76</nodeIds>
+    <nodeIds>88</nodeIds>
+    <nodeIds>100</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_7_gep_fu_182">
+    <nodeIds>48</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_2_gep_fu_354">
+    <nodeIds>30</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_5_gep_fu_306">
+    <nodeIds>41</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_7_gep_fu_198">
+    <nodeIds>50</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_7_gep_fu_190">
+    <nodeIds>49</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_4_gep_fu_282">
+    <nodeIds>38</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_7_gep_fu_206">
+    <nodeIds>51</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln299_fu_525">
+    <nodeIds>52</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_2_gep_fu_338">
+    <nodeIds>28</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_6_gep_fu_150">
+    <nodeIds>43</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_2_gep_fu_330">
+    <nodeIds>27</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_6_gep_fu_174">
+    <nodeIds>46</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_3_gep_fu_378">
+    <nodeIds>33</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_4_gep_fu_274">
+    <nodeIds>37</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_0_addr_gep_fu_426">
+    <nodeIds>22</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_2_addr_5_gep_fu_298">
+    <nodeIds>40</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_3_addr_gep_fu_402">
+    <nodeIds>19</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="grp_fu_487">
+    <nodeIds>70</nodeIds>
+    <nodeIds>82</nodeIds>
+    <nodeIds>94</nodeIds>
+    <nodeIds>106</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_6_gep_fu_166">
+    <nodeIds>45</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trunc_ln303_fu_537">
+    <nodeIds>59</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="trottersLocal_V_1_addr_2_gep_fu_346">
+    <nodeIds>29</nodeIds>
+  </expressionNodes>
+  <ioNodes realName="store_ln299_store_fu_541">
+    <nodeIds>108</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln0_store_fu_517">
+    <nodeIds>15</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_126">
+    <nodeIds>95</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_94">
+    <nodeIds>71</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_118">
+    <nodeIds>89</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_86">
+    <nodeIds>65</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_134">
+    <nodeIds>101</nodeIds>
+  </ioNodes>
+  <ioNodes realName="t_1_load_fu_522">
+    <nodeIds>18</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_102">
+    <nodeIds>77</nodeIds>
+  </ioNodes>
+  <ioNodes realName="sext_ln198_read_read_fu_80">
+    <nodeIds>8</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_110">
+    <nodeIds>83</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln303_write_fu_142">
+    <nodeIds>107</nodeIds>
+  </ioNodes>
+  <memoryPorts dataString="trottersLocal_V_0">
+    <nodeIds>66</nodeIds>
+    <nodeIds>78</nodeIds>
+    <nodeIds>90</nodeIds>
+    <nodeIds>102</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_0" portID="1">
+    <nodeIds>60</nodeIds>
+    <nodeIds>72</nodeIds>
+    <nodeIds>84</nodeIds>
+    <nodeIds>96</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_1">
+    <nodeIds>67</nodeIds>
+    <nodeIds>79</nodeIds>
+    <nodeIds>91</nodeIds>
+    <nodeIds>103</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_1" portID="1">
+    <nodeIds>61</nodeIds>
+    <nodeIds>73</nodeIds>
+    <nodeIds>85</nodeIds>
+    <nodeIds>97</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_2">
+    <nodeIds>68</nodeIds>
+    <nodeIds>80</nodeIds>
+    <nodeIds>92</nodeIds>
+    <nodeIds>104</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_2" portID="1">
+    <nodeIds>62</nodeIds>
+    <nodeIds>74</nodeIds>
+    <nodeIds>86</nodeIds>
+    <nodeIds>98</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_3">
+    <nodeIds>69</nodeIds>
+    <nodeIds>81</nodeIds>
+    <nodeIds>93</nodeIds>
+    <nodeIds>105</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="trottersLocal_V_3" portID="1">
+    <nodeIds>63</nodeIds>
+    <nodeIds>75</nodeIds>
+    <nodeIds>87</nodeIds>
+    <nodeIds>99</nodeIds>
+  </memoryPorts>
+  <ioPorts name="gmem0">
+    <contents name="write">
+      <nodeIds>65</nodeIds>
+      <nodeIds>71</nodeIds>
+      <nodeIds>77</nodeIds>
+      <nodeIds>83</nodeIds>
+      <nodeIds>89</nodeIds>
+      <nodeIds>95</nodeIds>
+      <nodeIds>101</nodeIds>
+      <nodeIds>107</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="sext_ln198">
+    <contents name="read">
+      <nodeIds>8</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_0(p0)">
+    <contents name="load">
+      <nodeIds>66</nodeIds>
+      <nodeIds>78</nodeIds>
+      <nodeIds>90</nodeIds>
+      <nodeIds>102</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_0(p1)">
+    <contents name="load">
+      <nodeIds>60</nodeIds>
+      <nodeIds>72</nodeIds>
+      <nodeIds>84</nodeIds>
+      <nodeIds>96</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_1(p0)">
+    <contents name="load">
+      <nodeIds>67</nodeIds>
+      <nodeIds>79</nodeIds>
+      <nodeIds>91</nodeIds>
+      <nodeIds>103</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_1(p1)">
+    <contents name="load">
+      <nodeIds>61</nodeIds>
+      <nodeIds>73</nodeIds>
+      <nodeIds>85</nodeIds>
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_2(p0)">
+    <contents name="load">
+      <nodeIds>68</nodeIds>
+      <nodeIds>80</nodeIds>
+      <nodeIds>92</nodeIds>
+      <nodeIds>104</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_2(p1)">
+    <contents name="load">
+      <nodeIds>62</nodeIds>
+      <nodeIds>74</nodeIds>
+      <nodeIds>86</nodeIds>
+      <nodeIds>98</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_3(p0)">
+    <contents name="load">
+      <nodeIds>69</nodeIds>
+      <nodeIds>81</nodeIds>
+      <nodeIds>93</nodeIds>
+      <nodeIds>105</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="trottersLocal_V_3(p1)">
+    <contents name="load">
+      <nodeIds>63</nodeIds>
+      <nodeIds>75</nodeIds>
+      <nodeIds>87</nodeIds>
+      <nodeIds>99</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="7" stage="1" latency="1"/>
+      <operations id="8" stage="1" latency="1"/>
+      <operations id="9" stage="1" latency="1"/>
+      <operations id="10" stage="1" latency="1"/>
+      <operations id="11" stage="1" latency="1"/>
+      <operations id="12" stage="1" latency="1"/>
+      <operations id="13" stage="1" latency="1"/>
+      <operations id="14" stage="1" latency="1"/>
+      <operations id="15" stage="1" latency="1"/>
+      <operations id="16" stage="1" latency="1"/>
+      <operations id="18" stage="1" latency="1"/>
+      <operations id="43" stage="1" latency="1"/>
+      <operations id="44" stage="1" latency="1"/>
+      <operations id="45" stage="1" latency="1"/>
+      <operations id="46" stage="1" latency="1"/>
+      <operations id="48" stage="1" latency="1"/>
+      <operations id="49" stage="1" latency="1"/>
+      <operations id="50" stage="1" latency="1"/>
+      <operations id="51" stage="1" latency="1"/>
+      <operations id="52" stage="1" latency="1"/>
+      <operations id="54" stage="1" latency="1"/>
+      <operations id="55" stage="1" latency="1"/>
+      <operations id="59" stage="1" latency="1"/>
+      <operations id="60" stage="2" latency="2"/>
+      <operations id="61" stage="2" latency="2"/>
+      <operations id="62" stage="2" latency="2"/>
+      <operations id="63" stage="2" latency="2"/>
+      <operations id="66" stage="2" latency="2"/>
+      <operations id="67" stage="2" latency="2"/>
+      <operations id="68" stage="2" latency="2"/>
+      <operations id="69" stage="2" latency="2"/>
+      <operations id="108" stage="1" latency="1"/>
+    </states>
+    <states id="2">
+      <operations id="35" stage="1" latency="1"/>
+      <operations id="36" stage="1" latency="1"/>
+      <operations id="37" stage="1" latency="1"/>
+      <operations id="38" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+      <operations id="40" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="42" stage="1" latency="1"/>
+      <operations id="60" stage="1" latency="2"/>
+      <operations id="61" stage="1" latency="2"/>
+      <operations id="62" stage="1" latency="2"/>
+      <operations id="63" stage="1" latency="2"/>
+      <operations id="64" stage="1" latency="1"/>
+      <operations id="66" stage="1" latency="2"/>
+      <operations id="67" stage="1" latency="2"/>
+      <operations id="68" stage="1" latency="2"/>
+      <operations id="69" stage="1" latency="2"/>
+      <operations id="70" stage="1" latency="1"/>
+      <operations id="72" stage="2" latency="2"/>
+      <operations id="73" stage="2" latency="2"/>
+      <operations id="74" stage="2" latency="2"/>
+      <operations id="75" stage="2" latency="2"/>
+      <operations id="78" stage="2" latency="2"/>
+      <operations id="79" stage="2" latency="2"/>
+      <operations id="80" stage="2" latency="2"/>
+      <operations id="81" stage="2" latency="2"/>
+    </states>
+    <states id="3">
+      <operations id="27" stage="1" latency="1"/>
+      <operations id="28" stage="1" latency="1"/>
+      <operations id="29" stage="1" latency="1"/>
+      <operations id="30" stage="1" latency="1"/>
+      <operations id="31" stage="1" latency="1"/>
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="34" stage="1" latency="1"/>
+      <operations id="47" stage="1" latency="1"/>
+      <operations id="65" stage="1" latency="1"/>
+      <operations id="72" stage="1" latency="2"/>
+      <operations id="73" stage="1" latency="2"/>
+      <operations id="74" stage="1" latency="2"/>
+      <operations id="75" stage="1" latency="2"/>
+      <operations id="76" stage="1" latency="1"/>
+      <operations id="78" stage="1" latency="2"/>
+      <operations id="79" stage="1" latency="2"/>
+      <operations id="80" stage="1" latency="2"/>
+      <operations id="81" stage="1" latency="2"/>
+      <operations id="82" stage="1" latency="1"/>
+      <operations id="84" stage="2" latency="2"/>
+      <operations id="85" stage="2" latency="2"/>
+      <operations id="86" stage="2" latency="2"/>
+      <operations id="87" stage="2" latency="2"/>
+      <operations id="90" stage="2" latency="2"/>
+      <operations id="91" stage="2" latency="2"/>
+      <operations id="92" stage="2" latency="2"/>
+      <operations id="93" stage="2" latency="2"/>
+    </states>
+    <states id="4">
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="20" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="24" stage="1" latency="1"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="1" latency="1"/>
+      <operations id="53" stage="1" latency="1"/>
+      <operations id="71" stage="1" latency="1"/>
+      <operations id="84" stage="1" latency="2"/>
+      <operations id="85" stage="1" latency="2"/>
+      <operations id="86" stage="1" latency="2"/>
+      <operations id="87" stage="1" latency="2"/>
+      <operations id="88" stage="1" latency="1"/>
+      <operations id="90" stage="1" latency="2"/>
+      <operations id="91" stage="1" latency="2"/>
+      <operations id="92" stage="1" latency="2"/>
+      <operations id="93" stage="1" latency="2"/>
+      <operations id="94" stage="1" latency="1"/>
+      <operations id="96" stage="2" latency="2"/>
+      <operations id="97" stage="2" latency="2"/>
+      <operations id="98" stage="2" latency="2"/>
+      <operations id="99" stage="2" latency="2"/>
+      <operations id="102" stage="2" latency="2"/>
+      <operations id="103" stage="2" latency="2"/>
+      <operations id="104" stage="2" latency="2"/>
+      <operations id="105" stage="2" latency="2"/>
+      <operations id="111" stage="1" latency="1"/>
+    </states>
+    <states id="5">
+      <operations id="77" stage="1" latency="1"/>
+      <operations id="96" stage="1" latency="2"/>
+      <operations id="97" stage="1" latency="2"/>
+      <operations id="98" stage="1" latency="2"/>
+      <operations id="99" stage="1" latency="2"/>
+      <operations id="100" stage="1" latency="1"/>
+      <operations id="102" stage="1" latency="2"/>
+      <operations id="103" stage="1" latency="2"/>
+      <operations id="104" stage="1" latency="2"/>
+      <operations id="105" stage="1" latency="2"/>
+      <operations id="106" stage="1" latency="1"/>
+    </states>
+    <states id="6">
+      <operations id="83" stage="1" latency="1"/>
+    </states>
+    <states id="7">
+      <operations id="89" stage="1" latency="1"/>
+    </states>
+    <states id="8">
+      <operations id="95" stage="1" latency="1"/>
+    </states>
+    <states id="9">
+      <operations id="101" stage="1" latency="1"/>
+    </states>
+    <states id="10">
+      <operations id="57" stage="1" latency="1"/>
+      <operations id="58" stage="1" latency="1"/>
+      <operations id="107" stage="1" latency="1"/>
+      <operations id="109" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="3" outState="4">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="5" outState="6">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="6" outState="7">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="7" outState="8">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="8" outState="9">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="9" outState="10">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="4" outState="5">
+      <condition id="-1"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="37" mMaxLatency="37">
+      <subRegions>2</subRegions>
+      <subRegions>3</subRegions>
+      <subRegions>4</subRegions>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="2" mTag="Entry" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>17</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="3" mTag="WRITE_TROTTERS" mII="8" mDepth="10" mMinTripCount="4" mMaxTripCount="4" mMinLatency="35" mMaxLatency="35" mType="1">
+      <basicBlocks>56</basicBlocks>
+      <basicBlocks>110</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="4" mTag="Return" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>112</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

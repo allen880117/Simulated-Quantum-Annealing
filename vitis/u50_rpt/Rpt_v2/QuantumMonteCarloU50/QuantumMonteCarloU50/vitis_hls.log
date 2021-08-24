@@ -1,0 +1,567 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2021.1 (64-bit)
+  **** SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+  **** IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source /home/edci/Xilinx/Vitis_HLS/2021.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/home/edci/Xilinx/Vitis_HLS/2021.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'edci' on host 'edci-pmem-worker-2' (Linux_x86_64 version 5.4.0-80-generic) on Tue Aug 24 11:33:25 CST 2021
+INFO: [HLS 200-10] On os Ubuntu 20.04.2 LTS
+INFO: [HLS 200-10] In directory '/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50'
+Sourcing Tcl script 'QuantumMonteCarloU50.tcl'
+INFO: [HLS 200-1510] Running: open_project QuantumMonteCarloU50 
+INFO: [HLS 200-10] Creating and opening project '/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50/QuantumMonteCarloU50'.
+INFO: [HLS 200-1510] Running: set_top QuantumMonteCarloU50 
+INFO: [HLS 200-1510] Running: add_files /home/edci/workspace/SQA_kernels/src/qmc.cpp -cflags  -I /home/edci/workspace/SQA_kernels/src  
+INFO: [HLS 200-10] Adding design file '/home/edci/workspace/SQA_kernels/src/qmc.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution -flow_target vitis solution 
+INFO: [HLS 200-10] Creating and opening solution '/home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50/QuantumMonteCarloU50/solution'.
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu50-fsvh2104-2-e'
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
+INFO: [HLS 200-1510] Running: config_export -disable_deadlock_detection=true 
+INFO: [HLS 200-1510] Running: config_rtl -m_axi_conservative_mode=1 
+WARNING: [HLS 200-483] The 'config_rtl -m_axi_conservative_mode' command is deprecated and will be removed in a future release. Use 'config_interface -m_axi_conservative_mode' as its replacement.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=1 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_min_bitwidth 512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_bitwidth 512 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname QuantumMonteCarloU50 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.401 MB.
+INFO: [HLS 200-10] Analyzing design file '/home/edci/workspace/SQA_kernels/src/qmc.cpp' ... 
+WARNING: [HLS 207-5301] unused parameter 'print': /home/edci/Xilinx/Vitis_HLS/2021.1/common/technology/autopilot/ap_int_base.h:792:16
+WARNING: [HLS 207-5301] unused parameter 'fpBuffer': /home/edci/workspace/SQA_kernels/src/qmc.cpp:25:35
+WARNING: [HLS 207-5301] unused parameter 'fpBuffer': /home/edci/workspace/SQA_kernels/src/qmc.cpp:49:35
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 28.78 seconds. CPU system time: 1.27 seconds. Elapsed time: 28.59 seconds; current allocated memory: 198.641 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-279] Initial Interval estimation mode is set into default.
+INFO: [HLS 214-284] Auto array partition mode is set into default.
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<2u>(float*)' into 'void U50::reductionIntraBuffer<4u>(float*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:8:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<4u>(float*)' into 'void U50::reductionIntraBuffer<8u>(float*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:8:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<8u>(float*)' into 'void U50::reductionIntraBuffer<16u>(float*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:8:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<2u>(float (*) [16])' into 'void U50::reductionInterBuffer<4u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<4u>(float (*) [16])' into 'void U50::reductionInterBuffer<8u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<8u>(float (*) [16])' into 'void U50::reductionInterBuffer<16u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<16u>(float (*) [16])' into 'void U50::reductionInterBuffer<32u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<32u>(float (*) [16])' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<512>*, float&, float (*) [512])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:96:3)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<16u>(float*)' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<512>*, float&, float (*) [512])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:94:2)
+INFO: [HLS 214-186] Unrolling loop 'UPDATE_INPUT_STATE' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:225:5) in function 'QuantumMonteCarloU50' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_250_3' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:250:29) in function 'QuantumMonteCarloU50' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'RUN_TU' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:266:7) in function 'QuantumMonteCarloU50' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'RUN_TU_FINAL' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:5) in function 'QuantumMonteCarloU50' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_286_4' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:286:20) in function 'QuantumMonteCarloU50' completely with a factor of 3 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_288_5' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:288:20) in function 'QuantumMonteCarloU50' completely with a factor of 512 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_288_5' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:288:20) in function 'QuantumMonteCarloU50' completely with a factor of 512 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_288_5' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:288:20) in function 'QuantumMonteCarloU50' completely with a factor of 512 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_42_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:42:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_92_3' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:92:20) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:20) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_74_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:74:19) in function 'U50::TrotterUnit' completely with a factor of 32 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:57:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::data() const' into 'fp_struct<float>::to_float() const' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:346:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_float() const' into 'fp_struct<float>::to_ieee() const' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:370:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'float generic_copysign<float>(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_copysign.h:10:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_ieee() const' into 'float generic_copysign<float>(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_copysign.h:10:0)
+INFO: [HLS 214-178] Inlining function 'float generic_copysign<float>(float, float)' into 'hls::copysign(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/src/c++/copysignfloat.cpp:6:0)
+INFO: [HLS 214-178] Inlining function 'hls::copysign(float, float)' into 'hls::copysignf(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/src/c++/copysignfloat.cpp:10:0)
+WARNING: [HLS 214-253] Ignore array partition/reshape applied to 'logRand' which is a m_axi interface.
+WARNING: [HLS 214-253] Ignore array partition/reshape applied to 'trotters' which is a m_axi interface.
+INFO: [HLS 214-241] Aggregating maxi variable 'Jcoup' with non-compact mode in 512-bits
+INFO: [HLS 214-241] Aggregating maxi variable 'trotters' with non-compact mode in 512-bits (/home/edci/workspace/SQA_kernels/src/qmc.cpp:155:0)
+WARNING: [HLS 214-281] Estimating pipelined loop 'READ_TROTTERS' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:198:3) in function 'QuantumMonteCarloU50' with estimated II increased from II=1 to II=8 because of limited port on variable 'trotters' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:198:3)
+WARNING: [HLS 214-281] Estimating pipelined loop 'READ_NEW_JCOUP' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:246:7) in function 'QuantumMonteCarloU50' with estimated II increased from II=1 to II=16 because of limited port on variable 'Jcoup' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:246:7)
+WARNING: [HLS 214-281] Estimating pipelined loop 'READ_NEW_JCOUP' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:246:7) in function 'QuantumMonteCarloU50' with estimated II increased from II=16 to II=32 because of limited port on variable 'Jcoup' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:246:7)
+WARNING: [HLS 214-281] Estimating pipelined loop 'WRITE_TROTTERS' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:299:3) in function 'QuantumMonteCarloU50' with estimated II increased from II=1 to II=8 because of limited port on variable 'trotters' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:299:3)
+INFO: [HLS 214-270] Starting automatic array partition analysis...
+INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 512 in loop 'READ_TROTTERS'(/home/edci/workspace/SQA_kernels/src/qmc.cpp:198:3) has been inferred on port 'gmem0'. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (/home/edci/workspace/SQA_kernels/src/qmc.cpp:198:3)
+INFO: [HLS 214-115] Multiple burst writes of length 32 and bit width 512 in loop 'WRITE_TROTTERS'(/home/edci/workspace/SQA_kernels/src/qmc.cpp:299:3) has been inferred on port 'gmem0'. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (/home/edci/workspace/SQA_kernels/src/qmc.cpp:299:3)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.none.i512.s_struct.ap_uints' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303:29)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:17)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 135.05 seconds. CPU system time: 0.79 seconds. Elapsed time: 135.82 seconds; current allocated memory: 283.607 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 283.609 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 7.76 seconds. CPU system time: 0.02 seconds. Elapsed time: 7.79 seconds; current allocated memory: 322.621 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+WARNING: [SYNCHK 200-23] /home/edci/Xilinx/Vitis_HLS/2021.1/common/technology/autopilot/ap_int_ref.h:819: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 1.83 seconds. CPU system time: 0 seconds. Elapsed time: 1.84 seconds; current allocated memory: 374.080 MB.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'READ_TROTTERS' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:198) in function 'QuantumMonteCarloU50' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'READ_NEW_JCOUP' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:246) in function 'QuantumMonteCarloU50' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'WRITE_TROTTERS' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:299) in function 'QuantumMonteCarloU50' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_200_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:200) in function 'QuantumMonteCarloU50' completely with a factor of 8.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_249_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:249) in function 'QuantumMonteCarloU50' completely with a factor of 32.
+INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_301_6' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:301) in function 'QuantumMonteCarloU50' completely with a factor of 8.
+WARNING: [HLS 200-1476] Applying partition directive (/home/edci/workspace/SQA_kernels/src/qmc.cpp:193:9) and reshape directive (/home/edci/workspace/SQA_kernels/src/qmc.cpp:194:9) on the same variable 'JcoupLocal' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:191) may lead to unexpected synthesis behaviors.\
+
+INFO: [XFORM 203-131] Reshaping array 'JcoupLocal' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:191) in dimension 3 completely.
+INFO: [XFORM 203-101] Partitioning array 'iPack' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:166) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'iSpin' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:168) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'dH' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:178) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'trottersLocal.V' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:186) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'JcoupLocal' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:191) in dimension 1 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/home/edci/workspace/SQA_kernels/src/qmc.cpp:116:8) to (/home/edci/workspace/SQA_kernels/src/qmc.cpp:135:7) in function 'U50::TrotterUnitFinal'... converting 5 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 20.18 seconds. CPU system time: 0.05 seconds. Elapsed time: 20.23 seconds; current allocated memory: 477.273 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'LOOP_STAGE' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:219:14) in function 'QuantumMonteCarloU50' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-960.html
+INFO: [HLS 200-472] Inferring partial write operation for 'trotters' 
+INFO: [HLS 200-472] Inferring partial write operation for 'JcoupLocal[3]' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:291:40)
+INFO: [HLS 200-472] Inferring partial write operation for 'trottersLocal.V[0]' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202:34)
+INFO: [HLS 200-472] Inferring partial write operation for 'JcoupLocal[0]' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:252:54)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 2.92 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.96 seconds; current allocated memory: 627.847 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'QuantumMonteCarloU50' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'READ_TROTTERS'.
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' (loop 'READ_TROTTERS'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between bus read operation ('gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) and bus read operation ('gmem0_addr_read', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' (loop 'READ_TROTTERS'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between bus read operation ('gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) and bus read operation ('gmem0_addr_read', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' (loop 'READ_TROTTERS'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between bus read operation ('gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) and bus read operation ('gmem0_addr_read', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' (loop 'READ_TROTTERS'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1) between bus read operation ('gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) and bus read operation ('gmem0_addr_read', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' (loop 'READ_TROTTERS'): Unable to enforce a carried dependence constraint (II = 7, distance = 1, offset = 1) between bus read operation ('gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) and bus read operation ('gmem0_addr_read', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 8, Depth = 10, loop 'READ_TROTTERS'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.32 seconds. CPU system time: 0.05 seconds. Elapsed time: 1.38 seconds; current allocated memory: 632.243 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.18 seconds. CPU system time: 0 seconds. Elapsed time: 0.18 seconds; current allocated memory: 632.646 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'READ_NEW_JCOUP'.
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_1_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 1). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_32_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_33_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 3). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_2_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 4). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_49_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 35). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_57_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 51). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_61_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 59). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' (loop 'READ_NEW_JCOUP'): Unable to schedule bus request operation ('gmem1_load_63_req', /home/edci/workspace/SQA_kernels/src/qmc.cpp:253) on port 'gmem1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253) due to limited memory ports (II = 63). Please consider using a memory core with more ports or partitioning the array.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 64, Depth = 136, loop 'READ_NEW_JCOUP'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.68 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.7 seconds; current allocated memory: 638.636 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.14 seconds; current allocated memory: 647.614 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'copysignf' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.61 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.62 seconds; current allocated memory: 647.670 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 647.712 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'TrotterUnit' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 13.4 seconds. CPU system time: 0.03 seconds. Elapsed time: 13.44 seconds; current allocated memory: 678.166 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Starting global binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 9.34 seconds. CPU system time: 0.02 seconds. Elapsed time: 9.36 seconds; current allocated memory: 704.478 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'TrotterUnitFinal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 4.76 seconds. CPU system time: 0.02 seconds. Elapsed time: 4.78 seconds; current allocated memory: 704.802 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.15 seconds. CPU system time: 0 seconds. Elapsed time: 0.16 seconds; current allocated memory: 705.133 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'SHIFT_JCOUP'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'SHIFT_JCOUP'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.19 seconds. CPU system time: 0 seconds. Elapsed time: 0.19 seconds; current allocated memory: 705.253 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 705.380 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'WRITE_TROTTERS'.
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' (loop 'WRITE_TROTTERS'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303) and bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' (loop 'WRITE_TROTTERS'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303) and bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' (loop 'WRITE_TROTTERS'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303) and bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' (loop 'WRITE_TROTTERS'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1) between bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303) and bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' (loop 'WRITE_TROTTERS'): Unable to enforce a carried dependence constraint (II = 7, distance = 1, offset = 1) between bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303) and bus write operation ('gmem0_addr_write_ln303', /home/edci/workspace/SQA_kernels/src/qmc.cpp:303) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:303).
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 8, Depth = 10, loop 'WRITE_TROTTERS'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.23 seconds. CPU system time: 0 seconds. Elapsed time: 0.22 seconds; current allocated memory: 705.777 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.26 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.26 seconds; current allocated memory: 706.283 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.74 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.74 seconds; current allocated memory: 707.843 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+WARNING: [BIND 205-102] The specified resource core for memory 'trottersLocal_V_0' will be ignored if a simpler one can be used.
+WARNING: [BIND 205-102] The specified resource core for memory 'trottersLocal_V_1' will be ignored if a simpler one can be used.
+WARNING: [BIND 205-102] The specified resource core for memory 'trottersLocal_V_2' will be ignored if a simpler one can be used.
+WARNING: [BIND 205-102] The specified resource core for memory 'trottersLocal_V_3' will be ignored if a simpler one can be used.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.93 seconds. CPU system time: 0 seconds. Elapsed time: 1.93 seconds; current allocated memory: 710.427 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS' pipeline 'READ_TROTTERS' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS/m_axi_gmem0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.72 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.74 seconds; current allocated memory: 711.312 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' pipeline 'READ_NEW_JCOUP' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-104] Estimated max fanout for 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' is 16387 from HDL expression: ((ap_enable_reg_pp0_iter2 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage7) & (1'b0 == ap_block_pp0_stage7))
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.47 seconds. CPU system time: 0 seconds. Elapsed time: 0.48 seconds; current allocated memory: 719.753 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'copysignf' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'copysignf'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.56 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.59 seconds; current allocated memory: 732.996 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'TrotterUnit' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-104] Estimated max fanout for 'TrotterUnit' is 16929 from HDL expression: (1'b1 == ap_CS_fsm_state2)
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 64 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'TrotterUnit'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.8 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.8 seconds; current allocated memory: 758.737 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'TrotterUnitFinal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fcmp_32ns_32ns_1_2_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fdiv_32ns_32ns_32_12_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_7_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'TrotterUnitFinal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 8.89 seconds. CPU system time: 0.14 seconds. Elapsed time: 9.06 seconds; current allocated memory: 829.050 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' pipeline 'SHIFT_JCOUP' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-104] Estimated max fanout for 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' is 49161 from HDL expression: ((1'b0 == ap_block_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.36 seconds. CPU system time: 0 seconds. Elapsed time: 0.36 seconds; current allocated memory: 830.109 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS' pipeline 'WRITE_TROTTERS' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_AWUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS/m_axi_gmem0_BREADY' to 0.
+INFO: [RTGEN 206-100] Generating core module 'mux_42_512_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.15 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.16 seconds; current allocated memory: 831.447 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/gmem0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/gmem1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/gmem2' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/gmem3' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/trotters' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/Jcoup' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/h' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/Jperp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/Beta' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/logRand' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'QuantumMonteCarloU50' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'trotters', 'Jcoup', 'h', 'Jperp', 'Beta', 'logRand' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.54 seconds. CPU system time: 0 seconds. Elapsed time: 0.53 seconds; current allocated memory: 839.676 MB.
+INFO: [RTMG 210-278] Implementing memory 'QuantumMonteCarloU50_trottersLocal_V_0_ram (RAM_2P_BRAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'QuantumMonteCarloU50_JcoupLocal_0_ram (RAM_2P_BRAM)' using block RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 4.94 seconds. CPU system time: 0.02 seconds. Elapsed time: 4.97 seconds; current allocated memory: 846.285 MB.
+INFO: [HLS 200-1603] Design has MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 9.6 seconds. CPU system time: 0.04 seconds. Elapsed time: 9.64 seconds; current allocated memory: 867.927 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for QuantumMonteCarloU50.
+INFO: [VLOG 209-307] Generating Verilog RTL for QuantumMonteCarloU50.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 263.66 seconds. CPU system time: 2.6 seconds. Elapsed time: 264.87 seconds; current allocated memory: 867.912 MB.
+INFO: [HLS 200-1510] Running: export_design 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2021.1 (64-bit)
+  **** SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+  **** IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/edci/Xilinx/Vivado/2021.1/data/ip'.
+WARNING: [IP_Flow 19-4832] The IP name 'QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'QuantumMonteCarloU50_fadd_32ns_32ns_32_7_full_dsp_1_ip'...
+WARNING: [IP_Flow 19-4832] The IP name 'QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'QuantumMonteCarloU50_fcmp_32ns_32ns_1_2_no_dsp_1_ip'...
+WARNING: [IP_Flow 19-4832] The IP name 'QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'QuantumMonteCarloU50_fdiv_32ns_32ns_32_12_no_dsp_1_ip'...
+WARNING: [IP_Flow 19-4832] The IP name 'QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'QuantumMonteCarloU50_fmul_32ns_32ns_32_4_max_dsp_1_ip'...
+WARNING: [IP_Flow 19-4832] The IP name 'QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'QuantumMonteCarloU50_fsub_32ns_32ns_32_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/edci/Xilinx/Vivado/2021.1/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Aug 24 11:42:08 2021...
+INFO: [HLS 200-802] Generated output file QuantumMonteCarloU50/solution/impl/export.zip
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 251.4 seconds. CPU system time: 8.55 seconds. Elapsed time: 267.2 seconds; current allocated memory: 886.393 MB.
+HLS completed successfully
+INFO: [HLS 200-112] Total CPU user time: 516.88 seconds. Total CPU system time: 11.59 seconds. Total elapsed time: 533.71 seconds; peak allocated memory: 867.927 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Tue Aug 24 11:42:18 2021...

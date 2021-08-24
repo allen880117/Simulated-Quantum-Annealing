@@ -1,0 +1,288 @@
+
+
+================================================================
+== Vitis HLS Report for 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS'
+================================================================
+* Date:           Tue Aug 24 11:36:45 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        QuantumMonteCarloU50
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       42|       42|  0.140 us|  0.140 us|   42|   42|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                 |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name    |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- READ_TROTTERS  |       40|       40|        10|          8|          1|     4|       yes|
+        +-----------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 8, depth = 10
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 10
+* Pipeline : 1
+  Pipeline-0 : II = 8, D = 10, States = { 1 2 3 4 5 6 7 8 9 10 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.95>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%t = alloca i32 1"   --->   Operation 13 'alloca' 't' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%sext_ln198_read = read i58 @_ssdm_op_Read.ap_auto.i58, i58 %sext_ln198"   --->   Operation 14 'read' 'sext_ln198_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%sext_ln198_cast = sext i58 %sext_ln198_read"   --->   Operation 15 'sext' 'sext_ln198_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %trottersLocal_V_3, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 16 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %trottersLocal_V_2, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 17 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %trottersLocal_V_1, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 18 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %trottersLocal_V_0, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 19 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i512 %gmem0, void @empty_1, i32 0, i32 0, void @empty_2, i32 64, i32 0, void @empty_15, void @empty_16, void @empty_2, i32 16, i32 16, i32 16, i32 16, void @empty_2, void @empty_2"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.38ns)   --->   "%store_ln0 = store i3 0, i3 %t"   --->   Operation 21 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 22 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%t_2 = load i3 %t" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 23 'load' 't_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.49ns)   --->   "%icmp_ln198 = icmp_eq  i3 %t_2, i3 4" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 24 'icmp' 'icmp_ln198' <Predicate = true> <Delay = 0.49> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.49> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 25 [1/1] (0.57ns)   --->   "%add_ln198 = add i3 %t_2, i3 1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 25 'add' 'add_ln198' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.57> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%br_ln198 = br i1 %icmp_ln198, void %.split17, void %codeRepl.exitStub" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 26 'br' 'br_ln198' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%trunc_ln202 = trunc i3 %t_2" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 27 'trunc' 'trunc_ln202' <Predicate = (!icmp_ln198)> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.65ns)   --->   "%switch_ln202 = switch i2 %trunc_ln202, void %branch31, i2 0, void %branch28, i2 1, void %branch29, i2 2, void %branch30" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 28 'switch' 'switch_ln202' <Predicate = (!icmp_ln198)> <Delay = 0.65>
+ST_1 : Operation 29 [1/1] (0.38ns)   --->   "%store_ln198 = store i3 %add_ln198, i3 %t" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 29 'store' 'store_ln198' <Predicate = (!icmp_ln198)> <Delay = 0.38>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 30 'br' 'br_ln0' <Predicate = (!icmp_ln198)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.43>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%gmem0_addr = getelementptr i512 %gmem0, i64 %sext_ln198_cast" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 31 'getelementptr' 'gmem0_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (2.43ns)   --->   "%gmem0_addr_read = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 32 'read' 'gmem0_addr_read' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 3 <SV = 2> <Delay = 2.43>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_14 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 0" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 33 'getelementptr' 'trottersLocal_V_3_addr_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_14 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 0" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 34 'getelementptr' 'trottersLocal_V_2_addr_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_14 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 0" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 35 'getelementptr' 'trottersLocal_V_1_addr_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_14 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 0" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 36 'getelementptr' 'trottersLocal_V_0_addr_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (2.43ns)   --->   "%gmem0_addr_read_1 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 37 'read' 'gmem0_addr_read_1' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_3 : Operation 38 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read, i3 %trottersLocal_V_2_addr_14" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 38 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_3 : Operation 39 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read, i3 %trottersLocal_V_1_addr_14" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 39 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_3 : Operation 40 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read, i3 %trottersLocal_V_0_addr_14" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 40 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_3 : Operation 41 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read, i3 %trottersLocal_V_3_addr_14" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 41 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+
+State 4 <SV = 3> <Delay = 2.43>
+ST_4 : Operation 42 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_13 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 42 'getelementptr' 'trottersLocal_V_3_addr_13' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_13 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 43 'getelementptr' 'trottersLocal_V_2_addr_13' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_13 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 44 'getelementptr' 'trottersLocal_V_1_addr_13' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_13 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 45 'getelementptr' 'trottersLocal_V_0_addr_13' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 46 [1/1] (2.43ns)   --->   "%gmem0_addr_read_2 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 46 'read' 'gmem0_addr_read_2' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_4 : Operation 47 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_1, i3 %trottersLocal_V_2_addr_13" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 47 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_4 : Operation 48 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_1, i3 %trottersLocal_V_1_addr_13" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 48 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_4 : Operation 49 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_1, i3 %trottersLocal_V_0_addr_13" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 49 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_4 : Operation 50 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_1, i3 %trottersLocal_V_3_addr_13" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 50 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+
+State 5 <SV = 4> <Delay = 2.43>
+ST_5 : Operation 51 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_12 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 2" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 51 'getelementptr' 'trottersLocal_V_3_addr_12' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 52 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_12 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 2" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 52 'getelementptr' 'trottersLocal_V_2_addr_12' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 53 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_12 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 2" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 53 'getelementptr' 'trottersLocal_V_1_addr_12' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 54 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_12 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 2" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 54 'getelementptr' 'trottersLocal_V_0_addr_12' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 55 [1/1] (2.43ns)   --->   "%gmem0_addr_read_3 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 55 'read' 'gmem0_addr_read_3' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_5 : Operation 56 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_2, i3 %trottersLocal_V_2_addr_12" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 56 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_5 : Operation 57 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_2, i3 %trottersLocal_V_1_addr_12" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 57 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_5 : Operation 58 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_2, i3 %trottersLocal_V_0_addr_12" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 58 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_5 : Operation 59 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_2, i3 %trottersLocal_V_3_addr_12" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 59 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+
+State 6 <SV = 5> <Delay = 2.43>
+ST_6 : Operation 60 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_11 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 3" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 60 'getelementptr' 'trottersLocal_V_3_addr_11' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 61 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_11 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 3" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 61 'getelementptr' 'trottersLocal_V_2_addr_11' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 62 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_11 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 3" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 62 'getelementptr' 'trottersLocal_V_1_addr_11' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 63 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_11 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 3" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 63 'getelementptr' 'trottersLocal_V_0_addr_11' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 64 [1/1] (2.43ns)   --->   "%gmem0_addr_read_4 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 64 'read' 'gmem0_addr_read_4' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_6 : Operation 65 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_3, i3 %trottersLocal_V_2_addr_11" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 65 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_6 : Operation 66 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_3, i3 %trottersLocal_V_1_addr_11" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 66 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_6 : Operation 67 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_3, i3 %trottersLocal_V_0_addr_11" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 67 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_6 : Operation 68 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_3, i3 %trottersLocal_V_3_addr_11" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 68 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+
+State 7 <SV = 6> <Delay = 2.43>
+ST_7 : Operation 69 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_10 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 4" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 69 'getelementptr' 'trottersLocal_V_3_addr_10' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 70 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_10 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 4" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 70 'getelementptr' 'trottersLocal_V_2_addr_10' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 71 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_10 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 4" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 71 'getelementptr' 'trottersLocal_V_1_addr_10' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 72 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_10 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 4" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 72 'getelementptr' 'trottersLocal_V_0_addr_10' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 73 [1/1] (2.43ns)   --->   "%gmem0_addr_read_5 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 73 'read' 'gmem0_addr_read_5' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_7 : Operation 74 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_4, i3 %trottersLocal_V_2_addr_10" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 74 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_7 : Operation 75 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_4, i3 %trottersLocal_V_1_addr_10" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 75 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_7 : Operation 76 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_4, i3 %trottersLocal_V_0_addr_10" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 76 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_7 : Operation 77 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_4, i3 %trottersLocal_V_3_addr_10" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 77 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+
+State 8 <SV = 7> <Delay = 2.43>
+ST_8 : Operation 78 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_9 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 5" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 78 'getelementptr' 'trottersLocal_V_3_addr_9' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 79 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_9 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 5" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 79 'getelementptr' 'trottersLocal_V_2_addr_9' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 80 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_9 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 5" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 80 'getelementptr' 'trottersLocal_V_1_addr_9' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 81 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_9 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 5" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 81 'getelementptr' 'trottersLocal_V_0_addr_9' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 82 [1/1] (2.43ns)   --->   "%gmem0_addr_read_6 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 82 'read' 'gmem0_addr_read_6' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_8 : Operation 83 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_5, i3 %trottersLocal_V_2_addr_9" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 83 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_8 : Operation 84 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_5, i3 %trottersLocal_V_1_addr_9" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 84 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_8 : Operation 85 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_5, i3 %trottersLocal_V_0_addr_9" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 85 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_8 : Operation 86 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_5, i3 %trottersLocal_V_3_addr_9" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 86 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+
+State 9 <SV = 8> <Delay = 2.43>
+ST_9 : Operation 87 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr = getelementptr i512 %trottersLocal_V_3, i64 0, i64 7" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 87 'getelementptr' 'trottersLocal_V_3_addr' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 88 [1/1] (0.00ns)   --->   "%trottersLocal_V_3_addr_8 = getelementptr i512 %trottersLocal_V_3, i64 0, i64 6" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 88 'getelementptr' 'trottersLocal_V_3_addr_8' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 89 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr = getelementptr i512 %trottersLocal_V_2, i64 0, i64 7" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 89 'getelementptr' 'trottersLocal_V_2_addr' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 90 [1/1] (0.00ns)   --->   "%trottersLocal_V_2_addr_8 = getelementptr i512 %trottersLocal_V_2, i64 0, i64 6" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 90 'getelementptr' 'trottersLocal_V_2_addr_8' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 91 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr = getelementptr i512 %trottersLocal_V_1, i64 0, i64 7" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 91 'getelementptr' 'trottersLocal_V_1_addr' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 92 [1/1] (0.00ns)   --->   "%trottersLocal_V_1_addr_8 = getelementptr i512 %trottersLocal_V_1, i64 0, i64 6" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 92 'getelementptr' 'trottersLocal_V_1_addr_8' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 93 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr = getelementptr i512 %trottersLocal_V_0, i64 0, i64 7" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 93 'getelementptr' 'trottersLocal_V_0_addr' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 94 [1/1] (0.00ns)   --->   "%trottersLocal_V_0_addr_8 = getelementptr i512 %trottersLocal_V_0, i64 0, i64 6" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 94 'getelementptr' 'trottersLocal_V_0_addr_8' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 95 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4"   --->   Operation 95 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 96 [1/1] (0.00ns)   --->   "%specpipeline_ln198 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_2" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 96 'specpipeline' 'specpipeline_ln198' <Predicate = (!icmp_ln198)> <Delay = 0.00>
+ST_9 : Operation 97 [1/1] (0.00ns)   --->   "%specloopname_ln198 = specloopname void @_ssdm_op_SpecLoopName, void @empty_24" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:198]   --->   Operation 97 'specloopname' 'specloopname_ln198' <Predicate = (!icmp_ln198)> <Delay = 0.00>
+ST_9 : Operation 98 [1/1] (2.43ns)   --->   "%gmem0_addr_read_7 = read i512 @_ssdm_op_Read.m_axi.p1i512, i512 %gmem0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 98 'read' 'gmem0_addr_read_7' <Predicate = (!icmp_ln198)> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_9 : Operation 99 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_6, i3 %trottersLocal_V_2_addr_8" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 99 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_9 : Operation 100 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_6, i3 %trottersLocal_V_1_addr_8" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 100 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_9 : Operation 101 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_6, i3 %trottersLocal_V_0_addr_8" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 101 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_9 : Operation 102 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_6, i3 %trottersLocal_V_3_addr_8" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 102 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_9 : Operation 111 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 111 'ret' 'ret_ln0' <Predicate = (icmp_ln198)> <Delay = 0.00>
+
+State 10 <SV = 9> <Delay = 1.20>
+ST_10 : Operation 103 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_7, i3 %trottersLocal_V_2_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 103 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_10 : Operation 104 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.split172754"   --->   Operation 104 'br' 'br_ln0' <Predicate = (!icmp_ln198 & trunc_ln202 == 2)> <Delay = 0.00>
+ST_10 : Operation 105 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_7, i3 %trottersLocal_V_1_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 105 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_10 : Operation 106 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.split172754"   --->   Operation 106 'br' 'br_ln0' <Predicate = (!icmp_ln198 & trunc_ln202 == 1)> <Delay = 0.00>
+ST_10 : Operation 107 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_7, i3 %trottersLocal_V_0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 107 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_10 : Operation 108 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.split172754"   --->   Operation 108 'br' 'br_ln0' <Predicate = (!icmp_ln198 & trunc_ln202 == 0)> <Delay = 0.00>
+ST_10 : Operation 109 [1/1] (1.20ns)   --->   "%store_ln202 = store i512 %gmem0_addr_read_7, i3 %trottersLocal_V_3_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:202]   --->   Operation 109 'store' 'store_ln202' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 8> <RAM>
+ST_10 : Operation 110 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.split172754"   --->   Operation 110 'br' 'br_ln0' <Predicate = (!icmp_ln198 & trunc_ln202 == 3)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 0.959ns
+The critical path consists of the following:
+	'alloca' operation ('t') [7]  (0 ns)
+	'load' operation ('t', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on local variable 't' [18]  (0 ns)
+	'add' operation ('add_ln198', /home/edci/workspace/SQA_kernels/src/qmc.cpp:198) [54]  (0.572 ns)
+	'store' operation ('store_ln198', /home/edci/workspace/SQA_kernels/src/qmc.cpp:198) of variable 'add_ln198', /home/edci/workspace/SQA_kernels/src/qmc.cpp:198 on local variable 't' [110]  (0.387 ns)
+
+ <State 2>: 2.43ns
+The critical path consists of the following:
+	'getelementptr' operation ('gmem0_addr', /home/edci/workspace/SQA_kernels/src/qmc.cpp:198) [43]  (0 ns)
+	bus read operation ('gmem0_addr_read', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [60]  (2.43 ns)
+
+ <State 3>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_1', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [61]  (2.43 ns)
+
+ <State 4>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_2', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [62]  (2.43 ns)
+
+ <State 5>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_3', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [63]  (2.43 ns)
+
+ <State 6>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_4', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [64]  (2.43 ns)
+
+ <State 7>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_5', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [65]  (2.43 ns)
+
+ <State 8>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_6', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [66]  (2.43 ns)
+
+ <State 9>: 2.43ns
+The critical path consists of the following:
+	bus read operation ('gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) on port 'gmem0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:202) [67]  (2.43 ns)
+
+ <State 10>: 1.2ns
+The critical path consists of the following:
+	'store' operation ('store_ln202', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202) of variable 'gmem0_addr_read_7', /home/edci/workspace/SQA_kernels/src/qmc.cpp:202 on array 'trottersLocal_V_2' [77]  (1.2 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

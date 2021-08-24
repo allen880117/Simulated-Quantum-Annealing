@@ -1,0 +1,189 @@
+
+
+================================================================
+== Vitis HLS Report for 'TrotterUnitFinal'
+================================================================
+* Date:           Tue Aug 24 11:37:35 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        QuantumMonteCarloU50
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max    | min | max |   Type  |
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |        1|       15|  3.333 ns|  49.995 ns|    1|   15|       no|
+    +---------+---------+----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|     227|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     7|      779|     474|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|      81|    -|
+|Register             |        -|     -|     1220|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     7|     1999|     782|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |              Instance              |             Module             | BRAM_18K| DSP|  FF | LUT | URAM|
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |fadd_32ns_32ns_32_7_full_dsp_1_U85  |fadd_32ns_32ns_32_7_full_dsp_1  |        0|   2|  318|  198|    0|
+    |fcmp_32ns_32ns_1_2_no_dsp_1_U88     |fcmp_32ns_32ns_1_2_no_dsp_1     |        0|   0|    0|    0|    0|
+    |fdiv_32ns_32ns_32_12_no_dsp_1_U87   |fdiv_32ns_32ns_32_12_no_dsp_1   |        0|   0|    0|    0|    0|
+    |fmul_32ns_32ns_32_4_max_dsp_1_U86   |fmul_32ns_32ns_32_4_max_dsp_1   |        0|   3|  143|   78|    0|
+    |fsub_32ns_32ns_32_7_full_dsp_1_U84  |fsub_32ns_32ns_32_7_full_dsp_1  |        0|   2|  318|  198|    0|
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |Total                               |                                |        0|   7|  779|  474|    0|
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |and_ln121_fu_219_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln135_1_fu_340_p2    |       and|   0|  0|   2|           1|           1|
+    |and_ln135_fu_334_p2      |       and|   0|  0|   2|           1|           1|
+    |inside_fu_202_p2         |       and|   0|  0|   2|           1|           1|
+    |icmp_ln110_1_fu_196_p2   |      icmp|   0|  0|  12|          13|          13|
+    |icmp_ln110_fu_176_p2     |      icmp|   0|  0|  12|          13|          13|
+    |icmp_ln135_1_fu_308_p2   |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln135_2_fu_314_p2   |      icmp|   0|  0|  11|           8|           2|
+    |icmp_ln135_3_fu_320_p2   |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln135_fu_302_p2     |      icmp|   0|  0|  11|           8|           2|
+    |or_ln135_1_fu_330_p2     |        or|   0|  0|   2|           1|           1|
+    |or_ln135_fu_326_p2       |        or|   0|  0|   2|           1|           1|
+    |dHTmp_1_fu_260_p3        |    select|   0|  0|  32|           1|          32|
+    |select_ln1049_fu_230_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln121_fu_224_p3   |    select|   0|  0|  32|           1|          32|
+    |p_Repl2_s_fu_346_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln1049_1_fu_214_p2   |       xor|   0|  0|   2|           1|           2|
+    |xor_ln1049_fu_208_p2     |       xor|   0|  0|   2|           1|           1|
+    |xor_ln110_fu_182_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln131_fu_250_p2      |       xor|   0|  0|  33|          32|          33|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |Total                    |          |   0|  0| 227|         133|         174|
+    +-------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------+----+-----------+-----+-----------+
+    |    Name   | LUT| Input Size| Bits| Total Bits|
+    +-----------+----+-----------+-----+-----------+
+    |ap_NS_fsm  |  81|         17|    1|         17|
+    +-----------+----+-----------+-----+-----------+
+    |Total      |  81|         17|    1|         17|
+    +-----------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------+-----+----+-----+-----------+
+    |          Name         |  FF | LUT| Bits| Const Bits|
+    +-----------------------+-----+----+-----+-----------+
+    |add4_reg_413           |   32|   0|   32|          0|
+    |and_ln135_1_reg_477    |    1|   0|    1|          0|
+    |ap_CS_fsm              |   16|   0|   16|          0|
+    |dHTmp_reg_446          |   32|   0|   32|          0|
+    |div_reg_429            |   32|   0|   32|          0|
+    |iSpin_cast_reg_392     |    9|   0|   32|         23|
+    |icmp_ln135_1_reg_462   |    1|   0|    1|          0|
+    |icmp_ln135_2_reg_467   |    1|   0|    1|          0|
+    |icmp_ln135_3_reg_472   |    1|   0|    1|          0|
+    |icmp_ln135_reg_457     |    1|   0|    1|          0|
+    |inside_reg_398         |    1|   0|    1|          0|
+    |p_Result_1_reg_440     |    1|   0|    1|          0|
+    |p_Result_s_reg_481     |  512|   0|  512|          0|
+    |p_Val2_s_reg_435       |  512|   0|  512|          0|
+    |select_ln1049_reg_418  |   32|   0|   32|          0|
+    |sub_reg_408            |   32|   0|   32|          0|
+    |trotters_addr_reg_423  |    3|   0|    3|          0|
+    |xor_ln1049_reg_402     |    1|   0|    1|          0|
+    +-----------------------+-----+----+-----+-----------+
+    |Total                  | 1220|   0| 1243|         23|
+    +-----------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------+-----+-----+------------+------------------+--------------+
+|     RTL Ports     | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++-------------------+-----+-----+------------+------------------+--------------+
+|ap_clk             |   in|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_rst             |   in|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_start           |   in|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_done            |  out|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_idle            |  out|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_ready           |  out|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|t_offset           |   in|    2|     ap_none|          t_offset|        scalar|
+|stage              |   in|   13|     ap_none|             stage|        scalar|
+|iPack              |   in|    3|     ap_none|             iPack|        scalar|
+|iSpin              |   in|    9|     ap_none|             iSpin|        scalar|
+|trotters_address0  |  out|    3|   ap_memory|          trotters|         array|
+|trotters_ce0       |  out|    1|   ap_memory|          trotters|         array|
+|trotters_q0        |   in|  512|   ap_memory|          trotters|         array|
+|trotters_address1  |  out|    3|   ap_memory|          trotters|         array|
+|trotters_ce1       |  out|    1|   ap_memory|          trotters|         array|
+|trotters_we1       |  out|    1|   ap_memory|          trotters|         array|
+|trotters_d1        |  out|  512|   ap_memory|          trotters|         array|
+|dH                 |   in|   32|     ap_none|                dH|        scalar|
+|upSpin             |   in|    1|     ap_none|            upSpin|        scalar|
+|downSpin           |   in|    1|     ap_none|          downSpin|        scalar|
+|Beta               |   in|   32|     ap_none|              Beta|        scalar|
+|dHTunnel           |   in|   32|     ap_none|          dHTunnel|        scalar|
+|logRandNumber      |   in|   32|     ap_none|     logRandNumber|        scalar|
++-------------------+-----+-----+------------+------------------+--------------+
+
