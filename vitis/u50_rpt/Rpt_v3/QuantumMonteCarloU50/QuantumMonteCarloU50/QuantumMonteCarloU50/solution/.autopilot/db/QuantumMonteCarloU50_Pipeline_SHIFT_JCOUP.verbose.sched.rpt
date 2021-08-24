@@ -1,0 +1,156 @@
+
+
+================================================================
+== Vitis HLS Report for 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP'
+================================================================
+* Date:           Tue Aug 24 17:35:56 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        QuantumMonteCarloU50
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.400 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      258|      258|  0.860 us|  0.860 us|  258|  258|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- SHIFT_JCOUP  |      256|      256|         2|          1|          1|   256|       yes|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.20>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%packOfst = alloca i32 1"   --->   Operation 5 'alloca' 'packOfst' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %JcoupLocal_3, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 6 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %JcoupLocal_2, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 7 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %JcoupLocal_1, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 8 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i512 %JcoupLocal_0, i64 666, i64 22, i64 18446744073709551615"   --->   Operation 9 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.38ns)   --->   "%store_ln0 = store i9 0, i9 %packOfst"   --->   Operation 10 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 11 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%packOfst_1 = load i9 %packOfst" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 12 'load' 'packOfst_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.59ns)   --->   "%icmp_ln270 = icmp_eq  i9 %packOfst_1, i9 256" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 13 'icmp' 'icmp_ln270' <Predicate = true> <Delay = 0.59> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 256, i64 256, i64 256"   --->   Operation 14 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.71ns)   --->   "%add_ln270 = add i9 %packOfst_1, i9 1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 15 'add' 'add_ln270' <Predicate = true> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.71> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln270 = br i1 %icmp_ln270, void %.split10, void %.exitStub" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 16 'br' 'br_ln270' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%zext_ln270 = zext i9 %packOfst_1" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 17 'zext' 'zext_ln270' <Predicate = (!icmp_ln270)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%JcoupLocal_2_addr = getelementptr i512 %JcoupLocal_2, i64 0, i64 %zext_ln270" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 18 'getelementptr' 'JcoupLocal_2_addr' <Predicate = (!icmp_ln270)> <Delay = 0.00>
+ST_1 : Operation 19 [2/2] (1.20ns)   --->   "%JcoupLocal_2_load = load i8 %JcoupLocal_2_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 19 'load' 'JcoupLocal_2_load' <Predicate = (!icmp_ln270)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%JcoupLocal_1_addr = getelementptr i512 %JcoupLocal_1, i64 0, i64 %zext_ln270" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 20 'getelementptr' 'JcoupLocal_1_addr' <Predicate = (!icmp_ln270)> <Delay = 0.00>
+ST_1 : Operation 21 [2/2] (1.20ns)   --->   "%JcoupLocal_1_load = load i8 %JcoupLocal_1_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 21 'load' 'JcoupLocal_1_load' <Predicate = (!icmp_ln270)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%JcoupLocal_0_addr = getelementptr i512 %JcoupLocal_0, i64 0, i64 %zext_ln270" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 22 'getelementptr' 'JcoupLocal_0_addr' <Predicate = (!icmp_ln270)> <Delay = 0.00>
+ST_1 : Operation 23 [2/2] (1.20ns)   --->   "%JcoupLocal_0_load = load i8 %JcoupLocal_0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 23 'load' 'JcoupLocal_0_load' <Predicate = (!icmp_ln270)> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_1 : Operation 24 [1/1] (0.38ns)   --->   "%store_ln270 = store i9 %add_ln270, i9 %packOfst" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 24 'store' 'store_ln270' <Predicate = (!icmp_ln270)> <Delay = 0.38>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 35 'ret' 'ret_ln0' <Predicate = (icmp_ln270)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.40>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%specpipeline_ln270 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_4" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 25 'specpipeline' 'specpipeline_ln270' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%specloopname_ln270 = specloopname void @_ssdm_op_SpecLoopName, void @empty_24" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:270]   --->   Operation 26 'specloopname' 'specloopname_ln270' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 27 [1/2] (1.20ns)   --->   "%JcoupLocal_2_load = load i8 %JcoupLocal_2_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 27 'load' 'JcoupLocal_2_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%JcoupLocal_3_addr = getelementptr i512 %JcoupLocal_3, i64 0, i64 %zext_ln270" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 28 'getelementptr' 'JcoupLocal_3_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (1.20ns)   --->   "%store_ln274 = store i512 %JcoupLocal_2_load, i8 %JcoupLocal_3_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 29 'store' 'store_ln274' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_2 : Operation 30 [1/2] (1.20ns)   --->   "%JcoupLocal_1_load = load i8 %JcoupLocal_1_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 30 'load' 'JcoupLocal_1_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_2 : Operation 31 [1/1] (1.20ns)   --->   "%store_ln274 = store i512 %JcoupLocal_1_load, i8 %JcoupLocal_2_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 31 'store' 'store_ln274' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_2 : Operation 32 [1/2] (1.20ns)   --->   "%JcoupLocal_0_load = load i8 %JcoupLocal_0_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 32 'load' 'JcoupLocal_0_load' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_2 : Operation 33 [1/1] (1.20ns)   --->   "%store_ln274 = store i512 %JcoupLocal_0_load, i8 %JcoupLocal_1_addr" [/home/edci/workspace/SQA_kernels/src/qmc.cpp:274]   --->   Operation 33 'store' 'store_ln274' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_2P_BRAM">   --->   Core 94 'RAM_2P_BRAM' <Latency = 1> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 512> <Depth = 256> <RAM>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 34 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.2ns
+The critical path consists of the following:
+	'alloca' operation ('packOfst') [5]  (0 ns)
+	'load' operation ('packOfst', /home/edci/workspace/SQA_kernels/src/qmc.cpp:270) on local variable 'packOfst' [13]  (0 ns)
+	'getelementptr' operation ('JcoupLocal_2_addr', /home/edci/workspace/SQA_kernels/src/qmc.cpp:274) [22]  (0 ns)
+	'load' operation ('JcoupLocal_2_load', /home/edci/workspace/SQA_kernels/src/qmc.cpp:274) on array 'JcoupLocal_2' [23]  (1.2 ns)
+
+ <State 2>: 2.4ns
+The critical path consists of the following:
+	'load' operation ('JcoupLocal_2_load', /home/edci/workspace/SQA_kernels/src/qmc.cpp:274) on array 'JcoupLocal_2' [23]  (1.2 ns)
+	'store' operation ('store_ln274', /home/edci/workspace/SQA_kernels/src/qmc.cpp:274) of variable 'JcoupLocal_2_load', /home/edci/workspace/SQA_kernels/src/qmc.cpp:274 on array 'JcoupLocal_3' [25]  (1.2 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

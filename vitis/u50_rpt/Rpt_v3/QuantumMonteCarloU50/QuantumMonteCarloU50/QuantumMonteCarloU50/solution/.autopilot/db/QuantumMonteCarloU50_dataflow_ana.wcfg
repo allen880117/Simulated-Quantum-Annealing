@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="QuantumMonteCarloU50.wdb" id="1">
+         <top_modules>
+            <top_module name="apa_QuantumMonteCarloU50_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0ns"></ZoomStartTime>
+      <ZoomEndTime time="2000ns"></ZoomEndTime>
+      <Cursor1Time time="0ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="257"></NameColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="2" />
+   <wvobject type="group" fp_name="HLS Process Summary Group">
+      <obj_property name="label">HLS Process Summary</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50//AESL_inst_QuantumMonteCarloU50_activity">
+         <obj_property name="label">AESL_inst_QuantumMonteCarloU50_activity</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="UseFullPath">true</obj_property>
+         <obj_property name="ElementShortName">AESL_inst_QuantumMonteCarloU50_activity</obj_property>
+         <obj_property name="ObjectShortName">AESL_inst_QuantumMonteCarloU50_activity</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+         <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">turquoise</obj_property>
+         <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+         <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50//AESL_inst_QuantumMonteCarloU50_activity.dataflowTxWaveData.Cycles</obj_property>
+         <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50//AESL_inst_QuantumMonteCarloU50_activity.dataflowTxWaveData.OutStanding</obj_property>
+         <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50//AESL_inst_QuantumMonteCarloU50_activity.dataflowTxTooltipData</obj_property>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity">
+            <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity">
+            <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/grp_TrotterUnit_fu_555_activity">
+            <obj_property name="label">grp_TrotterUnit_fu_555_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnit_fu_555_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnit_fu_555_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/grp_TrotterUnit_fu_555_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/grp_TrotterUnit_fu_555_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/grp_TrotterUnit_fu_555_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/grp_TrotterUnit_fu_569_activity">
+            <obj_property name="label">grp_TrotterUnit_fu_569_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnit_fu_569_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnit_fu_569_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/grp_TrotterUnit_fu_569_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/grp_TrotterUnit_fu_569_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/grp_TrotterUnit_fu_569_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/grp_TrotterUnit_fu_583_activity">
+            <obj_property name="label">grp_TrotterUnit_fu_583_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnit_fu_583_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnit_fu_583_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/grp_TrotterUnit_fu_583_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/grp_TrotterUnit_fu_583_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/grp_TrotterUnit_fu_583_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/grp_TrotterUnit_fu_597_activity">
+            <obj_property name="label">grp_TrotterUnit_fu_597_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnit_fu_597_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnit_fu_597_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/grp_TrotterUnit_fu_597_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/grp_TrotterUnit_fu_597_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/grp_TrotterUnit_fu_597_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/grp_TrotterUnitFinal_fu_611_activity">
+            <obj_property name="label">grp_TrotterUnitFinal_fu_611_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_611_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_611_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/grp_TrotterUnitFinal_fu_611_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/grp_TrotterUnitFinal_fu_611_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/grp_TrotterUnitFinal_fu_611_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/grp_TrotterUnitFinal_fu_628_activity">
+            <obj_property name="label">grp_TrotterUnitFinal_fu_628_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_628_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_628_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/grp_TrotterUnitFinal_fu_628_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/grp_TrotterUnitFinal_fu_628_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/grp_TrotterUnitFinal_fu_628_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/grp_TrotterUnitFinal_fu_645_activity">
+            <obj_property name="label">grp_TrotterUnitFinal_fu_645_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_645_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_645_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/grp_TrotterUnitFinal_fu_645_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/grp_TrotterUnitFinal_fu_645_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/grp_TrotterUnitFinal_fu_645_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/grp_TrotterUnitFinal_fu_662_activity">
+            <obj_property name="label">grp_TrotterUnitFinal_fu_662_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_662_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_662_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/grp_TrotterUnitFinal_fu_662_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/grp_TrotterUnitFinal_fu_662_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/grp_TrotterUnitFinal_fu_662_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity">
+            <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity">
+            <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50//AESL_inst_QuantumMonteCarloU50_activity">
+      <obj_property name="ElementShortName">AESL_inst_QuantumMonteCarloU50_activity</obj_property>
+      <obj_property name="ObjectShortName">AESL_inst_QuantumMonteCarloU50_activity</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="AESL_inst_QuantumMonteCarloU50_group">
+      <obj_property name="label">AESL_inst_QuantumMonteCarloU50</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity">
+         <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity">
+         <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/grp_TrotterUnit_fu_555_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnit_fu_555_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnit_fu_555_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/grp_TrotterUnit_fu_569_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnit_fu_569_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnit_fu_569_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/grp_TrotterUnit_fu_583_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnit_fu_583_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnit_fu_583_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/grp_TrotterUnit_fu_597_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnit_fu_597_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnit_fu_597_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/grp_TrotterUnitFinal_fu_611_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_611_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_611_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/grp_TrotterUnitFinal_fu_628_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_628_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_628_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/grp_TrotterUnitFinal_fu_645_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_645_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_645_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/grp_TrotterUnitFinal_fu_662_activity">
+         <obj_property name="ElementShortName">grp_TrotterUnitFinal_fu_662_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_TrotterUnitFinal_fu_662_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity">
+         <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity">
+         <obj_property name="ElementShortName">grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity</obj_property>
+         <obj_property name="ObjectShortName">grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_activity</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="AESL_inst_QuantumMonteCarloU50_Handshake_group">
+         <obj_property name="label">Block-level handshake</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/ap_start">
+            <obj_property name="ElementShortName">ap_start</obj_property>
+            <obj_property name="ObjectShortName">ap_start</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/ap_ready">
+            <obj_property name="ElementShortName">ap_ready</obj_property>
+            <obj_property name="ObjectShortName">ap_ready</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/ap_done">
+            <obj_property name="ElementShortName">ap_done</obj_property>
+            <obj_property name="ObjectShortName">ap_done</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/ap_continue">
+            <obj_property name="ElementShortName">ap_continue</obj_property>
+            <obj_property name="ObjectShortName">ap_continue</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_group">
+         <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_536/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_group">
+         <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_547/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnit_fu_555_group">
+         <obj_property name="label">grp_TrotterUnit_fu_555</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnit_fu_555_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_555/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnit_fu_569_group">
+         <obj_property name="label">grp_TrotterUnit_fu_569</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnit_fu_569_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_569/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnit_fu_583_group">
+         <obj_property name="label">grp_TrotterUnit_fu_583</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnit_fu_583_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_583/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnit_fu_597_group">
+         <obj_property name="label">grp_TrotterUnit_fu_597</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnit_fu_597_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnit_fu_597/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_611_group">
+         <obj_property name="label">grp_TrotterUnitFinal_fu_611</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_611_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_611/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_628_group">
+         <obj_property name="label">grp_TrotterUnitFinal_fu_628</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_628_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_628/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_645_group">
+         <obj_property name="label">grp_TrotterUnitFinal_fu_645</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_645_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_645/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_662_group">
+         <obj_property name="label">grp_TrotterUnitFinal_fu_662</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_TrotterUnitFinal_fu_662_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_TrotterUnitFinal_fu_662/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_group">
+         <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_679/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_group">
+         <obj_property name="label">grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_QuantumMonteCarloU50_top/AESL_inst_QuantumMonteCarloU50/grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_687/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>

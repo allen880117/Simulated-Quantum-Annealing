@@ -1,6 +1,7 @@
 #ifndef _SQA_HPP_
 #define _SQA_HPP_
 
+#include "ap_axi_sdata.h"
 #include "hls_math.h"
 #include "hls_stream.h"
 
@@ -47,9 +48,10 @@ typedef int i32_t;
 typedef float fp_t;
 typedef ap_uint<1> spin_t;
 typedef struct {
-    fp_t data[PACKET_SIZE];
+  fp_t data[PACKET_SIZE];
 } fp_pack_t;
 typedef ap_uint<PACKET_SIZE * NUM_STREAM> spin_pack_t;
+typedef ap_uint<PACKET_SIZE> spin_pack_u50_t;
 
 /* Quantum Monte-Carlo */
 void QuantumMonteCarlo(
@@ -70,7 +72,7 @@ extern "C" {
 /* Quantum Monte-Carlo U50 */
 void QuantumMonteCarloU50(
     /* Spins */
-    spin_pack_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+    spin_pack_u50_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE],
     /* Jcoup */
     const fp_pack_t Jcoup[NUM_SPIN][NUM_SPIN / PACKET_SIZE],
     /* Array of h */
