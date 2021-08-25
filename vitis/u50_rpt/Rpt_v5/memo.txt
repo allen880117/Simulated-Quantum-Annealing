@@ -1,0 +1,11 @@
+[+] Size of Packet = 16
+[+] Number of Streams = 16
+
+[-] No copysignf
+[+] Use pipeline for trotterUnit and LOOP_STEP
+[+] Use array_partition (cyclic, 16) for JcoupLocal and trottersLocal
+
+[+] Better resource usage and speed than Rpt_v4
+[-] Hard to increas the number of streams, due to the scheling of pipelines
+
+[=] Remove UNROLL of UPDATE_INPUT_STATE, less the usage of resouces a little bit

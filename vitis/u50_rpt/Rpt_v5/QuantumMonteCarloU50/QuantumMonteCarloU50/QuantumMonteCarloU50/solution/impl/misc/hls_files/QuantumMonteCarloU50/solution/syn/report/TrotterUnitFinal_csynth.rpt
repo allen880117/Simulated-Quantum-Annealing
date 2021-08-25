@@ -1,0 +1,294 @@
+
+
+================================================================
+== Vitis HLS Report for 'TrotterUnitFinal'
+================================================================
+* Date:           Wed Aug 25 17:51:36 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        QuantumMonteCarloU50
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max    | min | max |   Type  |
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |        1|       15|  3.333 ns|  49.995 ns|    1|   15|       no|
+    +---------+---------+----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|     227|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     7|      779|     539|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|     305|    -|
+|Register             |        -|     -|      284|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     7|     1063|    1071|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |               Instance              |             Module             | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |fadd_32ns_32ns_32_7_full_dsp_1_U486  |fadd_32ns_32ns_32_7_full_dsp_1  |        0|   2|  318|  198|    0|
+    |fcmp_32ns_32ns_1_2_no_dsp_1_U489     |fcmp_32ns_32ns_1_2_no_dsp_1     |        0|   0|    0|    0|    0|
+    |fdiv_32ns_32ns_32_12_no_dsp_1_U488   |fdiv_32ns_32ns_32_12_no_dsp_1   |        0|   0|    0|    0|    0|
+    |fmul_32ns_32ns_32_4_max_dsp_1_U487   |fmul_32ns_32ns_32_4_max_dsp_1   |        0|   3|  143|   78|    0|
+    |fsub_32ns_32ns_32_7_full_dsp_1_U485  |fsub_32ns_32ns_32_7_full_dsp_1  |        0|   2|  318|  198|    0|
+    |mux_1664_16_1_1_U490                 |mux_1664_16_1_1                 |        0|   0|    0|   65|    0|
+    +-------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |Total                                |                                |        0|   7|  779|  539|    0|
+    +-------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |and_ln121_fu_466_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln135_1_fu_660_p2    |       and|   0|  0|   2|           1|           1|
+    |and_ln135_fu_654_p2      |       and|   0|  0|   2|           1|           1|
+    |inside_fu_449_p2         |       and|   0|  0|   2|           1|           1|
+    |icmp_ln110_1_fu_443_p2   |      icmp|   0|  0|  12|          13|          13|
+    |icmp_ln110_fu_423_p2     |      icmp|   0|  0|  12|          13|          13|
+    |icmp_ln135_1_fu_628_p2   |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln135_2_fu_634_p2   |      icmp|   0|  0|  11|           8|           2|
+    |icmp_ln135_3_fu_640_p2   |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln135_fu_622_p2     |      icmp|   0|  0|  11|           8|           2|
+    |or_ln135_1_fu_650_p2     |        or|   0|  0|   2|           1|           1|
+    |or_ln135_fu_646_p2       |        or|   0|  0|   2|           1|           1|
+    |dHTmp_1_fu_580_p3        |    select|   0|  0|  32|           1|          32|
+    |select_ln1049_fu_477_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln121_fu_471_p3   |    select|   0|  0|  32|           1|          32|
+    |p_Repl2_s_fu_666_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln1049_1_fu_461_p2   |       xor|   0|  0|   2|           1|           2|
+    |xor_ln1049_fu_455_p2     |       xor|   0|  0|   2|           1|           1|
+    |xor_ln110_fu_429_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln131_fu_570_p2      |       xor|   0|  0|  33|          32|          33|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |Total                    |          |   0|  0| 227|         133|         174|
+    +-------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------+----+-----------+-----+-----------+
+    |         Name        | LUT| Input Size| Bits| Total Bits|
+    +---------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm            |  81|         17|    1|         17|
+    |trotters10_address0  |  14|          3|    4|         12|
+    |trotters11_address0  |  14|          3|    4|         12|
+    |trotters12_address0  |  14|          3|    4|         12|
+    |trotters13_address0  |  14|          3|    4|         12|
+    |trotters14_address0  |  14|          3|    4|         12|
+    |trotters15_address0  |  14|          3|    4|         12|
+    |trotters1_address0   |  14|          3|    4|         12|
+    |trotters2_address0   |  14|          3|    4|         12|
+    |trotters3_address0   |  14|          3|    4|         12|
+    |trotters4_address0   |  14|          3|    4|         12|
+    |trotters5_address0   |  14|          3|    4|         12|
+    |trotters6_address0   |  14|          3|    4|         12|
+    |trotters7_address0   |  14|          3|    4|         12|
+    |trotters8_address0   |  14|          3|    4|         12|
+    |trotters9_address0   |  14|          3|    4|         12|
+    |trotters_address0    |  14|          3|    4|         12|
+    +---------------------+----+-----------+-----+-----------+
+    |Total                | 305|         65|   65|        209|
+    +---------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |add4_reg_734             |  32|   0|   32|          0|
+    |and_ln135_1_reg_877      |   1|   0|    1|          0|
+    |ap_CS_fsm                |  16|   0|   16|          0|
+    |dHTmp_reg_846            |  32|   0|   32|          0|
+    |div_reg_829              |  32|   0|   32|          0|
+    |icmp_ln135_1_reg_862     |   1|   0|    1|          0|
+    |icmp_ln135_2_reg_867     |   1|   0|    1|          0|
+    |icmp_ln135_3_reg_872     |   1|   0|    1|          0|
+    |icmp_ln135_reg_857       |   1|   0|    1|          0|
+    |inside_reg_719           |   1|   0|    1|          0|
+    |p_Result_1_reg_840       |   1|   0|    1|          0|
+    |p_Result_s_reg_881       |  16|   0|   16|          0|
+    |p_Val2_s_reg_835         |  16|   0|   16|          0|
+    |select_ln1049_reg_739    |  32|   0|   32|          0|
+    |sub_reg_729              |  32|   0|   32|          0|
+    |trotters10_addr_reg_799  |   4|   0|    4|          0|
+    |trotters11_addr_reg_804  |   4|   0|    4|          0|
+    |trotters12_addr_reg_809  |   4|   0|    4|          0|
+    |trotters13_addr_reg_814  |   4|   0|    4|          0|
+    |trotters14_addr_reg_819  |   4|   0|    4|          0|
+    |trotters15_addr_reg_824  |   4|   0|    4|          0|
+    |trotters1_addr_reg_754   |   4|   0|    4|          0|
+    |trotters2_addr_reg_759   |   4|   0|    4|          0|
+    |trotters3_addr_reg_764   |   4|   0|    4|          0|
+    |trotters4_addr_reg_769   |   4|   0|    4|          0|
+    |trotters5_addr_reg_774   |   4|   0|    4|          0|
+    |trotters6_addr_reg_779   |   4|   0|    4|          0|
+    |trotters7_addr_reg_784   |   4|   0|    4|          0|
+    |trotters8_addr_reg_789   |   4|   0|    4|          0|
+    |trotters9_addr_reg_794   |   4|   0|    4|          0|
+    |trotters_addr_reg_749    |   4|   0|    4|          0|
+    |trunc_ln819_reg_744      |   4|   0|    4|          0|
+    |xor_ln1049_reg_723       |   1|   0|    1|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    | 284|   0|  284|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++---------------------+-----+-----+------------+------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  TrotterUnitFinal|  return value|
+|t_offset             |   in|    2|     ap_none|          t_offset|        scalar|
+|stage                |   in|   13|     ap_none|             stage|        scalar|
+|iPack                |   in|    8|     ap_none|             iPack|        scalar|
+|iSpin                |   in|   32|     ap_none|             iSpin|        scalar|
+|trotters_address0    |  out|    4|   ap_memory|          trotters|         array|
+|trotters_ce0         |  out|    1|   ap_memory|          trotters|         array|
+|trotters_we0         |  out|    1|   ap_memory|          trotters|         array|
+|trotters_d0          |  out|   16|   ap_memory|          trotters|         array|
+|trotters_q0          |   in|   16|   ap_memory|          trotters|         array|
+|trotters1_address0   |  out|    4|   ap_memory|         trotters1|         array|
+|trotters1_ce0        |  out|    1|   ap_memory|         trotters1|         array|
+|trotters1_we0        |  out|    1|   ap_memory|         trotters1|         array|
+|trotters1_d0         |  out|   16|   ap_memory|         trotters1|         array|
+|trotters1_q0         |   in|   16|   ap_memory|         trotters1|         array|
+|trotters2_address0   |  out|    4|   ap_memory|         trotters2|         array|
+|trotters2_ce0        |  out|    1|   ap_memory|         trotters2|         array|
+|trotters2_we0        |  out|    1|   ap_memory|         trotters2|         array|
+|trotters2_d0         |  out|   16|   ap_memory|         trotters2|         array|
+|trotters2_q0         |   in|   16|   ap_memory|         trotters2|         array|
+|trotters3_address0   |  out|    4|   ap_memory|         trotters3|         array|
+|trotters3_ce0        |  out|    1|   ap_memory|         trotters3|         array|
+|trotters3_we0        |  out|    1|   ap_memory|         trotters3|         array|
+|trotters3_d0         |  out|   16|   ap_memory|         trotters3|         array|
+|trotters3_q0         |   in|   16|   ap_memory|         trotters3|         array|
+|trotters4_address0   |  out|    4|   ap_memory|         trotters4|         array|
+|trotters4_ce0        |  out|    1|   ap_memory|         trotters4|         array|
+|trotters4_we0        |  out|    1|   ap_memory|         trotters4|         array|
+|trotters4_d0         |  out|   16|   ap_memory|         trotters4|         array|
+|trotters4_q0         |   in|   16|   ap_memory|         trotters4|         array|
+|trotters5_address0   |  out|    4|   ap_memory|         trotters5|         array|
+|trotters5_ce0        |  out|    1|   ap_memory|         trotters5|         array|
+|trotters5_we0        |  out|    1|   ap_memory|         trotters5|         array|
+|trotters5_d0         |  out|   16|   ap_memory|         trotters5|         array|
+|trotters5_q0         |   in|   16|   ap_memory|         trotters5|         array|
+|trotters6_address0   |  out|    4|   ap_memory|         trotters6|         array|
+|trotters6_ce0        |  out|    1|   ap_memory|         trotters6|         array|
+|trotters6_we0        |  out|    1|   ap_memory|         trotters6|         array|
+|trotters6_d0         |  out|   16|   ap_memory|         trotters6|         array|
+|trotters6_q0         |   in|   16|   ap_memory|         trotters6|         array|
+|trotters7_address0   |  out|    4|   ap_memory|         trotters7|         array|
+|trotters7_ce0        |  out|    1|   ap_memory|         trotters7|         array|
+|trotters7_we0        |  out|    1|   ap_memory|         trotters7|         array|
+|trotters7_d0         |  out|   16|   ap_memory|         trotters7|         array|
+|trotters7_q0         |   in|   16|   ap_memory|         trotters7|         array|
+|trotters8_address0   |  out|    4|   ap_memory|         trotters8|         array|
+|trotters8_ce0        |  out|    1|   ap_memory|         trotters8|         array|
+|trotters8_we0        |  out|    1|   ap_memory|         trotters8|         array|
+|trotters8_d0         |  out|   16|   ap_memory|         trotters8|         array|
+|trotters8_q0         |   in|   16|   ap_memory|         trotters8|         array|
+|trotters9_address0   |  out|    4|   ap_memory|         trotters9|         array|
+|trotters9_ce0        |  out|    1|   ap_memory|         trotters9|         array|
+|trotters9_we0        |  out|    1|   ap_memory|         trotters9|         array|
+|trotters9_d0         |  out|   16|   ap_memory|         trotters9|         array|
+|trotters9_q0         |   in|   16|   ap_memory|         trotters9|         array|
+|trotters10_address0  |  out|    4|   ap_memory|        trotters10|         array|
+|trotters10_ce0       |  out|    1|   ap_memory|        trotters10|         array|
+|trotters10_we0       |  out|    1|   ap_memory|        trotters10|         array|
+|trotters10_d0        |  out|   16|   ap_memory|        trotters10|         array|
+|trotters10_q0        |   in|   16|   ap_memory|        trotters10|         array|
+|trotters11_address0  |  out|    4|   ap_memory|        trotters11|         array|
+|trotters11_ce0       |  out|    1|   ap_memory|        trotters11|         array|
+|trotters11_we0       |  out|    1|   ap_memory|        trotters11|         array|
+|trotters11_d0        |  out|   16|   ap_memory|        trotters11|         array|
+|trotters11_q0        |   in|   16|   ap_memory|        trotters11|         array|
+|trotters12_address0  |  out|    4|   ap_memory|        trotters12|         array|
+|trotters12_ce0       |  out|    1|   ap_memory|        trotters12|         array|
+|trotters12_we0       |  out|    1|   ap_memory|        trotters12|         array|
+|trotters12_d0        |  out|   16|   ap_memory|        trotters12|         array|
+|trotters12_q0        |   in|   16|   ap_memory|        trotters12|         array|
+|trotters13_address0  |  out|    4|   ap_memory|        trotters13|         array|
+|trotters13_ce0       |  out|    1|   ap_memory|        trotters13|         array|
+|trotters13_we0       |  out|    1|   ap_memory|        trotters13|         array|
+|trotters13_d0        |  out|   16|   ap_memory|        trotters13|         array|
+|trotters13_q0        |   in|   16|   ap_memory|        trotters13|         array|
+|trotters14_address0  |  out|    4|   ap_memory|        trotters14|         array|
+|trotters14_ce0       |  out|    1|   ap_memory|        trotters14|         array|
+|trotters14_we0       |  out|    1|   ap_memory|        trotters14|         array|
+|trotters14_d0        |  out|   16|   ap_memory|        trotters14|         array|
+|trotters14_q0        |   in|   16|   ap_memory|        trotters14|         array|
+|trotters15_address0  |  out|    4|   ap_memory|        trotters15|         array|
+|trotters15_ce0       |  out|    1|   ap_memory|        trotters15|         array|
+|trotters15_we0       |  out|    1|   ap_memory|        trotters15|         array|
+|trotters15_d0        |  out|   16|   ap_memory|        trotters15|         array|
+|trotters15_q0        |   in|   16|   ap_memory|        trotters15|         array|
+|dH                   |   in|   32|     ap_none|                dH|        scalar|
+|upSpin               |   in|    1|     ap_none|            upSpin|        scalar|
+|downSpin             |   in|    1|     ap_none|          downSpin|        scalar|
+|Beta                 |   in|   32|     ap_none|              Beta|        scalar|
+|dHTunnel             |   in|   32|     ap_none|          dHTunnel|        scalar|
+|logRandNumber        |   in|   32|     ap_none|     logRandNumber|        scalar|
++---------------------+-----+-----+------------+------------------+--------------+
+

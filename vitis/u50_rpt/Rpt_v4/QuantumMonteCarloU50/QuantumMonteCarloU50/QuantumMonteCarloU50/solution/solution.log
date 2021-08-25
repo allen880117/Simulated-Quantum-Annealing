@@ -1,0 +1,686 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2021.1 (64-bit)
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu50-fsvh2104-2-e'
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
+INFO: [HLS 200-1510] Running: config_export -disable_deadlock_detection=true 
+INFO: [HLS 200-1510] Running: config_rtl -m_axi_conservative_mode=1 
+WARNING: [HLS 200-483] The 'config_rtl -m_axi_conservative_mode' command is deprecated and will be removed in a future release. Use 'config_interface -m_axi_conservative_mode' as its replacement.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname QuantumMonteCarloU50 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 195.396 MB.
+INFO: [HLS 200-10] Analyzing design file '/home/edci/workspace/SQA_kernels/src/qmc.cpp' ... 
+WARNING: [HLS 207-5301] unused parameter 'print': /home/edci/Xilinx/Vitis_HLS/2021.1/common/technology/autopilot/ap_int_base.h:792:16
+WARNING: [HLS 207-5301] unused parameter 'fpBuffer': /home/edci/workspace/SQA_kernels/src/qmc.cpp:25:35
+WARNING: [HLS 207-5301] unused parameter 'fpBuffer': /home/edci/workspace/SQA_kernels/src/qmc.cpp:49:35
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 28.86 seconds. CPU system time: 1.2 seconds. Elapsed time: 28.64 seconds; current allocated memory: 198.600 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-279] Initial Interval estimation mode is set into default.
+INFO: [HLS 214-284] Auto array partition mode is set into default.
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<2u>(float*)' into 'void U50::reductionIntraBuffer<4u>(float*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:8:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<4u>(float*)' into 'void U50::reductionIntraBuffer<8u>(float*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:8:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<8u>(float*)' into 'void U50::reductionIntraBuffer<16u>(float*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:8:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<2u>(float (*) [16])' into 'void U50::reductionInterBuffer<4u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<4u>(float (*) [16])' into 'void U50::reductionInterBuffer<8u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<8u>(float (*) [16])' into 'void U50::reductionInterBuffer<16u>(float (*) [16])' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:32:2)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionInterBuffer<16u>(float (*) [16])' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:92:3)
+INFO: [HLS 214-131] Inlining function 'void U50::reductionIntraBuffer<16u>(float*)' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:90:2)
+INFO: [HLS 214-186] Unrolling loop 'UPDATE_INPUT_STATE' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:220:5) in function 'QuantumMonteCarloU50' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:151:0)
+INFO: [HLS 214-186] Unrolling loop 'RUN_TU' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:253:7) in function 'QuantumMonteCarloU50' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:151:0)
+INFO: [HLS 214-186] Unrolling loop 'RUN_TU_FINAL' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:261:5) in function 'QuantumMonteCarloU50' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:151:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_272_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:272:20) in function 'QuantumMonteCarloU50' completely with a factor of 3 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:151:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_33_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:33:20) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_42_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:42:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_88_3' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:88:20) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 1 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 2 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_9_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:9:19) in function 'U50::TrotterUnit' completely with a factor of 4 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_18_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:18:19) in function 'U50::TrotterUnit' completely with a factor of 8 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_70_1' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:70:20) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_72_2' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:72:19) in function 'U50::TrotterUnit' completely with a factor of 16 (/home/edci/workspace/SQA_kernels/src/qmc.cpp:55:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::data() const' into 'fp_struct<float>::to_float() const' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:346:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_float() const' into 'fp_struct<float>::to_ieee() const' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:370:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'float generic_copysign<float>(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_copysign.h:10:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_ieee() const' into 'float generic_copysign<float>(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_copysign.h:10:0)
+INFO: [HLS 214-178] Inlining function 'float generic_copysign<float>(float, float)' into 'hls::copysign(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/src/c++/copysignfloat.cpp:6:0)
+INFO: [HLS 214-178] Inlining function 'hls::copysign(float, float)' into 'hls::copysignf(float, float)' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/src/c++/copysignfloat.cpp:10:0)
+INFO: [HLS 214-241] Aggregating maxi variable 'trotters' with non-compact mode in 16-bits (/home/edci/workspace/SQA_kernels/src/qmc.cpp:151:0)
+INFO: [HLS 214-241] Aggregating maxi variable 'Jcoup' with non-compact mode in 512-bits
+INFO: [HLS 214-241] Aggregating bram variable 'JcoupLocal' with field bit alignment mode in 512-bits (/home/edci/workspace/SQA_kernels/src/qmc.cpp:188:12)
+INFO: [HLS 214-270] Starting automatic array partition analysis...
+INFO: [HLS 214-115] Multiple burst reads of length 32 and bit width 512 has been inferred on port 'gmem'. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (/home/edci/workspace/SQA_kernels/src/qmc.cpp:194:3)
+INFO: [HLS 214-115] Multiple burst reads of length 256 and bit width 512 in loop 'READ_NEW_JCOUP'(/home/edci/workspace/SQA_kernels/src/qmc.cpp:241:7) has been inferred on port 'gmem'. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (/home/edci/workspace/SQA_kernels/src/qmc.cpp:241:7)
+INFO: [HLS 214-115] Multiple burst writes of length 32 and bit width 512 has been inferred on port 'gmem'. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (/home/edci/workspace/SQA_kernels/src/qmc.cpp:280:3)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.none.i512.a16f32' into '_llvm.fpga.unpack.none.s_struct.fp_pack_ts.i512.1'
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:82:33)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'U50::TrotterUnit(unsigned int, unsigned int, unsigned int, ap_uint<16>*, float&, fp_pack_t*)' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:77:28)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.none.s_struct.fp_pack_ts.i512.1' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.none.i16.s_struct.ap_uints' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:283:24)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.unpack.bits.f32.i32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 214-131] Inlining function '_llvm.fpga.pack.bits.i32.f32' into 'QuantumMonteCarloU50' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 12.19 seconds. CPU system time: 0.5 seconds. Elapsed time: 12.7 seconds; current allocated memory: 204.786 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 204.787 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.34 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.37 seconds; current allocated memory: 236.666 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+WARNING: [SYNCHK 200-23] /home/edci/Xilinx/Vitis_HLS/2021.1/common/technology/autopilot/ap_int_ref.h:819: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.61 seconds. CPU system time: 0 seconds. Elapsed time: 0.63 seconds; current allocated memory: 277.489 MB.
+INFO: [XFORM 203-101] Partitioning array 'dH' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:175) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'trottersLocal.V' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:183) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'JcoupLocal'  in dimension 1 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/home/edci/workspace/SQA_kernels/src/qmc.cpp:112:8) to (/home/edci/workspace/SQA_kernels/src/qmc.cpp:131:7) in function 'U50::TrotterUnitFinal'... converting 5 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1.49 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.5 seconds; current allocated memory: 348.818 MB.
+INFO: [XFORM 203-541] Flattening a loop nest 'READ_TROTTERS' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:194:14) in function 'QuantumMonteCarloU50'.
+WARNING: [HLS 200-960] Cannot flatten loop 'LOOP_STAGE' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:214:14) in function 'QuantumMonteCarloU50' more than one sub loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'WRITE_TROTTERS' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:280:14) in function 'QuantumMonteCarloU50'.
+INFO: [HLS 200-472] Inferring partial write operation for 'trotters' 
+INFO: [HLS 200-472] Inferring partial write operation for 'JcoupLocal.3' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:274:30)
+INFO: [HLS 200-472] Inferring partial write operation for 'trottersLocal.V[0]' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:197:29)
+INFO: [HLS 200-472] Inferring partial write operation for 'JcoupLocal.0' (/home/edci/workspace/SQA_kernels/src/qmc.cpp:243:26)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.96 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.99 seconds; current allocated memory: 447.148 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'QuantumMonteCarloU50' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'READ_TROTTERS_VITIS_LOOP_195_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'READ_TROTTERS_VITIS_LOOP_195_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.43 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.46 seconds; current allocated memory: 448.294 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 448.576 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'READ_NEW_JCOUP'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'READ_NEW_JCOUP'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.1 seconds. CPU system time: 0 seconds. Elapsed time: 0.11 seconds; current allocated memory: 448.687 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 448.792 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'copysignf' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 448.837 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 448.878 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'TrotterUnit' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 4.16 seconds. CPU system time: 0.02 seconds. Elapsed time: 4.18 seconds; current allocated memory: 456.502 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Starting global binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 4.18 seconds. CPU system time: 0.02 seconds. Elapsed time: 4.2 seconds; current allocated memory: 468.148 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'TrotterUnitFinal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.67 seconds. CPU system time: 0 seconds. Elapsed time: 2.67 seconds; current allocated memory: 468.417 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.17 seconds. CPU system time: 0 seconds. Elapsed time: 0.16 seconds; current allocated memory: 468.745 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'SHIFT_JCOUP'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'SHIFT_JCOUP'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.19 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.2 seconds; current allocated memory: 468.865 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 468.977 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'WRITE_TROTTERS_VITIS_LOOP_281_3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 4, loop 'WRITE_TROTTERS_VITIS_LOOP_281_3'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.1 seconds. CPU system time: 0 seconds. Elapsed time: 0.11 seconds; current allocated memory: 469.199 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.09 seconds; current allocated memory: 469.476 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'QuantumMonteCarloU50' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.74 seconds. CPU system time: 0 seconds. Elapsed time: 0.73 seconds; current allocated memory: 471.172 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.19 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.2 seconds; current allocated memory: 474.041 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1' pipeline 'READ_TROTTERS_VITIS_LOOP_195_1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1/m_axi_gmem_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.57 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.58 seconds; current allocated memory: 474.667 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP' pipeline 'READ_NEW_JCOUP' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP/m_axi_gmem_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.24 seconds; current allocated memory: 476.079 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'copysignf' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'copysignf'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 476.553 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'TrotterUnit' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-104] Estimated max fanout for 'TrotterUnit' is 5056 from HDL expression: (1'b1 == ap_CS_fsm_state33)
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 64 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'TrotterUnit'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.3 seconds; current allocated memory: 483.521 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'TrotterUnitFinal' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fcmp_32ns_32ns_1_2_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fdiv_32ns_32ns_32_12_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fsub_32ns_32ns_32_7_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'TrotterUnitFinal'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 4.73 seconds. CPU system time: 0.08 seconds. Elapsed time: 4.82 seconds; current allocated memory: 517.381 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP' pipeline 'SHIFT_JCOUP' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.36 seconds. CPU system time: 0 seconds. Elapsed time: 0.36 seconds; current allocated memory: 518.789 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3' pipeline 'WRITE_TROTTERS_VITIS_LOOP_281_3' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_AWUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3/m_axi_gmem_BREADY' to 0.
+INFO: [RTGEN 206-100] Generating core module 'mux_42_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.18 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.19 seconds; current allocated memory: 519.862 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'QuantumMonteCarloU50' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/trotters' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/Jcoup' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/h' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/Jperp' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/Beta' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'QuantumMonteCarloU50/logRand' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'QuantumMonteCarloU50' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'trotters', 'Jcoup', 'h', 'Jperp', 'Beta', 'logRand' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'QuantumMonteCarloU50'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.38 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.38 seconds; current allocated memory: 527.157 MB.
+INFO: [RTMG 210-278] Implementing memory 'QuantumMonteCarloU50_trottersLocal_V_0_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'QuantumMonteCarloU50_JcoupLocal_0_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'QuantumMonteCarloU50_JcoupLocal_1_ram (RAM)' using auto RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 4.17 seconds. CPU system time: 0.05 seconds. Elapsed time: 4.22 seconds; current allocated memory: 535.562 MB.
+INFO: [HLS 200-1603] Design has MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 1.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.03 seconds; current allocated memory: 543.666 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for QuantumMonteCarloU50.
+INFO: [VLOG 209-307] Generating Verilog RTL for QuantumMonteCarloU50.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 411.00 MHz

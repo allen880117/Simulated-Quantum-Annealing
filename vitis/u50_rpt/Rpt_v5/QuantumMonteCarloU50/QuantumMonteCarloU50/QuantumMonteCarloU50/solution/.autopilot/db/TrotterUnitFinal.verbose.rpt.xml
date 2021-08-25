@@ -1,0 +1,274 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'TrotterUnitFinal'" level="0">
+<item name = "Date">Wed Aug 25 17:51:37 2021
+</item>
+<item name = "Version">2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)</item>
+<item name = "Project">QuantumMonteCarloU50</item>
+<item name = "Solution">solution (Vitis Kernel Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">3.33 ns, 2.342 ns, 0.90 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">1, 15, 3.333 ns, 49.995 ns, 1, 15, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 227, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, 7, 779, 539, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 305, -</column>
+<column name="Register">-, -, 284, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, ~0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, ~0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="fadd_32ns_32ns_32_7_full_dsp_1_U486">fadd_32ns_32ns_32_7_full_dsp_1, 0, 2, 318, 198, 0</column>
+<column name="fcmp_32ns_32ns_1_2_no_dsp_1_U489">fcmp_32ns_32ns_1_2_no_dsp_1, 0, 0, 0, 0, 0</column>
+<column name="fdiv_32ns_32ns_32_12_no_dsp_1_U488">fdiv_32ns_32ns_32_12_no_dsp_1, 0, 0, 0, 0, 0</column>
+<column name="fmul_32ns_32ns_32_4_max_dsp_1_U487">fmul_32ns_32ns_32_4_max_dsp_1, 0, 3, 143, 78, 0</column>
+<column name="fsub_32ns_32ns_32_7_full_dsp_1_U485">fsub_32ns_32ns_32_7_full_dsp_1, 0, 2, 318, 198, 0</column>
+<column name="mux_1664_16_1_1_U490">mux_1664_16_1_1, 0, 0, 0, 65, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="and_ln121_fu_466_p2">and, 0, 0, 2, 1, 1</column>
+<column name="and_ln135_1_fu_660_p2">and, 0, 0, 2, 1, 1</column>
+<column name="and_ln135_fu_654_p2">and, 0, 0, 2, 1, 1</column>
+<column name="inside_fu_449_p2">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln110_1_fu_443_p2">icmp, 0, 0, 12, 13, 13</column>
+<column name="icmp_ln110_fu_423_p2">icmp, 0, 0, 12, 13, 13</column>
+<column name="icmp_ln135_1_fu_628_p2">icmp, 0, 0, 16, 23, 1</column>
+<column name="icmp_ln135_2_fu_634_p2">icmp, 0, 0, 11, 8, 2</column>
+<column name="icmp_ln135_3_fu_640_p2">icmp, 0, 0, 16, 23, 1</column>
+<column name="icmp_ln135_fu_622_p2">icmp, 0, 0, 11, 8, 2</column>
+<column name="or_ln135_1_fu_650_p2">or, 0, 0, 2, 1, 1</column>
+<column name="or_ln135_fu_646_p2">or, 0, 0, 2, 1, 1</column>
+<column name="dHTmp_1_fu_580_p3">select, 0, 0, 32, 1, 32</column>
+<column name="select_ln1049_fu_477_p3">select, 0, 0, 32, 1, 32</column>
+<column name="select_ln121_fu_471_p3">select, 0, 0, 32, 1, 32</column>
+<column name="p_Repl2_s_fu_666_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="xor_ln1049_1_fu_461_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="xor_ln1049_fu_455_p2">xor, 0, 0, 2, 1, 1</column>
+<column name="xor_ln110_fu_429_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="xor_ln131_fu_570_p2">xor, 0, 0, 33, 32, 33</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">81, 17, 1, 17</column>
+<column name="trotters10_address0">14, 3, 4, 12</column>
+<column name="trotters11_address0">14, 3, 4, 12</column>
+<column name="trotters12_address0">14, 3, 4, 12</column>
+<column name="trotters13_address0">14, 3, 4, 12</column>
+<column name="trotters14_address0">14, 3, 4, 12</column>
+<column name="trotters15_address0">14, 3, 4, 12</column>
+<column name="trotters1_address0">14, 3, 4, 12</column>
+<column name="trotters2_address0">14, 3, 4, 12</column>
+<column name="trotters3_address0">14, 3, 4, 12</column>
+<column name="trotters4_address0">14, 3, 4, 12</column>
+<column name="trotters5_address0">14, 3, 4, 12</column>
+<column name="trotters6_address0">14, 3, 4, 12</column>
+<column name="trotters7_address0">14, 3, 4, 12</column>
+<column name="trotters8_address0">14, 3, 4, 12</column>
+<column name="trotters9_address0">14, 3, 4, 12</column>
+<column name="trotters_address0">14, 3, 4, 12</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="add4_reg_734">32, 0, 32, 0</column>
+<column name="and_ln135_1_reg_877">1, 0, 1, 0</column>
+<column name="ap_CS_fsm">16, 0, 16, 0</column>
+<column name="dHTmp_reg_846">32, 0, 32, 0</column>
+<column name="div_reg_829">32, 0, 32, 0</column>
+<column name="icmp_ln135_1_reg_862">1, 0, 1, 0</column>
+<column name="icmp_ln135_2_reg_867">1, 0, 1, 0</column>
+<column name="icmp_ln135_3_reg_872">1, 0, 1, 0</column>
+<column name="icmp_ln135_reg_857">1, 0, 1, 0</column>
+<column name="inside_reg_719">1, 0, 1, 0</column>
+<column name="p_Result_1_reg_840">1, 0, 1, 0</column>
+<column name="p_Result_s_reg_881">16, 0, 16, 0</column>
+<column name="p_Val2_s_reg_835">16, 0, 16, 0</column>
+<column name="select_ln1049_reg_739">32, 0, 32, 0</column>
+<column name="sub_reg_729">32, 0, 32, 0</column>
+<column name="trotters10_addr_reg_799">4, 0, 4, 0</column>
+<column name="trotters11_addr_reg_804">4, 0, 4, 0</column>
+<column name="trotters12_addr_reg_809">4, 0, 4, 0</column>
+<column name="trotters13_addr_reg_814">4, 0, 4, 0</column>
+<column name="trotters14_addr_reg_819">4, 0, 4, 0</column>
+<column name="trotters15_addr_reg_824">4, 0, 4, 0</column>
+<column name="trotters1_addr_reg_754">4, 0, 4, 0</column>
+<column name="trotters2_addr_reg_759">4, 0, 4, 0</column>
+<column name="trotters3_addr_reg_764">4, 0, 4, 0</column>
+<column name="trotters4_addr_reg_769">4, 0, 4, 0</column>
+<column name="trotters5_addr_reg_774">4, 0, 4, 0</column>
+<column name="trotters6_addr_reg_779">4, 0, 4, 0</column>
+<column name="trotters7_addr_reg_784">4, 0, 4, 0</column>
+<column name="trotters8_addr_reg_789">4, 0, 4, 0</column>
+<column name="trotters9_addr_reg_794">4, 0, 4, 0</column>
+<column name="trotters_addr_reg_749">4, 0, 4, 0</column>
+<column name="trunc_ln819_reg_744">4, 0, 4, 0</column>
+<column name="xor_ln1049_reg_723">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, TrotterUnitFinal, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, TrotterUnitFinal, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, TrotterUnitFinal, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, TrotterUnitFinal, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, TrotterUnitFinal, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, TrotterUnitFinal, return value</column>
+<column name="t_offset">in, 2, ap_none, t_offset, scalar</column>
+<column name="stage">in, 13, ap_none, stage, scalar</column>
+<column name="iPack">in, 8, ap_none, iPack, scalar</column>
+<column name="iSpin">in, 32, ap_none, iSpin, scalar</column>
+<column name="trotters_address0">out, 4, ap_memory, trotters, array</column>
+<column name="trotters_ce0">out, 1, ap_memory, trotters, array</column>
+<column name="trotters_we0">out, 1, ap_memory, trotters, array</column>
+<column name="trotters_d0">out, 16, ap_memory, trotters, array</column>
+<column name="trotters_q0">in, 16, ap_memory, trotters, array</column>
+<column name="trotters1_address0">out, 4, ap_memory, trotters1, array</column>
+<column name="trotters1_ce0">out, 1, ap_memory, trotters1, array</column>
+<column name="trotters1_we0">out, 1, ap_memory, trotters1, array</column>
+<column name="trotters1_d0">out, 16, ap_memory, trotters1, array</column>
+<column name="trotters1_q0">in, 16, ap_memory, trotters1, array</column>
+<column name="trotters2_address0">out, 4, ap_memory, trotters2, array</column>
+<column name="trotters2_ce0">out, 1, ap_memory, trotters2, array</column>
+<column name="trotters2_we0">out, 1, ap_memory, trotters2, array</column>
+<column name="trotters2_d0">out, 16, ap_memory, trotters2, array</column>
+<column name="trotters2_q0">in, 16, ap_memory, trotters2, array</column>
+<column name="trotters3_address0">out, 4, ap_memory, trotters3, array</column>
+<column name="trotters3_ce0">out, 1, ap_memory, trotters3, array</column>
+<column name="trotters3_we0">out, 1, ap_memory, trotters3, array</column>
+<column name="trotters3_d0">out, 16, ap_memory, trotters3, array</column>
+<column name="trotters3_q0">in, 16, ap_memory, trotters3, array</column>
+<column name="trotters4_address0">out, 4, ap_memory, trotters4, array</column>
+<column name="trotters4_ce0">out, 1, ap_memory, trotters4, array</column>
+<column name="trotters4_we0">out, 1, ap_memory, trotters4, array</column>
+<column name="trotters4_d0">out, 16, ap_memory, trotters4, array</column>
+<column name="trotters4_q0">in, 16, ap_memory, trotters4, array</column>
+<column name="trotters5_address0">out, 4, ap_memory, trotters5, array</column>
+<column name="trotters5_ce0">out, 1, ap_memory, trotters5, array</column>
+<column name="trotters5_we0">out, 1, ap_memory, trotters5, array</column>
+<column name="trotters5_d0">out, 16, ap_memory, trotters5, array</column>
+<column name="trotters5_q0">in, 16, ap_memory, trotters5, array</column>
+<column name="trotters6_address0">out, 4, ap_memory, trotters6, array</column>
+<column name="trotters6_ce0">out, 1, ap_memory, trotters6, array</column>
+<column name="trotters6_we0">out, 1, ap_memory, trotters6, array</column>
+<column name="trotters6_d0">out, 16, ap_memory, trotters6, array</column>
+<column name="trotters6_q0">in, 16, ap_memory, trotters6, array</column>
+<column name="trotters7_address0">out, 4, ap_memory, trotters7, array</column>
+<column name="trotters7_ce0">out, 1, ap_memory, trotters7, array</column>
+<column name="trotters7_we0">out, 1, ap_memory, trotters7, array</column>
+<column name="trotters7_d0">out, 16, ap_memory, trotters7, array</column>
+<column name="trotters7_q0">in, 16, ap_memory, trotters7, array</column>
+<column name="trotters8_address0">out, 4, ap_memory, trotters8, array</column>
+<column name="trotters8_ce0">out, 1, ap_memory, trotters8, array</column>
+<column name="trotters8_we0">out, 1, ap_memory, trotters8, array</column>
+<column name="trotters8_d0">out, 16, ap_memory, trotters8, array</column>
+<column name="trotters8_q0">in, 16, ap_memory, trotters8, array</column>
+<column name="trotters9_address0">out, 4, ap_memory, trotters9, array</column>
+<column name="trotters9_ce0">out, 1, ap_memory, trotters9, array</column>
+<column name="trotters9_we0">out, 1, ap_memory, trotters9, array</column>
+<column name="trotters9_d0">out, 16, ap_memory, trotters9, array</column>
+<column name="trotters9_q0">in, 16, ap_memory, trotters9, array</column>
+<column name="trotters10_address0">out, 4, ap_memory, trotters10, array</column>
+<column name="trotters10_ce0">out, 1, ap_memory, trotters10, array</column>
+<column name="trotters10_we0">out, 1, ap_memory, trotters10, array</column>
+<column name="trotters10_d0">out, 16, ap_memory, trotters10, array</column>
+<column name="trotters10_q0">in, 16, ap_memory, trotters10, array</column>
+<column name="trotters11_address0">out, 4, ap_memory, trotters11, array</column>
+<column name="trotters11_ce0">out, 1, ap_memory, trotters11, array</column>
+<column name="trotters11_we0">out, 1, ap_memory, trotters11, array</column>
+<column name="trotters11_d0">out, 16, ap_memory, trotters11, array</column>
+<column name="trotters11_q0">in, 16, ap_memory, trotters11, array</column>
+<column name="trotters12_address0">out, 4, ap_memory, trotters12, array</column>
+<column name="trotters12_ce0">out, 1, ap_memory, trotters12, array</column>
+<column name="trotters12_we0">out, 1, ap_memory, trotters12, array</column>
+<column name="trotters12_d0">out, 16, ap_memory, trotters12, array</column>
+<column name="trotters12_q0">in, 16, ap_memory, trotters12, array</column>
+<column name="trotters13_address0">out, 4, ap_memory, trotters13, array</column>
+<column name="trotters13_ce0">out, 1, ap_memory, trotters13, array</column>
+<column name="trotters13_we0">out, 1, ap_memory, trotters13, array</column>
+<column name="trotters13_d0">out, 16, ap_memory, trotters13, array</column>
+<column name="trotters13_q0">in, 16, ap_memory, trotters13, array</column>
+<column name="trotters14_address0">out, 4, ap_memory, trotters14, array</column>
+<column name="trotters14_ce0">out, 1, ap_memory, trotters14, array</column>
+<column name="trotters14_we0">out, 1, ap_memory, trotters14, array</column>
+<column name="trotters14_d0">out, 16, ap_memory, trotters14, array</column>
+<column name="trotters14_q0">in, 16, ap_memory, trotters14, array</column>
+<column name="trotters15_address0">out, 4, ap_memory, trotters15, array</column>
+<column name="trotters15_ce0">out, 1, ap_memory, trotters15, array</column>
+<column name="trotters15_we0">out, 1, ap_memory, trotters15, array</column>
+<column name="trotters15_d0">out, 16, ap_memory, trotters15, array</column>
+<column name="trotters15_q0">in, 16, ap_memory, trotters15, array</column>
+<column name="dH">in, 32, ap_none, dH, scalar</column>
+<column name="upSpin">in, 1, ap_none, upSpin, scalar</column>
+<column name="downSpin">in, 1, ap_none, downSpin, scalar</column>
+<column name="Beta">in, 32, ap_none, Beta, scalar</column>
+<column name="dHTunnel">in, 32, ap_none, dHTunnel, scalar</column>
+<column name="logRandNumber">in, 32, ap_none, logRandNumber, scalar</column>
+</table>
+</item>
+</section>
+</profile>

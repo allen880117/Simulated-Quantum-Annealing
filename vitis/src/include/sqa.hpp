@@ -1,14 +1,13 @@
 #ifndef _SQA_HPP_
 #define _SQA_HPP_
 
-#include "ap_axi_sdata.h"
 #include "hls_math.h"
 #include "hls_stream.h"
 
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#define CONFIG_VERSION 2
+#define CONFIG_VERSION 3
 
 #if (CONFIG_VERSION == 0)
 #define NUM_TROT 16
@@ -17,6 +16,7 @@
 #define LOG2_PACKET_SIZE 6
 #define NUM_STREAM 1
 #define LOG2_NUM_STREAM 0
+#define HALF_NUM_STREAM 0
 #define NUM_FADD 4
 #define COPYSIGNF 1
 
@@ -27,8 +27,20 @@
 #define LOG2_PACKET_SIZE 7
 #define NUM_STREAM 8
 #define LOG2_NUM_STREAM 3
+#define HALF_NUM_STREAM 4
 #define NUM_FADD 64
 #define COPYSIGNF 1
+
+#elif (CONFIG_VERSION == 2)
+#define NUM_TROT 4
+#define NUM_SPIN 4096
+#define PACKET_SIZE 16
+#define LOG2_PACKET_SIZE 4
+#define NUM_STREAM 16
+#define LOG2_NUM_STREAM 4
+#define HALF_NUM_STREAM 8
+#define NUM_FADD 64
+#define COPYSIGNF 0
 
 #else
 #define NUM_TROT 8
@@ -37,6 +49,7 @@
 #define LOG2_PACKET_SIZE 4
 #define NUM_STREAM 4
 #define LOG2_NUM_STREAM 2
+#define HALF_NUM_STREAM 2
 #define NUM_FADD 16
 #define COPYSIGNF 0
 

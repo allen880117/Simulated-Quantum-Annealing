@@ -55,6 +55,7 @@ void TrotterUnit(const u32_t t, const u32_t stage, const u32_t packOfst,
                  fp_pack_t JcoupLocal[NUM_SPIN / PACKET_SIZE]) {
   /* Limit the number of fadd */
   CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = NUM_FADD)
+  CTX_PRAGMA(HLS PIPELINE II = HALF_NUM_STREAM)
 
   /* Check stage */
   bool inside = (stage >= t && stage < NUM_SPIN + t);
@@ -65,30 +66,33 @@ void TrotterUnit(const u32_t t, const u32_t stage, const u32_t packOfst,
   /* Cache */
   fp_t dHTmp = dH;
   fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = fpBuffer
+#pragma HLS ARRAY_PARTITION dim = 2 type = complete variable = fpBuffer
 
-  /* Summation::Multiply */
   for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
+
+    /* Multiply */
     for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
-      if (!trotters[packOfst + strmOfst][k]) {
+      fpBuffer[strmOfst][k] =
+          (!trotters[packOfst + strmOfst][k])
 #if COPYSIGNF
-        fpBuffer[strmOfst][k] =
-            hls::copysignf(JcoupLocal[packOfst + strmOfst].data[k], -1.0f);
+              ? (hls::copysignf(JcoupLocal[packOfst + strmOfst].data[k], -1.0f))
 #else
-        fpBuffer[strmOfst][k] = -JcoupLocal[packOfst + strmOfst].data[k];
+              ? (-JcoupLocal[packOfst + strmOfst].data[k])
 #endif
-      } else {
-        fpBuffer[strmOfst][k] = JcoupLocal[packOfst + strmOfst].data[k];
-      }
+              : (JcoupLocal[packOfst + strmOfst].data[k]);
     }
   }
 
-  /* Summation::reductionIntraBuffer */
+  /* Intra-Buffer Summation */
   for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
     reductionIntraBuffer<PACKET_SIZE>(fpBuffer[strmOfst]);
   }
+
+  /* Inter-Buffer Summation */
   reductionInterBuffer<NUM_STREAM>(fpBuffer);
   dHTmp += fpBuffer[0][0];
 
@@ -149,46 +153,36 @@ void QuantumMonteCarloU50(
     const fp_t Beta,
     /* Log(Random Number = [0, 1]) */
     const fp_t logRand[NUM_TROT][NUM_SPIN]) {
-#pragma HLS AGGREGATE compact=auto variable=Jcoup
-#pragma HLS ARRAY_PARTITION variable = trotters type = complete dim = 1
-#pragma HLS ARRAY_PARTITION variable = logRand type = complete dim = 1
+#pragma HLS AGGREGATE compact = auto variable = Jcoup
 
-  /* Local Memory :: idxUp/idxDown */
-  u32_t idxUp[NUM_TROT];
+  u32_t idxUp[NUM_TROT], idxDown[NUM_TROT], iPack[NUM_TROT], iSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = idxUp
-  u32_t idxDown[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = idxDown
-
-  /* Local Memory iPre */
-  u32_t iPack[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iPack
-  u32_t iSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = iSpin
 
-  /* Local Memory :: upSpin, downSpin */
-  spin_t upSpin[NUM_TROT];
+  spin_t upSpin[NUM_TROT], downSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = upSpin
-  spin_t downSpin[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = downSpin
 
-  /* Local Memory :: dH */
-  fp_t dH[NUM_TROT];
+  fp_t dH[NUM_TROT], logRandLocal[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = dH
-
-  /* Local Memory :: logRandLocal */
-  fp_t logRandLocal[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = logRandLocal
 
-  /* Local Memory :: TrottersLocal */
   spin_pack_u50_t trottersLocal[NUM_TROT][NUM_SPIN / PACKET_SIZE];
 // #pragma HLS BIND_STORAGE variable = trottersLocal type = ram_2p impl = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = trottersLocal
+  CTX_PRAGMA(HLS ARRAY_PARTITION dim = 2 type = cyclic factor =
+                 NUM_STREAM variable = trottersLocal)
 
-  /* Local Memory :: Jcoup_0 */
   fp_pack_t JcoupLocal[NUM_TROT][NUM_SPIN / PACKET_SIZE];
-#pragma HLS AGGREGATE compact=auto variable=JcoupLocal
-#pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
+#if NUM_STREAM > 16
+  #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
+#endif
+#pragma HLS AGGREGATE compact = auto variable = JcoupLocal
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
+  CTX_PRAGMA(HLS ARRAY_PARTITION dim = 2 type = cyclic factor =
+                 NUM_STREAM variable = JcoupLocal)
 
 READ_TROTTERS:
   for (u32_t t = 0; t < NUM_TROT; t++) {
@@ -218,7 +212,7 @@ LOOP_STAGE:
     /* Update Input State */
   UPDATE_INPUT_STATE:
     for (u32_t t = 0; t < NUM_TROT; t++) {
-#pragma HLS UNROLL
+      // #pragma HLS UNROLL
       /* Compute Ofst  & Clamp into [0~NUM_SPIN) */
       u32_t Ofst = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
       u32_t packOfst = (Ofst >> (LOG2_PACKET_SIZE));
@@ -248,7 +242,7 @@ LOOP_STAGE:
   LOOP_STEP:
     for (u32_t step = 0, packOfst = 0; step < NUM_SPIN;
          step += PACKET_SIZE * NUM_STREAM, packOfst += NUM_STREAM) {
-#pragma HLS PIPELINE off
+#pragma HLS PIPELINE
     RUN_TU:
       for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL

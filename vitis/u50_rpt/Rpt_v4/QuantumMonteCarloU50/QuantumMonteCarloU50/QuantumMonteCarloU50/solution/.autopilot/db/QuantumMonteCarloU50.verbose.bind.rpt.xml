@@ -1,0 +1,59 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'QuantumMonteCarloU50'" level="0">
+<item name = "Date">Wed Aug 25 10:39:40 2021
+</item>
+<item name = "Version">2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)</item>
+<item name = "Project">QuantumMonteCarloU50</item>
+<item name = "Solution">solution (Vitis Kernel Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">3.33 ns, 2.433 ns, 0.90 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">1596710, 9175761, 5.322 ms, 30.583 ms, 1596711, 9175762, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1_fu_516">QuantumMonteCarloU50_Pipeline_READ_TROTTERS_VITIS_LOOP_195_1, 1027, 1027, 3.423 us, 3.423 us, 1027, 1027, no</column>
+<column name="grp_QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP_fu_527">QuantumMonteCarloU50_Pipeline_READ_NEW_JCOUP, 259, 259, 0.863 us, 0.863 us, 259, 259, no</column>
+<column name="grp_TrotterUnit_fu_535">TrotterUnit, 1, 96, 3.333 ns, 0.320 us, 1, 96, no</column>
+<column name="grp_TrotterUnit_fu_549">TrotterUnit, 1, 96, 3.333 ns, 0.320 us, 1, 96, no</column>
+<column name="grp_TrotterUnit_fu_563">TrotterUnit, 1, 96, 3.333 ns, 0.320 us, 1, 96, no</column>
+<column name="grp_TrotterUnit_fu_577">TrotterUnit, 1, 96, 3.333 ns, 0.320 us, 1, 96, no</column>
+<column name="grp_TrotterUnitFinal_fu_591">TrotterUnitFinal, 1, 15, 3.333 ns, 49.995 ns, 1, 15, no</column>
+<column name="grp_TrotterUnitFinal_fu_608">TrotterUnitFinal, 1, 15, 3.333 ns, 49.995 ns, 1, 15, no</column>
+<column name="grp_TrotterUnitFinal_fu_625">TrotterUnitFinal, 1, 15, 3.333 ns, 49.995 ns, 1, 15, no</column>
+<column name="grp_TrotterUnitFinal_fu_642">TrotterUnitFinal, 1, 15, 3.333 ns, 49.995 ns, 1, 15, no</column>
+<column name="grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_659">QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP, 258, 258, 0.860 us, 0.860 us, 258, 258, no</column>
+<column name="grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3_fu_667">QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_VITIS_LOOP_281_3, 1028, 1028, 3.426 us, 3.426 us, 1028, 1028, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- LOOP_STAGE">1594511, 9173562, 389 ~ 2238, -, -, 4099, no</column>
+<column name=" + LOOP_STEP">48, 1568, 3 ~ 98, -, -, 16, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>
