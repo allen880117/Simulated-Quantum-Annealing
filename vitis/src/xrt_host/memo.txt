@@ -1,0 +1,10 @@
+[!][X] sqa-qmc.xclbin 
+    -> copysignf won't work
+
+[+][V] sqa-qmc.2.xclbin
+    -> works well
+    -> i/o latency of HBM is too long
+        -> need more HBM
+
+[+][V] sqa-qmc.3.xclbin
+    -> [V] Use more HBM to reduce the i/o latency 

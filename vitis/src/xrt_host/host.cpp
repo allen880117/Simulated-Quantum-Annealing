@@ -1,3 +1,4 @@
+#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <random>
@@ -82,11 +83,9 @@ int main(int argc, char** argv) {
   std::cout << "[INFO][-] -> Allocate Buffer in Global Memory" << std::endl;
 
   const size_t trots_size_in_bytes =
-      //   NUM_TROT * NUM_SPIN / PACKET_SIZE * sizeof(spin_pack_u50_t);
-      NUM_TROT * NUM_SPIN * sizeof(spin_t);
+      NUM_TROT * NUM_SPIN / PACKET_SIZE * sizeof(spin_pack_u50_t);
   const size_t Jcoup_size_in_bytes =
-      //   NUM_SPIN * NUM_SPIN / PACKET_SIZE * sizeof(fp_pack_t);
-      NUM_SPIN * NUM_SPIN * sizeof(fp_t);
+      NUM_SPIN * NUM_SPIN / PACKET_SIZE * sizeof(fp_pack_t);
   const size_t h_size_in_bytes = NUM_SPIN * sizeof(fp_t);
   const size_t logRand_size_in_bytes = NUM_TROT * NUM_SPIN * sizeof(fp_t);
 
@@ -97,10 +96,11 @@ int main(int argc, char** argv) {
 
   // Map the contents of the buffer object into host memory
   std::cout << "[INFO][-] -> Map the buffer into the host memory" << std::endl;
-  spin_t* bo_trotters_map =
-      bo_trotters.map<spin_t*>();  // Type Cast from spin_pack_u50_t to spin_t
-  fp_t* bo_Jcoup_map =
-      bo_Jcoup.map<fp_t*>();  // Type cast from fp_pack_t to fp_t
+  spin_pack_u50_t* bo_trotters_map =
+      bo_trotters
+          .map<spin_pack_u50_t*>();  // Type Cast from spin_pack_u50_t to spin_t
+  fp_pack_t* bo_Jcoup_map =
+      bo_Jcoup.map<fp_pack_t*>();  // Type cast from fp_pack_t to fp_t
   fp_t* bo_h_map = bo_h.map<fp_t*>();
   fp_t* bo_logRand_map = bo_logRand.map<fp_t*>();
 
@@ -124,8 +124,12 @@ int main(int argc, char** argv) {
   }
 
   for (int i = 0; i < NUM_SPIN; i++) {
-    for (int j = 0; j < NUM_SPIN; j++) {
-      bo_Jcoup_map[i * NUM_SPIN + j] = -(rand_num[i] * rand_num[j]);
+    for (int j = 0; j < NUM_SPIN / PACKET_SIZE; j++) {
+      fp_pack_t tmp;
+      for (int k = 0; k < PACKET_SIZE; k++) {
+        tmp.data[k] = -(rand_num[i] * rand_num[j * PACKET_SIZE + k]);
+      }
+      bo_Jcoup_map[i * NUM_SPIN / PACKET_SIZE + j] = tmp;
     }
   }
 
@@ -151,6 +155,7 @@ int main(int argc, char** argv) {
 
   // Log File
   std::ofstream out("out.txt");
+  std::ofstream time_log("time_log.txt");
 
   // Sync Input Buffers (which won't change by host in the iterations)
   bo_trotters.sync(XCL_BO_SYNC_BO_TO_DEVICE);
@@ -177,6 +182,10 @@ int main(int argc, char** argv) {
     fp_t Gamma = G0 * (1 - (float)i / iter);
     fp_t Jperp = -0.5 * log(tanh((Gamma / NUM_TROT) * beta)) / beta;
 
+    // Set Timer
+    std::chrono::system_clock::time_point start =
+        std::chrono::system_clock::now();
+
     // Run the kernel
     if (i == 0) {
       run = krnl(bo_trotters, bo_Jcoup, bo_h, Jperp, beta, bo_logRand);
@@ -186,6 +195,15 @@ int main(int argc, char** argv) {
       run.start();
     }
     run.wait();
+
+    // End Timer
+    std::chrono::system_clock::time_point end =
+        std::chrono::system_clock::now();
+    time_log << "Run " << i << ": "
+             << std::chrono::duration_cast<std::chrono::microseconds>(end -
+                                                                      start)
+                    .count()
+             << " us" << std::endl;
 
     // Increase beta
     beta += d_beta;
@@ -197,11 +215,13 @@ int main(int argc, char** argv) {
     fp_t sumEnergy = 0;
     for (int t = 0; t < NUM_TROT; t++) {
       fp_t a = 0, b = 0;
-      for (int i = 0; i < NUM_SPIN; i++) {
-        if (bo_trotters_map[t * NUM_SPIN + i]) {
-          a += rand_num[i];
-        } else {
-          b += rand_num[i];
+      for (int i = 0; i < NUM_SPIN / PACKET_SIZE; i++) {
+        for (int k = 0; k < PACKET_SIZE; k++) {
+          if (bo_trotters_map[t * NUM_SPIN / PACKET_SIZE + i][k]) {
+            a += rand_num[i * PACKET_SIZE + k];
+          } else {
+            b += rand_num[i * PACKET_SIZE + k];
+          }
         }
       }
 
@@ -228,4 +248,5 @@ int main(int argc, char** argv) {
 
   // Close the out
   out.close();
+  time_log.close();
 }
