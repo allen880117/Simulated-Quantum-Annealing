@@ -55,7 +55,8 @@ void TrotterUnit(const u32_t t, const u32_t stage, const u32_t packOfst,
                  fp_pack_t JcoupLocal[NUM_SPIN / PACKET_SIZE]) {
   /* Limit the number of fadd */
   CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = NUM_FADD)
-  CTX_PRAGMA(HLS PIPELINE II = HALF_NUM_STREAM)
+  // CTX_PRAGMA(HLS PIPELINE II = HALF_NUM_STREAM)
+  CTX_PRAGMA(HLS PIPELINE)
 
   /* Check stage */
   bool inside = (stage >= t && stage < NUM_SPIN + t);
@@ -176,9 +177,7 @@ void QuantumMonteCarloU50(
                  NUM_STREAM variable = trottersLocal)
 
   fp_pack_t JcoupLocal[NUM_TROT][NUM_SPIN / PACKET_SIZE];
-#if NUM_STREAM > 16
-  #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
-#endif
+// #pragma HLS BIND_STORAGE variable = JcoupLocal type = ram_2p impl = bram
 #pragma HLS AGGREGATE compact = auto variable = JcoupLocal
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = JcoupLocal
   CTX_PRAGMA(HLS ARRAY_PARTITION dim = 2 type = cyclic factor =
@@ -246,8 +245,37 @@ LOOP_STAGE:
     RUN_TU:
       for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-        U50::TrotterUnit(t, stage, packOfst, trottersLocal[t], dH[t],
-                         JcoupLocal[t]);
+        /* Check stage */
+        bool inside = (stage >= t && stage < NUM_SPIN + t);
+        if (inside) {
+          /* Cache */
+          fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = fpBuffer
+#pragma HLS ARRAY_PARTITION dim = 2 type = complete variable = fpBuffer
+
+          for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
+#pragma HLS UNROLL
+
+            /* Multiply */
+            for (u32_t k = 0; k < PACKET_SIZE; k++) {
+#pragma HLS UNROLL
+              fpBuffer[strmOfst][k] =
+                  (!trottersLocal[t][packOfst + strmOfst][k])
+                      ? (-JcoupLocal[t][packOfst + strmOfst].data[k])
+                      : (JcoupLocal[t][packOfst + strmOfst].data[k]);
+            }
+          }
+
+          /* Intra-Buffer Summation */
+          for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
+#pragma HLS UNROLL
+            U50::reductionIntraBuffer<PACKET_SIZE>(fpBuffer[strmOfst]);
+          }
+
+          /* Inter-Buffer Summation */
+          U50::reductionInterBuffer<NUM_STREAM>(fpBuffer);
+          dH[t] += fpBuffer[0][0];
+        }
       }
     }
 
