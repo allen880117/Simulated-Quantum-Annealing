@@ -1,2 +1,0 @@
-[+] Add TrottersLocal for Cache
--> Success to enforce the duplication of the trotterUnits

@@ -1,3 +1,0 @@
-[+] Optimize the loop of Read/Write Trotters
-[+] Optimize the pipeline pragme of the loop READ_NEW_JCOUP
-

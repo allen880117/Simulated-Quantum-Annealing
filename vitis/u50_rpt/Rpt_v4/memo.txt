@@ -1,3 +1,0 @@
-[=] Size of Packet = 16
-[-] Number of Streams = 16
-[*] Downgrade for faster synthesis

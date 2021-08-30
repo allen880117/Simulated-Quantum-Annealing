@@ -1,2 +1,0 @@
-performing high-level synthesis for kernel: QuantumMonteCarloU50
-Log file: /home/edci/workspace/SQA_kernels/Hardware/build/QuantumMonteCarloU50/QuantumMonteCarloU50/vitis_hls.log
