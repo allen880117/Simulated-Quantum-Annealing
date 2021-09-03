@@ -39,7 +39,7 @@ fp_t h[NUM_SPIN];
 #define PBSTR "============================================================"
 #define PBWIDTH 60
 
-void printProgress(int run, int max_run) {
+void PrintProgress(int run, int max_run) {
   float percentage = (float)run / (float)max_run;
   int val = (int)(percentage * 100);
   int lpad = (int)(percentage * PBWIDTH);
@@ -172,7 +172,7 @@ int main(int argc, char** argv) {
   xrt::run run;
   for (int i = 0; i < iter; i++) {
     // Print Progress
-    printProgress(i + 1, iter);
+    PrintProgress(i + 1, iter);
 
     // Read Log Random Number for Flipping
     for (int k = 0; k < NUM_TROT * NUM_SPIN; k++) {

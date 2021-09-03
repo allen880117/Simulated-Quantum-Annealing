@@ -42,6 +42,17 @@
 #define NUM_FADD 64
 #define COPYSIGNF 0
 
+#elif (CONFIG_VERSION == 3)
+#define NUM_TROT 4
+#define NUM_SPIN 32
+#define PACKET_SIZE 16
+#define LOG2_PACKET_SIZE 4
+#define NUM_STREAM 2
+#define LOG2_NUM_STREAM 2
+#define HALF_NUM_STREAM 1
+#define NUM_FADD 64
+#define COPYSIGNF 0
+
 #else
 #define NUM_TROT 8
 #define NUM_SPIN 1024
