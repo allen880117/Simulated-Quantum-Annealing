@@ -67,6 +67,29 @@ void ReduceInterBuffer<1>(fp_t fpBuffer[NUM_STREAM][PACKET_SIZE]) {
 }  // namespace U50
 
 /*
+ * Sign
+ * * To reduce the usage of LUT (for xor)
+ */
+namespace U50 {
+inline float Sign(float input) {
+#pragma HLS INLINE
+    union {
+        float fp_data;
+        uint32_t int_data;
+    } converter;
+
+    converter.fp_data = input;
+
+    ap_uint<32> tmp = converter.int_data;
+    tmp[31] = (~tmp[31]);
+
+    converter.int_data = tmp;
+
+    return converter.fp_data;
+}
+}  // namespace U50
+
+/*
  * Trotter Unit
  * * Run      : Sum up spin[j] * Jcoup[i][j]
  * * RunFinal : Add other terms and do the flip
@@ -86,7 +109,7 @@ void Run(
      * Use INLINE here.
      * When PACKET_SIZE and NUM_STREAM is lower than a threshold
      * It's possible for loop step to
-     * merge the usage of fadd between Trotter
+     * merge the usage of fadd between TrotterUnits
      */
 #pragma HLS INLINE
     // CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = NUM_FADD)
@@ -113,7 +136,7 @@ void Run(
 #pragma HLS UNROLL
                 fpBuffer[strmOfst][k] =
                     (!trotters[packOfst + strmOfst][k])
-                        ? (-JcoupLocal[packOfst + strmOfst].data[k])
+                        ? (Sign(JcoupLocal[packOfst + strmOfst].data[k]))
                         : (JcoupLocal[packOfst + strmOfst].data[k]);
             }
         }
