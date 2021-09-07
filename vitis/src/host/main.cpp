@@ -5,8 +5,9 @@
 #include "../include/helper.hpp"
 #include "../include/sqa.hpp"
 
-#define U50 0
+#define U50 1
 #define AM 1
+#define REPLAY 1
 
 // Jcoup
 fp_t Jcoup[NUM_SPIN][NUM_SPIN];
@@ -15,8 +16,9 @@ fp_pack_t Jcoup_pack[NUM_SPIN][NUM_SPIN / PACKET_SIZE];
 int main(int argc, char **argv) {
     // Dump value of macros
     std::cout << "Current host settings:" << std::endl;
-    std::cout << "-> U50: " << U50 << std::endl;
-    std::cout << "-> AM : " << AM << std::endl;
+    std::cout << "-> U50    : " << U50 << std::endl;
+    std::cout << "-> AM     : " << AM << std::endl;
+    std::cout << "-> REPLAY : " << REPLAY << std::endl;
 
 #if AM
     // Set nTrot and nSpin
@@ -35,8 +37,13 @@ int main(int argc, char **argv) {
     // h
     fp_t h[NUM_SPIN];
 
+#if REPLAY
+    // Read Trotters
+    ReadRandomState(trotters, nTrot, nSpin, "../../../init_trotter.txt");
+#else
     // Generate Trotters
     GenerateRandomState(trotters, nTrot, nSpin);
+#endif
 
 #if AM
     // Read Jcoup, h
@@ -70,7 +77,12 @@ int main(int argc, char **argv) {
 #else
     const int iter = 500;           // default 500
     const fp_t gamma_start = 3.0f;  // default 3.0f
-    const fp_t T = 128.0f;           // default 0.3f
+    const fp_t T = 128.0f;          // default 0.3f
+#endif
+
+#if REPLAY
+    // Read Log Random Number
+    std::ifstream file_lrn("../../../log_rnd.txt");
 #endif
 
     // Iteration of SQA
@@ -85,7 +97,15 @@ int main(int argc, char **argv) {
 
         // Generate Log Rand Number = log(unif(rng)) * nTrot
         fp_t log_rand_nums[NUM_TROT][NUM_SPIN];
+#if REPLAY
+        for (int t = 0; t < nTrot; t++) {
+            for (int i = 0; i < nSpin; i++) {
+                file_lrn >> log_rand_nums[t][i];
+            }
+        }
+#else
         GenerateLogRandomNumber(nTrot, log_rand_nums);
+#endif
 
 #if U50
         // Run QMC-U50
@@ -120,4 +140,9 @@ int main(int argc, char **argv) {
 
     // Close out_log
     out_log.close();
+
+#if REPLAY
+    // Close file_lrn
+    file_lrn.close();
+#endif
 }

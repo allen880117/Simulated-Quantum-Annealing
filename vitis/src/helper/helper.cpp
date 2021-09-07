@@ -14,6 +14,22 @@ void PrintProgress(double percentage) {
     if (val == 100) printf("\n");
 }
 
+void ReadRandomState(spin_t trotters[NUM_TROT][NUM_SPIN], int nTrot, int nSpin,
+                     std::string file_path) {
+    // Open file
+    std::ifstream init_trot(file_path);
+
+    // Read
+    for (int t = 0; t < nTrot; t++) {
+        for (int i = 0; i < nSpin; i++) {
+            init_trot >> trotters[t][i];
+        }
+    }
+
+    // Close file
+    init_trot.close();
+}
+
 void GenerateRandomState(spin_t trotters[NUM_TROT][NUM_SPIN], int nTrot,
                          int nSpin) {
     /* Random Device & Random Number Generator */

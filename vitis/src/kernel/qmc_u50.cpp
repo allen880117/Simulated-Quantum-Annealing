@@ -220,7 +220,7 @@ LOOP_STAGE:
         /* Update Input State */
     UPDATE_INPUT_STATE:
         for (u32_t t = 0; t < NUM_TROT; t++) {
-            // #pragma HLS UNROLL
+#pragma HLS UNROLL
             /* Compute Ofst  & Clamp into [0~NUM_SPIN) */
             u32_t Ofst = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
             u32_t packOfst = (Ofst >> (LOG2_PACKET_SIZE));
@@ -256,42 +256,37 @@ LOOP_STAGE:
         RUN_TU:
             for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-                /* Check stage */
-                bool inside = (stage >= t && stage < NUM_SPIN + t);
-                if (inside) {
-                    /* Cache */
-                    fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
+
+                // Buffer cache
+                fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = fpBuffer
 #pragma HLS ARRAY_PARTITION dim = 2 type = complete variable = fpBuffer
 
-                    for (u32_t strmOfst = 0; strmOfst < NUM_STREAM;
-                         strmOfst++) {
+                // Multiple Stream
+                for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
 
-                        /* Multiply */
-                        for (u32_t k = 0; k < PACKET_SIZE; k++) {
+                    // Load and Multiply
+                    for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
-                            fpBuffer[strmOfst][k] =
-                                (!trottersLocal[t][packOfst + strmOfst][k])
-                                    ? (-JcoupLocal[t][packOfst + strmOfst]
-                                            .data[k])
-                                    : (JcoupLocal[t][packOfst + strmOfst]
-                                           .data[k]);
-                        }
+                        fpBuffer[strmOfst][k] =
+                            (!trottersLocal[t][packOfst + strmOfst][k])
+                                ? (-JcoupLocal[t][packOfst + strmOfst].data[k])
+                                : (JcoupLocal[t][packOfst + strmOfst].data[k]);
                     }
-
-                    /* Intra-Buffer Summation */
-                    for (u32_t strmOfst = 0; strmOfst < NUM_STREAM;
-                         strmOfst++) {
-#pragma HLS UNROLL
-                        U50::reductionIntraBuffer<PACKET_SIZE>(
-                            fpBuffer[strmOfst]);
-                    }
-
-                    /* Inter-Buffer Summation */
-                    U50::reductionInterBuffer<NUM_STREAM>(fpBuffer);
-                    dH[t] += fpBuffer[0][0];
                 }
+
+                // Intra-Buffer Summation
+                for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
+#pragma HLS UNROLL
+                    U50::reductionIntraBuffer<PACKET_SIZE>(fpBuffer[strmOfst]);
+                }
+
+                // Inter-Buffer Summation
+                U50::reductionInterBuffer<NUM_STREAM>(fpBuffer);
+
+                // Sum up to dH
+                dH[t] += fpBuffer[0][0];
             }
         }
 

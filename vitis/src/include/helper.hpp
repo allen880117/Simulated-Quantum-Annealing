@@ -10,6 +10,10 @@
 /* Print the progress bar */
 void PrintProgress(double percentage);
 
+/* Read Random Initial State */
+void ReadRandomState(spin_t trotters[NUM_TROT][NUM_SPIN], int nTrot, int nSpin,
+                     std::string file_path);
+
 /* Generate Random Initial State */
 void GenerateRandomState(spin_t trotters[NUM_TROT][NUM_SPIN], int nTrot,
                          int nSpin);
