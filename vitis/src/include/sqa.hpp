@@ -7,9 +7,14 @@
 #define PRAGMA_SUB(PRAG) _Pragma(#PRAG)
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
-#define CONFIG_VERSION 3
+#define CUR_SYN 2
+#define CUR_SIM 3
 
-#if (CONFIG_VERSION == 0)
+#define COND(NUM)                                \
+    ((__SYNTHESIS__) && ((CUR_SYN) == (NUM))) || \
+        (!(__SYNTHESIS__) && ((CUR_SIM) == (NUM)))
+
+#if COND(0)
 #define NUM_TROT 16
 #define NUM_SPIN 4096
 #define PACKET_SIZE 64
@@ -20,7 +25,7 @@
 #define NUM_FADD 4
 #define COPYSIGNF 1
 
-#elif (CONFIG_VERSION == 1)
+#elif COND(1)
 #define NUM_TROT 4
 #define NUM_SPIN 4096
 #define PACKET_SIZE 128
@@ -31,7 +36,7 @@
 #define NUM_FADD 64
 #define COPYSIGNF 1
 
-#elif (CONFIG_VERSION == 2)
+#elif COND(2)
 #define NUM_TROT 4
 #define NUM_SPIN 4096
 #define PACKET_SIZE 16
@@ -42,7 +47,7 @@
 #define NUM_FADD 64
 #define COPYSIGNF 0
 
-#elif (CONFIG_VERSION == 3)
+#elif COND(3)
 #define NUM_TROT 4
 #define NUM_SPIN 32
 #define PACKET_SIZE 16
@@ -72,7 +77,7 @@ typedef int i32_t;
 typedef float fp_t;
 typedef ap_uint<1> spin_t;
 typedef struct {
-  fp_t data[PACKET_SIZE];
+    fp_t data[PACKET_SIZE];
 } fp_pack_t;
 typedef ap_uint<PACKET_SIZE * NUM_STREAM> spin_pack_t;
 typedef ap_uint<PACKET_SIZE> spin_pack_u50_t;
