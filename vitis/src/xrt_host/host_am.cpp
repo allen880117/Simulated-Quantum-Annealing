@@ -171,8 +171,14 @@ int main(int argc, char** argv) {
     std::ofstream out("out.txt");
     std::ofstream time_log("time_log.txt");
     std::ofstream trot_log("trot_log.txt");
-    std::vector<fp_t> energy_log;
-    energy_log.resize(iter);
+    std::vector<fp_t> energy_log(iter);
+
+    // For live waveform
+    std::vector<fp_t> x_label(iter);
+    for (int i = 0; i < iter; i++) x_label[i] = i;
+    matplotlibcpp::xlim(1, iter);
+    matplotlibcpp::ylim(-3500, -2000);
+    matplotlibcpp::Plot plot("Energy Log", x_label, energy_log, "o-");
 
     // Sync Input Buffers (which won't change by host in the iterations)
     bo_trotters.sync(XCL_BO_SYNC_BO_TO_DEVICE);
@@ -262,6 +268,12 @@ int main(int argc, char** argv) {
         }
         out << "SUM: " << sum_energy << std::endl;
         energy_log[i] = (sum_energy);
+
+        // Live waveform
+        if ((i + 1) % 10 == 0) {
+            plot.update(x_label, energy_log);
+            matplotlibcpp::pause(0.00001);
+        }
     }
 
     std::cout << "\n[INFO][!] -> Done" << std::endl;
@@ -272,6 +284,5 @@ int main(int argc, char** argv) {
     trot_log.close();
 
     // Plot
-    matplotlibcpp::plot(energy_log,"o-");
     matplotlibcpp::show();
 }

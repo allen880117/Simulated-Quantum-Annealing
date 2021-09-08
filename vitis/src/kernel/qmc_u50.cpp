@@ -116,6 +116,10 @@ void Run(
     // CTX_PRAGMA(HLS PIPELINE II = HALF_NUM_STREAM)
     // CTX_PRAGMA(HLS PIPELINE)
 
+    /*
+     * Remove stage check here for better timing
+     */
+
     // Cache
     fp_t dHTmp = dH;
 
