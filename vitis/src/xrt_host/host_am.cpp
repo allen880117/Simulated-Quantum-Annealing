@@ -3,10 +3,12 @@
 #include <iostream>
 #include <random>
 #include <string>
+#include <vector>
 
 #include "experimental/xrt_bo.h"
 #include "experimental/xrt_device.h"
 #include "experimental/xrt_kernel.h"
+#include "matplotlibcpp.h"
 
 #define NUM_TROT 4
 #define NUM_SPIN 4096
@@ -111,6 +113,13 @@ int main(int argc, char** argv) {
     std::cout << "[INFO][-] -> Create initial trotters" << std::endl;
 
     // Do Nothing
+    for (int i = 0; i < NUM_TROT * NUM_SPIN / PACKET_SIZE; i++) {
+        spin_pack_u50_t tmp;
+        for (int k = 0; k < PACKET_SIZE; k++) {
+            tmp[k] = true;
+        }
+        bo_trotters_map[i] = tmp;
+    }
 
     // Create the test data of Jcoup
     std::cout << "[INFO][-] -> Create random number and Jcoup" << std::endl;
@@ -162,6 +171,8 @@ int main(int argc, char** argv) {
     std::ofstream out("out.txt");
     std::ofstream time_log("time_log.txt");
     std::ofstream trot_log("trot_log.txt");
+    std::vector<fp_t> energy_log;
+    energy_log.resize(iter);
 
     // Sync Input Buffers (which won't change by host in the iterations)
     bo_trotters.sync(XCL_BO_SYNC_BO_TO_DEVICE);
@@ -214,7 +225,7 @@ int main(int argc, char** argv) {
         bo_trotters.sync(XCL_BO_SYNC_BO_FROM_DEVICE);
 
         // Compute Energy
-        fp_t sumEnergy = 0;
+        fp_t sum_energy = 0;
         for (int t = 0; t < NUM_TROT; t++) {
             fp_t H = 0.0f;
             trot_log << "T" << t << ": ";
@@ -247,9 +258,10 @@ int main(int argc, char** argv) {
 
             trot_log << std::endl;
             out << "T" << t << ": " << H << std::endl;
-            sumEnergy += H;
+            sum_energy += H;
         }
-        out << "SUM: " << sumEnergy << std::endl;
+        out << "SUM: " << sum_energy << std::endl;
+        energy_log[i] = (sum_energy);
     }
 
     std::cout << "\n[INFO][!] -> Done" << std::endl;
@@ -258,4 +270,8 @@ int main(int argc, char** argv) {
     out.close();
     time_log.close();
     trot_log.close();
+
+    // Plot
+    matplotlibcpp::plot(energy_log,"o-");
+    matplotlibcpp::show();
 }

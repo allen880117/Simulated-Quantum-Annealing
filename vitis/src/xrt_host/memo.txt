@@ -8,3 +8,7 @@
 
 [+][V] sqa-qmc.3.xclbin
     -> [V] Use more HBM to reduce the i/o latency 
+
+[+][V] sqa-qmc.4.xclbin
+    -> [V] pass AM test
+    -> [V] better latency by merging the usage of fadd between different trotter units

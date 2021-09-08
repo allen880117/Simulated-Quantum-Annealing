@@ -116,42 +116,38 @@ void Run(
     // CTX_PRAGMA(HLS PIPELINE II = HALF_NUM_STREAM)
     // CTX_PRAGMA(HLS PIPELINE)
 
-    // Check stage
-    bool inside = (stage >= t && stage < NUM_SPIN + t);
-    if (inside) {
-        // Cache
-        fp_t dHTmp = dH;
+    // Cache
+    fp_t dHTmp = dH;
 
-        // Buffer for Reduction
-        fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
+    // Buffer for Reduction
+    fp_t fpBuffer[NUM_STREAM][PACKET_SIZE];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = fpBuffer
 #pragma HLS ARRAY_PARTITION dim = 2 type = complete variable = fpBuffer
 
-        // Multiple Stream
-        for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
+    // Multiple Stream
+    for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
 #pragma HLS UNROLL
 
-            // Multiply
-            for (u32_t k = 0; k < PACKET_SIZE; k++) {
+        // Multiply
+        for (u32_t k = 0; k < PACKET_SIZE; k++) {
 #pragma HLS UNROLL
-                fpBuffer[strmOfst][k] =
-                    (!trotters[packOfst + strmOfst][k])
-                        ? (Sign(JcoupLocal[packOfst + strmOfst].data[k]))
-                        : (JcoupLocal[packOfst + strmOfst].data[k]);
-            }
+            fpBuffer[strmOfst][k] =
+                (!trotters[packOfst + strmOfst][k])
+                    ? (Sign(JcoupLocal[packOfst + strmOfst].data[k]))
+                    : (JcoupLocal[packOfst + strmOfst].data[k]);
         }
-
-        // Reduction
-        for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
-#pragma HLS UNROLL
-            ReduceIntraBuffer<PACKET_SIZE>(fpBuffer[strmOfst]);
-        }
-        ReduceInterBuffer<NUM_STREAM>(fpBuffer);
-
-        // Sum up and Write back
-        dHTmp += fpBuffer[0][0];
-        dH = dHTmp;
     }
+
+    // Reduction
+    for (u32_t strmOfst = 0; strmOfst < NUM_STREAM; strmOfst++) {
+#pragma HLS UNROLL
+        ReduceIntraBuffer<PACKET_SIZE>(fpBuffer[strmOfst]);
+    }
+    ReduceInterBuffer<NUM_STREAM>(fpBuffer);
+
+    // Sum up and Write back
+    dHTmp += fpBuffer[0][0];
+    dH = dHTmp;
 };
 
 void RunFinal(
