@@ -1,5 +1,7 @@
 # Simulated-Quantum-Annealing
 
+This is the final project of team 9 in Advanced Computer Architecture (2021 Spring) at NTU. For presentation slides, please refer to [here](https://github.com/allen880117/Simulated-Quantum-Annealing/blob/main/HLS-Team-9-SQA.pdf).
+
 ## Introduction
 
 This project is aimed at implementing the simulated quantum annealing in HLS and reproduces the paper [[1]](https://ieeexplore.ieee.org/document/8918417).
