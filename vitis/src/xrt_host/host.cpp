@@ -7,6 +7,9 @@
 #include "experimental/xrt_bo.h"
 #include "experimental/xrt_device.h"
 #include "experimental/xrt_kernel.h"
+#include "matplotlibcpp.h"
+
+#define LIVE_UPDATE 0
 
 #define NUM_TROT 4
 #define NUM_SPIN 4096
@@ -16,9 +19,6 @@
 #define LOG2_NUM_STREAM 4
 #define HALF_NUM_STREAM 8
 #define NUM_FADD 64
-/* V1 use COPYSIGNF */
-#define COPYSIGNF 1
-/* V2 doesn't use */
 
 typedef unsigned int u32_t;
 typedef int i32_t;
@@ -130,7 +130,7 @@ int main(int argc, char** argv) {
         for (int j = 0; j < NUM_SPIN / PACKET_SIZE; j++) {
             fp_pack_t tmp;
             for (int k = 0; k < PACKET_SIZE; k++) {
-                tmp.data[k] = -(rand_num[i] * rand_num[j * PACKET_SIZE + k]);
+                tmp.data[k] = (rand_num[i] * rand_num[j * PACKET_SIZE + k]);
             }
             bo_Jcoup_map[i * NUM_SPIN / PACKET_SIZE + j] = tmp;
         }
@@ -144,11 +144,10 @@ int main(int argc, char** argv) {
     }
 
     // Iter Arguments
-    fp_t iter = 500;                   // default 500
-    fp_t beta = 1 / ((fp_t)4096.0f);   // default 1/16
-    fp_t max_beta = ((fp_t)8) / 1.0f;  // default 8.0f
-    fp_t d_beta = (max_beta - beta) / (fp_t)iter;
-    fp_t G0 = 8.0f;  // default 8.0f
+    const int iter = 500;           // default 500
+    const fp_t gamma_start = 3.0f;  // default 3.0f
+    const fp_t T = 0.3f;            // default 0.3f
+    const fp_t beta = 1.0f / T;
 
     // Best Status
     fp_t bestEnergy = 10e22;
@@ -159,6 +158,14 @@ int main(int argc, char** argv) {
     // Log File
     std::ofstream out("out.txt");
     std::ofstream time_log("time_log.txt");
+    std::vector<fp_t> energy_log(iter);
+
+    // For live waveform
+    std::vector<fp_t> x_label(iter);
+    for (int i = 0; i < iter; i++) x_label[i] = i;
+    matplotlibcpp::xlim(1, iter);
+    // matplotlibcpp::ylim(-3500, -2000);
+    matplotlibcpp::Plot plot("Energy Log", x_label, energy_log, "o-");
 
     // Sync Input Buffers (which won't change by host in the iterations)
     bo_trotters.sync(XCL_BO_SYNC_BO_TO_DEVICE);
@@ -182,8 +189,8 @@ int main(int argc, char** argv) {
         bo_logRand.sync(XCL_BO_SYNC_BO_TO_DEVICE);
 
         // Get Jperp
-        fp_t Gamma = G0 * (1 - (float)i / iter);
-        fp_t Jperp = -0.5 * log(tanh((Gamma / NUM_TROT) * beta)) / beta;
+        fp_t gamma = gamma_start * (1.0f - ((fp_t)i / (fp_t)iter));
+        fp_t Jperp = -0.5 * T * log(tanh(gamma / (fp_t)NUM_TROT / T));
 
         // Set Timer
         std::chrono::system_clock::time_point start =
@@ -194,7 +201,6 @@ int main(int argc, char** argv) {
             run = krnl(bo_trotters, bo_Jcoup, bo_h, Jperp, beta, bo_logRand);
         } else {
             run.set_arg(3, Jperp);
-            run.set_arg(4, beta);
             run.start();
         }
         run.wait();
@@ -207,9 +213,6 @@ int main(int argc, char** argv) {
                                                                           start)
                         .count()
                  << " us" << std::endl;
-
-        // Increase beta
-        beta += d_beta;
 
         // Sync trotters back
         bo_trotters.sync(XCL_BO_SYNC_BO_FROM_DEVICE);
@@ -240,6 +243,14 @@ int main(int argc, char** argv) {
             }
         }
         out << "SUM: " << sumEnergy << std::endl;
+        out << "BEST: " << bestEnergy << std::endl;
+        energy_log[i] = (bestEnergy);
+
+        // Live waveform
+        if ((i + 1) % 100 == 0) {
+            plot.update(x_label, energy_log);
+            matplotlibcpp::pause(0.00001);
+        }
     }
 
     std::cout << "\n[INFO][!] -> Done" << std::endl;
@@ -253,4 +264,7 @@ int main(int argc, char** argv) {
     // Close the out
     out.close();
     time_log.close();
+
+    // Plot
+    matplotlibcpp::show();
 }

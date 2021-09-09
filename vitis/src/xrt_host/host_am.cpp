@@ -10,6 +10,8 @@
 #include "experimental/xrt_kernel.h"
 #include "matplotlibcpp.h"
 
+#define LIVE_UPDATE 0
+
 #define NUM_TROT 4
 #define NUM_SPIN 4096
 #define PACKET_SIZE 16
@@ -18,9 +20,6 @@
 #define LOG2_NUM_STREAM 4
 #define HALF_NUM_STREAM 8
 #define NUM_FADD 64
-/* V1 use COPYSIGNF */
-#define COPYSIGNF 1
-/* V2 doesn't use */
 
 typedef unsigned int u32_t;
 typedef int i32_t;
@@ -270,7 +269,7 @@ int main(int argc, char** argv) {
         energy_log[i] = (sum_energy);
 
         // Live waveform
-        if ((i + 1) % 10 == 0) {
+        if ((i + 1) % 100 == 0) {
             plot.update(x_label, energy_log);
             matplotlibcpp::pause(0.00001);
         }

@@ -1,13 +1,15 @@
 HLS_INCLUDE=/home/edci/Xilinx/Vitis_HLS/2021.1/include/
 PYTHON_PATH=/usr/include/python3.8
+CFLAG=-g -std=c++14 -I$(HLS_INCLUDE) -I$(XILINX_XRT)/include -I$(PYTHON_PATH) -L$(XILINX_XRT)/lib
+CFLAG_POST=-lxrt_coreutil -pthread -lpython3.8 -DWITHOUT_NUMPY
 
 all: host.exe host_am.exe
 
 host.exe: host.cpp
-	g++ -g -std=c++14 -I$(HLS_INCLUDE) -I$(XILINX_XRT)/include -L$(XILINX_XRT)/lib -o host.exe host.cpp -lxrt_coreutil -pthread
+	g++ $(CFLAG) -o host.exe host.cpp $(CFLAG_POST)
 
 host_am.exe: host_am.cpp
-	g++ -g -std=c++14 -I$(HLS_INCLUDE) -I$(XILINX_XRT)/include -I$(PYTHON_PATH) -L$(XILINX_XRT)/lib -o host_am.exe host_am.cpp -lxrt_coreutil -pthread -lpython3.8 -DWITHOUT_NUMPY
+	g++ $(CFLAG) -o host_am.exe host_am.cpp $(CFLAG_POST)
 
 clean:
 	rm -f host.exe host_am.exe
