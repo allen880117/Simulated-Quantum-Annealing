@@ -1,6 +1,8 @@
 BasedOnStyle: Google
 IndentWidth: 4
-#AlignConsecutiveDeclarations: false
-#AlignConsecutiveAssignments: false
-#IndentPPDirectives: BeforeHash
-#AllowShortBlocksOnASingleLine: Always
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: true
+AllowShortBlocksOnASingleLine: Always
+ColumnLimit: 80
+IndentPPDirectives: BeforeHash
+#BinPackArguments: false
