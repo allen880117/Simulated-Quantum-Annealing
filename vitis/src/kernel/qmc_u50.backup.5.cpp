@@ -79,11 +79,13 @@ inline void ReduceIntra<PACKET_SIZE, 1>(fp_t fp_buffer[PACKET_SIZE]) {
 /*
  * ReduceIntra (BOTTOM)(BUF_SIZE = NUM_SPIN / PACKET_SIZE / NUM_STREAM)
  */
+#if (NUM_SPIN / PACKET_SIZE / NUM_STREAM != PACKET_SIZE)
 template <>
 inline void ReduceIntra<NUM_SPIN / PACKET_SIZE / NUM_STREAM, 1>(
     fp_t fp_buffer[NUM_SPIN / PACKET_SIZE / NUM_STREAM]) {
     ;
 }
+#endif
 
 /*
  * ReduceInter (TOP)
