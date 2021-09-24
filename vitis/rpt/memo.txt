@@ -1,25 +1,8 @@
-rpt_1:
-* 16 4096 64 1
-* Remove register
-* Confine the number of FADD
+rpt_4-p64-s2
+* By reducing the number of streams (comparing to NUM_STREAM=16)
+    * Better resource ssage
+    * Better latency
 
-rpt_2:
-* 16 4096 64 1
-* Remove register
-* Confine the number of FADD
-* Add fpBuffer Cache
-  - Disaggregate
-
-
-AAT:
-
-Under the folder:
-
-/home/edci/AAT_21_1_2021Q2/Accelerated_Algorithmic_Trading/sw/drivers/aat/order_book_data_mover
-
-files:
-	xlnx_order_book_data_mover_host_pricing_engine.cpp
-	xlnx_order_book_data_mover.h
-		* ProcessPricingData
-	
-
+* Currently 2 streams is better than 1 stream only, due to
+    * Number of Memory Ports
+    * Number of fadd

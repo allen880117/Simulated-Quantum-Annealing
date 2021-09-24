@@ -1,0 +1,135 @@
+
+
+================================================================
+== Synthesis Summary Report of 'QuantumMonteCarloU50'
+================================================================
++ General Information: 
+    * Date:           Thu Sep 23 11:33:42 2021
+    * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:33 MDT 2021)
+    * Project:        SQA-Vitis
+    * Solution:       solution1 (Vitis Kernel Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu35p-fsvh2892-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
+    |                                   Modules                                   |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |         |          |             |            |     |
+    |                                   & Loops                                   |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |    DSP   |      FF     |     LUT    | URAM|
+    +-----------------------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
+    |+ QuantumMonteCarloU50                                                       |  Timing|  -0.41|  2410874|  8.035e+06|         -|  2410875|     -|        no|  92 (3%)|  402 (6%)|  137081 (7%)|  85665 (9%)|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_READ_TROTTERS_1_fu_587    |       -|   0.00|      259|    863.247|         -|      259|     -|        no|        -|         -|   1006 (~0%)|   580 (~0%)|    -|
+    |  o READ_TROTTERS_READ_TROTTERS_1                                            |       -|   2.43|      257|    856.581|         3|        1|   256|       yes|        -|         -|            -|           -|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_READ_JCOUP_fu_602                       |       -|   0.00|      265|    883.245|         -|      265|     -|        no|        -|         -|   26951 (1%)|  2528 (~0%)|    -|
+    |  o READ_JCOUP                                                               |      II|   2.43|      263|    876.579|        75|        3|    64|       yes|        -|         -|            -|           -|    -|
+    | + grp_Run_fu_615                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|        -|  128 (2%)|   29734 (1%)|  20045 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_343                                           |       -|   0.09|      120|    399.960|         -|      120|     -|        no|        -|  122 (2%)|   27765 (1%)|  18626 (2%)|    -|
+    |   o SUM_UP                                                                  |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|        -|         -|            -|           -|    -|
+    | + grp_Run_fu_623                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|        -|  128 (2%)|   29734 (1%)|  20045 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_343                                           |       -|   0.09|      120|    399.960|         -|      120|     -|        no|        -|  122 (2%)|   27765 (1%)|  18626 (2%)|    -|
+    |   o SUM_UP                                                                  |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|        -|         -|            -|           -|    -|
+    | + grp_Run_fu_631                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|        -|  128 (2%)|   29734 (1%)|  20045 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_343                                           |       -|   0.09|      120|    399.960|         -|      120|     -|        no|        -|  122 (2%)|   27765 (1%)|  18626 (2%)|    -|
+    |   o SUM_UP                                                                  |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|        -|         -|            -|           -|    -|
+    | + grp_RunFinal_fu_639                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|        -|   5 (~0%)|    796 (~0%)|   733 (~0%)|    -|
+    | + grp_RunFinal_fu_658                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|        -|   5 (~0%)|    796 (~0%)|   733 (~0%)|    -|
+    | + grp_RunFinal_fu_677                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|        -|   5 (~0%)|    796 (~0%)|   733 (~0%)|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_697                      |       -|   0.69|       71|    236.643|         -|       71|     -|        no|        -|         -|   6643 (~0%)|  6428 (~0%)|    -|
+    |  o SHIFT_JCOUP                                                              |       -|   2.43|       69|    229.977|         7|        1|    64|       yes|        -|         -|            -|           -|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_WRITE_TROTTERS_1_fu_709  |       -|   0.00|      259|    863.247|         -|      259|     -|        no|        -|         -|    989 (~0%)|   986 (~0%)|    -|
+    |  o WRITE_TROTTERS_WRITE_TROTTERS_1                                          |       -|   2.43|      257|    856.581|         3|        1|   256|       yes|        -|         -|            -|           -|    -|
+    | o LOOP_STAGE                                                                |       -|   2.43|  2410212|  8.033e+06|       588|        -|  4099|        no|        -|         -|            -|           -|    -|
+    +-----------------------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++-------------+--------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| Interface   | Data Width   | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   |
+|             | (SW->HW)     |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |
++-------------+--------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| m_axi_gmem0 | 64 -> 512    | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem1 | 2048 -> 1024 | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem2 | 32 -> 32     | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem3 | 32 -> 32     | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
++-------------+--------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+
+* S_AXILITE
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* TOP LEVEL CONTROL
++-----------+---------------+-----------+
+| Interface | Type          | Ports     |
++-----------+---------------+-----------+
+| ap_clk    | clock         | ap_clk    |
+| ap_rst_n  | reset         | ap_rst_n  |
+| interrupt | interrupt     | interrupt |
+| ap_ctrl   | ap_ctrl_chain |           |
++-----------+---------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------+
+| Argument | Direction | Datatype      |
++----------+-----------+---------------+
+| trotters | inout     | ap_uint<64>*  |
+| jcoup    | in        |  const *      |
+| h        | in        | float const * |
+| jperp    | in        | float const   |
+| beta     | in        | float const   |
+| log_rand | in        | float const * |
++----------+-----------+---------------+
+
+* SW-to-HW Mapping
++----------+--------------------------+-----------+----------+-----------------------+
+| Argument | HW Name                  | HW Type   | HW Usage | HW Info               |
++----------+--------------------------+-----------+----------+-----------------------+
+| trotters | m_axi_gmem0              | interface |          |                       |
+| trotters | s_axi_control trotters_1 | register  | offset   | offset=0x10, range=32 |
+| trotters | s_axi_control trotters_2 | register  | offset   | offset=0x14, range=32 |
+| jcoup    | m_axi_gmem1              | interface |          |                       |
+| jcoup    | s_axi_control jcoup_1    | register  | offset   | offset=0x1c, range=32 |
+| jcoup    | s_axi_control jcoup_2    | register  | offset   | offset=0x20, range=32 |
+| h        | m_axi_gmem2              | interface |          |                       |
+| h        | s_axi_control h_1        | register  | offset   | offset=0x28, range=32 |
+| h        | s_axi_control h_2        | register  | offset   | offset=0x2c, range=32 |
+| jperp    | s_axi_control jperp      | register  |          | offset=0x34, range=32 |
+| beta     | s_axi_control beta       | register  |          | offset=0x3c, range=32 |
+| log_rand | m_axi_gmem3              | interface |          |                       |
+| log_rand | s_axi_control log_rand_1 | register  | offset   | offset=0x44, range=32 |
+| log_rand | s_axi_control log_rand_2 | register  | offset   | offset=0x48, range=32 |
++----------+--------------------------+-----------+----------+-----------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+* Burst Summary
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| HW Interface | Message                                                                                                                                                                                                                         | Location                                                        |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| m_axi_gmem0  | Multiple burst reads of length 32 and bit width 512. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.        | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:258:5  |
+| m_axi_gmem1  | Multiple burst reads of variable length and bit width 1024. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:317:23 |
+| m_axi_gmem0  | Multiple burst writes of length 32 and bit width 512. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.       | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:349:5  |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+
+* Bursts and Widening Missed
++--------------+----------+--------------------------------------------------------------------------------+------------+-----------------------------------------------------------------+
+| HW Interface | Variable | Problem                                                                        | Resolution | Location                                                        |
++--------------+----------+--------------------------------------------------------------------------------+------------+-----------------------------------------------------------------+
+| m_axi_gmem1  | jcoup    | Alignment is insufficient, current alignment is 64 byte(s) but 256 is required | 214-228    | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:317:23 |
++--------------+----------+--------------------------------------------------------------------------------+------------+-----------------------------------------------------------------+
+
+    * Resolution URL: www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=XXX-YYY.html (replace XXX-YYY with column value)
+
