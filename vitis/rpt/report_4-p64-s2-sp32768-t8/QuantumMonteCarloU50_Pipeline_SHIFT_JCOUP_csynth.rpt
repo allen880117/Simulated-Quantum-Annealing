@@ -1,0 +1,269 @@
+
+
+================================================================
+== Vitis HLS Report for 'QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP'
+================================================================
+* Date:           Sat Sep 25 09:46:53 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:33 MDT 2021)
+* Project:        SQA-Vitis
+* Solution:       solution1 (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu35p-fsvh2892-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.200 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      527|      527|  1.756 us|  1.756 us|  527|  527|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- SHIFT_JCOUP  |      525|      525|        15|          1|          1|   512|       yes|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|   14359|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     -|        -|       -|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|      36|    -|
+|Register             |        -|     -|    14944|     256|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     0|    14944|   14651|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|     0|        1|       3|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|     0|       ~0|       1|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+------+------------+------------+
+    |       Variable Name      | Operation| DSP| FF|  LUT | Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+------+------------+------------+
+    |add_ln340_fu_282_p2       |         +|   0|  0|    17|          10|           1|
+    |icmp_ln340_fu_276_p2      |      icmp|   0|  0|    11|          10|          11|
+    |select_ln344_1_fu_348_p3  |    select|   0|  0|  2047|           1|        2048|
+    |select_ln344_2_fu_341_p3  |    select|   0|  0|  2047|           1|        2048|
+    |select_ln344_3_fu_334_p3  |    select|   0|  0|  2047|           1|        2048|
+    |select_ln344_4_fu_327_p3  |    select|   0|  0|  2047|           1|        2048|
+    |select_ln344_5_fu_320_p3  |    select|   0|  0|  2047|           1|        2048|
+    |select_ln344_6_fu_313_p3  |    select|   0|  0|  2047|           1|        2048|
+    |select_ln344_fu_355_p3    |    select|   0|  0|  2047|           1|        2048|
+    |ap_enable_pp0             |       xor|   0|  0|     2|           1|           2|
+    +--------------------------+----------+----+---+------+------------+------------+
+    |Total                     |          |   0|  0| 14359|          28|       14350|
+    +--------------------------+----------+----+---+------+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_ofst_2  |   9|          2|   10|         20|
+    |ofst_fu_62               |   9|          2|   10|         20|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   22|         44|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------+------+----+------+-----------+
+    |                Name               |  FF  | LUT| Bits | Const Bits|
+    +-----------------------------------+------+----+------+-----------+
+    |ap_CS_fsm                          |     1|   0|     1|          0|
+    |ap_done_reg                        |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter1            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter10           |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter11           |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter12           |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter13           |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter14           |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter2            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter3            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter4            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter5            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter6            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter7            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter8            |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter9            |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter10_reg  |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter11_reg  |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter12_reg  |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter13_reg  |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter4_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter5_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter6_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter7_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter8_reg   |     1|   0|     1|          0|
+    |ap_loop_exit_ready_pp0_iter9_reg   |     1|   0|     1|          0|
+    |jcoup_local_5_0_addr_reg_486       |     8|   0|     8|          0|
+    |jcoup_local_5_1_addr_reg_491       |     8|   0|     8|          0|
+    |jcoup_local_6_0_addr_reg_466       |     8|   0|     8|          0|
+    |jcoup_local_6_1_addr_reg_471       |     8|   0|     8|          0|
+    |jcoup_local_7_0_addr_reg_476       |     8|   0|     8|          0|
+    |jcoup_local_7_1_addr_reg_481       |     8|   0|     8|          0|
+    |ofst_fu_62                         |    10|   0|    10|          0|
+    |select_ln344_1_reg_512             |  2048|   0|  2048|          0|
+    |select_ln344_2_reg_506             |  2048|   0|  2048|          0|
+    |select_ln344_3_reg_460             |  2048|   0|  2048|          0|
+    |select_ln344_4_reg_444             |  2048|   0|  2048|          0|
+    |select_ln344_5_reg_428             |  2048|   0|  2048|          0|
+    |select_ln344_6_reg_412             |  2048|   0|  2048|          0|
+    |select_ln344_reg_518               |  2048|   0|  2048|          0|
+    |trunc_ln344_reg_373                |     1|   0|     1|          0|
+    |zext_ln344_reg_384                 |     8|   0|    64|         56|
+    |jcoup_local_5_0_addr_reg_486       |    64|  32|     8|          0|
+    |jcoup_local_5_1_addr_reg_491       |    64|  32|     8|          0|
+    |jcoup_local_6_0_addr_reg_466       |    64|  32|     8|          0|
+    |jcoup_local_6_1_addr_reg_471       |    64|  32|     8|          0|
+    |jcoup_local_7_0_addr_reg_476       |    64|  32|     8|          0|
+    |jcoup_local_7_1_addr_reg_481       |    64|  32|     8|          0|
+    |trunc_ln344_reg_373                |    64|  32|     1|          0|
+    |zext_ln344_reg_384                 |    64|  32|    64|         56|
+    +-----------------------------------+------+----+------+-----------+
+    |Total                              | 14944| 256| 14601|        112|
+    +-----------------------------------+------+----+------+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+------+------------+-------------------------------------------+--------------+
+|         RTL Ports        | Dir | Bits |  Protocol  |               Source Object               |    C Type    |
++--------------------------+-----+------+------------+-------------------------------------------+--------------+
+|ap_clk                    |   in|     1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_rst                    |   in|     1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_start                  |   in|     1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_done                   |  out|     1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_idle                   |  out|     1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|ap_ready                  |  out|     1|  ap_ctrl_hs|  QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP|  return value|
+|jcoup_local_0_0_address0  |  out|     8|   ap_memory|                            jcoup_local_0_0|         array|
+|jcoup_local_0_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_0_0|         array|
+|jcoup_local_0_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_0_0|         array|
+|jcoup_local_0_1_address0  |  out|     8|   ap_memory|                            jcoup_local_0_1|         array|
+|jcoup_local_0_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_0_1|         array|
+|jcoup_local_0_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_0_1|         array|
+|jcoup_local_1_0_address0  |  out|     8|   ap_memory|                            jcoup_local_1_0|         array|
+|jcoup_local_1_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_1_0|         array|
+|jcoup_local_1_0_we0       |  out|     1|   ap_memory|                            jcoup_local_1_0|         array|
+|jcoup_local_1_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_1_0|         array|
+|jcoup_local_1_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_1_0|         array|
+|jcoup_local_1_1_address0  |  out|     8|   ap_memory|                            jcoup_local_1_1|         array|
+|jcoup_local_1_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_1_1|         array|
+|jcoup_local_1_1_we0       |  out|     1|   ap_memory|                            jcoup_local_1_1|         array|
+|jcoup_local_1_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_1_1|         array|
+|jcoup_local_1_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_1_1|         array|
+|jcoup_local_2_0_address0  |  out|     8|   ap_memory|                            jcoup_local_2_0|         array|
+|jcoup_local_2_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_2_0|         array|
+|jcoup_local_2_0_we0       |  out|     1|   ap_memory|                            jcoup_local_2_0|         array|
+|jcoup_local_2_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_2_0|         array|
+|jcoup_local_2_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_2_0|         array|
+|jcoup_local_2_1_address0  |  out|     8|   ap_memory|                            jcoup_local_2_1|         array|
+|jcoup_local_2_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_2_1|         array|
+|jcoup_local_2_1_we0       |  out|     1|   ap_memory|                            jcoup_local_2_1|         array|
+|jcoup_local_2_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_2_1|         array|
+|jcoup_local_2_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_2_1|         array|
+|jcoup_local_3_0_address0  |  out|     8|   ap_memory|                            jcoup_local_3_0|         array|
+|jcoup_local_3_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_3_0|         array|
+|jcoup_local_3_0_we0       |  out|     1|   ap_memory|                            jcoup_local_3_0|         array|
+|jcoup_local_3_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_3_0|         array|
+|jcoup_local_3_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_3_0|         array|
+|jcoup_local_3_1_address0  |  out|     8|   ap_memory|                            jcoup_local_3_1|         array|
+|jcoup_local_3_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_3_1|         array|
+|jcoup_local_3_1_we0       |  out|     1|   ap_memory|                            jcoup_local_3_1|         array|
+|jcoup_local_3_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_3_1|         array|
+|jcoup_local_3_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_3_1|         array|
+|jcoup_local_4_0_address0  |  out|     8|   ap_memory|                            jcoup_local_4_0|         array|
+|jcoup_local_4_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_4_0|         array|
+|jcoup_local_4_0_we0       |  out|     1|   ap_memory|                            jcoup_local_4_0|         array|
+|jcoup_local_4_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_4_0|         array|
+|jcoup_local_4_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_4_0|         array|
+|jcoup_local_4_1_address0  |  out|     8|   ap_memory|                            jcoup_local_4_1|         array|
+|jcoup_local_4_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_4_1|         array|
+|jcoup_local_4_1_we0       |  out|     1|   ap_memory|                            jcoup_local_4_1|         array|
+|jcoup_local_4_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_4_1|         array|
+|jcoup_local_4_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_4_1|         array|
+|jcoup_local_5_0_address0  |  out|     8|   ap_memory|                            jcoup_local_5_0|         array|
+|jcoup_local_5_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_5_0|         array|
+|jcoup_local_5_0_we0       |  out|     1|   ap_memory|                            jcoup_local_5_0|         array|
+|jcoup_local_5_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_5_0|         array|
+|jcoup_local_5_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_5_0|         array|
+|jcoup_local_5_1_address0  |  out|     8|   ap_memory|                            jcoup_local_5_1|         array|
+|jcoup_local_5_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_5_1|         array|
+|jcoup_local_5_1_we0       |  out|     1|   ap_memory|                            jcoup_local_5_1|         array|
+|jcoup_local_5_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_5_1|         array|
+|jcoup_local_5_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_5_1|         array|
+|jcoup_local_6_0_address0  |  out|     8|   ap_memory|                            jcoup_local_6_0|         array|
+|jcoup_local_6_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_6_0|         array|
+|jcoup_local_6_0_we0       |  out|     1|   ap_memory|                            jcoup_local_6_0|         array|
+|jcoup_local_6_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_6_0|         array|
+|jcoup_local_6_0_q0        |   in|  2048|   ap_memory|                            jcoup_local_6_0|         array|
+|jcoup_local_6_1_address0  |  out|     8|   ap_memory|                            jcoup_local_6_1|         array|
+|jcoup_local_6_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_6_1|         array|
+|jcoup_local_6_1_we0       |  out|     1|   ap_memory|                            jcoup_local_6_1|         array|
+|jcoup_local_6_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_6_1|         array|
+|jcoup_local_6_1_q0        |   in|  2048|   ap_memory|                            jcoup_local_6_1|         array|
+|jcoup_local_7_0_address0  |  out|     8|   ap_memory|                            jcoup_local_7_0|         array|
+|jcoup_local_7_0_ce0       |  out|     1|   ap_memory|                            jcoup_local_7_0|         array|
+|jcoup_local_7_0_we0       |  out|     1|   ap_memory|                            jcoup_local_7_0|         array|
+|jcoup_local_7_0_d0        |  out|  2048|   ap_memory|                            jcoup_local_7_0|         array|
+|jcoup_local_7_1_address0  |  out|     8|   ap_memory|                            jcoup_local_7_1|         array|
+|jcoup_local_7_1_ce0       |  out|     1|   ap_memory|                            jcoup_local_7_1|         array|
+|jcoup_local_7_1_we0       |  out|     1|   ap_memory|                            jcoup_local_7_1|         array|
+|jcoup_local_7_1_d0        |  out|  2048|   ap_memory|                            jcoup_local_7_1|         array|
++--------------------------+-----+------+------------+-------------------------------------------+--------------+
+
