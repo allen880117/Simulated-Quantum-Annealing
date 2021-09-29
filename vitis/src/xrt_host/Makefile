@@ -13,4 +13,4 @@ host_am.exe: host_am.cpp
 
 clean:
 	rm -f host.exe host_am.exe
-	rm -f time_log.txt trot_log.txt xclbin.run_summary native_trace.csv
+	rm -f time_log.txt trot_log.txt out.txt xclbin.run_summary native_trace.csv

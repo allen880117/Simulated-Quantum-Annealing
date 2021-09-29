@@ -12,6 +12,21 @@
 [+][V] sqa-qmc.4.xclbin
     -> [V] pass AM test
     -> [V] better latency by merging the usage of fadd between different trotter units
+        -> Fully merge "All TU" into one pipeline
     
 [+][V] sqa-qmc.5.xclbin
+    -> [*] Based on qmc_u50.2.backup.cpp
     -> [V] use Sign function for better resource usage (LUT)
+    
+[+][V] sqa-qmc.6.xclbin
+    -> [*] Based on qmc_u50.5.backup.cpp
+    -> [V] use less stream for better throughput and lut usage
+        -> Less NUM_STREAM make less control logic
+    -> [V] Better host-kernel I/O Latency
+        -> Remove if-branch of READ_JCOUP which enable the "request" lapping with other works
+        -> [:)] Schedule Viewer explains everything.
+        -> I/O Latency becomes from 12ms to 3ms
+    -> [V] Better resoure-sharing
+        -> Move "LOOP_STEP" into each TU
+        -> Merge "Request" in one TU but not merge "all TU" into one pipeline 
+    -> [*] If we can solve the data dependency of TU0, we can achieve higher parallelism
