@@ -22,17 +22,17 @@
 #define NUM_FADD 64
 
 typedef unsigned int u32_t;
-typedef int i32_t;
+typedef int          i32_t;
 
 #include "ap_int.h"
 
-typedef float fp_t;
+typedef float      fp_t;
 typedef ap_uint<1> spin_t;
 typedef struct {
     fp_t data[PACKET_SIZE];
 } fp_pack_t;
 typedef ap_uint<PACKET_SIZE * NUM_STREAM> spin_pack_t;
-typedef ap_uint<PACKET_SIZE> spin_pack_u50_t;
+typedef ap_uint<PACKET_SIZE>              spin_pack_u50_t;
 
 fp_t Jcoup[NUM_SPIN][NUM_SPIN];
 fp_t h[NUM_SPIN];
@@ -42,18 +42,28 @@ fp_t h[NUM_SPIN];
 
 void PrintProgress(int run, int max_run) {
     float percentage = (float)run / (float)max_run;
-    int val = (int)(percentage * 100);
-    int lpad = (int)(percentage * PBWIDTH);
-    int rpad = PBWIDTH - lpad;
+    int   val        = (int)(percentage * 100);
+    int   lpad       = (int)(percentage * PBWIDTH);
+    int   rpad       = PBWIDTH - lpad;
     printf("\r[STAT][%3d%%] [%.*s%*s] %4d/%4d", val, lpad, PBSTR, rpad, "", run,
            max_run);
     fflush(stdout);
 }
 
 int main(int argc, char** argv) {
+    // Parameters
+    int         pblm_size = 18;
+    std::string j_path    = "../../data/J_r.txt";
+    std::string h_path    = "../../data/h_r.txt";
+
     // Print usage
-    if (argc != 2) {
-        std::cout << "./host binary.xclbin" << std::endl;
+    if (argc == 5) {
+        pblm_size = atoi(argv[2]);
+        j_path    = std::string(argv[3]);
+        h_path    = std::string(argv[4]);
+    } else if (argc != 2) {
+        std::cout << "./host binary.xclbin [pblm_size J.txt h.txt]"
+                  << std::endl;
         return -1;
     }
 
@@ -87,13 +97,13 @@ int main(int argc, char** argv) {
         NUM_TROT * NUM_SPIN / PACKET_SIZE * sizeof(spin_pack_u50_t);
     const size_t Jcoup_size_in_bytes =
         NUM_SPIN * NUM_SPIN / PACKET_SIZE * sizeof(fp_pack_t);
-    const size_t h_size_in_bytes = NUM_SPIN * sizeof(fp_t);
+    const size_t h_size_in_bytes       = NUM_SPIN * sizeof(fp_t);
     const size_t logRand_size_in_bytes = NUM_TROT * NUM_SPIN * sizeof(fp_t);
 
     xrt::bo bo_trotters =
         xrt::bo(device, trots_size_in_bytes, krnl.group_id(0));
     xrt::bo bo_Jcoup = xrt::bo(device, Jcoup_size_in_bytes, krnl.group_id(1));
-    xrt::bo bo_h = xrt::bo(device, h_size_in_bytes, krnl.group_id(2));
+    xrt::bo bo_h     = xrt::bo(device, h_size_in_bytes, krnl.group_id(2));
     xrt::bo bo_logRand =
         xrt::bo(device, logRand_size_in_bytes, krnl.group_id(5));
 
@@ -105,7 +115,7 @@ int main(int argc, char** argv) {
                                               // to spin_t
     fp_pack_t* bo_Jcoup_map =
         bo_Jcoup.map<fp_pack_t*>();  // Type cast from fp_pack_t to fp_t
-    fp_t* bo_h_map = bo_h.map<fp_t*>();
+    fp_t* bo_h_map       = bo_h.map<fp_t*>();
     fp_t* bo_logRand_map = bo_logRand.map<fp_t*>();
 
     // Create the test data of trotters
@@ -114,27 +124,29 @@ int main(int argc, char** argv) {
     // Do Nothing
     for (int i = 0; i < NUM_TROT * NUM_SPIN / PACKET_SIZE; i++) {
         spin_pack_u50_t tmp;
-        for (int k = 0; k < PACKET_SIZE; k++) {
-            tmp[k] = true;
-        }
+        for (int k = 0; k < PACKET_SIZE; k++) { tmp[k] = true; }
         bo_trotters_map[i] = tmp;
     }
 
     // Create the test data of Jcoup
     std::cout << "[INFO][-] -> Create random number and Jcoup" << std::endl;
 
-    std::random_device rd;
-    std::mt19937 rng(rd());
+    std::random_device                   rd;
+    std::mt19937                         rng(rd());
     std::uniform_real_distribution<fp_t> unif(0.0, 1.0);
-    std::normal_distribution<fp_t> int_unif(0, 1);
+    std::normal_distribution<fp_t>       int_unif(0, 1);
 
-    std::ifstream input_jcoup("../../data/Jcoup.txt");
+    std::ifstream input_jcoup(j_path);
 
     for (int i = 0; i < NUM_SPIN; i++) {
         for (int j = 0; j < NUM_SPIN / PACKET_SIZE; j++) {
             fp_pack_t tmp;
             for (int k = 0; k < PACKET_SIZE; k++) {
-                input_jcoup >> tmp.data[k];
+                if (i < pblm_size && j * PACKET_SIZE + k < pblm_size) {
+                    input_jcoup >> tmp.data[k];
+                } else {
+                    tmp.data[k] = 0;
+                }
                 Jcoup[i][j * PACKET_SIZE + k] = tmp.data[k];  // Local
             }
             bo_Jcoup_map[i * NUM_SPIN / PACKET_SIZE + j] = tmp;
@@ -146,30 +158,33 @@ int main(int argc, char** argv) {
     // Create the test data of h
     std::cout << "[INFO][-] -> Create h" << std::endl;
 
-    std::ifstream input_h("../../data/h.txt");
+    std::ifstream input_h(h_path);
 
     for (int i = 0; i < NUM_SPIN; i++) {
-        input_h >> bo_h_map[i];
+        if (i < pblm_size)
+            input_h >> bo_h_map[i];
+        else
+            bo_h_map[i] = 0.0f;
     }
 
     input_h.close();
 
     // Iter Arguments
-    const int iter = 500;           // default 500
+    const int  iter        = 500;   // default 500
     const fp_t gamma_start = 3.0f;  // default 3.0f
-    const fp_t T = 0.3f;            // default 0.3f
-    const fp_t beta = 1.0f / T;
+    const fp_t T           = 0.3f;  // default 0.3f
+    const fp_t beta        = 1.0f / T;
 
     // Best Status
     fp_t bestEnergy = 10e22;
     fp_t bestA, bestB;
-    int bestRun = 0;
-    int bestTrot = 0;
+    int  bestRun  = 0;
+    int  bestTrot = 0;
 
     // Log File
-    std::ofstream out("out.txt");
-    std::ofstream time_log("time_log.txt");
-    std::ofstream trot_log("trot_log.txt");
+    std::ofstream     out("out.txt");
+    std::ofstream     time_log("time_log.txt");
+    std::ofstream     trot_log("trot_log.txt");
     std::vector<fp_t> energy_log(iter);
 
     // For live waveform
@@ -234,17 +249,17 @@ int main(int argc, char** argv) {
         for (int t = 0; t < NUM_TROT; t++) {
             fp_t H = 0.0f;
             trot_log << "T" << t << ": ";
-            for (int i = 0; i < 18; i++) {
-                int ii = i / PACKET_SIZE;
-                int ik = i % PACKET_SIZE;
+            for (int i = 0; i < pblm_size; i++) {
+                int    ii = i / PACKET_SIZE;
+                int    ik = i % PACKET_SIZE;
                 spin_t spin_i =
                     bo_trotters_map[t * NUM_SPIN / PACKET_SIZE + ii][ik];
 
                 trot_log << spin_i << " ";
 
-                for (int j = 0; j < 18; j++) {
-                    int jj = j / PACKET_SIZE;
-                    int jk = j % PACKET_SIZE;
+                for (int j = 0; j < pblm_size; j++) {
+                    int    jj = j / PACKET_SIZE;
+                    int    jk = j % PACKET_SIZE;
                     spin_t spin_j =
                         bo_trotters_map[t * NUM_SPIN / PACKET_SIZE + jj][jk];
                     if (spin_i == spin_j) {
