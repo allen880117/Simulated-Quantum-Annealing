@@ -1,282 +1,148 @@
-#include <algorithm>
 #include <cmath>
-#include <cstring>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <random>
-#include <vector>
 
 #include "../include/helper.hpp"
 #include "../include/sqa.hpp"
-#include "hls_stream.h"
-
-#define BASIC 0
-
-#define RECORD 1
-#define REPLAY 1
 
 #define U50 1
+#define AM 1
+#define REPLAY 1
 
-/* Field */
+// Jcoup
 fp_t Jcoup[NUM_SPIN][NUM_SPIN];
-fp_pack_t JcoupPack[NUM_SPIN][NUM_SPIN / PACKET_SIZE];
-fp_t h[NUM_SPIN];
-fp_pack_t hPack[NUM_SPIN / PACKET_SIZE];
+fp_pack_t Jcoup_pack[NUM_SPIN][NUM_SPIN / PACKET_SIZE];
 
-/* Main Program */
-int main(int argc, char *argv[]) {
-    std::cout << "BASIC: " << BASIC << std::endl;
-    std::cout << "U50: " << U50 << std::endl;
+int main(int argc, char **argv) {
+    // Dump value of macros
+    std::cout << "Current host settings:" << std::endl;
+    std::cout << "-> U50    : " << U50 << std::endl;
+    std::cout << "-> AM     : " << AM << std::endl;
+    std::cout << "-> REPLAY : " << REPLAY << std::endl;
 
-    /* Const nTrot and nSpin */
-    const int nTrot = NUM_TROT;
-    const int nSpin = NUM_SPIN;
+#if AM
+    // Set nTrot and nSpin
+    int nTrot = NUM_TROT;
+    int nSpin = 18;
+#else
+    // Set nTrot and nSpin
+    int nTrot = NUM_TROT;
+    int nSpin = NUM_SPIN;
+#endif
 
-    /* Random Generators */
-    std::random_device rd;
-    std::mt19937 rng(rd());
-    std::uniform_real_distribution<fp_t> unif(0.0, 1.0);
-    std::normal_distribution<fp_t> int_unif(0, 1);
-
-    /* Trotters */
+    // Trotters
     spin_t trotters[NUM_TROT][NUM_SPIN];
-#if !REPLAY
+    spin_pack_u50_t trotters_pack[NUM_TROT][NUM_SPIN / PACKET_SIZE];
+
+    // h
+    fp_t h[NUM_SPIN];
+
+#if REPLAY
+    // Read Trotters
+    ReadRandomState(trotters, nTrot, nSpin, "../../../init_trotter.txt");
+#else
+    // Generate Trotters
     GenerateRandomState(trotters, nTrot, nSpin);
-#if RECORD
-    /* Dump Initial Trotter */
-    std::ofstream init_trotter("../../../init_trotter.txt");
-    for (int t = 0; t < nTrot; t++) {
-        for (int i = 0; i < nSpin; i++) {
-            init_trotter << trotters[t][i] << " ";
-        }
-    }
-    init_trotter.close();
 #endif
+
+#if AM
+    // Read Jcoup, h
+    ReadJcoupAM(nSpin, Jcoup, "../../../J_r.txt");
+    ReadHAM(nSpin, h, "../../../h_r.txt");
 #else
-    /* Dump Initial Trotter */
-    std::ifstream init_trotter("../../../init_trotter.txt");
-    if (!init_trotter) {
-        std::cout << "Can't find init_trotter.txt" << std::endl;
-        return -1;
-    }
-    for (int t = 0; t < nTrot; t++) {
-        for (int i = 0; i < nSpin; i++) {
-            init_trotter >> trotters[t][i];
-        }
-    }
-    init_trotter.close();
+    // Generate Jcoup, h
+    fp_t rand_nums[NUM_SPIN];
+    GenerateJcoupNP(nSpin, Jcoup, rand_nums);
+    GenerateHNP(nSpin, h);
 #endif
-
-#if !BASIC
-#if !U50
-    spin_pack_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
-    for (int t = 0; t < nTrot; t++) {
-        for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
-            for (int k = 0; k < PACKET_SIZE * NUM_STREAM; k++) {
-                trottersPack[t][i][k] =
-                    trotters[t][i * PACKET_SIZE * NUM_STREAM + k];
-            }
-        }
-    }
-#else
-    spin_pack_u50_t trottersPack[NUM_TROT][NUM_SPIN / PACKET_SIZE];
-    for (int t = 0; t < nTrot; t++) {
-        for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
-            for (int k = 0; k < PACKET_SIZE; k++) {
-                trottersPack[t][i][k] = trotters[t][i * PACKET_SIZE + k];
-            }
-        }
-    }
-#endif
-#endif
-
-    /* Generate Random Numbers */
-    fp_t rndNum[NUM_SPIN];
-    for (int i = 0; i < nSpin; i++) {
-        // rndNum[i] = int_unif(rng);
-        rndNum[i] = (float)(i + 1) / (float)nSpin;
-    }
-
-    /* Field Initialization */
-    for (int i = 0; i < nSpin; i++) {
-        h[i] = 0.0f;
-        for (int j = 0; j < nSpin; j++) {
-            Jcoup[i][j] = 0.0f;
-        }
-    }
-
-    /* The problem we solved here is "Number Partition" */
-    for (int i = 0; i < nSpin; i++) {
-        for (int j = 0; j < nSpin; j++) {
-            Jcoup[i][j] = -(rndNum[i] * rndNum[j]);
-        }
-    }
 
 #if U50
-    for (int i = 0; i < nSpin; i++) {
-        for (int j = 0; j < nSpin / PACKET_SIZE; j++) {
-            for (int k = 0; k < PACKET_SIZE; k++) {
-                JcoupPack[i][j].data[k] = Jcoup[i][j * PACKET_SIZE + k];
-                hPack[j].data[k] = 0.0f;
-            }
-        }
-    }
+    // Convert into pack form
+    PackTrotters(trotters_pack, trotters);
+    PackJcoup(Jcoup_pack, Jcoup);
 #endif
 
-    /* Parameters */
-    fp_t iter = 500;                  // default 500
-    fp_t maxBeta = ((fp_t)8) / 1.0f;  // default 8.0f
-    fp_t Beta = 1 / ((fp_t)4096.0f);  // default 1/16
-    fp_t G0 = 8.0f;                   // default 8.0f
-    fp_t dBeta = (maxBeta - Beta) / (fp_t)iter;
-
-    /* Best */
-    fp_t bestEnergy = 10e22;
-    spin_t bestTrotter[NUM_SPIN];
-    int bestRun = 0;
-    int bestTrotNum = 0;
-
-    /* Log */
-    std::ofstream out("out.txt");
-#if !REPLAY
-#if RECORD
-    std::ofstream log_rnd("../../../log_rnd.txt");
-#endif
+    // Iteration Record
+#if U50
+    std::ofstream out_log("out_log.u50.txt");
 #else
-    std::ifstream log_rnd("../../../log_rnd.txt");
-    if (!log_rnd) {
-        std::cout << "Can't find log_rnd.txt" << std::endl;
-        return -1;
-    }
+    std::ofstream out_log("out_log.basic.txt");
 #endif
 
-    /* SQA */
+    // Iteration parameters
+#if AM
+    const int iter = 500;           // default 500
+    const fp_t gamma_start = 3.0f;  // default 3.0f
+    const fp_t T = 0.3f;            // default 0.3f
+#else
+    const int iter = 500;           // default 500
+    const fp_t gamma_start = 3.0f;  // default 3.0f
+    const fp_t T = 128.0f;          // default 0.3f
+#endif
+
+#if REPLAY
+    // Read Log Random Number
+    std::ifstream file_lrn("../../../log_rnd.txt");
+#endif
+
+    // Iteration of SQA
     for (int i = 0; i < iter; i++) {
-        /* Print Progress */
-        std::cout << std::setw(3) << i << " ";
-        if ((i + 1) % 20 == 0) std::cout << std::endl;
+        // Print progress
+        if ((i + 1) % 20 == 0)
+            std::cout << (i + 1) << " iterations done..." << std::endl;
 
-        /* Generate Random Number for Flipping */
-        fp_t logRandNum[NUM_TROT][NUM_SPIN];
-        for (int j = 0; j < nTrot; j++) {
-            for (int k = 0; k < nSpin; k++) {
-                // for (int k = nSpin - 1; k > 0; k--) {
-#if !REPLAY
-                /* Do some computation first */
-                logRandNum[j][k] = log(unif(rng)) * nTrot;
-#if RECORD
-                log_rnd << logRandNum[j][k] << " ";
-#endif
-#else
-                log_rnd >> logRandNum[j][k];
-#endif
-            }
-        }
+        // Get Jperp
+        fp_t gamma = gamma_start * (1.0f - ((fp_t)i / (fp_t)iter));
+        fp_t Jperp = -0.5 * T * log(tanh(gamma / (fp_t)nTrot / T));
 
-        /* Get Jperp */
-        fp_t Gamma = G0 * (1 - (float)i / iter);
-        fp_t Jperp = -0.5 * log(tanh((Gamma / nTrot) * Beta)) / Beta;
-
-#if !BASIC
-#if !U50
-        /* Make Jcoup Stream */
-        hls::stream<fp_pack_t> JcoupStream_0;
-        for (int j = 0; j < nSpin; j++) {
-            for (int k = 0; k < nSpin; k += PACKET_SIZE) {
-                fp_pack_t tmp;
-                for (int l = 0; l < PACKET_SIZE; l++) {
-                    tmp.data[l] = Jcoup[j][k + l];
-                }
-                JcoupStream_0 << tmp;
-            }
-        }
-#endif
-#endif
-#if !BASIC
-#if !U50
-        /* Execute */
-        QuantumMonteCarlo(trottersPack, JcoupStream_0, h, Jperp, Beta,
-                          logRandNum);
-#else
-        QuantumMonteCarloU50(trottersPack, JcoupPack, h, Jperp, Beta,
-                             logRandNum);
-#endif
-#else
-        QuantumMonteCarloBasic(nTrot, nSpin, trotters, Jcoup, h, Jperp, Beta,
-                               logRandNum);
-#endif
-
-#if !BASIC
-#if !U50
+        // Generate Log Rand Number = log(unif(rng)) * nTrot
+        fp_t log_rand_nums[NUM_TROT][NUM_SPIN];
+#if REPLAY
         for (int t = 0; t < nTrot; t++) {
-            for (int i = 0; i < nSpin / PACKET_SIZE / NUM_STREAM; i++) {
-                for (int k = 0; k < PACKET_SIZE * NUM_STREAM; k++) {
-                    trotters[t][i * PACKET_SIZE * NUM_STREAM + k] =
-                        trottersPack[t][i][k];
-                }
+            for (int i = 0; i < nSpin; i++) {
+                file_lrn >> log_rand_nums[t][i];
             }
         }
 #else
-        for (int t = 0; t < nTrot; t++) {
-            for (int i = 0; i < nSpin / PACKET_SIZE; i++) {
-                for (int k = 0; k < PACKET_SIZE; k++) {
-                    trotters[t][i * PACKET_SIZE + k] = trottersPack[t][i][k];
-                }
-            }
-        }
-#endif
+        GenerateLogRandomNumber(nTrot, log_rand_nums);
 #endif
 
-        /* Calculate energy of each turn */
-        fp_t sumEnergy = 0;
+#if U50
+        // Run QMC-U50
+        QuantumMonteCarloU50(trotters_pack, Jcoup_pack, h, Jperp, 1.0f / T,
+                             log_rand_nums);
+        // Unpack Trotters
+        UnpackTrotters(trotters_pack, trotters);
+#else
+        // Run QMC-Basic
+        QuantumMonteCarloBasic(nTrot, nSpin, trotters, Jcoup, h, Jperp,
+                               1.0f / T, log_rand_nums);
+#endif
+
+        // Current state energy
+        fp_t sum_energy = 0.0f;
+
+        // Compute energy
         for (int t = 0; t < nTrot; t++) {
-            /* Calcualte */
+            // Get energy of each trotters
             fp_t energy = ComputeEnergyPerTrotter(nSpin, trotters[t], Jcoup, h);
-            /* Compare */
-            if (fabs(energy) < fabs(bestEnergy)) {
-                bestEnergy = energy;
-                memcpy(bestTrotter, trotters[t], NUM_SPIN * sizeof(spin_t));
-                bestRun = i;
-                bestTrotNum = t;
-            }
-            /* Sum up */
-            sumEnergy += energy;
+
+            // Sum up
+            sum_energy += energy;
+
+            // Write out to log
+            out_log << "T" << t << ": " << energy << std::endl;
         }
 
-        /* Sum of the energy of all trotters in this turn */
-        out << "Energy: " << sumEnergy << std::endl;
-
-        /* Beta Increment */
-        Beta += dBeta;
+        // Write out total energy
+        out_log << "Energy: " << sum_energy << std::endl;
     }
 
-    /* Output Close */
-    out.close();
-#if RECORD || REPLAY
-    log_rnd.close();
+    // Close out_log
+    out_log.close();
+
+#if REPLAY
+    // Close file_lrn
+    file_lrn.close();
 #endif
-
-    /* Print Best Trotter */
-    std::cout << "Run, Trotter: " << bestRun << " ," << bestTrotNum
-              << std::endl;
-    for (int i = 0; i < nSpin; i++) {
-        std::cout << bestTrotter[i] << " ";
-    }
-    std::cout << std::endl;
-
-    /* Print Best Energy */
-    std::cout << "Energy: " << bestEnergy << std::endl;
-
-    /* Calculate the summation of each set */
-    fp_t a = 0, b = 0;
-    for (int i = 0; i < nSpin; i++) {
-        if (bestTrotter[i])
-            a += rndNum[i];
-        else
-            b += rndNum[i];
-    }
-
-    /* Print out */
-    std::cout << a << " " << b << std::endl;
 }

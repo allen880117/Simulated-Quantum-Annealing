@@ -145,8 +145,8 @@ int main(int argc, char** argv) {
 
     // Iter Arguments
     const int iter = 500;           // default 500
-    const fp_t gamma_start = 3.0f;  // default 3.0f
-    const fp_t T = 0.3f;            // default 0.3f
+    const fp_t gamma_start = 2.5f;  // default 3.0f
+    const fp_t T = 0.05f;            // default 0.3f
     const fp_t beta = 1.0f / T;
 
     // Best Status
@@ -248,8 +248,8 @@ int main(int argc, char** argv) {
 
         // Live waveform
         if ((i + 1) % 100 == 0) {
-            plot.update(x_label, energy_log);
-            matplotlibcpp::pause(0.00001);
+            // plot.update(x_label, energy_log);
+            // matplotlibcpp::pause(0.00001);
         }
     }
 
@@ -266,5 +266,5 @@ int main(int argc, char** argv) {
     time_log.close();
 
     // Plot
-    matplotlibcpp::show();
+    // matplotlibcpp::show();
 }

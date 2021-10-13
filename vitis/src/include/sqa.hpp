@@ -8,7 +8,10 @@
 #define CTX_PRAGMA(PRAG) PRAGMA_SUB(PRAG)
 
 #define CUR_SYN 2
+
+#ifndef CUR_SIM
 #define CUR_SIM 3
+#endif
 
 #define COND(NUM)                                \
     ((__SYNTHESIS__) && ((CUR_SYN) == (NUM))) || \

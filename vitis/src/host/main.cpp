@@ -1,13 +1,20 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <chrono>
 
 #include "../include/helper.hpp"
 #include "../include/sqa.hpp"
 
+#ifndef U50
 #define U50 1
+#endif
+#ifndef AM
 #define AM 1
+#endif
+#ifndef REPLAY
 #define REPLAY 1
+#endif
 
 // Jcoup
 fp_t Jcoup[NUM_SPIN][NUM_SPIN];
@@ -19,6 +26,8 @@ int main(int argc, char **argv) {
     std::cout << "-> U50    : " << U50 << std::endl;
     std::cout << "-> AM     : " << AM << std::endl;
     std::cout << "-> REPLAY : " << REPLAY << std::endl;
+    std::cout << "-> #SPIN  : " << NUM_SPIN << std::endl;
+    std::cout << "-> #TROT  : " << NUM_TROT << std::endl;
 
 #if AM
     // Set nTrot and nSpin
@@ -65,8 +74,10 @@ int main(int argc, char **argv) {
     // Iteration Record
 #if U50
     std::ofstream out_log("out_log.u50.txt");
+    std::ofstream time_log("time_log.u50.txt");
 #else
     std::ofstream out_log("out_log.basic.txt");
+    std::ofstream time_log("time_log.basic.txt");
 #endif
 
     // Iteration parameters
@@ -107,6 +118,10 @@ int main(int argc, char **argv) {
         GenerateLogRandomNumber(nTrot, log_rand_nums);
 #endif
 
+        // Set Timer
+        std::chrono::system_clock::time_point start =
+            std::chrono::system_clock::now();
+
 #if U50
         // Run QMC-U50
         QuantumMonteCarloU50(trotters_pack, Jcoup_pack, h, Jperp, 1.0f / T,
@@ -118,6 +133,15 @@ int main(int argc, char **argv) {
         QuantumMonteCarloBasic(nTrot, nSpin, trotters, Jcoup, h, Jperp,
                                1.0f / T, log_rand_nums);
 #endif
+
+        // End Timer
+        std::chrono::system_clock::time_point end =
+            std::chrono::system_clock::now();
+        time_log << "Run " << i << ": "
+                 << std::chrono::duration_cast<std::chrono::microseconds>(end -
+                                                                          start)
+                        .count()
+                 << " us" << std::endl;
 
         // Current state energy
         fp_t sum_energy = 0.0f;
@@ -140,6 +164,7 @@ int main(int argc, char **argv) {
 
     // Close out_log
     out_log.close();
+    time_log.close();
 
 #if REPLAY
     // Close file_lrn
