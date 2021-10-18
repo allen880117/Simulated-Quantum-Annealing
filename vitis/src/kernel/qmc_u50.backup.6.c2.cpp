@@ -226,12 +226,12 @@ class CacheUnit {
 // #pragma HLS BIND_STORAGE variable = trotters_local type = ram_2p impl
 //         = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = trotters_local
-// #pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = \
-//     trotters_local
+#pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = \
+    trotters_local
 // #pragma HLS BIND_STORAGE variable = jcoup_local type = ram_2p impl = bram
 #pragma HLS AGGREGATE compact = auto variable = jcoup_local
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = jcoup_local
-// #pragma HLS ARRAY_PARTITION dim = 3 type = complete variable = jcoup_local
+#pragma HLS ARRAY_PARTITION dim = 3 type = complete variable = jcoup_local
         // #pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = \
 //     jcoup_local
     }

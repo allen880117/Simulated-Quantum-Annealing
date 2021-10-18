@@ -170,7 +170,7 @@ SUM_UP:
          ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM;
          ofst++, pack_ofst += NUM_STREAM) {
         // Pramgas: Pipeline and Confine the usage of fadd
-        CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = 64)
+        CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = 32)
         CTX_PRAGMA(HLS PIPELINE)
 
         // Buffer for source of adder
@@ -223,17 +223,17 @@ class CacheUnit {
 
    public:
     CacheUnit() {
-// #pragma HLS BIND_STORAGE variable = trotters_local type = ram_2p impl
-//         = bram
+#pragma HLS BIND_STORAGE variable = trotters_local type = ram_2p impl = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = trotters_local
-// #pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = \
-//     trotters_local
-// #pragma HLS BIND_STORAGE variable = jcoup_local type = ram_2p impl = bram
+#pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = \
+    trotters_local
+#pragma HLS BIND_STORAGE variable = jcoup_local type = ram_2p impl = bram
 #pragma HLS AGGREGATE compact = auto variable = jcoup_local
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = jcoup_local
-// #pragma HLS ARRAY_PARTITION dim = 3 type = complete variable = jcoup_local
-        // #pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = \
-//     jcoup_local
+        // #pragma HLS ARRAY_PARTITION dim = 3 type = complete variable =
+        // jcoup_local
+// #pragma HLS ARRAY_PARTITION dim = 3 type = cyclic factor = 2 variable = \
+    jcoup_local
     }
 
     void UpdateState(const u32_t stage, const fp_t h[NUM_SPIN],
@@ -304,6 +304,8 @@ class CacheUnit {
         const u32_t     stage,
         const fp_pack_t jcoup_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
         const fp_pack_t jcoup_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+        const fp_pack_t jcoup_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+        const fp_pack_t jcoup_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
         fp_pack_strm_t  j_stream[NUM_TROT][NUM_STREAM]) {
 #pragma HLS INLINE OFF
         /* Remove if condition enable the overlap of read request */
@@ -314,10 +316,16 @@ class CacheUnit {
 #pragma HLS PIPELINE
             fp_pack_t tmp_pack_0    = jcoup_0[stage & (NUM_SPIN - 1)][ofst];
             fp_pack_t tmp_pack_1    = jcoup_1[stage & (NUM_SPIN - 1)][ofst];
+            fp_pack_t tmp_pack_2    = jcoup_2[stage & (NUM_SPIN - 1)][ofst];
+            fp_pack_t tmp_pack_3    = jcoup_3[stage & (NUM_SPIN - 1)][ofst];
             jcoup_local[0][ofst][0] = tmp_pack_0;
             jcoup_local[0][ofst][1] = tmp_pack_1;
+            jcoup_local[0][ofst][2] = tmp_pack_2;
+            jcoup_local[0][ofst][3] = tmp_pack_3;
             j_stream[0][0] << tmp_pack_0;
             j_stream[0][1] << tmp_pack_1;
+            j_stream[0][2] << tmp_pack_2;
+            j_stream[0][3] << tmp_pack_3;
         }
         // }
 
@@ -334,8 +342,12 @@ class CacheUnit {
 #pragma HLS UNROLL
                 j_stream[t + 1][0] << jcoup_local[t + 1][ofst][0];
                 j_stream[t + 1][1] << jcoup_local[t + 1][ofst][1];
+                j_stream[t + 1][2] << jcoup_local[t + 1][ofst][2];
+                j_stream[t + 1][3] << jcoup_local[t + 1][ofst][3];
                 jcoup_local[t + 1][ofst][0] = jcoup_local[t][ofst][0];
                 jcoup_local[t + 1][ofst][1] = jcoup_local[t][ofst][1];
+                jcoup_local[t + 1][ofst][2] = jcoup_local[t][ofst][2];
+                jcoup_local[t + 1][ofst][3] = jcoup_local[t][ofst][3];
             }
         }
     }
@@ -346,18 +358,24 @@ void QuantumMonteCarloU50(
     spin_pack_u50_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE],
     const fp_pack_t jcoup_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     const fp_pack_t jcoup_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+    const fp_pack_t jcoup_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+    const fp_pack_t jcoup_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     const fp_t h[NUM_SPIN], const fp_t jperp, const fp_t beta,
     const fp_t log_rand[NUM_TROT][NUM_SPIN]) {
     // Interface
 #pragma HLS INTERFACE mode = m_axi bundle = gmem0 port = trotters
 #pragma HLS INTERFACE mode = m_axi bundle = gmem1 port = jcoup_0
 #pragma HLS INTERFACE mode = m_axi bundle = gmem2 port = jcoup_1
-#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = h
-#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = log_rand
+#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = jcoup_2
+#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = jcoup_3
+#pragma HLS INTERFACE mode = m_axi bundle = gmem5 port = h
+#pragma HLS INTERFACE mode = m_axi bundle = gmem6 port = log_rand
 
     // Pragma: Aggreate for better throughput
 #pragma HLS AGGREGATE compact = auto variable = jcoup_0
 #pragma HLS AGGREGATE compact = auto variable = jcoup_1
+#pragma HLS AGGREGATE compact = auto variable = jcoup_2
+#pragma HLS AGGREGATE compact = auto variable = jcoup_3
 
     // Cache Unit
     CacheUnit cu;
@@ -390,7 +408,7 @@ LOOP_STAGE:
         cu.UpdateState(stage, h, log_rand);
 
         // Update jcoup
-        cu.UpdateJcoup(stage, jcoup_0, jcoup_1, j_stream);
+        cu.UpdateJcoup(stage, jcoup_0, jcoup_1, jcoup_2, jcoup_3, j_stream);
 
         // Run Trotter Units
     RUN_TU:

@@ -42,8 +42,8 @@
 #elif COND(2)
     #define NUM_TROT 4
     #define NUM_SPIN 4096
-    #define PACKET_SIZE 128
-    #define LOG2_PACKET_SIZE 7
+    #define PACKET_SIZE 64
+    #define LOG2_PACKET_SIZE 6
     #define NUM_STREAM 2
     #define LOG2_NUM_STREAM 1
     #define HALF_NUM_STREAM 1
