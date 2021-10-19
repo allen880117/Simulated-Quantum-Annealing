@@ -1,28 +1,24 @@
-#include <chrono>
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <chrono>
 
 #include "../include/helper.hpp"
 #include "../include/sqa.hpp"
 
 #ifndef U50
-    #define U50 1
+#define U50 1
 #endif
 #ifndef AM
-    #define AM 1
+#define AM 1
 #endif
 #ifndef REPLAY
-    #define REPLAY 1
+#define REPLAY 1
 #endif
 
 // Jcoup
-fp_t      Jcoup[NUM_SPIN][NUM_SPIN];
+fp_t Jcoup[NUM_SPIN][NUM_SPIN];
 fp_pack_t Jcoup_pack[NUM_SPIN][NUM_SPIN / PACKET_SIZE];
-fp_pack_t Jcoup_pack_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
-fp_pack_t Jcoup_pack_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
-fp_pack_t Jcoup_pack_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
-fp_pack_t Jcoup_pack_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
 
 int main(int argc, char **argv) {
     // Dump value of macros
@@ -44,7 +40,7 @@ int main(int argc, char **argv) {
 #endif
 
     // Trotters
-    spin_t          trotters[NUM_TROT][NUM_SPIN];
+    spin_t trotters[NUM_TROT][NUM_SPIN];
     spin_pack_u50_t trotters_pack[NUM_TROT][NUM_SPIN / PACKET_SIZE];
 
     // h
@@ -73,20 +69,6 @@ int main(int argc, char **argv) {
     // Convert into pack form
     PackTrotters(trotters_pack, trotters);
     PackJcoup(Jcoup_pack, Jcoup);
-    // Dispatch
-    for (u32_t i = 0; i < NUM_SPIN; i++) {
-        for (u32_t pack_ofst = 0;
-             pack_ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; pack_ofst++) {
-            Jcoup_pack_0[i][pack_ofst] =
-                Jcoup_pack[i][pack_ofst * NUM_STREAM + 0];
-            Jcoup_pack_1[i][pack_ofst] =
-                Jcoup_pack[i][pack_ofst * NUM_STREAM + 1];
-            Jcoup_pack_2[i][pack_ofst] =
-                Jcoup_pack[i][pack_ofst * NUM_STREAM + 2];
-            Jcoup_pack_3[i][pack_ofst] =
-                Jcoup_pack[i][pack_ofst * NUM_STREAM + 3];
-        }
-    }
 #endif
 
     // Iteration Record
@@ -100,13 +82,13 @@ int main(int argc, char **argv) {
 
     // Iteration parameters
 #if AM
-    const int  iter        = 500;   // default 500
+    const int iter = 500;           // default 500
     const fp_t gamma_start = 3.0f;  // default 3.0f
-    const fp_t T           = 0.3f;  // default 0.3f
+    const fp_t T = 0.3f;            // default 0.3f
 #else
-    const int     iter        = 500;     // default 500
-    const fp_t    gamma_start = 3.0f;    // default 3.0f
-    const fp_t    T           = 128.0f;  // default 0.3f
+    const int iter = 500;           // default 500
+    const fp_t gamma_start = 3.0f;  // default 3.0f
+    const fp_t T = 128.0f;          // default 0.3f
 #endif
 
 #if REPLAY
@@ -128,7 +110,9 @@ int main(int argc, char **argv) {
         fp_t log_rand_nums[NUM_TROT][NUM_SPIN];
 #if REPLAY
         for (int t = 0; t < nTrot; t++) {
-            for (int i = 0; i < nSpin; i++) { file_lrn >> log_rand_nums[t][i]; }
+            for (int i = 0; i < nSpin; i++) {
+                file_lrn >> log_rand_nums[t][i];
+            }
         }
 #else
         GenerateLogRandomNumber(nTrot, log_rand_nums);
@@ -140,8 +124,7 @@ int main(int argc, char **argv) {
 
 #if U50
         // Run QMC-U50
-        QuantumMonteCarloU50(trotters_pack, Jcoup_pack_0, Jcoup_pack_1,
-                             Jcoup_pack_2, Jcoup_pack_3, h, Jperp, 1.0f / T,
+        QuantumMonteCarloU50(trotters_pack, Jcoup_pack, h, Jperp, 1.0f / T,
                              log_rand_nums);
         // Unpack Trotters
         UnpackTrotters(trotters_pack, trotters);

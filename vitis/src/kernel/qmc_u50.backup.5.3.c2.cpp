@@ -124,7 +124,7 @@ SUM_UP:
     for (u32_t ofst = 0, pack_ofst = 0; ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM;
          ofst++, pack_ofst += NUM_STREAM) {
         // Pramgas: Pipeline and Confine the usage of fadd
-        CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = 128)
+        CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = 64)
         CTX_PRAGMA(HLS PIPELINE)
 
         // Buffer for source of adder
@@ -141,7 +141,7 @@ SUM_UP:
                 // Multiply
                 fp_buffer[strm_ofst][spin_ofst] =
                     Multiply(trotters_local[pack_ofst + strm_ofst][spin_ofst],
-                             jcoup_local[ofst][strm_ofst].data[spin_ofst]);
+                             jcoup_local[pack_ofst][strm_ofst].data[spin_ofst]);
             }
 
             // Reduce inside each fp_buffer
@@ -201,24 +201,18 @@ extern "C" {
 void QuantumMonteCarloU50(spin_pack_u50_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE],
                           const fp_pack_t jcoup_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
                           const fp_pack_t jcoup_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-                          const fp_pack_t jcoup_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-                          const fp_pack_t jcoup_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
                           const fp_t h[NUM_SPIN], const fp_t jperp, const fp_t beta,
                           const fp_t log_rand[NUM_TROT][NUM_SPIN]) {
     // Interface
 #pragma HLS INTERFACE mode = m_axi bundle = gmem0 port = trotters
 #pragma HLS INTERFACE mode = m_axi bundle = gmem1 port = jcoup_0
 #pragma HLS INTERFACE mode = m_axi bundle = gmem2 port = jcoup_1
-#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = jcoup_2
-#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = jcoup_3
-#pragma HLS INTERFACE mode = m_axi bundle = gmem5 port = h
-#pragma HLS INTERFACE mode = m_axi bundle = gmem6 port = log_rand
+#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = h
+#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = log_rand
 
     // Pragma: Aggreate for better throughput
 #pragma HLS AGGREGATE compact = auto variable = jcoup_0
 #pragma HLS AGGREGATE compact = auto variable = jcoup_1
-#pragma HLS AGGREGATE compact = auto variable = jcoup_2
-#pragma HLS AGGREGATE compact = auto variable = jcoup_3
 
     // Local trotters
     spin_pack_u50_t trotters_local[NUM_TROT][NUM_SPIN / PACKET_SIZE];
@@ -263,7 +257,9 @@ LOOP_STAGE:
     for (u32_t stage = 0; stage < (NUM_SPIN + NUM_TROT - 1); stage++) {
         // input state and dh
         state_t state[NUM_TROT];
+        fp_t    dh[NUM_TROT];
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = state
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = dh
 
         // Update offset, h_local, log_rand_local
     UPDATE_OFST_H_LRN:
@@ -305,8 +301,6 @@ LOOP_STAGE:
 #pragma HLS PIPELINE
             jcoup_local[0][ofst][0] = jcoup_0[stage & (NUM_SPIN - 1)][ofst];
             jcoup_local[0][ofst][1] = jcoup_1[stage & (NUM_SPIN - 1)][ofst];
-            jcoup_local[0][ofst][2] = jcoup_2[stage & (NUM_SPIN - 1)][ofst];
-            jcoup_local[0][ofst][3] = jcoup_3[stage & (NUM_SPIN - 1)][ofst];
         }
         // }
 
@@ -314,8 +308,14 @@ LOOP_STAGE:
     RUN_TU:
         for (u32_t t = 0; t < NUM_TROT; t++) {
 #pragma HLS UNROLL
-            fp_t dh = TrotterUnit::Run(trotters_local[t], jcoup_local[t]);
-            TrotterUnit::RunFinal(stage, info[t], state[t], dh, trotters_local[t]);
+            dh[t] = TrotterUnit::Run(trotters_local[t], jcoup_local[t]);
+        }
+
+        // Run final step of Trotter Units
+    RUN_TU_FINAL:
+        for (u32_t t = 0; t < NUM_TROT; t++) {
+#pragma HLS UNROLL
+            TrotterUnit::RunFinal(stage, info[t], state[t], dh[t], trotters_local[t]);
         }
 
         // Shift down jcoup_local
@@ -326,8 +326,6 @@ LOOP_STAGE:
 #pragma HLS UNROLL
                 jcoup_local[t + 1][ofst][0] = jcoup_local[t][ofst][0];
                 jcoup_local[t + 1][ofst][1] = jcoup_local[t][ofst][1];
-                jcoup_local[t + 1][ofst][2] = jcoup_local[t][ofst][2];
-                jcoup_local[t + 1][ofst][3] = jcoup_local[t][ofst][3];
             }
         }
     }

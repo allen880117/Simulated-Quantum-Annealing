@@ -124,7 +124,7 @@ SUM_UP:
     for (u32_t ofst = 0, pack_ofst = 0; ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM;
          ofst++, pack_ofst += NUM_STREAM) {
         // Pramgas: Pipeline and Confine the usage of fadd
-        CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = 128)
+        CTX_PRAGMA(HLS ALLOCATION operation instances = fadd limit = 32)
         CTX_PRAGMA(HLS PIPELINE)
 
         // Buffer for source of adder
