@@ -121,7 +121,7 @@ inline void ReduceInter<1>(fp_t fp_buffer[NUM_STREAM][PACKET_SIZE]) {
  */
 namespace TrotterUnit {
 fp_t Run(const spin_pack_u50_t trotters_local[NUM_SPIN / PACKET_SIZE],
-         const fp_pack_t       jcoup_local[NUM_SPIN / PACKET_SIZE]) {
+         const fp_pack_t       jcoup_local[NUM_SPIN / PACKET_SIZE / NUM_STREAM][NUM_STREAM]) {
     /* Remove stage check for better timing */
 
     // Buffer for dh
@@ -149,7 +149,7 @@ SUM_UP:
                 // Multiply
                 fp_buffer[strm_ofst][spin_ofst] =
                     Multiply(trotters_local[pack_ofst + strm_ofst][spin_ofst],
-                             jcoup_local[pack_ofst + strm_ofst].data[spin_ofst]);
+                             jcoup_local[ofst][strm_ofst].data[spin_ofst]);
             }
 
             // Reduce inside each fp_buffer
@@ -203,31 +203,46 @@ void RunFinal(const u32_t stage, const info_t info, const state_t state, const f
 
 extern "C" {
 void QuantumMonteCarloU50(spin_pack_u50_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE],
-                          const fp_pack_t jcoup[NUM_SPIN][NUM_SPIN / PACKET_SIZE],
+                          const fp_pack_t jcoup_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+                          const fp_pack_t jcoup_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+                          const fp_pack_t jcoup_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
+                          const fp_pack_t jcoup_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
                           const fp_t h[NUM_SPIN], const fp_t jperp, const fp_t beta,
                           const fp_t log_rand[NUM_TROT][NUM_SPIN]) {
     // Interface
 #pragma HLS INTERFACE mode = m_axi bundle = gmem0 port = trotters
-#pragma HLS INTERFACE mode = m_axi bundle = gmem1 port = jcoup
-#pragma HLS INTERFACE mode = m_axi bundle = gmem2 port = h
-#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = log_rand
+#pragma HLS INTERFACE mode = m_axi bundle = gmem1 port = jcoup_0
+#pragma HLS INTERFACE mode = m_axi bundle = gmem2 port = jcoup_1
+#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = jcoup_2
+#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = jcoup_3
+#pragma HLS INTERFACE mode = m_axi bundle = gmem5 port = h
+#pragma HLS INTERFACE mode = m_axi bundle = gmem6 port = log_rand
 
     // Pragma: Aggreate for better throughput
-#pragma HLS AGGREGATE compact = auto variable = jcoup
+#pragma HLS AGGREGATE compact = auto variable = jcoup_0
+#pragma HLS AGGREGATE compact = auto variable = jcoup_1
+#pragma HLS AGGREGATE compact = auto variable = jcoup_2
+#pragma HLS AGGREGATE compact = auto variable = jcoup_3
 
     // Local trotters
     spin_pack_u50_t trotters_local[NUM_TROT][NUM_SPIN / PACKET_SIZE];
 // #pragma HLS BIND_STORAGE variable = trotters_local type = ram_2p impl = bram
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = trotters_local
-#pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = trotters_local
+    // #pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = trotters_local
 
     // Local jcoup (One for Prefetching)
-    fp_pack_t jcoup_local[NUM_TROT][NUM_SPIN / PACKET_SIZE];
-    fp_pack_t jcoup_prefetch[NUM_SPIN / PACKET_SIZE];
+    fp_pack_t jcoup_local[NUM_TROT][NUM_SPIN / PACKET_SIZE / NUM_STREAM][NUM_STREAM];
+    fp_pack_t jcoup_prefetch[NUM_SPIN / PACKET_SIZE / NUM_STREAM][NUM_STREAM];
 // #pragma HLS BIND_STORAGE variable = jcoup_local type = ram_2p impl = bram
 #pragma HLS AGGREGATE compact = auto variable = jcoup_local
 #pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = jcoup_local
-#pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = jcoup_local
+    // #pragma HLS ARRAY_PARTITION dim = 2 type = cyclic factor = 2 variable = jcoup_local
+
+    // Prefetch h and log_rand
+    fp_t h_prefetch[NUM_TROT];
+    fp_t log_rand_prefetch[NUM_TROT];
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = h_prefetch
+#pragma HLS ARRAY_PARTITION dim = 1 type = complete variable = log_rand_prefetch
 
     // Tunnel-Related Energy
     const fp_t dh_tunnel     = jperp * ((fp_t)NUM_TROT);
@@ -255,10 +270,17 @@ READ_TROTTERS:
     }
 
 PREFETCH_JCOUP:
-    for (u32_t ofst = 0; ofst < NUM_SPIN / PACKET_SIZE; ofst++) {
+    for (u32_t ofst = 0; ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; ofst++) {
 #pragma HLS PIPELINE
-        jcoup_prefetch[ofst] = jcoup[0][ofst];
+        jcoup_prefetch[ofst][0] = jcoup_0[0][ofst];
+        jcoup_prefetch[ofst][1] = jcoup_1[0][ofst];
+        jcoup_prefetch[ofst][2] = jcoup_2[0][ofst];
+        jcoup_prefetch[ofst][3] = jcoup_3[0][ofst];
     }
+
+    // Prefetch h and lr
+    h_prefetch[0]        = h[0];
+    log_rand_prefetch[0] = log_rand[0][0];
 
     // Loop of stage
 LOOP_STAGE:
@@ -280,8 +302,8 @@ LOOP_STAGE:
             state[t].i_spin = (ofst & (PACKET_SIZE - 1));
 
             // h, lrn
-            state[t].h_local        = h[ofst];
-            state[t].log_rand_local = log_rand[t][ofst];
+            state[t].h_local        = h_prefetch[t];
+            state[t].log_rand_local = log_rand_prefetch[t];
 
             // up/down spin
             u32_t up           = (t == 0) ? (NUM_TROT - 1) : (t - 1);
@@ -290,24 +312,41 @@ LOOP_STAGE:
             state[t].down_spin = trotters_local[down][state[t].i_pack][state[t].i_spin];
         }
 
+    READ_H_LR:
+        for (u32_t t = 0; t < NUM_TROT; t++) {
+#pragma HLS UNROLL
+            u32_t ofst           = ((stage + 1 + NUM_SPIN - t) & (NUM_SPIN - 1));
+            h_prefetch[t]        = h[ofst];
+            log_rand_prefetch[t] = log_rand[t][ofst];
+        }
+
         // Shift down jcoup_local
     SHIFT_JCOUP:
-        for (u32_t ofst = 0; ofst < NUM_SPIN / PACKET_SIZE; ofst++) {
+        for (u32_t ofst = 0; ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; ofst++) {
 #pragma HLS PIPELINE
             for (i32_t t = NUM_TROT - 2; t >= 0; t--) {
 #pragma HLS UNROLL
-                jcoup_local[t + 1][ofst] = jcoup_local[t][ofst];
+                jcoup_local[t + 1][ofst][0] = jcoup_local[t][ofst][0];
+                jcoup_local[t + 1][ofst][1] = jcoup_local[t][ofst][1];
+                jcoup_local[t + 1][ofst][2] = jcoup_local[t][ofst][2];
+                jcoup_local[t + 1][ofst][3] = jcoup_local[t][ofst][3];
             }
-            jcoup_local[0][ofst] = jcoup_prefetch[ofst];
+            jcoup_local[0][ofst][0] = jcoup_prefetch[ofst][0];
+            jcoup_local[0][ofst][1] = jcoup_prefetch[ofst][1];
+            jcoup_local[0][ofst][2] = jcoup_prefetch[ofst][2];
+            jcoup_local[0][ofst][3] = jcoup_prefetch[ofst][3];
         }
 
         // Read New Jcuop[0]
         /* Remove if condition enable the overlap of read request */
         // if (stage < NUM_SPIN) {
     READ_JCOUP:
-        for (u32_t ofst = 0; ofst < NUM_SPIN / PACKET_SIZE; ofst++) {
+        for (u32_t ofst = 0; ofst < NUM_SPIN / PACKET_SIZE / NUM_STREAM; ofst++) {
 #pragma HLS PIPELINE
-            jcoup_prefetch[ofst] = jcoup[stage + 1 & (NUM_SPIN - 1)][ofst];
+            jcoup_prefetch[ofst][0] = jcoup_0[stage + 1 & (NUM_SPIN - 1)][ofst];
+            jcoup_prefetch[ofst][1] = jcoup_1[stage + 1 & (NUM_SPIN - 1)][ofst];
+            jcoup_prefetch[ofst][2] = jcoup_2[stage + 1 & (NUM_SPIN - 1)][ofst];
+            jcoup_prefetch[ofst][3] = jcoup_3[stage + 1 & (NUM_SPIN - 1)][ofst];
         }
         // }
 

@@ -130,3 +130,22 @@ for stage:
     - Add more fadd : NUM_FADD = 64 now
 
 ---
+
+[!] Version 7.2.c4
+
+* Based on version 7.2
+
+```
+* NUM_TROT 4
+* NUM_SPIN 4096
+* PACKET_SIZE 64
+* LOG2_PACKET_SIZE 6
+* NUM_STREAM 4
+* LOG2_NUM_STREAM 2
+* HALF_NUM_STREAM 1
+* NUM_FADD 128
+```
+
+[+] Interface of Jcoup is 4 Channels
+[+] From I/O Bound to Computational Bound
+    - Add more fadd : NUM_FADD = 128 now
