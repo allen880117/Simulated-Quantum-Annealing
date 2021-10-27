@@ -113,3 +113,8 @@ for stage:
         - The dependency of 'state' is eliminated by prefetching of h and lr
     - four TU       since version 7 is fully parallel
         - The dependency between TU[0] and Jcoup[0] is eliminated by prefetching of jcoup
+
+[+] Limit the usage of number fadd to 32
+    - Reduce resouce usage
+    - Doesn't affect the latency
+    - Since the execution time of TU is hiden by the READ_JCOUP
