@@ -1,0 +1,199 @@
+
+
+================================================================
+== Vitis HLS Report for 'RunFinal'
+================================================================
+* Date:           Wed Oct 27 16:38:47 2021
+
+* Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:07 MDT 2021)
+* Project:        SQA-Vitis
+* Solution:       solution1 (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu35p-fsvh2892-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max    | min | max |   Type  |
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |        1|       22|  3.333 ns|  73.326 ns|    1|   22|       no|
+    +---------+---------+----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+--------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++---------------------+---------+------+---------+--------+-----+
+|DSP                  |        -|     -|        -|       -|    -|
+|Expression           |        -|     -|        0|     255|    -|
+|FIFO                 |        -|     -|        -|       -|    -|
+|Instance             |        -|     5|      461|     276|    -|
+|Memory               |        -|     -|        -|       -|    -|
+|Multiplexer          |        -|     -|        -|     202|    -|
+|Register             |        -|     -|      335|       -|    -|
++---------------------+---------+------+---------+--------+-----+
+|Total                |        0|     5|      796|     733|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available SLR        |     1344|  2976|   871680|  435840|  320|
++---------------------+---------+------+---------+--------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+|Available            |     2688|  5952|  1743360|  871680|  640|
++---------------------+---------+------+---------+--------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|      ~0|    0|
++---------------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |              Instance              |             Module             | BRAM_18K| DSP|  FF | LUT | URAM|
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |fadd_32ns_32ns_32_7_full_dsp_1_U97  |fadd_32ns_32ns_32_7_full_dsp_1  |        0|   2|  318|  198|    0|
+    |fcmp_32ns_32ns_1_2_no_dsp_1_U100    |fcmp_32ns_32ns_1_2_no_dsp_1     |        0|   0|    0|    0|    0|
+    |fdiv_32ns_32ns_32_12_no_dsp_1_U99   |fdiv_32ns_32ns_32_12_no_dsp_1   |        0|   0|    0|    0|    0|
+    |fmul_32ns_32ns_32_4_max_dsp_1_U98   |fmul_32ns_32ns_32_4_max_dsp_1   |        0|   3|  143|   78|    0|
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+    |Total                               |                                |        0|   5|  461|  276|    0|
+    +------------------------------------+--------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------+----------+----+---+----+------------+------------+
+    |and_ln178_fu_238_p2     |       and|   0|  0|   2|           1|           1|
+    |and_ln202_1_fu_409_p2   |       and|   0|  0|   2|           1|           1|
+    |and_ln202_fu_403_p2     |       and|   0|  0|   2|           1|           1|
+    |icmp_ln178_1_fu_232_p2  |      icmp|   0|  0|  12|          13|          13|
+    |icmp_ln178_fu_212_p2    |      icmp|   0|  0|  12|          13|          13|
+    |icmp_ln202_1_fu_377_p2  |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln202_2_fu_383_p2  |      icmp|   0|  0|  11|           8|           2|
+    |icmp_ln202_3_fu_389_p2  |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln202_fu_371_p2    |      icmp|   0|  0|  11|           8|           2|
+    |or_ln202_1_fu_399_p2    |        or|   0|  0|   2|           1|           1|
+    |or_ln202_fu_395_p2      |        or|   0|  0|   2|           1|           1|
+    |dh_tmp_1_fu_256_p3      |    select|   0|  0|  32|           1|          32|
+    |dh_tmp_5_fu_327_p3      |    select|   0|  0|  32|           1|          32|
+    |p_Val2_s_fu_281_p3      |    select|   0|  0|  63|           1|          64|
+    |select_ln187_fu_244_p3  |    select|   0|  0|  32|           1|          32|
+    |p_Repl2_s_fu_307_p2     |       xor|   0|  0|   2|           1|           2|
+    |r_fu_415_p2             |       xor|   0|  0|   2|           1|           2|
+    |xor_ln1049_fu_252_p2    |       xor|   0|  0|   2|           1|           1|
+    |xor_ln178_fu_218_p2     |       xor|   0|  0|   2|           1|           2|
+    +------------------------+----------+----+---+----+------------+------------+
+    |Total                   |          |   0|  0| 255|         101|         204|
+    +------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------+-----+-----------+-----+-----------+
+    |           Name           | LUT | Input Size| Bits| Total Bits|
+    +--------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm                 |  118|         24|    1|         24|
+    |grp_fu_174_p0             |   14|          3|   32|         96|
+    |grp_fu_174_p1             |   14|          3|   32|         96|
+    |grp_fu_178_p0             |   14|          3|   32|         96|
+    |grp_fu_178_p1             |   14|          3|   32|         96|
+    |trotters_local1_address0  |   14|          3|    5|         15|
+    |trotters_local_address0   |   14|          3|    5|         15|
+    +--------------------------+-----+-----------+-----+-----------+
+    |Total                     |  202|         42|  139|        438|
+    +--------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------+----+----+-----+-----------+
+    |             Name             | FF | LUT| Bits| Const Bits|
+    +------------------------------+----+----+-----+-----------+
+    |and_ln178_reg_475             |   1|   0|    1|          0|
+    |and_ln202_1_reg_545           |   1|   0|    1|          0|
+    |ap_CS_fsm                     |  23|   0|   23|          0|
+    |dh_tmp_1_reg_484              |  32|   0|   32|          0|
+    |div_reg_489                   |  32|   0|   32|          0|
+    |icmp_ln202_1_reg_530          |   1|   0|    1|          0|
+    |icmp_ln202_2_reg_535          |   1|   0|    1|          0|
+    |icmp_ln202_3_reg_540          |   1|   0|    1|          0|
+    |icmp_ln202_reg_525            |   1|   0|    1|          0|
+    |p_Result_128_reg_514          |   1|   0|    1|          0|
+    |p_Result_s_reg_549            |  64|   0|   64|          0|
+    |p_Val2_s_reg_509              |  64|   0|   64|          0|
+    |reg_194                       |  32|   0|   32|          0|
+    |reg_198                       |  32|   0|   32|          0|
+    |select_ln187_reg_479          |  32|   0|   32|          0|
+    |state_i_spin_cast_reg_469     |   6|   0|   32|         26|
+    |trotters_local1_addr_reg_504  |   5|   0|    5|          0|
+    |trotters_local_addr_reg_499   |   5|   0|    5|          0|
+    |trunc_ln819_reg_494           |   1|   0|    1|          0|
+    +------------------------------+----+----+-----+-----------+
+    |Total                         | 335|   0|  361|         26|
+    +------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+----------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++--------------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk                    |   in|    1|  ap_ctrl_hs|              RunFinal|  return value|
+|ap_rst                    |   in|    1|  ap_ctrl_hs|              RunFinal|  return value|
+|ap_start                  |   in|    1|  ap_ctrl_hs|              RunFinal|  return value|
+|ap_done                   |  out|    1|  ap_ctrl_hs|              RunFinal|  return value|
+|ap_idle                   |  out|    1|  ap_ctrl_hs|              RunFinal|  return value|
+|ap_ready                  |  out|    1|  ap_ctrl_hs|              RunFinal|  return value|
+|stage                     |   in|   13|     ap_none|                 stage|        scalar|
+|info_t_offset             |   in|    2|     ap_none|         info_t_offset|        scalar|
+|info_beta                 |   in|   32|     ap_none|             info_beta|        scalar|
+|info_dh_tunnel            |   in|   32|     ap_none|        info_dh_tunnel|        scalar|
+|info_neg_dh_tunnel        |   in|   32|     ap_none|    info_neg_dh_tunnel|        scalar|
+|state_i_pack              |   in|    6|     ap_none|          state_i_pack|        scalar|
+|state_i_spin              |   in|    6|     ap_none|          state_i_spin|        scalar|
+|state_up_spin             |   in|    1|     ap_none|         state_up_spin|        scalar|
+|state_down_spin           |   in|    1|     ap_none|       state_down_spin|        scalar|
+|state_h_local             |   in|   32|     ap_none|         state_h_local|        scalar|
+|state_log_rand_local      |   in|   32|     ap_none|  state_log_rand_local|        scalar|
+|dh                        |   in|   32|     ap_none|                    dh|        scalar|
+|trotters_local_address0   |  out|    5|   ap_memory|        trotters_local|         array|
+|trotters_local_ce0        |  out|    1|   ap_memory|        trotters_local|         array|
+|trotters_local_we0        |  out|    1|   ap_memory|        trotters_local|         array|
+|trotters_local_d0         |  out|   64|   ap_memory|        trotters_local|         array|
+|trotters_local_q0         |   in|   64|   ap_memory|        trotters_local|         array|
+|trotters_local1_address0  |  out|    5|   ap_memory|       trotters_local1|         array|
+|trotters_local1_ce0       |  out|    1|   ap_memory|       trotters_local1|         array|
+|trotters_local1_we0       |  out|    1|   ap_memory|       trotters_local1|         array|
+|trotters_local1_d0        |  out|   64|   ap_memory|       trotters_local1|         array|
+|trotters_local1_q0        |   in|   64|   ap_memory|       trotters_local1|         array|
++--------------------------+-----+-----+------------+----------------------+--------------+
+

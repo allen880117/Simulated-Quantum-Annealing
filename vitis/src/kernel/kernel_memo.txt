@@ -73,3 +73,32 @@ To
         }
 ```
 
+---
+
+[!] Version 7.1 Published
+
+* Based on version 7
+
+```
+* NUM_TROT 4
+* NUM_SPIN 4096
+* PACKET_SIZE 64
+* LOG2_PACKET_SIZE 6
+* NUM_STREAM 2
+* LOG2_NUM_STREAM 1
+* HALF_NUM_STREAM 1
+* NUM_FADD 64
+```
+
+* Interface for jcoup is one channel
+[+] Add Prefetching for jcoup 
+[+] Overlap the Execution Time of TU and READ_JCOUP
+
+for stage:
+    UPDATE_STATE
+    SHIFT_JCOUP
+    READ_JCOUP <- This order is important
+    RUN_TU     <- This order is important
+    RUN_TU_FINAL
+
+
