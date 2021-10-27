@@ -1,0 +1,75 @@
+[!] Bug of fetching the up/down spins
+
+* This bug only appears when solving Number Partition Problem
+
+* There exists a bug since qmc_u50.backup.3.cpp to qmc_u50.backup.6.cpp
+* Two loop UPDATE_UP_SPIN and UPDATE_DOWN_SPIN (split from the UPDATE_INPUT_STAGE in qmc_u50.backup.2.cpp) looks like doesn't work normally.
+* Fixed in qmc_u50.backup.7.cpp (based on qmc_u50.backup.5.cpp and UPDATE_INPUT_STAGE from qmc_u50.backup.2.cpp)
+
+Replace
+
+```
+        // Update offset, h_local, log_rand_local
+    UPDATE_OFST_H_LRN:
+        for (u32_t t = 0; t < NUM_TROT; t++) {
+#pragma HLS UNROLL
+            u32_t ofst = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
+
+            // offset
+            state[t].i_pack = (ofst >> (LOG2_PACKET_SIZE));
+            state[t].i_spin = (ofst & (PACKET_SIZE - 1));
+
+            // h, lrn
+            state[t].h_local        = h[ofst];
+            state[t].log_rand_local = log_rand[t][ofst];
+        }
+
+        // Update up_spin
+    UPDATE_UP_SPIN:
+        for (u32_t t = 1; t < NUM_TROT; t++) {
+#pragma HLS UNROLL
+            state[t].up_spin =
+                trotters_local[t - 1][state[t].i_pack][state[t].i_spin];
+        }
+        state[0].up_spin =
+            trotters_local[NUM_TROT - 1][state[0].i_pack][state[0].i_pack];
+
+        // Update down_spin
+    UPDATE_DOWN_SPIN:
+        for (u32_t t = 0; t < NUM_TROT - 1; t++) {
+#pragma HLS UNROLL
+            state[t].down_spin =
+                trotters_local[t + 1][state[t].i_pack][state[t].i_spin];
+        }
+        state[NUM_TROT - 1].down_spin =
+            trotters_local[0][state[NUM_TROT - 1].i_pack]
+                          [state[NUM_TROT - 1].i_spin];
+```
+
+To
+
+```
+// Update offset, h_local, log_rand_local
+    UPDATE_OFST_H_LRN:
+        for (u32_t t = 0; t < NUM_TROT; t++) {
+#pragma HLS UNROLL
+            u32_t ofst = ((stage + NUM_SPIN - t) & (NUM_SPIN - 1));
+
+            // offset
+            state[t].i_pack = (ofst >> (LOG2_PACKET_SIZE));
+            state[t].i_spin = (ofst & (PACKET_SIZE - 1));
+
+            // h, lrn
+            state[t].h_local        = h[ofst];
+            state[t].log_rand_local = log_rand[t][ofst];
+
+            // up/down spin
+            u32_t up   = (t == 0) ? (NUM_TROT - 1) : (t - 1);
+            u32_t down = (t == NUM_TROT - 1) ? (0) : (t + 1);
+            state[t].up_spin =
+                trotters_local[up][state[t].i_pack][state[t].i_spin];
+            state[t].down_spin =
+                trotters_local[down][state[t].i_pack][state[t].i_spin];
+        }
+```
+
