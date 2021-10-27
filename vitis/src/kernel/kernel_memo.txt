@@ -101,4 +101,15 @@ for stage:
     RUN_TU     <- This order is important
     RUN_TU_FINAL
 
+---
 
+[!] Version 7.2 Published
+
+* Based on version 7.1
+
+[+] Add Prefetching for h and log_rand
+[+] Overlap the Execution Time of TU_FINAL
+    - four TU_FINAL since version 7.1 is fully parallel
+        - The dependency of 'state' is eliminated by prefetching of h and lr
+    - four TU       since version 7 is fully parallel
+        - The dependency between TU[0] and Jcoup[0] is eliminated by prefetching of jcoup
