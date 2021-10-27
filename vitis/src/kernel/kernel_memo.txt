@@ -118,3 +118,15 @@ for stage:
     - Reduce resouce usage
     - Doesn't affect the latency
     - Since the execution time of TU is hiden by the READ_JCOUP
+
+---
+
+[!] Version 7.2.c2
+
+* Based on version 7.2
+
+[+] Interface of Jcoup is 2 Channels
+[+] From I/O Bound to Computational Bound
+    - Add more fadd : NUM_FADD = 64 now
+
+---
