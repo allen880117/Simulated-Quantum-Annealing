@@ -1,0 +1,200 @@
+
+
+================================================================
+== Synthesis Summary Report of 'QuantumMonteCarloU50'
+================================================================
++ General Information: 
+    * Date:           Tue Nov  2 06:42:56 2021
+    * Version:        2021.1 (Build 3247384 on Thu Jun 10 19:36:33 MDT 2021)
+    * Project:        SQA-Vitis
+    * Solution:       solution1 (Vitis Kernel Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu35p-fsvh2892-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+------------+--------------+--------------+-----+
+    |                                    Modules                                   |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |          |            |              |              |     |
+    |                                    & Loops                                   |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|   BRAM   |     DSP    |      FF      |      LUT     | URAM|
+    +------------------------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+------------+--------------+--------------+-----+
+    |+ QuantumMonteCarloU50                                                        |  Timing|  -0.41|  1301274|  4.337e+06|         -|  1301275|     -|        no|  150 (5%)|  2131 (35%)|  628281 (36%)|  382427 (43%)|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_READ_TROTTERS_READ_TROTTERS_1_fu_1943    |       -|   0.00|     1027|  3.423e+03|         -|     1027|     -|        no|         -|           -|    1008 (~0%)|     578 (~0%)|    -|
+    |  o READ_TROTTERS_READ_TROTTERS_1                                             |       -|   2.43|     1025|  3.416e+03|         3|        1|  1024|       yes|         -|           -|             -|             -|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_PREFETCH_JCOUP_fu_1966                   |       -|   0.00|      170|    566.610|         -|      170|     -|        no|         -|           -|    55635 (3%)|    4933 (~0%)|    -|
+    |  o PREFETCH_JCOUP                                                            |      II|   2.43|      168|    559.944|        76|        3|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_SHIFT_JCOUP_fu_2110                      |       -|   0.94|       34|    113.322|         -|       34|     -|        no|         -|           -|     165 (~0%)|      61 (~0%)|    -|
+    |  o SHIFT_JCOUP                                                               |       -|   2.43|       32|    106.656|         2|        1|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_READ_JCOUP_fu_2274                       |       -|   0.00|      170|    566.610|         -|      170|     -|        no|         -|           -|    55635 (3%)|    5047 (~0%)|    -|
+    |  o READ_JCOUP                                                                |      II|   2.43|      168|    559.944|        76|        3|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2419                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2426                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2433                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2440                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2447                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2454                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2461                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2468                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2475                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2482                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2489                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2496                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2503                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2510                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2517                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_Run_fu_2524                                                            |  Timing|  -0.41|      173|    576.609|         -|      173|     -|        no|         -|    128 (2%)|    29734 (1%)|    20051 (2%)|    -|
+    |  + grp_Run_Pipeline_SUM_UP_fu_341                                            |       -|   0.09|      120|    399.960|         -|      120|     -|        no|         -|    122 (2%)|    27765 (1%)|    18632 (2%)|    -|
+    |   o SUM_UP                                                                   |      II|   2.43|      118|    393.294|        57|        2|    32|       yes|         -|           -|             -|             -|    -|
+    | + grp_RunFinal_fu_2531                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2549                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2567                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2585                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2603                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2621                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2639                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2657                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2675                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2693                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2711                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2729                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2747                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2765                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2783                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_RunFinal_fu_2801                                                       |       -|   0.09|       22|     73.326|         -|       22|     -|        no|         -|     5 (~0%)|     791 (~0%)|     656 (~0%)|    -|
+    | + grp_QuantumMonteCarloU50_Pipeline_WRITE_TROTTERS_WRITE_TROTTERS_1_fu_2819  |       -|   0.00|     1027|  3.423e+03|         -|     1027|     -|        no|         -|           -|     992 (~0%)|    1015 (~0%)|    -|
+    |  o WRITE_TROTTERS_WRITE_TROTTERS_1                                           |       -|   2.43|     1025|  3.416e+03|         3|        1|  1024|       yes|         -|           -|             -|             -|    -|
+    | o LOOP_STAGE                                                                 |       -|   2.43|  1299076|  4.330e+06|       316|        -|  4111|        no|         -|           -|             -|             -|    -|
+    +------------------------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+------------+--------------+--------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++-------------+--------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| Interface   | Data Width   | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   |
+|             | (SW->HW)     |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |
++-------------+--------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| m_axi_gmem0 | 64 -> 512    | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem1 | 2048 -> 1024 | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem2 | 2048 -> 1024 | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem3 | 32 -> 32     | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
+| m_axi_gmem4 | 32 -> 32     | 64            | 64      | slave  | 0        | 512       | 16           | 16           | 16          | 16          |
++-------------+--------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+
+* S_AXILITE
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* TOP LEVEL CONTROL
++-----------+---------------+-----------+
+| Interface | Type          | Ports     |
++-----------+---------------+-----------+
+| ap_clk    | clock         | ap_clk    |
+| ap_rst_n  | reset         | ap_rst_n  |
+| interrupt | interrupt     | interrupt |
+| ap_ctrl   | ap_ctrl_chain |           |
++-----------+---------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------+
+| Argument | Direction | Datatype      |
++----------+-----------+---------------+
+| trotters | inout     | ap_uint<64>*  |
+| jcoup_0  | in        |  const *      |
+| jcoup_1  | in        |  const *      |
+| h        | in        | float const * |
+| jperp    | in        | float const   |
+| beta     | in        | float const   |
+| log_rand | in        | float const * |
++----------+-----------+---------------+
+
+* SW-to-HW Mapping
++----------+--------------------------+-----------+----------+-----------------------+
+| Argument | HW Name                  | HW Type   | HW Usage | HW Info               |
++----------+--------------------------+-----------+----------+-----------------------+
+| trotters | m_axi_gmem0              | interface |          |                       |
+| trotters | s_axi_control trotters_1 | register  | offset   | offset=0x10, range=32 |
+| trotters | s_axi_control trotters_2 | register  | offset   | offset=0x14, range=32 |
+| jcoup_0  | m_axi_gmem1              | interface |          |                       |
+| jcoup_0  | s_axi_control jcoup_0_1  | register  | offset   | offset=0x1c, range=32 |
+| jcoup_0  | s_axi_control jcoup_0_2  | register  | offset   | offset=0x20, range=32 |
+| jcoup_1  | m_axi_gmem2              | interface |          |                       |
+| jcoup_1  | s_axi_control jcoup_1_1  | register  | offset   | offset=0x28, range=32 |
+| jcoup_1  | s_axi_control jcoup_1_2  | register  | offset   | offset=0x2c, range=32 |
+| h        | m_axi_gmem3              | interface |          |                       |
+| h        | s_axi_control h_1        | register  | offset   | offset=0x34, range=32 |
+| h        | s_axi_control h_2        | register  | offset   | offset=0x38, range=32 |
+| jperp    | s_axi_control jperp      | register  |          | offset=0x40, range=32 |
+| beta     | s_axi_control beta       | register  |          | offset=0x48, range=32 |
+| log_rand | m_axi_gmem4              | interface |          |                       |
+| log_rand | s_axi_control log_rand_1 | register  | offset   | offset=0x50, range=32 |
+| log_rand | s_axi_control log_rand_2 | register  | offset   | offset=0x54, range=32 |
++----------+--------------------------+-----------+----------+-----------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+* Burst Summary
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| HW Interface | Message                                                                                                                                                                                                                         | Location                                                        |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| m_axi_gmem0  | Multiple burst reads of length 128 and bit width 512. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.       | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:258:5  |
+| m_axi_gmem1  | Multiple burst reads of variable length and bit width 1024. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:269:26 |
+| m_axi_gmem2  | Multiple burst reads of variable length and bit width 1024. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:270:33 |
+| m_axi_gmem1  | Multiple burst reads of variable length and bit width 1024. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:334:26 |
+| m_axi_gmem2  | Multiple burst reads of variable length and bit width 1024. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:335:37 |
+| m_axi_gmem0  | Multiple burst writes of length 128 and bit width 512. These bursts requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.      | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:356:5  |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+
+* Bursts and Widening Missed
++--------------+----------+--------------------------------------------------------------------------------+------------+-----------------------------------------------------------------+
+| HW Interface | Variable | Problem                                                                        | Resolution | Location                                                        |
++--------------+----------+--------------------------------------------------------------------------------+------------+-----------------------------------------------------------------+
+| m_axi_gmem1  | jcoup_0  | Alignment is insufficient, current alignment is 64 byte(s) but 256 is required | 214-228    | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:334:26 |
+| m_axi_gmem2  | jcoup_1  | Alignment is insufficient, current alignment is 64 byte(s) but 256 is required | 214-228    | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:335:37 |
+| m_axi_gmem1  | jcoup_0  | Alignment is insufficient, current alignment is 64 byte(s) but 256 is required | 214-228    | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:269:26 |
+| m_axi_gmem2  | jcoup_1  | Alignment is insufficient, current alignment is 64 byte(s) but 256 is required | 214-228    | Simulated-Quantum-Annealing/vitis/src/kernel/qmc_u50.cpp:270:33 |
++--------------+----------+--------------------------------------------------------------------------------+------------+-----------------------------------------------------------------+
+
+    * Resolution URL: www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=XXX-YYY.html (replace XXX-YYY with column value)
+

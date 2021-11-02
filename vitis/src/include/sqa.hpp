@@ -44,8 +44,8 @@
     #define NUM_SPIN 4096
     #define PACKET_SIZE 64
     #define LOG2_PACKET_SIZE 6
-    #define NUM_STREAM 4
-    #define LOG2_NUM_STREAM 2
+    #define NUM_STREAM 2
+    #define LOG2_NUM_STREAM 1
     #define HALF_NUM_STREAM 1
     #define NUM_FADD 64
     #define COPYSIGNF 0
@@ -53,10 +53,10 @@
 #elif COND(3)
     #define NUM_TROT 4
     #define NUM_SPIN 32
-    #define PACKET_SIZE 8
-    #define LOG2_PACKET_SIZE 3
-    #define NUM_STREAM 4
-    #define LOG2_NUM_STREAM 2
+    #define PACKET_SIZE 16
+    #define LOG2_PACKET_SIZE 4
+    #define NUM_STREAM 2
+    #define LOG2_NUM_STREAM 1
     #define HALF_NUM_STREAM 1
     #define NUM_FADD 64
     #define COPYSIGNF 0
@@ -119,8 +119,6 @@ void QuantumMonteCarloU50(
     /* Jcoup */
     const fp_pack_t Jcoup_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     const fp_pack_t Jcoup_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-    const fp_pack_t Jcoup_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-    const fp_pack_t Jcoup_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
     /* Array of h */
     const fp_t h[NUM_SPIN],
     /* Thermal Related */

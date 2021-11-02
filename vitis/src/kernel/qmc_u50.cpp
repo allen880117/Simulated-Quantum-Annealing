@@ -205,24 +205,18 @@ extern "C" {
 void QuantumMonteCarloU50(spin_pack_u50_t trotters[NUM_TROT][NUM_SPIN / PACKET_SIZE],
                           const fp_pack_t jcoup_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
                           const fp_pack_t jcoup_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-                          const fp_pack_t jcoup_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
-                          const fp_pack_t jcoup_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM],
                           const fp_t h[NUM_SPIN], const fp_t jperp, const fp_t beta,
                           const fp_t log_rand[NUM_TROT][NUM_SPIN]) {
     // Interface
 #pragma HLS INTERFACE mode = m_axi bundle = gmem0 port = trotters
 #pragma HLS INTERFACE mode = m_axi bundle = gmem1 port = jcoup_0
 #pragma HLS INTERFACE mode = m_axi bundle = gmem2 port = jcoup_1
-#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = jcoup_2
-#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = jcoup_3
-#pragma HLS INTERFACE mode = m_axi bundle = gmem5 port = h
-#pragma HLS INTERFACE mode = m_axi bundle = gmem6 port = log_rand
+#pragma HLS INTERFACE mode = m_axi bundle = gmem3 port = h
+#pragma HLS INTERFACE mode = m_axi bundle = gmem4 port = log_rand
 
     // Pragma: Aggreate for better throughput
 #pragma HLS AGGREGATE compact = auto variable = jcoup_0
 #pragma HLS AGGREGATE compact = auto variable = jcoup_1
-#pragma HLS AGGREGATE compact = auto variable = jcoup_2
-#pragma HLS AGGREGATE compact = auto variable = jcoup_3
 
     // Local trotters
     spin_pack_u50_t trotters_local[NUM_TROT][NUM_SPIN / PACKET_SIZE];
@@ -274,8 +268,6 @@ PREFETCH_JCOUP:
 #pragma HLS PIPELINE
         jcoup_prefetch[ofst][0] = jcoup_0[0][ofst];
         jcoup_prefetch[ofst][1] = jcoup_1[0][ofst];
-        jcoup_prefetch[ofst][2] = jcoup_2[0][ofst];
-        jcoup_prefetch[ofst][3] = jcoup_3[0][ofst];
     }
 
     // Prefetch h and lr
@@ -328,13 +320,9 @@ LOOP_STAGE:
 #pragma HLS UNROLL
                 jcoup_local[t + 1][ofst][0] = jcoup_local[t][ofst][0];
                 jcoup_local[t + 1][ofst][1] = jcoup_local[t][ofst][1];
-                jcoup_local[t + 1][ofst][2] = jcoup_local[t][ofst][2];
-                jcoup_local[t + 1][ofst][3] = jcoup_local[t][ofst][3];
             }
             jcoup_local[0][ofst][0] = jcoup_prefetch[ofst][0];
             jcoup_local[0][ofst][1] = jcoup_prefetch[ofst][1];
-            jcoup_local[0][ofst][2] = jcoup_prefetch[ofst][2];
-            jcoup_local[0][ofst][3] = jcoup_prefetch[ofst][3];
         }
 
         // Read New Jcuop[0]
@@ -345,8 +333,6 @@ LOOP_STAGE:
 #pragma HLS PIPELINE
             jcoup_prefetch[ofst][0] = jcoup_0[stage + 1 & (NUM_SPIN - 1)][ofst];
             jcoup_prefetch[ofst][1] = jcoup_1[stage + 1 & (NUM_SPIN - 1)][ofst];
-            jcoup_prefetch[ofst][2] = jcoup_2[stage + 1 & (NUM_SPIN - 1)][ofst];
-            jcoup_prefetch[ofst][3] = jcoup_3[stage + 1 & (NUM_SPIN - 1)][ofst];
         }
         // }
 

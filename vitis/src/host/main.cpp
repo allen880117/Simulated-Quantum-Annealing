@@ -21,8 +21,6 @@ fp_t      Jcoup[NUM_SPIN][NUM_SPIN];
 fp_pack_t Jcoup_pack[NUM_SPIN][NUM_SPIN / PACKET_SIZE];
 fp_pack_t Jcoup_pack_0[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
 fp_pack_t Jcoup_pack_1[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
-fp_pack_t Jcoup_pack_2[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
-fp_pack_t Jcoup_pack_3[NUM_SPIN][NUM_SPIN / PACKET_SIZE / NUM_STREAM];
 
 int main(int argc, char **argv) {
     // Dump value of macros
@@ -81,10 +79,6 @@ int main(int argc, char **argv) {
                 Jcoup_pack[i][pack_ofst * NUM_STREAM + 0];
             Jcoup_pack_1[i][pack_ofst] =
                 Jcoup_pack[i][pack_ofst * NUM_STREAM + 1];
-            Jcoup_pack_2[i][pack_ofst] =
-                Jcoup_pack[i][pack_ofst * NUM_STREAM + 2];
-            Jcoup_pack_3[i][pack_ofst] =
-                Jcoup_pack[i][pack_ofst * NUM_STREAM + 3];
         }
     }
 #endif
@@ -140,9 +134,8 @@ int main(int argc, char **argv) {
 
 #if U50
         // Run QMC-U50
-        QuantumMonteCarloU50(trotters_pack, Jcoup_pack_0, Jcoup_pack_1,
-                             Jcoup_pack_2, Jcoup_pack_3, h, Jperp, 1.0f / T,
-                             log_rand_nums);
+        QuantumMonteCarloU50(trotters_pack, Jcoup_pack_0, Jcoup_pack_1, h,
+                             Jperp, 1.0f / T, log_rand_nums);
         // Unpack Trotters
         UnpackTrotters(trotters_pack, trotters);
 #else
