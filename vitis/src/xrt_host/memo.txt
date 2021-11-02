@@ -30,3 +30,16 @@
         -> Move "LOOP_STEP" into each TU
         -> Merge "Request" in one TU but not merge "all TU" into one pipeline 
     -> [*] If we can solve the data dependency of TU0, we can achieve higher parallelism
+    
+[+][V] sqa-qmc.7.xclbin
+    -> [*] Based on qmc_u50.backup.7.2.fadd64.c2.cpp
+    -> [*] By prefetching of jcoup_local
+    	-> Make all the trotter units run parallely
+    	-> Make READ_JCOUP overlap with RUN_TU
+    -> [*] By prefetching of h and log_rand
+    	-> Make all the run_tu_final run parallely
+    	-> Make UPDATE_STATE overlap with RUN_TU_FINAL
+    -> [*] Use more channels for jcoup
+    	-> Efficient READ_JCOUP
+    	-> Shift back to Calculation-Bound
+    	-> Thus we use more fadd for better throughput
