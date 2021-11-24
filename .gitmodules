@@ -1,0 +1,3 @@
+[submodule "vitis"]
+	path = vitis
+	url = https://github.com/allen880117/Simulated-Quantum-Annealing-Vitis.git
