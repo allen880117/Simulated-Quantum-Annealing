@@ -1,8 +1,0 @@
-rpt_4-p64-s2
-* By reducing the number of streams (comparing to NUM_STREAM=16)
-    * Better resource ssage
-    * Better latency
-
-* Currently 2 streams is better than 1 stream only, due to
-    * Number of Memory Ports
-    * Number of fadd
